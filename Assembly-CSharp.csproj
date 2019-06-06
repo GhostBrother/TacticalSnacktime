@@ -73,7 +73,9 @@
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
     <Compile Include="Assets\Scripts\Tiles\Map.cs" />
     <Compile Include="Assets\Scripts\Tiles\MapGenerator.cs" />
-    <Compile Include="Assets\Scripts\Tiles\Tile.cs" />
+    <Compile Include="Assets\Scripts\Tiles\Spaces\GroupOfTiles.cs" />
+    <Compile Include="Assets\Scripts\Tiles\Spaces\Space.cs" />
+    <Compile Include="Assets\Scripts\Tiles\Spaces\Tile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\ActiveCharacterTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\ClearTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\DeoployZoneTile.cs" />

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour {
 
-    bool isMouseHeldDown;
+    bool isMousePressed;
 
     [SerializeField]
     TileSelector tileSelector;
@@ -19,27 +19,26 @@ public class InputHandler : MonoBehaviour {
     }
 
     public void ScanForInput()
-    { 
+    {
         scanForInteractable();
         scanForMouseDown();
-        scanForMouseUp();
     }
 
     private void scanForMouseDown()
     {
-        if (Input.GetMouseButtonDown(0) && !isMouseHeldDown)
+        if (Input.GetMouseButtonDown(0) && !isMousePressed)
         {
-            isMouseHeldDown = true;
+            isMousePressed = true;
         }
     }
 
-    private void scanForMouseUp()
-    {
-        if (Input.GetMouseButtonUp(0) && isMouseHeldDown)
-        {
-            isMouseHeldDown = false;
-        }
-    }
+    //private void scanForMouseUp()
+    //{
+    //    if (Input.GetMouseButtonUp(0) && isMouseHeldDown)
+    //    {
+    //        isMouseHeldDown = false;
+    //    }
+    //}
 
     private void scanForInteractable()
     {
@@ -56,8 +55,11 @@ public class InputHandler : MonoBehaviour {
                 {
                     tileSelector.MoveToPosition(c.transform.position);
 
-                    if(isMouseHeldDown)
-                    Gm.ActivateTile(c.gameObject.GetComponent<Tile>());
+                    if (isMousePressed)
+                    {
+                        Gm.ActivateTile(c.gameObject.GetComponent<Tile>());
+                        isMousePressed = false;
+                    }
                 }
             }
         }

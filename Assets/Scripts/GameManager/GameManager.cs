@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     CharacterDisplay _characterDisplay;
 
+    [SerializeField]
+    CameraController camera;
+
+    public CameraController Camera { get { return camera; } private set { } }
+
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
     private InputHandler _inputHandler;
@@ -80,6 +85,23 @@ public class GameManager : MonoBehaviour {
     public void DeactivateAllTiles()
     {
         _gameMap.DeactivateAllTiles();
+    }
+
+    public void SortList()
+    {
+        charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
+    }
+
+    public Character GetNextCharacter()
+    {
+        return charactersOnMap[0];
+    }
+
+    public void MoveFirstCharacterToLast()
+    {
+        Character temp = GetNextCharacter();
+        charactersOnMap.Remove(temp);
+        charactersOnMap.Add(temp);
     }
 
     public void KeepTrackOfStartTile(Tile tile)

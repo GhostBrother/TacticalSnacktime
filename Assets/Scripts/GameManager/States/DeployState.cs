@@ -35,6 +35,7 @@ public class DeployState : iGameManagerState
 
         if (characterRoster.IsListEmpty())
         {
+            _gameManager.SortList();
             _gameManager.SetState(_gameManager.GetIdleState());
             _gameManager.DeactivateAllTiles();
         }

@@ -18,8 +18,6 @@ public class CameraController : MonoBehaviour {
     private Vector3 velocity;
     private const float boundary = 20;
     
-
-
     void Start()
     {
         defaultCameraLocation = this.transform.position;

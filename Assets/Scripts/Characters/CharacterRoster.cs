@@ -8,16 +8,21 @@ public class CharacterRoster {
 
     Sprite KoboldSprite;
     Sprite TheifSprite;
+    Sprite DragonSprite;
+
     public CharacterRoster()
     {
         employedCharacters = new List<Character>();
         KoboldSprite = SpriteHolder.instance.GetArtFromIDNumber(0);
         TheifSprite = SpriteHolder.instance.GetArtFromIDNumber(1);
-        employedCharacters.Add(new Character(1,  KoboldSprite));
-        employedCharacters.Add(new Character(1,  KoboldSprite));
-        employedCharacters.Add(new Character(1,  KoboldSprite));
+        DragonSprite = SpriteHolder.instance.GetArtFromIDNumber(2);
 
-        employedCharacters.Add(new Character(3,  TheifSprite));
+        employedCharacters.Add(new Character(1,  KoboldSprite,1));
+        employedCharacters.Add(new Character(1,  KoboldSprite,1));
+        employedCharacters.Add(new Character(1, KoboldSprite,1));
+
+        employedCharacters.Add(new Character(3,  TheifSprite,2));
+
     }
 
     public Character PeekAtNextCharacter()

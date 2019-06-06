@@ -15,7 +15,7 @@ public class Idle : iGameManagerState
     public void TileClicked(Tile tile)
     {
 
-        if (tile.CanTileBeActivated())
+        if (tile.CharacterOnTile == _gameManager.GetNextCharacter())
         {
             tile.SelectTile();
             _gameManager.KeepTrackOfStartTile(tile);
@@ -27,6 +27,7 @@ public class Idle : iGameManagerState
     public void NextArrow()
     {
         // Move camera to next ready character;
+
     }
 
     public void PrevArrow()

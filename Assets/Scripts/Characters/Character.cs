@@ -8,6 +8,8 @@ public class Character
 
     public int MoveSpeed { get { return _baseMoveSpeed; } }
 
+    public int SpeedStat { get; private set; }
+
     public Sprite CharacterSprite { get; private set; }
 
     private Color canActColor;
@@ -16,12 +18,18 @@ public class Character
     private Color cannotActColor;
     public Color CannotActColor { get { return cannotActColor; } private set { cannotActColor = value; } }
 
-    public Character(int baseMoveSpeed, Sprite characterSprite)
+    //public Space spaceCharacterIsOn { get; set; }
+
+    public enum Size { small,med, big };
+    public Size thisUnitsSize { get; private set; }
+
+    public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat)
     {
         _baseMoveSpeed = baseMoveSpeed;
         CharacterSprite = characterSprite;
         canActColor = new Color(225, 225, 255, 225);
         cannotActColor = new Color(.5f, .5f, .5f, 225);
+        SpeedStat = speedStat;
     }
 
 

@@ -25,6 +25,8 @@ public class TileSelected : iGameManagerState
     {
         _gameManager.KeepTrackOfEndTile(tile);
         _gameManager.DeactivateAllTiles();
+        _gameManager.MoveFirstCharacterToLast();
         _gameManager.SetState(_gameManager.GetIdleState());
+        
     }
 }
