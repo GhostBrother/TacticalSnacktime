@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Characters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\Characters\Character.cs" />
     <Compile Include="Assets\Scripts\Characters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\Characters\SpriteHolder.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
     <Compile Include="Assets\Scripts\Tiles\Map.cs" />
     <Compile Include="Assets\Scripts\Tiles\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Tiles\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\Tiles\Spaces\GroupOfTiles.cs" />
     <Compile Include="Assets\Scripts\Tiles\Spaces\Space.cs" />
     <Compile Include="Assets\Scripts\Tiles\Spaces\Tile.cs" />

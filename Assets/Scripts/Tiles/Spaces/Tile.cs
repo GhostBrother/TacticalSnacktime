@@ -5,7 +5,16 @@ using UnityEngine;
 public class Tile : Space {
 
 
-    private List<Tile> neighbors;
+    public List<Tile> neighbors { get; }
+
+    // Feasibly abstract this out to like an iNavigatable or something
+    public int gCost { get; set; }
+    public int hCost { get; set; }
+    public int fCost { get { return hCost + gCost; } }
+    public int GridX { get; private set; }
+    public int GridY { get; private set; }
+
+    public Tile Parent { get; set; }
 
     [SerializeField]
     SpriteRenderer backgroundTile;
@@ -26,7 +35,7 @@ public class Tile : Space {
     private iTileState clear;
     private iTileState hilighted;
     private iTileState activeCharacter;
-    private iTileState tiredCharacterTile;
+
     private iTileState deployZoneTile;
     private iTileState curentState;
 
@@ -47,12 +56,18 @@ public class Tile : Space {
         clear = new ClearTile(this);
         hilighted = new HilightedTile(this);
         activeCharacter = new ActiveCharacterTile(this);
-        tiredCharacterTile = new TiredCharacterTile(this);
+        //tiredCharacterTile = new TiredCharacterTile(this);
         deployZoneTile = new DeployZoneTile(this);
-        
+
         curentState = clear;
        
 
+    }
+
+    public void SetXandYPos(int gridX, int gridY)
+    {
+        GridX = gridX;
+        GridY = gridY;
     }
 
     public void ChangeState(iTileState newState)
@@ -77,10 +92,10 @@ public class Tile : Space {
         return hilighted;
     }
 
-    public iTileState GetTiredState()
-    {
-        return tiredCharacterTile;
-    }
+    //public iTileState GetTiredState()
+    //{
+    //    return tiredCharacterTile;
+    //}
 
     public iTileState GetDeployState()
     {

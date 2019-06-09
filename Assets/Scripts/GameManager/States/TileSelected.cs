@@ -23,10 +23,18 @@ public class TileSelected : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-        _gameManager.KeepTrackOfEndTile(tile);
-        _gameManager.DeactivateAllTiles();
-        _gameManager.MoveFirstCharacterToLast();
-        _gameManager.SetState(_gameManager.GetIdleState());
+        if (tile.GetCurrentState() == tile.GetHilightedState())
+        {
+            _gameManager.KeepTrackOfEndTile(tile);
+            _gameManager.DeactivateAllTiles();
+            _gameManager.MoveFirstCharacterToLast();
+            _gameManager.SetState(_gameManager.GetIdleState());
+        }
+        else
+        {
+            _gameManager.DeactivateAllTiles();
+            _gameManager.SetState(_gameManager.GetIdleState());
+        }
         
     }
 }

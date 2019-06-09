@@ -42,7 +42,7 @@ public class Map {
         if (tile.GetCurrentState() == tile.GetHilightedState())
         {
             tile.CharacterOnTile = trackedTile.CharacterOnTile;
-            tile.ChangeState(tile.GetTiredState());
+            //tile.ChangeState(tile.GetTiredState());
             trackedTile.ChangeState(trackedTile.GetClearState());
             trackedTile = null;
         }

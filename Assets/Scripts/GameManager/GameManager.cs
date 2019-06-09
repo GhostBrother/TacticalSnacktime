@@ -113,35 +113,35 @@ public class GameManager : MonoBehaviour {
     public void KeepTrackOfEndTile(Tile tile)
     {
         _gameMap.SetEndTile(tile);
-        checkForEndOfTurn();
+       // checkForEndOfTurn();
     }
 
-    private void checkForEndOfTurn()
-    {
-        bool isTurnOver = true;
-        for(int i = 0; i < _gameMap.TilesOnMap.Count; i++)
-        {
-            if(_gameMap.TilesOnMap[i].GetCurrentState() == _gameMap.TilesOnMap[i].GetActiveState())
-            {
-                isTurnOver = false;
-            }
-        }
-        if(isTurnOver)
-        {
-            resetAllPlayers();
-        }
-    }
+    //private void checkForEndOfTurn()
+    //{
+    //    bool isTurnOver = true;
+    //    for(int i = 0; i < _gameMap.TilesOnMap.Count; i++)
+    //    {
+    //        if(_gameMap.TilesOnMap[i].GetCurrentState() == _gameMap.TilesOnMap[i].GetActiveState())
+    //        {
+    //            isTurnOver = false;
+    //        }
+    //    }
+    //    if(isTurnOver)
+    //    {
+    //        resetAllPlayers();
+    //    }
+    //}
 
-    private void resetAllPlayers()
-    {
-        for (int i = 0; i < _gameMap.TilesOnMap.Count; i++)
-        {
-            if(_gameMap.TilesOnMap[i].GetCurrentState() == _gameMap.TilesOnMap[i].GetTiredState())
-            {
-                _gameMap.TilesOnMap[i].ChangeState(_gameMap.TilesOnMap[i].GetActiveState());
-            }
-        }
-    }
+    //private void resetAllPlayers()
+    //{
+    //    for (int i = 0; i < _gameMap.TilesOnMap.Count; i++)
+    //    {
+    //        if(_gameMap.TilesOnMap[i].GetCurrentState() == _gameMap.TilesOnMap[i].GetTiredState())
+    //        {
+    //            _gameMap.TilesOnMap[i].ChangeState(_gameMap.TilesOnMap[i].GetActiveState());
+    //        }
+    //    }
+    //}
     
 
 }
