@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour {
 
     public void KeepTrackOfStartTile(Tile tile)
     {
+        Debug.Log(tile);
         _gameMap.SetStartTile(tile);
         _characterDisplay.ChangeCharacterArt(tile.CharacterOnTile.CharacterSprite);
     }

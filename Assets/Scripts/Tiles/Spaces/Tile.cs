@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : Space {
+public class Tile : Space, iHeapItem<Tile> {
 
 
     public List<Tile> neighbors { get; }
@@ -13,6 +13,8 @@ public class Tile : Space {
     public int fCost { get { return hCost + gCost; } }
     public int GridX { get; private set; }
     public int GridY { get; private set; }
+    int heapIndex;
+    public int HeapIndex { get { return heapIndex; } set { heapIndex = value; } }
 
     public Tile Parent { get; set; }
 
@@ -144,4 +146,13 @@ public class Tile : Space {
         }
     }
 
+    public int CompareTo(Tile TileToCompare)
+    {
+        int compare = fCost.CompareTo(TileToCompare.fCost);
+        if(compare == 0)
+            compare = hCost.CompareTo(TileToCompare.hCost);
+
+        return -compare;
+         
+    }
 }

@@ -20,15 +20,15 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField]
     private float _verticalDistanceBetweenTiles;
 
+    private int MapSize {get {return _rows * _columns;}}
+
     private Pathfinding pf;
 
-    public MapGenerator()
-    {
-        pf = new Pathfinding();
-    }
 
     public Map generateMap()
     {
+       
+
         Map mapToReturn = new Map();
         Vector3 tilePos = new Vector3(0, 0, 0);
         Tile prevTile = null;
@@ -65,7 +65,8 @@ public class MapGenerator : MonoBehaviour {
             
         }
         // Just to test
-        pf.FindPath(mapToReturn.GetTileAtIndex(0), mapToReturn.GetTileAtIndex(20)); 
+        pf = new Pathfinding(MapSize);
+        pf.FindPath(mapToReturn.GetTileAtIndex(0), mapToReturn.GetTileAtIndex(11)); 
         return mapToReturn;
         
     }
