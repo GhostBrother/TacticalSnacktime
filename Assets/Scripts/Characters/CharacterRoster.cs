@@ -18,8 +18,8 @@ public class CharacterRoster {
         DragonSprite = SpriteHolder.instance.GetArtFromIDNumber(2);
 
         employedCharacters.Add(new Character(1,  KoboldSprite,1));
-        employedCharacters.Add(new Character(1,  KoboldSprite,1));
-        employedCharacters.Add(new Character(1, KoboldSprite,1));
+        //employedCharacters.Add(new Character(1,  KoboldSprite,1));
+        //employedCharacters.Add(new Character(1, KoboldSprite,1));
 
         employedCharacters.Add(new Character(3,  TheifSprite,2));
 

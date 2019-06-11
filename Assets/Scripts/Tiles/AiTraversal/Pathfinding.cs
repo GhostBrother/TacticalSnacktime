@@ -1,21 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Pathfinding
+public class Pathfinding : MonoBehaviour
 {
+    // Has to be the number of tiles on the map... 
+    [SerializeField]
+     int maxSize;
+    PathRequestManager requestManager;
 
-    public Tile start, end;
-    private int maxSize;
+    private void Awake()
+    {
+        requestManager = GetComponent<PathRequestManager>();
+    }
 
     public Pathfinding(int _maxSize)
     {
         maxSize = _maxSize;
     }
 
-     public void FindPath(Tile startPos, Tile targetPos) // was private
+     void FindPath(Tile startPos, Tile targetPos) 
     {
+
+        Tile[] waypoints = new Tile[0];
+        bool pathSuccess = false;
         Heap<Tile> openSet = new Heap<Tile>(maxSize);
         HashSet<Tile> closeSet = new HashSet<Tile>();
 
@@ -27,9 +37,9 @@ public class Pathfinding
 
             if (currentTile == targetPos)
             {
-                RetracePath(startPos, targetPos);
-                return;
-            }
+                pathSuccess = true;
+                break; 
+             }
 
             foreach (Tile neighbor in currentTile.neighbors)
             {
@@ -49,9 +59,17 @@ public class Pathfinding
                 }
             }
         }
+
+        //yield return null;
+        if (pathSuccess)
+        {
+            waypoints = RetracePath(startPos, targetPos);
+
+        }
+        requestManager.FinishedProcessingPath(waypoints,pathSuccess);
     }
 
-    void RetracePath(Tile startTile, Tile endTile)
+    Tile[] RetracePath(Tile startTile, Tile endTile)
     {
         List<Tile> path = new List<Tile>();
 
@@ -64,7 +82,11 @@ public class Pathfinding
             currentTile.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
             currentTile = currentTile.Parent;
         }
-        path.Reverse();
+
+        Tile[] waypoints = path.ToArray();
+        Array.Reverse(waypoints);
+        
+        return waypoints;
     }
 
     int GetDistance(Tile tileA, Tile tileB)
@@ -77,5 +99,11 @@ public class Pathfinding
 
         else
             return 14 * disX + 10 * (disY - disX);
+    }
+
+    public void StartFindPath(Tile startTile, Tile targetPos)
+    {
+        //StartCoroutine(FindPath(startTile,targetPos));
+        FindPath(startTile, targetPos);
     }
 }

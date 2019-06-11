@@ -14,14 +14,12 @@ public class Idle : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-
-        if (tile.CharacterOnTile == _gameManager.GetNextCharacter())
+        if (_gameManager.GetNextCharacter().tileCharacterIsOn == tile)
         {
             tile.SelectTile();
             _gameManager.KeepTrackOfStartTile(tile);
             _gameManager.SetState(_gameManager.GetSelectedState());
         }
-
     }
 
     public void NextArrow()

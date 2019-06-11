@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     private Map _gameMap;
 
-    private List<Character> charactersOnMap;
+    public List<Character> charactersOnMap { get; private set; }
 
     [SerializeField]
     private MapGenerator _mapGenerator;
@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour {
 
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
-    private InputHandler _inputHandler;
 
     iGameManagerState idleMode;
     iGameManagerState selectedMode;
@@ -44,7 +43,18 @@ public class GameManager : MonoBehaviour {
 
         charactersOnMap = new List<Character>();
         _gameMap = _mapGenerator.generateMap();
-        _inputHandler = new InputHandler();
+        // All for test
+        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetArtFromIDNumber(3), 2, _gameMap.GetTileAtIndex(12));
+        aICharacter.tileCharacterIsOn = _gameMap.GetTileAtIndex(0);
+        aICharacter.tileCharacterIsOn.ChangeState(aICharacter.tileCharacterIsOn.GetActiveState());
+        aICharacter.ColorTile();
+        charactersOnMap.Add(aICharacter);
+
+        AICharacter aICharacter2 = new AICharacter(3, SpriteHolder.instance.GetArtFromIDNumber(3), 4, _gameMap.GetTileAtIndex(23));
+        aICharacter2.tileCharacterIsOn = _gameMap.GetTileAtIndex(10);
+        aICharacter2.tileCharacterIsOn.ChangeState(aICharacter2.tileCharacterIsOn.GetActiveState());
+        aICharacter2.ColorTile();
+        charactersOnMap.Add(aICharacter2);
     }
 
     public iGameManagerState GetIdleState()
@@ -106,43 +116,20 @@ public class GameManager : MonoBehaviour {
 
     public void KeepTrackOfStartTile(Tile tile)
     {
-        Debug.Log(tile);
         _gameMap.SetStartTile(tile);
-        _characterDisplay.ChangeCharacterArt(tile.CharacterOnTile.CharacterSprite);
+        GetNextCharacter().CharacterMove();
+       // _characterDisplay.ChangeCharacterArt(tile.CharacterOnTile.CharacterSprite);
     }
 
     public void KeepTrackOfEndTile(Tile tile)
     {
-        _gameMap.SetEndTile(tile);
-       // checkForEndOfTurn();
+        if (tile.GetCurrentState() == tile.GetHilightedState())
+        {
+            GetNextCharacter().tileCharacterIsOn = tile;
+            GetNextCharacter().ColorTile();
+            _gameMap.SetEndTile(tile);
+        }
     }
 
-    //private void checkForEndOfTurn()
-    //{
-    //    bool isTurnOver = true;
-    //    for(int i = 0; i < _gameMap.TilesOnMap.Count; i++)
-    //    {
-    //        if(_gameMap.TilesOnMap[i].GetCurrentState() == _gameMap.TilesOnMap[i].GetActiveState())
-    //        {
-    //            isTurnOver = false;
-    //        }
-    //    }
-    //    if(isTurnOver)
-    //    {
-    //        resetAllPlayers();
-    //    }
-    //}
-
-    //private void resetAllPlayers()
-    //{
-    //    for (int i = 0; i < _gameMap.TilesOnMap.Count; i++)
-    //    {
-    //        if(_gameMap.TilesOnMap[i].GetCurrentState() == _gameMap.TilesOnMap[i].GetTiredState())
-    //        {
-    //            _gameMap.TilesOnMap[i].ChangeState(_gameMap.TilesOnMap[i].GetActiveState());
-    //        }
-    //    }
-    //}
-    
 
 }

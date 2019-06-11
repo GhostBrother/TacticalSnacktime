@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Input\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
     <Compile Include="Assets\Scripts\Tiles\AiTraversal\Heap.cs" />
+    <Compile Include="Assets\Scripts\Tiles\AiTraversal\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\Tiles\AiTraversal\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\Tiles\AiTraversal\iHeapItem.cs" />
     <Compile Include="Assets\Scripts\Tiles\Map.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Scripts\Tiles\TileStates\ClearTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\DeoployZoneTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\HilightedTile.cs" />
-    <Compile Include="Assets\Scripts\Tiles\TileStates\TiredCharacterTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\iTileState.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Reference Include="Unity.Timeline.Editor">

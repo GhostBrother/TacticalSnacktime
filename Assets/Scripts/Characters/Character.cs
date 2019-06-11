@@ -18,7 +18,7 @@ public class Character
     private Color cannotActColor;
     public Color CannotActColor { get { return cannotActColor; } private set { cannotActColor = value; } }
 
-    //public Space spaceCharacterIsOn { get; set; }
+    public Tile tileCharacterIsOn { get; set; }
 
     public enum Size { small,med, big };
     public Size thisUnitsSize { get; private set; }
@@ -30,6 +30,17 @@ public class Character
         canActColor = new Color(225, 225, 255, 225);
         cannotActColor = new Color(.5f, .5f, .5f, 225);
         SpeedStat = speedStat;
+    }
+
+    public void CharacterMove()
+    {
+        tileCharacterIsOn.ColorAllAdjacent(MoveSpeed);
+    }
+
+    public void ColorTile()
+    {
+        tileCharacterIsOn.GetComponent<SpriteRenderer>().sprite = CharacterSprite;
+        tileCharacterIsOn.GetComponent<SpriteRenderer>().color = CanActColor;
     }
 
 

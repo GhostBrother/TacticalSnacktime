@@ -39,13 +39,9 @@ public class Map {
 
     public void SetEndTile(Tile tile)
     {
-        if (tile.GetCurrentState() == tile.GetHilightedState())
-        {
-            tile.CharacterOnTile = trackedTile.CharacterOnTile;
-            //tile.ChangeState(tile.GetTiredState());
+            tile.ChangeState(tile.GetActiveState());
             trackedTile.ChangeState(trackedTile.GetClearState());
             trackedTile = null;
-        }
     }
 
 }

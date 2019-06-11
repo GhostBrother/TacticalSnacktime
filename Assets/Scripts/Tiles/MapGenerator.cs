@@ -58,15 +58,16 @@ public class MapGenerator : MonoBehaviour {
                 {
                     temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
                 }
-             
+
+                temp.GetComponent<Tile>().SetXandYPos(x,y);
                 mapToReturn.AddTileToMap(temp.GetComponent<Tile>());
                 prevTile = temp.GetComponent<Tile>();
             }
             
         }
-        // Just to test
-        pf = new Pathfinding(MapSize);
-        pf.FindPath(mapToReturn.GetTileAtIndex(0), mapToReturn.GetTileAtIndex(11)); 
+        //// Just to test
+        //pf = new Pathfinding(MapSize);
+        //pf.FindPath(mapToReturn.GetTileAtIndex(0), mapToReturn.GetTileAtIndex(11)); 
         return mapToReturn;
         
     }

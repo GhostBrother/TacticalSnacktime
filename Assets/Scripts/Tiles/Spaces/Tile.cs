@@ -37,20 +37,9 @@ public class Tile : Space, iHeapItem<Tile> {
     private iTileState clear;
     private iTileState hilighted;
     private iTileState activeCharacter;
-
     private iTileState deployZoneTile;
     private iTileState curentState;
 
-    private Character _character;
-
-    public Character CharacterOnTile
-    {
-        get { return _character; }
-        set {
-            _character = value;
-            ChangeState(activeCharacter);
-        }
-    }
 
     public Tile()
     {
@@ -58,12 +47,9 @@ public class Tile : Space, iHeapItem<Tile> {
         clear = new ClearTile(this);
         hilighted = new HilightedTile(this);
         activeCharacter = new ActiveCharacterTile(this);
-        //tiredCharacterTile = new TiredCharacterTile(this);
         deployZoneTile = new DeployZoneTile(this);
 
         curentState = clear;
-       
-
     }
 
     public void SetXandYPos(int gridX, int gridY)
@@ -80,7 +66,6 @@ public class Tile : Space, iHeapItem<Tile> {
 
     public iTileState GetClearState()
     {
-        if (_character != null) { _character = null; }
         return clear;
     }
 
@@ -94,11 +79,6 @@ public class Tile : Space, iHeapItem<Tile> {
         return hilighted;
     }
 
-    //public iTileState GetTiredState()
-    //{
-    //    return tiredCharacterTile;
-    //}
-
     public iTileState GetDeployState()
     {
         return deployZoneTile;
@@ -111,7 +91,7 @@ public class Tile : Space, iHeapItem<Tile> {
 
     public void DeactivateTile()
     {
-        if (_character == null)
+        if (GetCurrentState() != GetActiveState())
         {
             ChangeState(clear);
         }
@@ -133,14 +113,14 @@ public class Tile : Space, iHeapItem<Tile> {
         {
             numToHilight--;
 
-            if(CharacterOnTile == null)
-            ChangeState(hilighted);
+            if (GetCurrentState() != GetActiveState())
+                ChangeState(hilighted);
 
             for (int i = 0; i < neighbors.Count; i++)
             {
-                if(neighbors[i].CharacterOnTile == null)
-                { 
-                neighbors[i].ColorAllAdjacent(numToHilight);
+                if (neighbors[i].GetCurrentState() != GetActiveState())
+                {
+                    neighbors[i].ColorAllAdjacent(numToHilight);
                 }
             }
         }
