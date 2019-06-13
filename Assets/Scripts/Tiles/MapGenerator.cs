@@ -28,8 +28,7 @@ public class MapGenerator : MonoBehaviour {
     public Map generateMap()
     {
        
-
-        Map mapToReturn = new Map();
+        Map mapToReturn = new Map(_rows,_columns);
         Vector3 tilePos = new Vector3(0, 0, 0);
         Tile prevTile = null;
         for (int x = 0; x < _rows; x++)
@@ -43,10 +42,13 @@ public class MapGenerator : MonoBehaviour {
 
                 if (x != 0)
                 {
-                    temp.GetComponent<Tile>().SetNeighbor(mapToReturn.GetTileAtIndex((x - 1) * _rows + y));
-                    Tile tile = mapToReturn.GetTileAtIndex((x - 1) * _rows + y);
+                    //temp.GetComponent<Tile>().SetNeighbor(mapToReturn.GetTileAtIndex((x - 1) * _rows + y));
+                    //Tile tile = mapToReturn.GetTileAtIndex((x - 1) * _rows + y);
+                    temp.GetComponent<Tile>().SetNeighbor(mapToReturn.GetTileAtRowAndColumn((x - 1),  y));
+                    Tile tile = mapToReturn.GetTileAtRowAndColumn((x - 1) ,  y);
                     tile.SetNeighbor(temp.GetComponent<Tile>());
                 }
+
 
                 if (y != 0)
                 {
@@ -60,14 +62,11 @@ public class MapGenerator : MonoBehaviour {
                 }
 
                 temp.GetComponent<Tile>().SetXandYPos(x,y);
-                mapToReturn.AddTileToMap(temp.GetComponent<Tile>());
+                mapToReturn.AddTileToMap(temp.GetComponent<Tile>(), x, y);
                 prevTile = temp.GetComponent<Tile>();
             }
             
         }
-        //// Just to test
-        //pf = new Pathfinding(MapSize);
-        //pf.FindPath(mapToReturn.GetTileAtIndex(0), mapToReturn.GetTileAtIndex(11)); 
         return mapToReturn;
         
     }

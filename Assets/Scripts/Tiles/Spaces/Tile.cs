@@ -40,6 +40,9 @@ public class Tile : Space, iHeapItem<Tile> {
     private iTileState deployZoneTile;
     private iTileState curentState;
 
+    [SerializeField]
+    string DEBUGSTATE;
+
 
     public Tile()
     {
@@ -62,6 +65,7 @@ public class Tile : Space, iHeapItem<Tile> {
     {
         curentState = newState;
         curentState.ChangeColor();
+        DEBUGSTATE = curentState.ToString();
     }
 
     public iTileState GetClearState()
@@ -113,15 +117,17 @@ public class Tile : Space, iHeapItem<Tile> {
         {
             numToHilight--;
 
-            if (GetCurrentState() != GetActiveState())
+            if (GetCurrentState() != GetActiveState()) // GetCurrentState() != GetActiveState()
                 ChangeState(hilighted);
 
             for (int i = 0; i < neighbors.Count; i++)
             {
-                if (neighbors[i].GetCurrentState() != GetActiveState())
+                
+                if (neighbors[i].GetCurrentState() != neighbors[i].GetActiveState())
                 {
                     neighbors[i].ColorAllAdjacent(numToHilight);
                 }
+
             }
         }
     }

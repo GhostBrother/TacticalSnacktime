@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    private AICharacterFactory _characterFactory;
     private Map _gameMap;
 
     public List<Character> charactersOnMap { get; private set; }
@@ -20,6 +21,10 @@ public class GameManager : MonoBehaviour {
     public CameraController Camera { get { return camera; } private set { } }
 
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
+
+    private int MaxCharacters;
+
+    private int CharacterIndex;
 
 
     iGameManagerState idleMode;
@@ -42,19 +47,9 @@ public class GameManager : MonoBehaviour {
         curentState = deployState;
 
         charactersOnMap = new List<Character>();
+        _characterFactory = new AICharacterFactory();
+        
         _gameMap = _mapGenerator.generateMap();
-        // All for test
-        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetArtFromIDNumber(3), 2, _gameMap.GetTileAtIndex(12));
-        aICharacter.tileCharacterIsOn = _gameMap.GetTileAtIndex(0);
-        aICharacter.tileCharacterIsOn.ChangeState(aICharacter.tileCharacterIsOn.GetActiveState());
-        aICharacter.ColorTile();
-        charactersOnMap.Add(aICharacter);
-
-        AICharacter aICharacter2 = new AICharacter(3, SpriteHolder.instance.GetArtFromIDNumber(3), 4, _gameMap.GetTileAtIndex(23));
-        aICharacter2.tileCharacterIsOn = _gameMap.GetTileAtIndex(10);
-        aICharacter2.tileCharacterIsOn.ChangeState(aICharacter2.tileCharacterIsOn.GetActiveState());
-        aICharacter2.ColorTile();
-        charactersOnMap.Add(aICharacter2);
     }
 
     public iGameManagerState GetIdleState()
@@ -100,6 +95,9 @@ public class GameManager : MonoBehaviour {
     public void SortList()
     {
         charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
+
+        // move this to some sort of increase size list
+        MaxCharacters = charactersOnMap.Count;
     }
 
     public Character GetNextCharacter()
@@ -112,6 +110,22 @@ public class GameManager : MonoBehaviour {
         Character temp = GetNextCharacter();
         charactersOnMap.Remove(temp);
         charactersOnMap.Add(temp);
+
+        CheckForCustomerSpawn();
+    }
+
+    private void CheckForCustomerSpawn()
+    {
+        CharacterIndex++;
+        if(CharacterIndex == MaxCharacters)
+        {
+            AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0,0));
+            newCharacter.setTarget(_gameMap.GetTileAtRowAndColumn(4,4));
+            AddCharacterToList(newCharacter);
+            
+            MaxCharacters = charactersOnMap.Count;
+            CharacterIndex = 0; 
+        }
     }
 
     public void KeepTrackOfStartTile(Tile tile)

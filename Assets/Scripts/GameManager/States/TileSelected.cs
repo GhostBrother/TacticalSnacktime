@@ -35,8 +35,8 @@ public class TileSelected : iGameManagerState
         }
 
         //Hack for demo
-        // This should move at the same time as out human player.
-        if ((AICharacter)_gameManager.GetNextCharacter() != null)
+        // This should move at the same time as out human player;
+        while (_gameManager.GetNextCharacter() is AICharacter)
         {
             AICharacter tempChar = (AICharacter)_gameManager.GetNextCharacter();
             tempChar.CheckPath();

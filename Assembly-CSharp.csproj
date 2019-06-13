@@ -60,10 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Characters\AICharacter.cs" />
-    <Compile Include="Assets\Scripts\Characters\Character.cs" />
-    <Compile Include="Assets\Scripts\Characters\CharacterRoster.cs" />
-    <Compile Include="Assets\Scripts\Characters\SpriteHolder.cs" />
+    <Compile Include="Assets\Scripts\Characters\AICharacters\AICharacter.cs" />
+    <Compile Include="Assets\Scripts\Characters\AICharacters\AICharacterFactory.cs" />
+    <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\Character.cs" />
+    <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\CharacterRoster.cs" />
+    <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\SpriteHolder.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />

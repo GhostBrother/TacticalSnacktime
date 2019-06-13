@@ -797,6 +797,16 @@ PrefabInstance:
       propertyPath: _verticalDistanceBetweenTiles
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
+        type: 3}
+      propertyPath: _columns
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
+        type: 3}
+      propertyPath: _rows
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4949276603105298, guid: 1e6cf0cdbf48f094ba48973194eb31db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.10886

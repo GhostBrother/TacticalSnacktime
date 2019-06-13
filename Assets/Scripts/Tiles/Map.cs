@@ -4,31 +4,36 @@ using UnityEngine;
 
 public class Map {
 
-    private List<Tile> tilesOnMap;
-    public List<Tile> TilesOnMap { get { return tilesOnMap; } private set { tilesOnMap = value; } }
+    private Tile[][] tilesOnMap;
+    public Tile[][] TilesOnMap { get { return tilesOnMap; } private set { tilesOnMap = value; } }
 
     private Tile trackedTile;
 
-    public Map()
+    public Map(int _rows, int _columns)
     {
-        tilesOnMap = new List<Tile>();
+        tilesOnMap = new Tile[_rows][];
+        for (int i = 0; i < TilesOnMap.Length; i++)
+        {
+            tilesOnMap[i] = new Tile[_columns];
+        }
     }
 
-    public Tile GetTileAtIndex(int index)
+    public Tile GetTileAtRowAndColumn(int row, int column)
     {
-        return tilesOnMap[index];
+        return tilesOnMap[row][column];
     }
 
-    public void AddTileToMap(Tile tileToAdd)
+    public void AddTileToMap(Tile tileToAdd, int row, int column)
     {
-        tilesOnMap.Add(tileToAdd);
+        tilesOnMap[row][column] = tileToAdd;
     }
 
     public void DeactivateAllTiles()
     {
-        for(int i = 0; i < tilesOnMap.Count; i++)
+        for(int x = 0; x < tilesOnMap.Length; x++)
         {
-            tilesOnMap[i].DeactivateTile();
+            for(int y = 0; y < tilesOnMap[x].Length ; y++)
+            tilesOnMap[x][y].DeactivateTile();
         }
     }
 
