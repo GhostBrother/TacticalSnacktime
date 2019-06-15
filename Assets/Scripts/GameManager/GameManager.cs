@@ -139,8 +139,7 @@ public class GameManager : MonoBehaviour {
     {
         if (tile.GetCurrentState() == tile.GetHilightedState())
         {
-            GetNextCharacter().tileCharacterIsOn = tile;
-            GetNextCharacter().ColorTile();
+            GetNextCharacter().TileCharacterIsOn = tile;
             _gameMap.SetEndTile(tile);
         }
     }

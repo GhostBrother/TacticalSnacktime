@@ -12,13 +12,16 @@ public class Character
 
     public Sprite CharacterSprite { get; private set; }
 
-    private Color canActColor;
-    public Color CanActColor { get { return canActColor; } private set { canActColor = value; } }
-
-    private Color cannotActColor;
-    public Color CannotActColor { get { return cannotActColor; } private set { cannotActColor = value; } }
-
-    public Tile tileCharacterIsOn { get; set; }
+    private Tile tileCharacterIsOn;
+    public Tile TileCharacterIsOn
+    {
+        get { return tileCharacterIsOn; }
+        set {
+            tileCharacterIsOn = value;
+            tileCharacterIsOn.ChangeState(tileCharacterIsOn.GetActiveState());
+            ColorTile();
+        }
+    }
 
     public enum Size { small,med, big };
     public Size thisUnitsSize { get; private set; }
@@ -27,8 +30,6 @@ public class Character
     {
         _baseMoveSpeed = baseMoveSpeed;
         CharacterSprite = characterSprite;
-        canActColor = new Color(225, 225, 255, 225);
-        cannotActColor = new Color(.5f, .5f, .5f, 225);
         SpeedStat = speedStat;
     }
 
@@ -37,10 +38,10 @@ public class Character
         tileCharacterIsOn.ColorAllAdjacent(MoveSpeed);
     }
 
-    public void ColorTile()
+    private void ColorTile()
     {
         tileCharacterIsOn.GetComponent<SpriteRenderer>().sprite = CharacterSprite;
-        tileCharacterIsOn.GetComponent<SpriteRenderer>().color = CanActColor;
+        tileCharacterIsOn.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
     }
 
 

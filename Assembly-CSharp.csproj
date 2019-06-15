@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Characters\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\Characters\AICharacters\AICharacterFactory.cs" />
+    <Compile Include="Assets\Scripts\Characters\AbstractPawn.cs" />
     <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\Character.cs" />
     <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\SpriteHolder.cs" />
@@ -82,10 +83,10 @@
     <Compile Include="Assets\Scripts\Tiles\Spaces\GroupOfTiles.cs" />
     <Compile Include="Assets\Scripts\Tiles\Spaces\Space.cs" />
     <Compile Include="Assets\Scripts\Tiles\Spaces\Tile.cs" />
-    <Compile Include="Assets\Scripts\Tiles\TileStates\ActiveCharacterTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\ClearTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\DeoployZoneTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\HilightedTile.cs" />
+    <Compile Include="Assets\Scripts\Tiles\TileStates\OccupiedTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\iTileState.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Reference Include="Unity.Timeline.Editor">

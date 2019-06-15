@@ -14,7 +14,7 @@ public class Idle : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-        if (_gameManager.GetNextCharacter().tileCharacterIsOn == tile)
+        if (_gameManager.GetNextCharacter().TileCharacterIsOn == tile)
         {
             tile.SelectTile();
             _gameManager.KeepTrackOfStartTile(tile);

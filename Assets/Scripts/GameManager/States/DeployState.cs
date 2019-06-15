@@ -30,12 +30,8 @@ public class DeployState : iGameManagerState
         if(tile.GetCurrentState() == tile.GetDeployState())
         {
             Character CharacterToUse = characterRoster.GetCharacterOnTopOfList();
-            CharacterToUse.tileCharacterIsOn = tile;
+            CharacterToUse.TileCharacterIsOn = tile;
             _gameManager.AddCharacterToList(CharacterToUse);
-            CharacterToUse.tileCharacterIsOn.ChangeState(CharacterToUse.tileCharacterIsOn.GetActiveState());
-            CharacterToUse.ColorTile();
-            //tile.CharacterOnTile = characterRoster.GetCharacterOnTopOfList();
-            //_gameManager.AddCharacterToList(tile.CharacterOnTile);
         }
 
         if (characterRoster.IsListEmpty())

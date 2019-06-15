@@ -36,7 +36,7 @@ public class Tile : Space, iHeapItem<Tile> {
 
     private iTileState clear;
     private iTileState hilighted;
-    private iTileState activeCharacter;
+    private iTileState occupiedSquare;
     private iTileState deployZoneTile;
     private iTileState curentState;
 
@@ -49,7 +49,7 @@ public class Tile : Space, iHeapItem<Tile> {
         neighbors = new List<Tile>();
         clear = new ClearTile(this);
         hilighted = new HilightedTile(this);
-        activeCharacter = new ActiveCharacterTile(this);
+        occupiedSquare = new OccupiedTile(this);
         deployZoneTile = new DeployZoneTile(this);
 
         curentState = clear;
@@ -75,7 +75,7 @@ public class Tile : Space, iHeapItem<Tile> {
 
     public iTileState GetActiveState()
     {
-        return activeCharacter;
+        return occupiedSquare;
     }
 
     public iTileState GetHilightedState()
@@ -117,7 +117,7 @@ public class Tile : Space, iHeapItem<Tile> {
         {
             numToHilight--;
 
-            if (GetCurrentState() != GetActiveState()) // GetCurrentState() != GetActiveState()
+            if (GetCurrentState() != GetActiveState()) 
                 ChangeState(hilighted);
 
             for (int i = 0; i < neighbors.Count; i++)
