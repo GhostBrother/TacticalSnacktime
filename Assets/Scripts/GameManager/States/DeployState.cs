@@ -30,7 +30,7 @@ public class DeployState : iGameManagerState
         if(tile.GetCurrentState() == tile.GetDeployState())
         {
             Character CharacterToUse = characterRoster.GetCharacterOnTopOfList();
-            CharacterToUse.TileCharacterIsOn = tile;
+            CharacterToUse.TilePawnIsOn = tile;
             _gameManager.AddCharacterToList(CharacterToUse);
         }
 
@@ -47,7 +47,7 @@ public class DeployState : iGameManagerState
 
     private void LoadDisplayWithCharacterArt(Character characterToDisplay)
     {
-      _gameManager.characterDisplay.ChangeCharacterArt(characterToDisplay.CharacterSprite);
+      _gameManager.characterDisplay.ChangeCharacterArt(characterToDisplay.PawnSprite);
     }
 
     

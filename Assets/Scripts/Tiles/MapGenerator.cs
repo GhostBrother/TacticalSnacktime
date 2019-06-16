@@ -42,8 +42,6 @@ public class MapGenerator : MonoBehaviour {
 
                 if (x != 0)
                 {
-                    //temp.GetComponent<Tile>().SetNeighbor(mapToReturn.GetTileAtIndex((x - 1) * _rows + y));
-                    //Tile tile = mapToReturn.GetTileAtIndex((x - 1) * _rows + y);
                     temp.GetComponent<Tile>().SetNeighbor(mapToReturn.GetTileAtRowAndColumn((x - 1),  y));
                     Tile tile = mapToReturn.GetTileAtRowAndColumn((x - 1) ,  y);
                     tile.SetNeighbor(temp.GetComponent<Tile>());
@@ -59,6 +57,13 @@ public class MapGenerator : MonoBehaviour {
                 if (y > 1)
                 {
                     temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
+                }
+
+                if(y == 3 && x == 5)
+                {
+                    AbstractPawn grillTest = new Grill();
+                   // temp.GetComponent<Tile>().TargetableOnTile = grillTest;
+                    grillTest.TilePawnIsOn = temp.GetComponent<Tile>();
                 }
 
                 temp.GetComponent<Tile>().SetXandYPos(x,y);

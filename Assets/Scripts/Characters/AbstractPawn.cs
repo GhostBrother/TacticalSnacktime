@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractPawn : MonoBehaviour
+public abstract class AbstractPawn : MonoBehaviour, iPawn
 {
-    // A pawn will be anything that can take up space on the gamemap
-    //AI customers, Team members, and structures such as walls and cashregisters. 
-
-    // Start is called before the first frame update
-    void Start()
+    private Tile tilePawnIsOn;
+    public Tile TilePawnIsOn
     {
-        
+        get { return tilePawnIsOn; }
+        set
+        {
+            tilePawnIsOn = value;
+            tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
+            ColorTile();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Sprite PawnSprite { get; protected set; }
+
+    public void ColorTile()
     {
-        
+        tilePawnIsOn.GetComponent<SpriteRenderer>().sprite = PawnSprite;
+        tilePawnIsOn.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
     }
 }

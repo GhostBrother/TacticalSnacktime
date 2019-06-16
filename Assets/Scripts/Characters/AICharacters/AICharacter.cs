@@ -24,7 +24,7 @@ public class AICharacter : Character
 
     public void CheckPath()
     {
-        PathRequestManager.RequestPath(TileCharacterIsOn, target, OnPathFound);
+        PathRequestManager.RequestPath(TilePawnIsOn, target, OnPathFound);
     }
 
     public void Move()
@@ -49,7 +49,7 @@ public class AICharacter : Character
     {
         if (targetIndex < path.Length)
         {
-            TileCharacterIsOn.ChangeState(TileCharacterIsOn.GetClearState());
+            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
             if (targetIndex + MoveSpeed >= path.Length)
             {
                 targetIndex = (path.Length - (targetIndex + MoveSpeed));
@@ -57,7 +57,7 @@ public class AICharacter : Character
             else
                 targetIndex += MoveSpeed;
 
-            TileCharacterIsOn = path[targetIndex];
+            TilePawnIsOn = path[targetIndex];
         }
     }
 

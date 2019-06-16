@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character
+public class Character : AbstractPawn
 {
     private int _baseMoveSpeed;
 
@@ -10,40 +10,23 @@ public class Character
 
     public int SpeedStat { get; private set; }
 
-    public Sprite CharacterSprite { get; private set; }
+    iCaryable cariedObject;
 
-    private Tile tileCharacterIsOn;
-    public Tile TileCharacterIsOn
-    {
-        get { return tileCharacterIsOn; }
-        set {
-            tileCharacterIsOn = value;
-            tileCharacterIsOn.ChangeState(tileCharacterIsOn.GetActiveState());
-            ColorTile();
-        }
-    }
-
-    public enum Size { small,med, big };
-    public Size thisUnitsSize { get; private set; }
-
+   
     public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat)
     {
         _baseMoveSpeed = baseMoveSpeed;
-        CharacterSprite = characterSprite;
+        PawnSprite = characterSprite;
         SpeedStat = speedStat;
     }
 
     public void CharacterMove()
     {
-        tileCharacterIsOn.ColorAllAdjacent(MoveSpeed);
+        TilePawnIsOn.ColorAllAdjacent(MoveSpeed);
     }
 
-    private void ColorTile()
+    public void PickUp(iCaryable caryable)
     {
-        tileCharacterIsOn.GetComponent<SpriteRenderer>().sprite = CharacterSprite;
-        tileCharacterIsOn.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
+        cariedObject = caryable;
     }
-
-
-    
 }
