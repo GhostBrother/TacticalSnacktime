@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour {
 
     public void PanToLocation(Vector3 targetLocation)
     {
-        desiredLocation = new Vector3(targetLocation.x, defaultCameraLocation.y, defaultCameraLocation.z);
+        desiredLocation = new Vector3(targetLocation.x, targetLocation.y, defaultCameraLocation.z);
     }
 
     private void panToDefaultLocation()

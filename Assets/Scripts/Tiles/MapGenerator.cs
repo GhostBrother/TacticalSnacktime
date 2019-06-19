@@ -59,10 +59,10 @@ public class MapGenerator : MonoBehaviour {
                     temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
                 }
 
-                if(y == 3 && x == 5)
+                if (y == 3 && x == 5 || y == 3 && x == 3)
                 {
-                    AbstractPawn grillTest = new Grill();
-                   // temp.GetComponent<Tile>().TargetableOnTile = grillTest;
+                    Grill grillTest = new Grill();
+                    temp.GetComponent<Tile>().TargetableOnTile = grillTest;
                     grillTest.TilePawnIsOn = temp.GetComponent<Tile>();
                 }
 

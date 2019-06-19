@@ -27,24 +27,21 @@ public class TileSelected : iGameManagerState
         {
             _gameManager.KeepTrackOfEndTile(tile);
             _gameManager.DeactivateAllTiles();
-            _gameManager.MoveFirstCharacterToLast();
+           
+            foreach (Tile neighbor in tile.neighbors)
+            {
+                if (neighbor.IsTargetableOnTile)
+                _gameManager.ActionMenu.AddCommandToList(neighbor.TargetableOnTile.GetCommand());
+            }
+            _gameManager.ActionMenu.ShowActionsAtTile(tile);
         }
         else
         {
             _gameManager.DeactivateAllTiles();
         }
 
-        //Hack for demo
-        // This should move at the same time as out human player;
-        while (_gameManager.GetNextCharacter() is AICharacter)
-        {
-            AICharacter tempChar = (AICharacter)_gameManager.GetNextCharacter();
-            tempChar.CheckPath();
-            tempChar.Move();
-            _gameManager.MoveFirstCharacterToLast();
-        }
-
-        _gameManager.SetState(_gameManager.GetIdleState());
+        _gameManager.MoveFirstCharacterToLast();
+        _gameManager.SetState(_gameManager.GetActionState());
 
     }
 }

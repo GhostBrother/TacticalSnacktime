@@ -5,6 +5,6 @@ using UnityEngine;
 public interface iTargetable
 {
     // Any object that can be interacted with by the crew or customers.
-
-    void Activate();
+    Command GetCommand();
+   
 }

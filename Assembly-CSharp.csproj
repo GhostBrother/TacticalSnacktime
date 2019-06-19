@@ -60,24 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Characters\AICharacters\AICharacter.cs" />
-    <Compile Include="Assets\Scripts\Characters\AICharacters\AICharacterFactory.cs" />
-    <Compile Include="Assets\Scripts\Characters\AbstractPawn.cs" />
-    <Compile Include="Assets\Scripts\Characters\Food.cs" />
-    <Compile Include="Assets\Scripts\Characters\Grill.cs" />
-    <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\Character.cs" />
-    <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\CharacterRoster.cs" />
-    <Compile Include="Assets\Scripts\Characters\PlayerControledCharacters\SpriteHolder.cs" />
-    <Compile Include="Assets\Scripts\Characters\iCaryable.cs" />
-    <Compile Include="Assets\Scripts\Characters\iCookingStation.cs" />
-    <Compile Include="Assets\Scripts\Characters\iPawn.cs" />
-    <Compile Include="Assets\Scripts\Characters\iTargetable.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\TileSelected.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\iGameManagerState.cs" />
+    <Compile Include="Assets\Scripts\Input\ActionButton.cs" />
+    <Compile Include="Assets\Scripts\Input\ActionMenu.cs" />
     <Compile Include="Assets\Scripts\Input\CameraController.cs" />
     <Compile Include="Assets\Scripts\Input\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
@@ -96,6 +88,18 @@
     <Compile Include="Assets\Scripts\Tiles\TileStates\OccupiedTile.cs" />
     <Compile Include="Assets\Scripts\Tiles\TileStates\iTileState.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AbstractPawn.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Buildings\Grill.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Food.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\Character.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\CharacterRoster.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\SpriteHolder.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\iCaryable.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\iPawn.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

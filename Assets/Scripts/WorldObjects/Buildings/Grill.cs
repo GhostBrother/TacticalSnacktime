@@ -5,16 +5,17 @@ using UnityEngine;
 public class Grill : AbstractPawn, iCookingStation
 {
     private Food foodOnGrill;
+    private Command grillComand; 
 
     public Grill()
     {
         PawnSprite = SpriteHolder.instance.GetArtFromIDNumber(4);
+        grillComand = new CookFood(this);
     }
 
-
-    public void Activate()
+    public Command GetCommand()
     {
-       
+        return grillComand;
     }
 
     public void AddToFood(Food food)

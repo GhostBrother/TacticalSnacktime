@@ -35,7 +35,9 @@ public class Tile : Space, iHeapItem<Tile> {
     public Color DeployZoneColor { get { return deployZoneColor; } private set {; } }
 
     private iTargetable targetableOnTile; 
-    public iTargetable TargetableOnTile { get; set; }
+    public iTargetable TargetableOnTile { get { return targetableOnTile; } set { targetableOnTile = value; } }
+
+    public bool IsTargetableOnTile { get { return targetableOnTile != null; }  }
 
     private iTileState clear;
     private iTileState hilighted;

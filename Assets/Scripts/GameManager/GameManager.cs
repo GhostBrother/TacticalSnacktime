@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour {
 
     public CameraController Camera { get { return camera; } private set { } }
 
+    [SerializeField]
+    ActionMenu actionMenu;
+
+    public ActionMenu ActionMenu { get { return actionMenu; } private set { } }
+
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
     private int MaxCharacters;
@@ -30,8 +35,9 @@ public class GameManager : MonoBehaviour {
     iGameManagerState idleMode;
     iGameManagerState selectedMode;
     iGameManagerState deployState;
+    iGameManagerState actionState;
     iGameManagerState curentState;
-
+ 
     public GameManager()
     {
        
@@ -43,6 +49,7 @@ public class GameManager : MonoBehaviour {
         idleMode = new Idle(this);
         selectedMode = new TileSelected(this);
         deployState = new DeployState(this);
+        actionState = new ActionState(this);
 
         curentState = deployState;
 
@@ -60,6 +67,11 @@ public class GameManager : MonoBehaviour {
     public iGameManagerState GetSelectedState()
     {
         return selectedMode;
+    }
+
+    public iGameManagerState GetActionState()
+    {
+        return actionState;
     }
 
     public void SetState(iGameManagerState newState)
@@ -102,6 +114,7 @@ public class GameManager : MonoBehaviour {
 
     public Character GetNextCharacter()
     {
+        camera.PanToLocation(charactersOnMap[0].TilePawnIsOn.gameObject.transform.position);
         return charactersOnMap[0];
     }
 
