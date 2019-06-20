@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class ActionButton : MonoBehaviour
 {
     private Command storedCommand;
-  
+
     public Command StoredCommand
-    { private get { return storedCommand; }
+    {
+        private get { return storedCommand; }
         set
         {
             storedCommand = value;
@@ -16,8 +17,14 @@ public class ActionButton : MonoBehaviour
         }
     }
 
+    // Circular dependancy HACK
+    private ActionMenu _actionMenu;
+    public ActionMenu actionMenu { private get { return _actionMenu; } set { _actionMenu = value; } }
+    
+  
     public void ExecuteStoredCommand()
     {
+        actionMenu.HideAllActions();
         storedCommand.execute();
     }
 }
