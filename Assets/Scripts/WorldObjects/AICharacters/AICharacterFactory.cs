@@ -7,7 +7,7 @@ public class AICharacterFactory : MonoBehaviour
 
     public AICharacter SpawnCharacterAt(Tile targetTile)
     {
-        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetArtFromIDNumber(3), 2);
+        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetCharacterArtFromIDNumber(3), 2);
         aICharacter.TilePawnIsOn = targetTile;
         return aICharacter;
     }

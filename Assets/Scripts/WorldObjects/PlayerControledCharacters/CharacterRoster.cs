@@ -13,9 +13,9 @@ public class CharacterRoster {
     public CharacterRoster()
     {
         employedCharacters = new List<Character>();
-        KoboldSprite = SpriteHolder.instance.GetArtFromIDNumber(0);
-        TheifSprite = SpriteHolder.instance.GetArtFromIDNumber(1);
-        DragonSprite = SpriteHolder.instance.GetArtFromIDNumber(2);
+        KoboldSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(0);
+        TheifSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(1);
+        DragonSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(2);
 
         employedCharacters.Add(new Character(1,  KoboldSprite,1));
         //employedCharacters.Add(new Character(1,  KoboldSprite,1));

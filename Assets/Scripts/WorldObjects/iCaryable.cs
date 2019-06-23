@@ -8,6 +8,7 @@ using UnityEngine;
 
 public interface iCaryable
 {
+    string Name { get; }
     int HandsRequired { get; }
     int Weight { get; }
 }

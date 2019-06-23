@@ -28,5 +28,6 @@ public class Character : AbstractPawn
     public void PickUp(iCaryable caryable)
     {
         cariedObject = caryable;
+
     }
 }

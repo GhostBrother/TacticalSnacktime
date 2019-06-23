@@ -9,13 +9,29 @@ public class SpriteHolder : MonoBehaviour {
     [SerializeField]
     Sprite[] CharacterArt;
 
+    [SerializeField]
+    Sprite[] BuildingArt;
+
+    [SerializeField]
+    Sprite[] FoodArt;
+
     private void Awake()
     {
         instance = this;
     }
 
-    public Sprite GetArtFromIDNumber(int index)
+    public Sprite GetCharacterArtFromIDNumber(int index)
     {
         return CharacterArt[index];
+    }
+
+    public Sprite GetBuildingArtFromIDNumber(int index)
+    {
+        return BuildingArt[index];
+    }
+
+    public Sprite GetFoodArtFromIDNumber(int index)
+    {
+        return FoodArt[index];
     }
 }

@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private MapGenerator _mapGenerator;
 
-    [SerializeField]
-    CharacterDisplay _characterDisplay;
 
     [SerializeField]
     CameraController camera;
@@ -24,6 +22,9 @@ public class GameManager : MonoBehaviour {
     ActionMenu actionMenu;
 
     public ActionMenu ActionMenu { get { return actionMenu; } private set { } }
+
+    [SerializeField]
+    CharacterDisplay _characterDisplay;
 
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour {
 
         charactersOnMap = new List<Character>();
         _characterFactory = new AICharacterFactory();
+
+        // Hack circular dependancy.
+        actionMenu.gameManager = this;
         
         _gameMap = _mapGenerator.generateMap();
     }
@@ -145,7 +149,7 @@ public class GameManager : MonoBehaviour {
     {
         _gameMap.SetStartTile(tile);
         GetNextCharacter().CharacterMove();
-       // _characterDisplay.ChangeCharacterArt(tile.CharacterOnTile.CharacterSprite);
+        _characterDisplay.ChangeCharacterArt(GetNextCharacter().PawnSprite);
     }
 
     public void KeepTrackOfEndTile(Tile tile)
@@ -155,6 +159,22 @@ public class GameManager : MonoBehaviour {
             GetNextCharacter().TilePawnIsOn = tile;
             _gameMap.SetEndTile(tile);
         }
+    }
+
+    //Hack for demo, This is called from input manager. Look into a fix. 
+    public void EndTurn()
+    {
+       
+        // This should move at the same time as out human player;
+        while (GetNextCharacter() is AICharacter)
+        {
+            AICharacter tempChar = (AICharacter)GetNextCharacter();
+            tempChar.CheckPath();
+            tempChar.Move();
+            MoveFirstCharacterToLast();
+        }
+
+       SetState(GetIdleState());
     }
 
 

@@ -635,7 +635,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8280ac2b893d9b742af271c6288f36c8, type: 3}
   - {fileID: 21300000, guid: 9fda35f4eeb20144ea24a092ca476ad5, type: 3}
   - {fileID: 21300000, guid: ebecddc7eab0acb42b7bae6b7220f41e, type: 3}
+  BuildingArt:
   - {fileID: 21300000, guid: 434059162593a8240a80d0c411e8821b, type: 3}
+  FoodArt:
+  - {fileID: 21300000, guid: 45c53b5edbdf98c4b864ba36e0048d46, type: 3}
 --- !u!1 &1067517424
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,9 +837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapGenerator: {fileID: 225618906}
-  _characterDisplay: {fileID: 1447924835}
   camera: {fileID: 1203252059}
   actionMenu: {fileID: 1067517425}
+  _characterDisplay: {fileID: 1447924835}
 --- !u!4 &1481686213
 Transform:
   m_ObjectHideFlags: 0

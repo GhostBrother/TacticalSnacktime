@@ -6,5 +6,5 @@ public interface iCookingStation : iTargetable
 {
     void CreateFood();
     void AddToFood(Food food);
-    Food CollectFood();
+    void CollectFood();
 }

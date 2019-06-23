@@ -15,6 +15,9 @@ public class ActionMenu : MonoBehaviour
 
     List<ActionButton> actionButtons;
 
+    private GameManager _gameManager;
+    public GameManager gameManager { private get { return _gameManager; } set { _gameManager = value; } }
+
     public void Start()
     {
         commands = new List<Command>();
@@ -25,6 +28,8 @@ public class ActionMenu : MonoBehaviour
     {
         this.transform.position = tileWithCommands.transform.position;
 
+        commands.Add(new EndTurn(_gameManager));
+
         if (commands.Count > actionButtons.Count)
         {
             int temp = commands.Count - actionButtons.Count;
@@ -34,7 +39,6 @@ public class ActionMenu : MonoBehaviour
                 // Circular dependancy HACK
                 tempButton.actionMenu = this;
                 actionButtons.Add(tempButton);
-                tempButton.transform.position = cam.WorldToScreenPoint(new Vector3 (this.transform.position.x, this.transform.position.y + (i * tempButton.gameObject.transform.lossyScale.y), this.transform.position.z));//this.transform.position;
             }
         }
 
@@ -42,6 +46,7 @@ public class ActionMenu : MonoBehaviour
         {
             actionButtons[i].gameObject.SetActive(true);
             actionButtons[i].StoredCommand = commands[i];
+            actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
         }
 
     }
@@ -52,6 +57,7 @@ public class ActionMenu : MonoBehaviour
         {
             actionButtons[i].gameObject.SetActive(false);
         }
+        _gameManager.EndTurn();
         commands.Clear();
     }
 

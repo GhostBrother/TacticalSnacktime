@@ -5,16 +5,18 @@ using UnityEngine;
 public class Grill : AbstractPawn, iCookingStation
 {
     private Food foodOnGrill;
+    Character _character;
     private Command grillComand; 
 
     public Grill()
     {
-        PawnSprite = SpriteHolder.instance.GetArtFromIDNumber(4);
+        PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         grillComand = new CookFood(this);
     }
 
     public Command GetCommand()
     {
+
         return grillComand;
     }
 
@@ -23,14 +25,20 @@ public class Grill : AbstractPawn, iCookingStation
         
     }
 
-    public Food CollectFood()
+    public void CollectFood()
     {
-        return foodOnGrill;
+        _character.PickUp(foodOnGrill);
+        grillComand = new CookFood(this);
     }
 
     public void CreateFood()
     {
-        foodOnGrill = new Food("burger", 2.00M);
+        foodOnGrill = new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0));
+        grillComand = new GetFood(this);
     }
 
+    public void GetTargeter(Character character)
+    {
+        _character = character;
+    }
 }

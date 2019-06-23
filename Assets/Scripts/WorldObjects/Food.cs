@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Food : iCaryable
 {
     public string Name { get; private set; }
     public string Description { get; private set; }
+    public Sprite FoodSprite { get; private set; }
 
     // The skill at which this was prepared, 100 is best.  
     public int Skill { get; set; }
@@ -18,9 +20,10 @@ public class Food : iCaryable
     public int Weight { get; set; }
 
     // for right now I just want to serve a burger to a kobold. 
-    public Food(string name, decimal _price)
+    public Food(string name, decimal _price, Sprite foodSprite)
     {
         Name = name;
         Price = _price;
+        FoodSprite = foodSprite;
     }
 }
