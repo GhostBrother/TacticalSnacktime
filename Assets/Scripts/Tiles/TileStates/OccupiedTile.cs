@@ -23,5 +23,4 @@ public class OccupiedTile : iTileState
         //_tile.ColorAllAdjacent(_tile.CharacterOnTile.MoveSpeed);
     }
 
-
 }

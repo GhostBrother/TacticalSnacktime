@@ -20,7 +20,7 @@ public class MapGenerator : MonoBehaviour {
     [SerializeField]
     private float _verticalDistanceBetweenTiles;
 
-    private int MapSize {get {return _rows * _columns;}}
+    public int MapSize {get {return _rows * _columns;}}
 
     private Pathfinding pf;
 

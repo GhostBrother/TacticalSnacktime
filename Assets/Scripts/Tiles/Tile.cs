@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : Space, iHeapItem<Tile> {
+public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
 
     public List<Tile> neighbors { get; }
@@ -13,6 +13,9 @@ public class Tile : Space, iHeapItem<Tile> {
     public int fCost { get { return hCost + gCost; } }
     public int GridX { get; private set; }
     public int GridY { get; private set; }
+    [SerializeField]
+    private int _movementPenalty;
+    public int movementPenalty { get { return _movementPenalty; } set { _movementPenalty = value; } }
     int heapIndex;
     public int HeapIndex { get { return heapIndex; } set { heapIndex = value; } }
 
@@ -56,7 +59,7 @@ public class Tile : Space, iHeapItem<Tile> {
         hilighted = new HilightedTile(this);
         occupiedSquare = new OccupiedTile(this);
         deployZoneTile = new DeployZoneTile(this);
-
+        movementPenalty = 0;
         curentState = clear;
     }
 
@@ -102,6 +105,7 @@ public class Tile : Space, iHeapItem<Tile> {
     {
         if (GetCurrentState() != GetActiveState())
         {
+            movementPenalty = 0;
             ChangeState(clear);
         }
     }
@@ -111,12 +115,12 @@ public class Tile : Space, iHeapItem<Tile> {
         neighbors.Add(newNeighbor);
     }
 
-    public override void SelectTile( )
+    public void SelectTile()
     {
         curentState.TileClicked();
     }
 
-    public override void ColorAllAdjacent(int numToHilight)
+    public void ColorAllAdjacent(int numToHilight)
     {
         if (numToHilight >= 0)
         {

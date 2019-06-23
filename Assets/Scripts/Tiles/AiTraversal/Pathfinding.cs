@@ -8,17 +8,14 @@ public class Pathfinding : MonoBehaviour
 {
     // Has to be the number of tiles on the map... 
     [SerializeField]
+    MapGenerator mg;
      int maxSize;
     PathRequestManager requestManager;
 
-    private void Awake()
+     void Awake()
     {
         requestManager = GetComponent<PathRequestManager>();
-    }
-
-    public Pathfinding(int _maxSize)
-    {
-        maxSize = _maxSize;
+        maxSize = mg.MapSize;
     }
 
      void FindPath(Tile startPos, Tile targetPos) 
@@ -39,28 +36,33 @@ public class Pathfinding : MonoBehaviour
             {
                 pathSuccess = true;
                 break; 
-             }
+            }
 
             foreach (Tile neighbor in currentTile.neighbors)
             {
                 if(!closeSet.Contains(neighbor))
                 {
-                    int newMovementCostToNeighbor = currentTile.gCost + GetDistance(currentTile, neighbor);
-                    if (newMovementCostToNeighbor < neighbor.gCost || openSet.Contains(neighbor))
+                    int newMovementCostToNeighbor = currentTile.gCost + GetDistance(currentTile, neighbor) + neighbor.movementPenalty;
+                    if (newMovementCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
+                    {
                         neighbor.gCost = newMovementCostToNeighbor;
                         neighbor.hCost = GetDistance(neighbor, targetPos);
 
-                    neighbor.Parent = currentTile;
 
-                if (!openSet.Contains(neighbor))
-                    {
-                        openSet.Add(neighbor);
+                        neighbor.Parent = currentTile;
+
+
+                        if (!openSet.Contains(neighbor))
+                        {
+                            openSet.Add(neighbor);
+                        }
+                        else
+                            openSet.UpdateItem(neighbor);
                     }
                 }
             }
         }
 
-        //yield return null;
         if (pathSuccess)
         {
             waypoints = RetracePath(startPos, targetPos);
@@ -78,8 +80,6 @@ public class Pathfinding : MonoBehaviour
         while (currentTile != startTile)
         {
             path.Add(currentTile);
-            // temp
-            currentTile.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
             currentTile = currentTile.Parent;
         }
 
@@ -103,7 +103,6 @@ public class Pathfinding : MonoBehaviour
 
     public void StartFindPath(Tile startTile, Tile targetPos)
     {
-        //StartCoroutine(FindPath(startTile,targetPos));
         FindPath(startTile, targetPos);
     }
 }

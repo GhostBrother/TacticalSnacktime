@@ -34,19 +34,14 @@ public class InputHandler : MonoBehaviour {
         }
     }
 
-    //private void scanForMouseUp()
-    //{
-    //    if (Input.GetMouseButtonUp(0) && isMouseHeldDown)
-    //    {
-    //        isMouseHeldDown = false;
-    //    }
-    //}
 
     private void scanForInteractable()
     {
+
+        // this handles two kinds of input, I want to find a way where this only handles one kind of input or can interperet both kinds. 
         Vector2 v = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject() )
           {
             PointerEventData pointerEvent = new PointerEventData(EventSystem.current);
             pointerEvent.position = v;
@@ -56,13 +51,12 @@ public class InputHandler : MonoBehaviour {
                 if(pointerEvent.selectedObject.GetComponent<ActionButton>() != null)
                 {
                     pointerEvent.selectedObject.GetComponent<ActionButton>().ExecuteStoredCommand();
+                    return;
                 }
             }
    
          }
-
-       
-
+      
         Collider2D[] col = Physics2D.OverlapPointAll(v);
 
         

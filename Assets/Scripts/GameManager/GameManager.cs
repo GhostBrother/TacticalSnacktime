@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    private AICharacterFactory _characterFactory;
-    private Map _gameMap;
+    AICharacterFactory _characterFactory;
+
+    Map _gameMap;
 
     public List<Character> charactersOnMap { get; private set; }
 
     [SerializeField]
-    private MapGenerator _mapGenerator;
+    MapGenerator _mapGenerator;
 
 
     [SerializeField]
@@ -28,9 +29,6 @@ public class GameManager : MonoBehaviour {
 
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
-    private int MaxCharacters;
-
-    private int CharacterIndex;
 
 
     iGameManagerState idleMode;
@@ -61,6 +59,8 @@ public class GameManager : MonoBehaviour {
         actionMenu.gameManager = this;
         
         _gameMap = _mapGenerator.generateMap();
+
+        CheckForCustomerSpawn();
     }
 
     public iGameManagerState GetIdleState()
@@ -111,9 +111,6 @@ public class GameManager : MonoBehaviour {
     public void SortList()
     {
         charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
-
-        // move this to some sort of increase size list
-        MaxCharacters = charactersOnMap.Count;
     }
 
     public Character GetNextCharacter()
@@ -127,22 +124,13 @@ public class GameManager : MonoBehaviour {
         Character temp = GetNextCharacter();
         charactersOnMap.Remove(temp);
         charactersOnMap.Add(temp);
-
-        CheckForCustomerSpawn();
     }
 
     private void CheckForCustomerSpawn()
     {
-        CharacterIndex++;
-        if(CharacterIndex == MaxCharacters)
-        {
-            AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0,0));
-            newCharacter.setTarget(_gameMap.GetTileAtRowAndColumn(4,4));
-            AddCharacterToList(newCharacter);
-            
-            MaxCharacters = charactersOnMap.Count;
-            CharacterIndex = 0; 
-        }
+        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0, 0));
+        newCharacter.setTarget(_gameMap.GetTileAtRowAndColumn(4, 4));
+        AddCharacterToList(newCharacter);
     }
 
     public void KeepTrackOfStartTile(Tile tile)

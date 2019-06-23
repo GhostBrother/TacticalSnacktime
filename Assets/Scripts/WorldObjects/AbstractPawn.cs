@@ -13,6 +13,7 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
             tilePawnIsOn = value;
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
             ColorTile();
+            ChangeTileWeight();
         }
     }
 
@@ -23,4 +24,10 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         tilePawnIsOn.GetComponent<SpriteRenderer>().sprite = PawnSprite;
         tilePawnIsOn.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
     }
+
+     void ChangeTileWeight()
+    {
+        tilePawnIsOn.movementPenalty = 255;
+    }
+
 }

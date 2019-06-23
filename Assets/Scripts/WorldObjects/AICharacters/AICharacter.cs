@@ -5,15 +5,12 @@ using UnityEngine;
 public class AICharacter : Character
 {
 
-    private Tile target; // wasPublic
+    Tile target; 
     Tile[] path;
     int targetIndex;
 
     public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat) : base(baseMoveSpeed, characterSprite, speedStat)
     {
-        // ,Tile _target
-        //For testing only
-        //target = _target;
         targetIndex = 0;
     }
 
@@ -40,7 +37,9 @@ public class AICharacter : Character
         if(pathSuccessful)
         {
             path = newPath;
- 
+
+            targetIndex = 0;
+
         }
 
     }
@@ -57,7 +56,9 @@ public class AICharacter : Character
             else
                 targetIndex += MoveSpeed;
 
+
             TilePawnIsOn = path[targetIndex];
+            
         }
     }
 
