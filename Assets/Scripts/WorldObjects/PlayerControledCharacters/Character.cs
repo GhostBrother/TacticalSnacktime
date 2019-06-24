@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Character : AbstractPawn
 {
-    private int _baseMoveSpeed;
+    int _baseMoveSpeed;
 
     public int MoveSpeed { get { return _baseMoveSpeed; } }
 
     public int SpeedStat { get; private set; }
+
+    // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
+    int numberOfHands = 2;
+
+    int usedHands = 0; 
 
     iCaryable cariedObject;
 
@@ -27,7 +32,13 @@ public class Character : AbstractPawn
 
     public void PickUp(iCaryable caryable)
     {
-        cariedObject = caryable;
+        usedHands += caryable.HandsRequired;
+        if (usedHands < numberOfHands)
+        {
+            cariedObject = caryable;
+            ItemSprite = cariedObject.CaryableObjectSprite;
+            ShowItem();
+        }
 
     }
 }
