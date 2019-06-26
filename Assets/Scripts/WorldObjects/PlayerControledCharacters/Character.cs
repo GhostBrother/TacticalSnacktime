@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : AbstractPawn
+public class Character : AbstractPawn , iTargetable
 {
     int _baseMoveSpeed;
 
     public int MoveSpeed { get { return _baseMoveSpeed; } }
 
     public int SpeedStat { get; private set; }
+
+    Command characterCommand;
 
     // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
     int numberOfHands = 2;
@@ -23,6 +25,7 @@ public class Character : AbstractPawn
         _baseMoveSpeed = baseMoveSpeed;
         PawnSprite = characterSprite;
         SpeedStat = speedStat;
+      
     }
 
     public void CharacterMove()
@@ -40,5 +43,30 @@ public class Character : AbstractPawn
             ShowItem();
         }
 
+    }
+
+    public void GetRidOfItem()
+    {
+        cariedObject = null;
+        ItemSprite = null;
+        HideItem();
+    }
+
+    public iCaryable Give()
+    {
+        return cariedObject;
+    }
+
+    public override Command GetCommand()
+    {
+        return characterCommand;
+    }
+
+    public override void GetTargeter(Character character)
+    {
+        characterCommand = null;
+        // Checks to see if we have something to give. 
+        if (character.Give() != null)
+        characterCommand = new GiveItem(character, this);
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractPawn : MonoBehaviour, iPawn
+public abstract class AbstractPawn : MonoBehaviour, iPawn , iTargetable
 {
     private Tile tilePawnIsOn;
     public Tile TilePawnIsOn
@@ -14,14 +14,15 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
             ColorTile();
             ChangeTileWeight();
+            tilePawnIsOn.TargetableOnTile = this;
+
         }
     }
 
     public Sprite PawnSprite { get; protected set; }
 
-    public Sprite ItemSprite { get; protected set; }
+    public  Sprite ItemSprite { get; protected set; }
 
-    //protected Sprite foodSprite { get { return tilePawnIsOn.FoodImageRenderer.sprite; } set { tilePawnIsOn.FoodImageRenderer.sprite = value; } }
 
     public void ColorTile()
     {
@@ -30,9 +31,20 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         ShowItem();
     }
 
+    public abstract Command GetCommand();
+
+
+    public abstract void GetTargeter(Character character);
+
+
     public void ShowItem()
     {
         tilePawnIsOn.FoodImageRenderer.sprite = ItemSprite;
+    }
+
+    public void HideItem()
+    {
+        tilePawnIsOn.FoodImageRenderer.sprite = null;
     }
 
      void ChangeTileWeight()

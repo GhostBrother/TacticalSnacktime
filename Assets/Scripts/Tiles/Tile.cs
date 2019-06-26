@@ -82,6 +82,8 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public iTileState GetClearState()
     {
+        // HACK invest in a moved off function for pawns.
+       TargetableOnTile = null;
         return clear;
     }
 

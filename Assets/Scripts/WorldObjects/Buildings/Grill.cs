@@ -14,9 +14,8 @@ public class Grill : AbstractPawn, iCookingStation
         grillComand = new CookFood(this);
     }
 
-    public Command GetCommand()
+    public override Command GetCommand()
     {
-
         return grillComand;
     }
 
@@ -28,16 +27,20 @@ public class Grill : AbstractPawn, iCookingStation
     public void CollectFood()
     {
         _character.PickUp(foodOnGrill);
+        foodOnGrill = null;
+        HideItem();
         grillComand = new CookFood(this);
     }
 
     public void CreateFood()
     {
         foodOnGrill = new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0));
+        ItemSprite = foodOnGrill.CaryableObjectSprite;
+        ShowItem();
         grillComand = new GetFood(this);
     }
 
-    public void GetTargeter(Character character)
+    public override void GetTargeter(Character character)
     {
         _character = character;
     }

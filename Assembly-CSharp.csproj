@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GetFood.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />

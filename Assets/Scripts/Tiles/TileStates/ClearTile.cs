@@ -21,6 +21,7 @@ public class ClearTile : iTileState
         _tile.GetComponent<SpriteRenderer>().sprite = null;
         _tile.BackgroundTile.color = _tile.DeactiveColor;
         _tile.FoodImageRenderer.sprite = null;
+
     }
 
     public void TileClicked()

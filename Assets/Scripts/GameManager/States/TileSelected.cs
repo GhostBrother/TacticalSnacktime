@@ -32,7 +32,10 @@ public class TileSelected : iGameManagerState
             {
                 if (neighbor.IsTargetableOnTile)
                 {
+
                     neighbor.TargetableOnTile.GetTargeter(_gameManager.GetNextCharacter());
+
+                    if (neighbor.TargetableOnTile.GetCommand() != null)
                     _gameManager.ActionMenu.AddCommandToList(neighbor.TargetableOnTile.GetCommand());
                 }
             }
