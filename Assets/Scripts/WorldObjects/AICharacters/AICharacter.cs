@@ -48,7 +48,7 @@ public class AICharacter : Character
     {
         if (targetIndex < path.Length)
         {
-            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+            //TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
             if (targetIndex + MoveSpeed >= path.Length)
             {
                 targetIndex = (path.Length - (targetIndex + MoveSpeed));
@@ -56,8 +56,11 @@ public class AICharacter : Character
             else
                 targetIndex += MoveSpeed;
 
-
-            TilePawnIsOn = path[targetIndex];
+            if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState()) // added this
+            {
+                TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+                TilePawnIsOn = path[targetIndex];
+            }
             
         }
     }
