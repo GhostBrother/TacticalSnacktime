@@ -57,4 +57,10 @@ public class PathRequestManager : MonoBehaviour
             callback = _callback;
         }
     }
+
+    public static Tile FindClosestEntityOfType(Tile StartTile, EnumHolder.EntityType entityToFind)
+    {
+       return instance.pathfinding.FindClosestTileOfType(StartTile, entityToFind);
+    }
+
 }

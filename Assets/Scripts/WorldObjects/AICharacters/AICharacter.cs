@@ -12,6 +12,7 @@ public class AICharacter : Character
     public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat) : base(baseMoveSpeed, characterSprite, speedStat)
     {
         targetIndex = 0;
+        EntityType = EnumHolder.EntityType.None;
     }
 
     public void setTarget(Tile _target)
@@ -21,7 +22,11 @@ public class AICharacter : Character
 
     public void CheckPath()
     {
-        PathRequestManager.RequestPath(TilePawnIsOn, target, OnPathFound);
+        // will be traded out for states after test
+        //if(!isTargetFound)
+        //PathRequestManager.RequestPath(TilePawnIsOn, target, OnPathFound);
+        //else
+            PathRequestManager.RequestPath(TilePawnIsOn, PathRequestManager.FindClosestEntityOfType(TilePawnIsOn, EnumHolder.EntityType.Character), OnPathFound);
     }
 
     public void Move()
@@ -39,7 +44,6 @@ public class AICharacter : Character
             path = newPath;
 
             targetIndex = 0;
-
         }
 
     }
@@ -48,7 +52,7 @@ public class AICharacter : Character
     {
         if (targetIndex < path.Length)
         {
-            //TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+            
             if (targetIndex + MoveSpeed >= path.Length)
             {
                 targetIndex = (path.Length - (targetIndex + MoveSpeed));
@@ -56,12 +60,13 @@ public class AICharacter : Character
             else
                 targetIndex += MoveSpeed;
 
-            if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState()) // added this
+            if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState())
             {
                 TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
                 TilePawnIsOn = path[targetIndex];
+                
             }
-            
+
         }
     }
 

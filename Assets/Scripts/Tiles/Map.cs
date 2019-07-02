@@ -9,6 +9,8 @@ public class Map {
 
     private Tile trackedTile;
 
+
+
     public Map(int _rows, int _columns)
     {
         tilesOnMap = new Tile[_rows][];
@@ -16,6 +18,7 @@ public class Map {
         {
             tilesOnMap[i] = new Tile[_columns];
         }
+
     }
 
     public Tile GetTileAtRowAndColumn(int row, int column)
@@ -44,9 +47,9 @@ public class Map {
 
     public void SetEndTile(Tile tile)
     {
-            tile.ChangeState(tile.GetActiveState());
-            trackedTile.ChangeState(trackedTile.GetClearState());           
-           trackedTile = null;
+        tile.ChangeState(tile.GetActiveState());
+        trackedTile.ChangeState(trackedTile.GetClearState());           
+        trackedTile = null;
     }
 
 }

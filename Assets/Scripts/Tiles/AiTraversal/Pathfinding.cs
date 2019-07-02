@@ -20,7 +20,7 @@ public class Pathfinding : MonoBehaviour
 
      void FindPath(Tile startPos, Tile targetPos) 
     {
-
+        
         Tile[] waypoints = new Tile[0];
         bool pathSuccess = false;
         Heap<Tile> openSet = new Heap<Tile>(maxSize);
@@ -48,9 +48,7 @@ public class Pathfinding : MonoBehaviour
                         neighbor.gCost = newMovementCostToNeighbor;
                         neighbor.hCost = GetDistance(neighbor, targetPos);
 
-
                         neighbor.Parent = currentTile;
-
 
                         if (!openSet.Contains(neighbor))
                         {
@@ -104,5 +102,40 @@ public class Pathfinding : MonoBehaviour
     public void StartFindPath(Tile startTile, Tile targetPos)
     {
         FindPath(startTile, targetPos);
+    }
+
+    public Tile FindClosestTileOfType(Tile startTile, EnumHolder.EntityType entityTypeToFind)
+    {
+        List<Tile> openSet = new List<Tile>(maxSize);
+        HashSet<Tile> closeSet = new HashSet<Tile>();
+
+        openSet.Add(startTile);
+        while (openSet.Count > 0)
+        {
+            Tile currentTile = openSet[0];
+            closeSet.Add(currentTile);
+
+            if (currentTile.EntityTypeOnTile == entityTypeToFind)
+            {
+                return currentTile;
+            }
+
+            foreach (Tile neighbor in currentTile.neighbors)
+            {
+                if (!closeSet.Contains(neighbor))
+                {
+                        
+                    if (!openSet.Contains(neighbor))
+                    {
+                        openSet.Add(neighbor);
+                    }
+
+                }
+            }
+
+            openSet.Remove(currentTile);
+        }
+
+        return null;
     }
 }

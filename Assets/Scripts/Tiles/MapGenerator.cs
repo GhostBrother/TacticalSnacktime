@@ -66,6 +66,13 @@ public class MapGenerator : MonoBehaviour {
                     grillTest.TilePawnIsOn = temp.GetComponent<Tile>();
                 }
 
+                if (y == 0 && x == 4)
+                {
+                    Door doorTest = new Door();
+                    temp.GetComponent<Tile>().TargetableOnTile = doorTest;
+                    doorTest.TilePawnIsOn = temp.GetComponent<Tile>();
+                }
+
                 temp.GetComponent<Tile>().SetXandYPos(x,y);
                 mapToReturn.AddTileToMap(temp.GetComponent<Tile>(), x, y);
                 prevTile = temp.GetComponent<Tile>();

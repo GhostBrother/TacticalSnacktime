@@ -14,6 +14,7 @@ public class ClearTile : iTileState
     public ClearTile(Tile tile)
     {
         _tile = tile;
+        _tile.EntityTypeOnTile = EnumHolder.EntityType.None;
     }
 
     public void ChangeColor()

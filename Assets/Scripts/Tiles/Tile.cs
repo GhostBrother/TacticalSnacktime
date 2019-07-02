@@ -37,6 +37,10 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     Color deactiveColor;
     public Color DeactiveColor { get { return deactiveColor; } private set {; } }
 
+    // Hack
+    EnumHolder.EntityType entityTypeOnTile;
+    public EnumHolder.EntityType EntityTypeOnTile { get { return entityTypeOnTile; } set { entityTypeOnTile = value; } }
+
     [SerializeField]
     Color deployZoneColor;
     public Color DeployZoneColor { get { return deployZoneColor; } private set {; } }

@@ -15,6 +15,7 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn , iTargetable
             ColorTile();
             ChangeTileWeight();
             tilePawnIsOn.TargetableOnTile = this;
+            tilePawnIsOn.EntityTypeOnTile = EntityType;
 
         }
     }
@@ -22,6 +23,8 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn , iTargetable
     public Sprite PawnSprite { get; protected set; }
 
     public  Sprite ItemSprite { get; protected set; }
+
+    public EnumHolder.EntityType EntityType { get; protected set; }
 
 
     public void ColorTile()

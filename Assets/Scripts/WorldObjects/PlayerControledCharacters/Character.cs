@@ -25,7 +25,7 @@ public class Character : AbstractPawn , iTargetable
         _baseMoveSpeed = baseMoveSpeed;
         PawnSprite = characterSprite;
         SpeedStat = speedStat;
-      
+        EntityType = EnumHolder.EntityType.Character;
     }
 
     public void CharacterMove()

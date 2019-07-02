@@ -131,6 +131,10 @@ public class GameManager : MonoBehaviour {
         AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0, 0));
         newCharacter.setTarget(_gameMap.GetTileAtRowAndColumn(4, 4));
         AddCharacterToList(newCharacter);
+
+        //AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(7, 7));
+        //newCharacter2.setTarget(_gameMap.GetTileAtRowAndColumn(4, 4));
+        //AddCharacterToList(newCharacter2);
     }
 
     public void KeepTrackOfStartTile(Tile tile)

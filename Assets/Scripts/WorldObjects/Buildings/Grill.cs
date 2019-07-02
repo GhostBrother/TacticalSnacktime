@@ -12,6 +12,7 @@ public class Grill : AbstractPawn, iCookingStation
     {
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         grillComand = new CookFood(this);
+        EntityType = EnumHolder.EntityType.CookingStation;
     }
 
     public override Command GetCommand()
