@@ -117,6 +117,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         {
             movementPenalty = 0;
             ChangeState(clear);
+            EntityTypeOnTile = EnumHolder.EntityType.None;
         }
     }
 

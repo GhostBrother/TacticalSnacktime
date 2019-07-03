@@ -26,7 +26,9 @@ public class AICharacter : Character
         //if(!isTargetFound)
         //PathRequestManager.RequestPath(TilePawnIsOn, target, OnPathFound);
         //else
-            PathRequestManager.RequestPath(TilePawnIsOn, PathRequestManager.FindClosestEntityOfType(TilePawnIsOn, EnumHolder.EntityType.Character), OnPathFound);
+        Tile TileTest = PathRequestManager.FindClosestEntityOfType(TilePawnIsOn, EnumHolder.EntityType.Character); 
+        Debug.Log("X" + TileTest.GridX + " : Y " + TileTest.GridY + "Status " + TileTest.EntityTypeOnTile );
+            PathRequestManager.RequestPath(TilePawnIsOn, TileTest, OnPathFound);
     }
 
     public void Move()
