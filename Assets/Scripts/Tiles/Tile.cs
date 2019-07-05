@@ -87,7 +87,8 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     public iTileState GetClearState()
     {
         // HACK invest in a moved off function for pawns.
-       TargetableOnTile = null;
+        EntityTypeOnTile = EnumHolder.EntityType.None;
+        TargetableOnTile = null;
         return clear;
     }
 
@@ -116,8 +117,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         if (GetCurrentState() != GetActiveState())
         {
             movementPenalty = 0;
-            ChangeState(clear);
-            EntityTypeOnTile = EnumHolder.EntityType.None;
+            ChangeState(clear);  
         }
     }
 

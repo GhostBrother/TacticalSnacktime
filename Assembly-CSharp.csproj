@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GetFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
@@ -92,9 +93,14 @@
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindRegister.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\IDesireState.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AbstractPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Grill.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Food.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\Character.cs" />

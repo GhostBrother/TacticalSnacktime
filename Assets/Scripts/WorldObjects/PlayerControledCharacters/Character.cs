@@ -17,7 +17,7 @@ public class Character : AbstractPawn , iTargetable
 
     int usedHands = 0; 
 
-    iCaryable cariedObject;
+    protected iCaryable cariedObject;
 
    
     public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat)
