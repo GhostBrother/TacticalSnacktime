@@ -11,6 +11,7 @@ public class EnumHolder
         Door, 
         Register, 
         CookingStation,
+        Wall,
         Length
     }
 }

@@ -18,7 +18,7 @@ public class AICharacter : Character
         desiredFood = _desiredFood;
 
         // Temporary 
-        Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this)};
+        Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this), new LeaveResturant(this)};
     }
 
     public void setTarget(Tile _target)
@@ -28,17 +28,23 @@ public class AICharacter : Character
 
     public void CheckPath()
     {
-        // will be traded out for states after test
-        //if(!isTargetFound)
-        //PathRequestManager.RequestPath(TilePawnIsOn, target, OnPathFound);
-        //else
-        if(Desires[0].isRequestSatisfied())
+
+        for (int i = 0; i < Desires.Count; ++i)
         {
-            Desires.RemoveAt(0);
+            if (Desires[i].isRequestSatisfied())
+            {
+                Debug.Log("Removing " + Desires[i].ToString());
+                Desires.RemoveAt(i);
+                i--;
+            }
+            else
+            {
+                Debug.Log("Coulden't find " + Desires[i].ToString());
+                break;
+            }
         }
+
         Desires[0].MoveTarget();
-        //Tile TileTest = PathRequestManager.FindClosestEntityOfType(TilePawnIsOn, EnumHolder.EntityType.Character); 
-        //Debug.Log("X" + TileTest.GridX + " : Y " + TileTest.GridY + "Status " + TileTest.EntityTypeOnTile );
     }
 
     public void Move()
@@ -63,10 +69,10 @@ public class AICharacter : Character
      void FollowPath()
     {
         if (targetIndex < path.Length)
-        {   
-            if (targetIndex + MoveSpeed >= path.Length)
+        {
+            if (targetIndex + MoveSpeed >= (path.Length - 1))
             {
-                targetIndex = (path.Length - (targetIndex + MoveSpeed));
+                targetIndex = (path.Length - (targetIndex + MoveSpeed + 1));
             }
             else
                 targetIndex += MoveSpeed;

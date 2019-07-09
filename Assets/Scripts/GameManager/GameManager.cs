@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour {
     public Character GetNextCharacter()
     {
         camera.PanToLocation(charactersOnMap[0].TilePawnIsOn.gameObject.transform.position);
+        characterDisplay.ChangeCharacterArt(charactersOnMap[0].PawnSprite);
         return charactersOnMap[0];
     }
 
@@ -128,20 +129,14 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForCustomerSpawn()
     {
-        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0, 0));
-        newCharacter.setTarget(_gameMap.GetTileAtRowAndColumn(4, 4));
+        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0, 1));
         AddCharacterToList(newCharacter);
-
-        //AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(7, 7));
-        //newCharacter2.setTarget(_gameMap.GetTileAtRowAndColumn(4, 4));
-        //AddCharacterToList(newCharacter2);
     }
 
     public void KeepTrackOfStartTile(Tile tile)
     {
         _gameMap.SetStartTile(tile);
         GetNextCharacter().CharacterMove();
-        _characterDisplay.ChangeCharacterArt(GetNextCharacter().PawnSprite);
     }
 
     public void KeepTrackOfEndTile(Tile tile)

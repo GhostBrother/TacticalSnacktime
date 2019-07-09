@@ -22,6 +22,7 @@ public class FindExit : IDesireState
         {
             if (aICharacter.TilePawnIsOn.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.Door)
             {
+                Debug.Log(aICharacter.TilePawnIsOn.GridX + " " + aICharacter.TilePawnIsOn.GridY);
                 return true;
             }
         }
