@@ -10,6 +10,9 @@ public class Character : AbstractPawn , iTargetable
 
     public int SpeedStat { get; private set; }
 
+    private bool needsRemoval;
+    public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
+
     Command characterCommand;
 
     // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
@@ -26,6 +29,7 @@ public class Character : AbstractPawn , iTargetable
         PawnSprite = characterSprite;
         SpeedStat = speedStat;
         EntityType = EnumHolder.EntityType.Character;
+        needsRemoval = false;
     }
 
     public void CharacterMove()

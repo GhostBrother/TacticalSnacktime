@@ -115,6 +115,11 @@ public class GameManager : MonoBehaviour {
 
     public Character GetNextCharacter()
     {
+        if (charactersOnMap[0].NeedsRemoval)
+        {
+            charactersOnMap[0].TilePawnIsOn.ChangeState(charactersOnMap[0].TilePawnIsOn.GetClearState());
+            charactersOnMap.RemoveAt(0);
+        }
         camera.PanToLocation(charactersOnMap[0].TilePawnIsOn.gameObject.transform.position);
         characterDisplay.ChangeCharacterArt(charactersOnMap[0].PawnSprite);
         return charactersOnMap[0];
@@ -151,7 +156,6 @@ public class GameManager : MonoBehaviour {
     //Hack for demo, This is called from input manager. Look into a fix. 
     public void EndTurn()
     {
-       
         // This should move at the same time as out human player;
         while (GetNextCharacter() is AICharacter)
         {

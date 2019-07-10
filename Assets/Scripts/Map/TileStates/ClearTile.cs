@@ -19,7 +19,6 @@ public class ClearTile : iTileState
     public void ChangeColor()
     {
         _tile.GetComponent<SpriteRenderer>().sprite = null;
-        _tile.BackgroundTile.color = _tile.DeactiveColor;
         _tile.FoodImageRenderer.sprite = null;
 
     }

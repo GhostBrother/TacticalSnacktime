@@ -119,6 +119,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
             movementPenalty = 0;
             ChangeState(clear);  
         }
+        BackgroundTile.color = DeactiveColor;
     }
 
     public void SetNeighbor(Tile newNeighbor)

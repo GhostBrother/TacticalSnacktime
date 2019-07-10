@@ -17,7 +17,6 @@ public class LeaveResturant : IDesireState
 
     public bool isRequestSatisfied()
     {
-        aiCharacter.TilePawnIsOn.ChangeState(aiCharacter.TilePawnIsOn.GetClearState());
         return true;
     }
 }

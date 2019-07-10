@@ -11,6 +11,8 @@ public class AICharacter : Character
     Food desiredFood;
     List<IDesireState> Desires;
 
+    public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
+
     public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, Food _desiredFood) : base(baseMoveSpeed, characterSprite, speedStat)
     {
         targetIndex = 0;
@@ -33,17 +35,18 @@ public class AICharacter : Character
         {
             if (Desires[i].isRequestSatisfied())
             {
-                Debug.Log("Removing " + Desires[i].ToString());
+                Debug.Log(TilePawnIsOn.GetCurrentState().ToString());
                 Desires.RemoveAt(i);
+                if (Desires.Count <= 0) { return; }
                 i--;
             }
             else
             {
-                Debug.Log("Coulden't find " + Desires[i].ToString());
                 break;
             }
         }
 
+        if (Desires.Count <= 0) { return; }
         Desires[0].MoveTarget();
     }
 
