@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : AbstractPawn
+public class Door : AbstractPawn // iTargetable?
 {
 
     public Door()
@@ -11,13 +11,4 @@ public class Door : AbstractPawn
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(1);
     }
 
-    public override Command GetCommand()
-    {
-        return null;
-    }
-
-    public override void GetTargeter(Character character)
-    {
-       
-    }
 }

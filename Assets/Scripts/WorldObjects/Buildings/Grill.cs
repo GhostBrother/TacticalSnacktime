@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grill : AbstractPawn, iCookingStation
+public class Grill : AbstractInteractablePawn, iCookingStation 
 {
     private Food foodOnGrill;
     Character _character;

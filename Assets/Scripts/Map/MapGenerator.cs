@@ -62,7 +62,7 @@ public class MapGenerator : MonoBehaviour {
                 if(y == 8 && x == 6 || y == 7 && x == 6 || y == 6 && x == 6 || y == 4 && x == 6 || y == 3 && x == 6 || y == 3 && x == 5 || y == 3 && x == 4 || y == 3 && x == 3 || y == 3 && x == 2 || y == 3 && x == 1 || y == 4 && x == 1|| y == 6 && x == 1 || y == 7 && x == 1 || y == 8 && x == 1)
                 {
                     Wall wallTest = new Wall();
-                    temp.GetComponent<Tile>().TargetableOnTile = wallTest;
+                   // temp.GetComponent<Tile>().TargetableOnTile = wallTest;
                     wallTest.TilePawnIsOn = temp.GetComponent<Tile>();
                 }
                 if (y == 7 && x == 5 )
@@ -82,7 +82,7 @@ public class MapGenerator : MonoBehaviour {
                 if (y == 0 && x == 0)
                 {
                     Door doorTest = new Door();
-                    temp.GetComponent<Tile>().TargetableOnTile = doorTest;
+                   // temp.GetComponent<Tile>().TargetableOnTile = doorTest;
                     doorTest.TilePawnIsOn = temp.GetComponent<Tile>();
                 }
 

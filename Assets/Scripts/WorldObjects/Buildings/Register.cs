@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Register : AbstractPawn
+public class Register : AbstractPawn , iTargetable
 {
     Character employee;
     AICharacter customer;
@@ -12,12 +12,12 @@ public class Register : AbstractPawn
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(2);
         EntityType = EnumHolder.EntityType.Register;
     }
-    public override Command GetCommand()
+    public Command GetCommand()
     {
         return CashRegisterCommand;
     }
 
-    public override void GetTargeter(Character _character)
+    public void GetTargeter(Character _character)
     {
         CashRegisterCommand = null;
         employee = _character;
@@ -30,11 +30,6 @@ public class Register : AbstractPawn
                 CashRegisterCommand = new TakeOrder(employee,customer);
             }
         }
-       
-        //if(_character is AICharacter)
-        //{
-        //    character = (AICharacter)_character;
-        //    CashRegisterCommand = new TakeOrder(character);
-        //}
+      
     }
 }

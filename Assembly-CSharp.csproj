@@ -98,6 +98,8 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\IDesireState.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\LeaveResturant.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AbstractActor.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AbstractInteractablePawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AbstractPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Grill.cs" />
@@ -105,10 +107,12 @@
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Wall.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Food.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\PathMover.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\Character.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\SpriteHolder.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iCaryable.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\iPathfinding.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
     <Reference Include="Unity.Timeline.Editor">

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractPawn : MonoBehaviour, iPawn , iTargetable
+public abstract class AbstractPawn : MonoBehaviour, iPawn //, iTargetable // Should Abstract pawns be targitables?  
 {
     private Tile tilePawnIsOn;
-    public Tile TilePawnIsOn
+    public virtual Tile TilePawnIsOn
     {
         get { return tilePawnIsOn; }
         set
@@ -14,7 +14,7 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn , iTargetable
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
             ColorTile();
             ChangeTileWeight();
-            tilePawnIsOn.TargetableOnTile = this;
+            //tilePawnIsOn.TargetableOnTile = this;
             tilePawnIsOn.EntityTypeOnTile = EntityType;
 
         }
@@ -34,10 +34,10 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn , iTargetable
         ShowItem();
     }
 
-    public abstract Command GetCommand();
+    //public abstract Command GetCommand();
 
 
-    public abstract void GetTargeter(Character character);
+    //public abstract void GetTargeter(Character character);
 
 
     public void ShowItem()

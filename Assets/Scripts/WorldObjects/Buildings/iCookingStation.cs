@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface iCookingStation : iTargetable
+public interface iCookingStation
 {
     void CreateFood();
     void AddToFood(Food food);

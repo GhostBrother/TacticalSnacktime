@@ -18,7 +18,7 @@ public class Pathfinding : MonoBehaviour
         maxSize = mg.MapSize;
     }
 
-     void FindPath(Tile startPos, Tile targetPos) 
+    void FindPath(Tile startPos, Tile targetPos) 
     {
         
         Tile[] waypoints = new Tile[0];
