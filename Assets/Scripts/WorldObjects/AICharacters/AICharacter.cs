@@ -35,7 +35,7 @@ public class AICharacter : Character
         {
             if (Desires[i].isRequestSatisfied())
             {
-                Debug.Log(TilePawnIsOn.GetCurrentState().ToString());
+
                 Desires.RemoveAt(i);
                 if (Desires.Count <= 0) { return; }
                 i--;

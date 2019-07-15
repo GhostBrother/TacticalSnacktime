@@ -59,7 +59,7 @@ public class MapGenerator : MonoBehaviour {
                     temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
                 }
 
-                if(y == 8 && x == 6 || y == 7 && x == 6 || y == 6 && x == 6 || y == 4 && x == 6 || y == 3 && x == 6 || y == 3 && x == 5 || y == 3 && x == 4 || y == 3 && x == 3 || y == 3 && x == 2 || y == 3 && x == 1 || y == 4 && x == 1|| y == 6 && x == 1 || y == 7 && x == 1 || y == 8 && x == 1)
+                if(y == 8 && x == 6 || y == 7 && x == 6 || y == 6 && x == 6 || y == 4 && x == 6 || y == 3 && x == 6 || y == 3 && x == 5 ||  y == 3 && x == 3 || y == 3 && x == 2 || y == 3 && x == 1 || y == 4 && x == 1|| y == 6 && x == 1 || y == 7 && x == 1 || y == 8 && x == 1)
                 {
                     Wall wallTest = new Wall();
                     wallTest.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();

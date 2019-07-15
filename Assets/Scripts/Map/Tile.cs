@@ -13,9 +13,11 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     public int fCost { get { return hCost + gCost; } }
     public int GridX { get; private set; }
     public int GridY { get; private set; }
-    [SerializeField]
+
+
     private int _movementPenalty;
     public int movementPenalty { get { return _movementPenalty; } set { _movementPenalty = value; } }
+
     int heapIndex;
     public int HeapIndex { get { return heapIndex; } set { heapIndex = value; } }
 

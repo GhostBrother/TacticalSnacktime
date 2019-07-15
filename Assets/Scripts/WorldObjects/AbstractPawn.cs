@@ -23,9 +23,6 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         {
             tilePawnIsOn = value;
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
-            //New
-            // characterCoaster
-            //ColorTile();
             ChangeTileWeight();
 
             tilePawnIsOn.EntityTypeOnTile = EntityType;
@@ -40,13 +37,6 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
 
     public EnumHolder.EntityType EntityType { get; protected set; }
     
-
-    public void ColorTile()
-    {
-        tilePawnIsOn.GetComponent<SpriteRenderer>().sprite = PawnSprite;
-        tilePawnIsOn.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
-        ShowItem();
-    }
 
     public void ShowItem()
     {

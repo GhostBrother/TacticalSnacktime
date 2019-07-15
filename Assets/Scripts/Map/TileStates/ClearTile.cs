@@ -18,8 +18,8 @@ public class ClearTile : iTileState
 
     public void ChangeColor()
     {
-        _tile.GetComponent<SpriteRenderer>().sprite = null;
-        _tile.FoodImageRenderer.sprite = null;
+        //_tile.GetComponent<SpriteRenderer>().sprite = null;
+        //_tile.FoodImageRenderer.sprite = null;
 
     }
 

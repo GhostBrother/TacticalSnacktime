@@ -25,11 +25,16 @@ public class CharacterCoasterPool : MonoBehaviour
     {
         for(int i = 0; i < size; i++)
         {
-            CharacterCoaster obj = Instantiate(characterCoaster);
-            obj.gameObject.SetActive(false);
-            gameObjectPool.Enqueue(obj);
+            InstantiateNewObject();
         }
 
+    }
+
+    void InstantiateNewObject()
+    {
+        CharacterCoaster obj = Instantiate(characterCoaster);
+        obj.gameObject.SetActive(false);
+        gameObjectPool.Enqueue(obj);
     }
 
     public CharacterCoaster SpawnFromPool()
@@ -43,9 +48,17 @@ public class CharacterCoasterPool : MonoBehaviour
         objectToSpawn.transform.position = pos;
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.gameObject.SetActive(true);
-
-        gameObjectPool.Enqueue(objectToSpawn);
+        if(gameObjectPool.Count == 0)
+        {
+            InstantiateNewObject();
+        }
 
         return objectToSpawn;
+    }
+
+    public void PutBackInPool(CharacterCoaster itemToPutBack)
+    {
+        gameObjectPool.Enqueue(itemToPutBack);
+        itemToPutBack.gameObject.SetActive(false);
     }
 }

@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour {
         if (charactersOnMap[0].NeedsRemoval)
         {
             charactersOnMap[0].TilePawnIsOn.ChangeState(charactersOnMap[0].TilePawnIsOn.GetClearState());
+            CharacterCoasterPool.Instance.PutBackInPool(charactersOnMap[0].characterCoaster);
             charactersOnMap.RemoveAt(0);
         }
         camera.PanToLocation(charactersOnMap[0].TilePawnIsOn.gameObject.transform.position);
