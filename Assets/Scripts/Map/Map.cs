@@ -47,6 +47,7 @@ public class Map {
 
     public void SetEndTile(Tile tile)
     {
+        
         tile.ChangeState(tile.GetActiveState());
         trackedTile.ChangeState(trackedTile.GetClearState());           
         trackedTile = null;

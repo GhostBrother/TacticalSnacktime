@@ -20,5 +20,8 @@ public class PathMover : MonoBehaviour
         
     }
 
-    
+    public void MoveAlongPath(iPawn pawnToMove , Tile[] path)
+    {
+
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : AbstractInteractablePawn , iTargetable
+public class Character : AbstractInteractablePawn
 {
     int _baseMoveSpeed;
 

@@ -30,6 +30,7 @@ public class DeployState : iGameManagerState
         if(tile.GetCurrentState() == tile.GetDeployState())
         {
             Character CharacterToUse = characterRoster.GetCharacterOnTopOfList();
+            CharacterToUse.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
             CharacterToUse.TilePawnIsOn = tile;
             _gameManager.AddCharacterToList(CharacterToUse);
         }

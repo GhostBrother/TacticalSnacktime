@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CharacterCoasterPool.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Scripts\Map\TileStates\HilightedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\OccupiedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\iTileState.cs" />
+    <Compile Include="Assets\Scripts\UI\CharacterCoaster.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
@@ -98,7 +100,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\IDesireState.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\LeaveResturant.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\AbstractActor.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AbstractInteractablePawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AbstractPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />

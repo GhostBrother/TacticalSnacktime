@@ -6,5 +6,6 @@ public interface iPawn
 {
     Tile TilePawnIsOn { get; set; }
     Sprite PawnSprite { get; }
+    CharacterCoaster characterCoaster { get; set; }
     void ColorTile();
 }

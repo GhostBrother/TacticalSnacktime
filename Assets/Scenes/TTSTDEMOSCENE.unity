@@ -642,6 +642,51 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2f00cad8c79dd72489843a840dde56eb, type: 3}
   FoodArt:
   - {fileID: 21300000, guid: 45c53b5edbdf98c4b864ba36e0048d46, type: 3}
+--- !u!1 &640138877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 640138879}
+  - component: {fileID: 640138878}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &640138878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640138877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc150997670da14cafc8ab659f9dc48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCoaster: {fileID: -1180689058376733656, guid: 40d4078d40c3eae4cb8f94ec8e03930e,
+    type: 3}
+--- !u!4 &640138879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640138877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -31.378174, y: 1.2998047, z: -10.855358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1067517424
 GameObject:
   m_ObjectHideFlags: 0

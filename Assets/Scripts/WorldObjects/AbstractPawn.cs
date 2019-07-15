@@ -2,8 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractPawn : MonoBehaviour, iPawn //, iTargetable // Should Abstract pawns be targitables?  
+public abstract class AbstractPawn : MonoBehaviour, iPawn 
 {
+    private CharacterCoaster _characterCoaster;
+    public CharacterCoaster characterCoaster
+    {
+        get { return _characterCoaster; }
+        set { _characterCoaster = value;
+            _characterCoaster.CharacterSprite = PawnSprite;
+
+        }
+    }
+
+
     private Tile tilePawnIsOn;
     public virtual Tile TilePawnIsOn
     {
@@ -12,10 +23,13 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn //, iTargetable // Sho
         {
             tilePawnIsOn = value;
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
-            ColorTile();
+            //New
+            // characterCoaster
+            //ColorTile();
             ChangeTileWeight();
-            //tilePawnIsOn.TargetableOnTile = this;
+
             tilePawnIsOn.EntityTypeOnTile = EntityType;
+            _characterCoaster.CoasterLocation = TilePawnIsOn.transform.position;
 
         }
     }
@@ -25,7 +39,7 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn //, iTargetable // Sho
     public  Sprite ItemSprite { get; protected set; }
 
     public EnumHolder.EntityType EntityType { get; protected set; }
-
+    
 
     public void ColorTile()
     {
@@ -33,12 +47,6 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn //, iTargetable // Sho
         tilePawnIsOn.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
         ShowItem();
     }
-
-    //public abstract Command GetCommand();
-
-
-    //public abstract void GetTargeter(Character character);
-
 
     public void ShowItem()
     {
