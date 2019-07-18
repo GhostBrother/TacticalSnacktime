@@ -21,13 +21,22 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         get { return tilePawnIsOn; }
         set
         {
+            Tile temp = tilePawnIsOn;
             tilePawnIsOn = value;
+            if (temp != null)
+            {
+                PathRequestManager.RequestPath(temp, value, characterCoaster.MoveAlongPath);
+            }
+            else
+            {
+                _characterCoaster.transform.position = new Vector3(TilePawnIsOn.transform.position.x, TilePawnIsOn.transform.position.y, -0.5f);
+            }
+
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
             ChangeTileWeight();
 
             tilePawnIsOn.EntityTypeOnTile = EntityType;
-            _characterCoaster.CoasterLocation = TilePawnIsOn.transform.position;
-
+           
         }
     }
 

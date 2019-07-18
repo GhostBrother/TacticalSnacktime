@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class CharacterCoaster : MonoBehaviour
 {
+    float speed = 0.005f;
+    Tile[] _path;
 
-   public Sprite CharacterSprite
+    Vector3 desiredLocation;
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    public Sprite CharacterSprite
     {
         get { return this.GetComponent<SpriteRenderer>().sprite; }
         set
@@ -15,7 +24,38 @@ public class CharacterCoaster : MonoBehaviour
         }
     }
 
-    public Vector3 CoasterLocation { set { transform.position = new Vector3(value.x, value.y , -0.5f); }  }
+    public void MoveAlongPath(Tile[] path, bool isPathFound)
+    {
+        if (isPathFound)
+        {
+            _path = path;
+            StopCoroutine("FollowPath");
+            StartCoroutine("FollowPath");
+        }
+    }
+
+
+    IEnumerator FollowPath()
+    {
+        Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, -0.5f);
+        int TargetIndex = 0;
+        while (true)
+        {
+
+            if (transform.position == currentWaypoint)
+            {
+                TargetIndex++;
+                if (TargetIndex >= _path.Length)
+                {
+                    yield break;
+                }
+                currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -0.5f);// _path[TargetIndex].transform.position;
+            }
+
+            transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);
+            yield return null;
+        }
+    }
 
 
 }

@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour {
 
     public void KeepTrackOfStartTile(Tile tile)
     {
-        _gameMap.SetStartTile(tile);
+        _gameMap.PickCharacter(GetNextCharacter());
         GetNextCharacter().CharacterMove();
     }
 
