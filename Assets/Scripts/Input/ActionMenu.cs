@@ -57,8 +57,12 @@ public class ActionMenu : MonoBehaviour
         {
             actionButtons[i].gameObject.SetActive(false);
         }
-        _gameManager.EndTurn();
         commands.Clear();
+    }
+
+    public void EndTurn()
+    {
+        _gameManager.CheckForAIPlayer();
     }
 
     public void AddCommandToList(Command command)

@@ -26,5 +26,7 @@ public class ActionButton : MonoBehaviour
     {
         actionMenu.HideAllActions();
         storedCommand.execute();
+        //Temporary
+        actionMenu.EndTurn();
     }
 }

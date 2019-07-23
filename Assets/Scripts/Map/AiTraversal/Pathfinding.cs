@@ -81,6 +81,9 @@ public class Pathfinding : MonoBehaviour
             currentTile = currentTile.Parent;
         }
 
+        //HACK
+        if (path.Count == 0) { path.Add(startTile); }
+
         Tile[] waypoints = path.ToArray();
         Array.Reverse(waypoints);
         

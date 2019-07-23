@@ -25,6 +25,7 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
             tilePawnIsOn = value;
             if (temp != null)
             {
+                Debug.Log("Requesting path from" + temp.GridX + ":" + temp.GridY + "to" + value.GridX + ":" + value.GridY);
                 PathRequestManager.RequestPath(temp, value, characterCoaster.MoveAlongPath);
             }
             else

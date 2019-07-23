@@ -137,6 +137,9 @@ public class GameManager : MonoBehaviour {
     {
         AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0, 1));
         AddCharacterToList(newCharacter);
+        AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(1,0));
+        AddCharacterToList(newCharacter2);
+
     }
 
     public void KeepTrackOfStartTile(Tile tile)
@@ -147,15 +150,12 @@ public class GameManager : MonoBehaviour {
 
     public void KeepTrackOfEndTile(Tile tile)
     {
-        if (tile.GetCurrentState() == tile.GetHilightedState())
-        {
-            GetNextCharacter().TilePawnIsOn = tile;
-            GetNextCharacter().characterCoaster.onStopMoving = ActionMenu.ShowActionsAtTile;
-            _gameMap.SetEndTile(tile);
-        }
+        GetNextCharacter().characterCoaster.onStopMoving = ActionMenu.ShowActionsAtTile;
+        GetNextCharacter().TilePawnIsOn = tile;
+        _gameMap.SetEndTile(tile);        
     }
 
-    public void EndTurn()
+    public void CheckForAIPlayer()
     {
         // This should move at the same time as out human player;
          if (GetNextCharacter() is AICharacter)
@@ -165,15 +165,15 @@ public class GameManager : MonoBehaviour {
             tempChar.CheckPath();
             tempChar.Move();
             GetNextCharacter().characterCoaster.onStopMoving = Placeholder;
-            MoveFirstCharacterToLast();
+            MoveFirstCharacterToLast(); 
         }
-       else
-        SetState(GetIdleState());
+         else
+            SetState(GetIdleState());
     }
 
     public void Placeholder(Tile tile)
     {
-        SetState(GetIdleState());
+        CheckForAIPlayer();
     }
 
 }
