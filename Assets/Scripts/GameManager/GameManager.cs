@@ -141,8 +141,8 @@ public class GameManager : MonoBehaviour {
 
     public void KeepTrackOfStartTile(Tile tile)
     {
-        _gameMap.PickCharacter(GetNextCharacter());
-        GetNextCharacter().CharacterMove();
+        _gameMap.SetStartTile(tile);
+        GetNextCharacter().ShowMoveRange();
     }
 
     public void KeepTrackOfEndTile(Tile tile)
@@ -150,24 +150,30 @@ public class GameManager : MonoBehaviour {
         if (tile.GetCurrentState() == tile.GetHilightedState())
         {
             GetNextCharacter().TilePawnIsOn = tile;
+            GetNextCharacter().characterCoaster.onStopMoving = ActionMenu.ShowActionsAtTile;
             _gameMap.SetEndTile(tile);
         }
     }
 
-    //Hack for demo, This is called from input manager. Look into a fix. 
     public void EndTurn()
     {
         // This should move at the same time as out human player;
-        while (GetNextCharacter() is AICharacter)
+         if (GetNextCharacter() is AICharacter)
         {
+            SetState(GetActionState());
             AICharacter tempChar = (AICharacter)GetNextCharacter();
             tempChar.CheckPath();
             tempChar.Move();
+            GetNextCharacter().characterCoaster.onStopMoving = Placeholder;
             MoveFirstCharacterToLast();
         }
-
-       SetState(GetIdleState());
+       else
+        SetState(GetIdleState());
     }
 
+    public void Placeholder(Tile tile)
+    {
+        SetState(GetIdleState());
+    }
 
 }

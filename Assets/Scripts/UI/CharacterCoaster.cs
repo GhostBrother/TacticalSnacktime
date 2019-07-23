@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterCoaster : MonoBehaviour
 {
+    public delegate void OnStopMoving(Tile tile);
+    public OnStopMoving onStopMoving;
     float speed = 0.005f;
     Tile[] _path;
+
 
     Vector3 desiredLocation;
     // Start is called before the first frame update
@@ -29,7 +33,7 @@ public class CharacterCoaster : MonoBehaviour
         if (isPathFound)
         {
             _path = path;
-            StopCoroutine("FollowPath");
+           StopCoroutine("FollowPath");
             StartCoroutine("FollowPath");
         }
     }
@@ -45,11 +49,12 @@ public class CharacterCoaster : MonoBehaviour
             if (transform.position == currentWaypoint)
             {
                 TargetIndex++;
-                if (TargetIndex >= _path.Length)
+                if (TargetIndex == _path.Length)
                 {
+                    onStopMoving.Invoke(_path[TargetIndex-1]);
                     yield break;
                 }
-                currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -0.5f);// _path[TargetIndex].transform.position;
+                currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -0.5f);
             }
 
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);

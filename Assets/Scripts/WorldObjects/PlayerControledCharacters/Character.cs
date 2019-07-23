@@ -32,7 +32,7 @@ public class Character : AbstractInteractablePawn
         needsRemoval = false;
     }
 
-    public void CharacterMove()
+    public void ShowMoveRange()
     {
         TilePawnIsOn.ColorAllAdjacent(MoveSpeed);
     }

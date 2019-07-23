@@ -43,9 +43,9 @@ public class Map {
         }
     }
 
-    public void PickCharacter(Character character)
+    public void SetStartTile(Tile tile)
     {
-        StartTile = character.TilePawnIsOn;
+        StartTile = tile;
     }
 
     public void SetEndTile(Tile tile)
