@@ -71,20 +71,29 @@ public class AICharacter : Character
 
      void FollowPath()
     {
+
+
         if (targetIndex < path.Length)
         {
             if (targetIndex + MoveSpeed >= (path.Length - 1))
             {
-                targetIndex = (path.Length - (targetIndex + MoveSpeed + 1));
+                targetIndex = (path.Length  - (targetIndex + MoveSpeed + 1) );
+                if (targetIndex < 0) { targetIndex = 0; }
             }
             else
                 targetIndex += MoveSpeed;
 
+
             if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState())
             {
                 TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
-                TilePawnIsOn = path[targetIndex]; 
+                TilePawnIsOn = path[targetIndex];
             }
+            else
+            {
+                TilePawnIsOn = TilePawnIsOn;
+            }
+            
 
         }
     }

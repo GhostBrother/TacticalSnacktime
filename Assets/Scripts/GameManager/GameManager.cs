@@ -164,8 +164,7 @@ public class GameManager : MonoBehaviour {
             AICharacter tempChar = (AICharacter)GetNextCharacter();
             tempChar.CheckPath();
             tempChar.Move();
-            GetNextCharacter().characterCoaster.onStopMoving = Placeholder;
-            MoveFirstCharacterToLast(); 
+            tempChar.characterCoaster.onStopMoving = Placeholder;
         }
          else
             SetState(GetIdleState());
@@ -173,6 +172,7 @@ public class GameManager : MonoBehaviour {
 
     public void Placeholder(Tile tile)
     {
+        MoveFirstCharacterToLast();
         CheckForAIPlayer();
     }
 

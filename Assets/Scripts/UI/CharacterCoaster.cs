@@ -34,7 +34,7 @@ public class CharacterCoaster : MonoBehaviour
         {
             _path = path;
            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+           StartCoroutine("FollowPath");
         }
     }
 

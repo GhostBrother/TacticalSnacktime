@@ -12,7 +12,7 @@ public class OrderFood : IDesireState
 
     public void MoveTarget ()
     {
-       
+      
     }
 
     public bool isRequestSatisfied()
