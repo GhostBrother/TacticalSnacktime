@@ -14,6 +14,16 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         }
     }
 
+    public CharacterCoaster _itemCoaster;
+    public CharacterCoaster ItemCoaster
+    {
+        get { return _itemCoaster; }
+        set
+        {
+            _itemCoaster = value;
+        }
+    }
+
 
     private Tile tilePawnIsOn;
     public virtual Tile TilePawnIsOn
@@ -50,12 +60,17 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
 
     public void ShowItem()
     {
-        tilePawnIsOn.FoodImageRenderer.sprite = ItemSprite;
+        // tilePawnIsOn.FoodImageRenderer.sprite = ItemSprite;
+        _itemCoaster = CharacterCoasterPool.Instance.SpawnFromPool(new Vector3(_characterCoaster.transform.position.x, _characterCoaster.transform.position.y, -1f),Quaternion.identity);
+        _itemCoaster.transform.SetParent(_characterCoaster.transform);
+        _itemCoaster.gameObject.GetComponent<SpriteRenderer>().sprite = ItemSprite;
     }
 
     public void HideItem()
     {
-        tilePawnIsOn.FoodImageRenderer.sprite = null;
+        //tilePawnIsOn.FoodImageRenderer.sprite = null;
+        _itemCoaster.transform.parent = null;
+        CharacterCoasterPool.Instance.PutBackInPool(_itemCoaster);
     }
 
      void ChangeTileWeight()

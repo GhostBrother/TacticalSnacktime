@@ -23,7 +23,7 @@ public class CharacterCoaster : MonoBehaviour
         get { return this.GetComponent<SpriteRenderer>().sprite; }
         set
         {
-            this.GetComponent<SpriteRenderer>().sprite = value ;
+            this.GetComponent<SpriteRenderer>().sprite = value;
             this.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
         }
     }
@@ -33,7 +33,6 @@ public class CharacterCoaster : MonoBehaviour
         if (isPathFound)
         {
             _path = path;
-           StopCoroutine("FollowPath");
            StartCoroutine("FollowPath");
         }
     }
