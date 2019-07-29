@@ -28,10 +28,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     public SpriteRenderer BackgroundTile { get { return backgroundTile; } private set {; } }
 
     [SerializeField]
-    SpriteRenderer foodImageRenderer;
-    public SpriteRenderer FoodImageRenderer { get { return foodImageRenderer; } private set{ foodImageRenderer = value; } }
-
-    [SerializeField]
     Color activeColor;
     public Color ActiveColor { get { return activeColor; } private set {; } }
 

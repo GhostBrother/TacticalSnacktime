@@ -25,13 +25,13 @@ public class TileSelected : iGameManagerState
     {
         if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.GetNextCharacter().TilePawnIsOn)
         {
-          
 
+            
             foreach (Tile neighbor in tile.neighbors)
             {
                 if (neighbor.IsTargetableOnTile)
                 {
-
+                    Debug.Log(neighbor.GridX + " : " + neighbor.GridY + " : " + neighbor.TargetableOnTile.ToString());
                     neighbor.TargetableOnTile.GetTargeter(_gameManager.GetNextCharacter());
 
                     if (neighbor.TargetableOnTile.GetCommand() != null)

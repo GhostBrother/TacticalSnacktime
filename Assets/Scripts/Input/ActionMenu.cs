@@ -26,6 +26,7 @@ public class ActionMenu : MonoBehaviour
 
     public void ShowActionsAtTile(Tile tileWithCommands)
     {
+
         this.transform.position = tileWithCommands.transform.position;
 
         commands.Add(new EndTurn(_gameManager));

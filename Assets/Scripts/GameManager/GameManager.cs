@@ -147,13 +147,15 @@ public class GameManager : MonoBehaviour {
     {
         _gameMap.SetStartTile(tile);
         GetNextCharacter().ShowMoveRange();
+        tile.ChangeState(tile.GetClearState());
     }
 
     public void KeepTrackOfEndTile(Tile tile)
     {
         GetNextCharacter().characterCoaster.onStopMoving = ActionMenu.ShowActionsAtTile;
         GetNextCharacter().TilePawnIsOn = tile;
-        _gameMap.SetEndTile(tile);        
+        _gameMap.SetEndTile(tile);
+        
     }
 
     public void CheckForAIPlayer()

@@ -51,7 +51,7 @@ public class Map {
     public void SetEndTile(Tile tile)
     {
         tile.ChangeState(tile.GetActiveState());
-        StartTile.ChangeState(StartTile.GetClearState());
+        //StartTile.ChangeState(StartTile.GetClearState());
         StartTile = null;
     }
 
