@@ -69,6 +69,8 @@
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager\States\AIState.cs" />
+    <Compile Include="Assets\Scripts\GameManager\States\AITurn.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />
@@ -108,7 +110,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Wall.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Food.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\PathMover.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\Character.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\SpriteHolder.cs" />

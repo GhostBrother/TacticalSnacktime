@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
     iGameManagerState deployState;
     iGameManagerState actionState;
     iGameManagerState curentState;
+    iGameManagerState movingState;
  
     public GameManager()
     {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour {
         selectedMode = new TileSelected(this);
         deployState = new DeployState(this);
         actionState = new ActionState(this);
+        movingState = new MovingState();
 
         curentState = deployState;
 
@@ -75,6 +77,11 @@ public class GameManager : MonoBehaviour {
     public iGameManagerState GetActionState()
     {
         return actionState;
+    }
+
+    public iGameManagerState GetMovingState()
+    {
+        return movingState;
     }
 
     public void SetState(iGameManagerState newState)
@@ -149,27 +156,31 @@ public class GameManager : MonoBehaviour {
 
     public void KeepTrackOfStartTile(Tile tile)
     {
-        _gameMap.SetStartTile(tile);
         GetNextCharacter().ShowMoveRange();
         tile.ChangeState(tile.GetClearState());
     }
 
     public void UndoMove()
     {
-       // GetNextCharacter().TilePawnIsOn.ChangeState(GetNextCharacter().TilePawnIsOn.GetClearState());
         GetNextCharacter().MoveToPreviousTile();
     }
 
     public void KeepTrackOfEndTile(Tile tile)
     {
-        GetNextCharacter().characterCoaster.onStopMoving = ActionMenu.ShowActionsAtTile;
+        GetNextCharacter().characterCoaster.onStopMoving = ActionOnStopMoving;
         GetNextCharacter().TilePawnIsOn = tile;
-        _gameMap.SetEndTile(tile);
-        
+        tile.ChangeState(tile.GetActiveState());
+    }
+
+    public void ActionOnStopMoving(Tile tile)
+    {
+        ActionMenu.ShowActionsAtTile(tile);
+        SetState(GetActionState());
     }
 
     public void EndTurn()
     {
+        SetState(GetIdleState());
         MoveFirstCharacterToLast();
         CheckForAIPlayer();
     }
@@ -178,7 +189,7 @@ public class GameManager : MonoBehaviour {
     {
          if (GetNextCharacter() is AICharacter)
         {
-            SetState(GetActionState());
+            SetState(GetMovingState());
             AICharacter tempChar = (AICharacter)GetNextCharacter();
             tempChar.CheckPath();
             tempChar.Move();

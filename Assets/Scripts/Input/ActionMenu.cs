@@ -29,7 +29,7 @@ public class ActionMenu : MonoBehaviour
 
         this.transform.position = tileWithCommands.transform.position;
 
-        commands.Add(new EndTurn(_gameManager));
+        commands.Add(new EndTurn());
 
         if (commands.Count > actionButtons.Count)
         {
@@ -54,7 +54,6 @@ public class ActionMenu : MonoBehaviour
 
     public void HideAllActions()
     {
-        Debug.Log("Hide all actions hit");
         for (int i = 0; i < actionButtons.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(false);
@@ -64,7 +63,6 @@ public class ActionMenu : MonoBehaviour
 
     public void EndTurn()
     {
-        // _gameManager.CheckForAIPlayer();
         _gameManager.EndTurn();
     }
 

@@ -6,6 +6,7 @@ public class TileSelected : iGameManagerState
 {
 
     GameManager _gameManager;
+
     public TileSelected(GameManager gameManager)
     {
         _gameManager = gameManager;
@@ -46,7 +47,7 @@ public class TileSelected : iGameManagerState
 
             _gameManager.KeepTrackOfEndTile(tile);
             _gameManager.DeactivateAllTiles();
-            _gameManager.SetState(_gameManager.GetActionState());
+            _gameManager.SetState(_gameManager.GetMovingState());
         }
         else
         {

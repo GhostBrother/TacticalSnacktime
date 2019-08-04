@@ -7,15 +7,8 @@ public class Map {
     private Tile[][] tilesOnMap;
     public Tile[][] TilesOnMap { get { return tilesOnMap; } private set { tilesOnMap = value; } }
 
-    private Tile StartTile;
-
-    PathMover pathMover;
-
-
-
     public Map(int _rows, int _columns)
     {
-        pathMover = new PathMover();
         tilesOnMap = new Tile[_rows][];
         for (int i = 0; i < TilesOnMap.Length; i++)
         {
@@ -42,21 +35,4 @@ public class Map {
             tilesOnMap[x][y].DeactivateTile();
         }
     }
-
-    public void SetStartTile(Tile tile)
-    {
-        StartTile = tile;
-    }
-
-    public Tile GetStartTile()
-    {
-        return StartTile;
-    }
-
-    public void SetEndTile(Tile tile)
-    {
-        tile.ChangeState(tile.GetActiveState());
-        //StartTile = null;
-    }
-
 }

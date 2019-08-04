@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class EndTurn : Command
 {
-    GameManager gm;
 
-    public EndTurn(GameManager _gm)
+    public EndTurn()
     {
-        gm = _gm;
     }
 
     public string CommandName { get { return "Wait"; } }
