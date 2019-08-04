@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b2d02a22a171a48b4974528cf84150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 5
   mainCamera: {fileID: 1203252057}
   howLongIsPan: 1
 --- !u!224 &1447924833 stripped
@@ -885,8 +885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapGenerator: {fileID: 225618906}
-  camera: {fileID: 1203252059}
   actionMenu: {fileID: 1067517425}
+  camera: {fileID: 1203252059}
   _characterDisplay: {fileID: 1447924835}
 --- !u!4 &1481686213
 Transform:
@@ -928,12 +928,12 @@ PrefabInstance:
     - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
         type: 3}
       propertyPath: _columns
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
         type: 3}
       propertyPath: _rows
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4949276603105298, guid: 1e6cf0cdbf48f094ba48973194eb31db, type: 3}
       propertyPath: m_LocalPosition.x

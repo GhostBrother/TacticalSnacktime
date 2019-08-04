@@ -12,6 +12,11 @@ public class Idle : iGameManagerState
         _gameManager = gameManager;
     }
 
+    public void RightClick(Tile tile)
+    {
+        // Info about tile or object on tile. 
+    }
+
     public void TileClicked(Tile tile)
     {
         if (_gameManager.GetNextCharacter().TilePawnIsOn == tile)

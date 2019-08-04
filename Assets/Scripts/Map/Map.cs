@@ -48,11 +48,15 @@ public class Map {
         StartTile = tile;
     }
 
+    public Tile GetStartTile()
+    {
+        return StartTile;
+    }
+
     public void SetEndTile(Tile tile)
     {
         tile.ChangeState(tile.GetActiveState());
-        //StartTile.ChangeState(StartTile.GetClearState());
-        StartTile = null;
+        //StartTile = null;
     }
 
 }

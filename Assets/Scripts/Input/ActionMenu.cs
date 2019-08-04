@@ -54,7 +54,8 @@ public class ActionMenu : MonoBehaviour
 
     public void HideAllActions()
     {
-        for(int i = 0; i < actionButtons.Count; i++)
+        Debug.Log("Hide all actions hit");
+        for (int i = 0; i < actionButtons.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(false);
         }
@@ -63,7 +64,8 @@ public class ActionMenu : MonoBehaviour
 
     public void EndTurn()
     {
-        _gameManager.CheckForAIPlayer();
+        // _gameManager.CheckForAIPlayer();
+        _gameManager.EndTurn();
     }
 
     public void AddCommandToList(Command command)

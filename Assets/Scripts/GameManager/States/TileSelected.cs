@@ -21,6 +21,12 @@ public class TileSelected : iGameManagerState
         
     }
 
+    public void RightClick(Tile tile)
+    {
+        _gameManager.DeactivateAllTiles();
+        _gameManager.SetState(_gameManager.GetIdleState());
+    }
+
     public void TileClicked(Tile tile)
     {
         if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.GetNextCharacter().TilePawnIsOn)
@@ -31,7 +37,6 @@ public class TileSelected : iGameManagerState
             {
                 if (neighbor.IsTargetableOnTile)
                 {
-                    Debug.Log(neighbor.GridX + " : " + neighbor.GridY + " : " + neighbor.TargetableOnTile.ToString());
                     neighbor.TargetableOnTile.GetTargeter(_gameManager.GetNextCharacter());
 
                     if (neighbor.TargetableOnTile.GetCommand() != null)
@@ -41,7 +46,6 @@ public class TileSelected : iGameManagerState
 
             _gameManager.KeepTrackOfEndTile(tile);
             _gameManager.DeactivateAllTiles();
-            _gameManager.MoveFirstCharacterToLast();
             _gameManager.SetState(_gameManager.GetActionState());
         }
         else

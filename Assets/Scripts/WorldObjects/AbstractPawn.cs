@@ -24,6 +24,7 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         }
     }
 
+    private Tile previousTile;
 
     private Tile tilePawnIsOn;
     public virtual Tile TilePawnIsOn
@@ -31,12 +32,12 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         get { return tilePawnIsOn; }
         set
         {
-            Tile temp = tilePawnIsOn;
+
+            previousTile = tilePawnIsOn;
             tilePawnIsOn = value;
-            if (temp != null)
+            if (previousTile != null)
             {
-               
-                PathRequestManager.RequestPath(temp, value, characterCoaster.MoveAlongPath);
+                PathRequestManager.RequestPath(previousTile, value, characterCoaster.MoveAlongPath);
             }
             else
             {
@@ -56,6 +57,22 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
     public  Sprite ItemSprite { get; protected set; }
 
     public EnumHolder.EntityType EntityType { get; protected set; }
+
+    public void MoveToPreviousTile()
+    {
+
+        tilePawnIsOn.ChangeState(tilePawnIsOn.GetClearState());
+        tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+        tilePawnIsOn = previousTile;
+
+        characterCoaster.transform.position = new Vector3(previousTile.transform.position.x, previousTile.transform.position.y, -0.5f);
+
+        previousTile.ChangeState(tilePawnIsOn.GetActiveState());
+        ChangeTileWeight();
+
+        previousTile.EntityTypeOnTile = EntityType;
+
+    }
     
 
     public void ShowItem()

@@ -25,6 +25,11 @@ public class DeployState : iGameManagerState
         LoadDisplayWithCharacterArt(characterRoster.getPreviousEmployedCharacter()); 
     }
 
+    public void RightClick(Tile tile)
+    {
+
+    }
+
     public void TileClicked(Tile tile)
     {
         if(tile.GetCurrentState() == tile.GetDeployState())

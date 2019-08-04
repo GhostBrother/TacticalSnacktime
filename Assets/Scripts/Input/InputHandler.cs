@@ -8,6 +8,8 @@ public class InputHandler : MonoBehaviour {
 
     bool isMousePressed;
 
+    bool isRightMousePressed;
+
     [SerializeField]
     TileSelector tileSelector;
 
@@ -31,6 +33,11 @@ public class InputHandler : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && !isMousePressed)
         {
             isMousePressed = true;
+        }
+
+        else if (Input.GetMouseButtonDown(1))
+        {
+            isRightMousePressed = true;
         }
     }
 
@@ -67,11 +74,18 @@ public class InputHandler : MonoBehaviour {
                 if (c.GetComponent<Tile>() != null)
                 {
                     tileSelector.MoveToPosition(c.transform.position);
+                    Gm.CameraController.PanCamera(c.transform.position, c.bounds.size);
 
                     if (isMousePressed)
                     {
                         Gm.ActivateTile(c.gameObject.GetComponent<Tile>());
                         isMousePressed = false;
+                    }
+
+                    else if (isRightMousePressed)
+                    {
+                        Gm.RightClick(c.gameObject.GetComponent<Tile>());
+                        isRightMousePressed = false;
                     }
                 }
             }

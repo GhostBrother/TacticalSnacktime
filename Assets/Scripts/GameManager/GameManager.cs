@@ -13,16 +13,15 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     MapGenerator _mapGenerator;
 
-
-    [SerializeField]
-    CameraController camera;
-
-    public CameraController Camera { get { return camera; } private set { } }
-
     [SerializeField]
     ActionMenu actionMenu;
 
     public ActionMenu ActionMenu { get { return actionMenu; } private set { } }
+
+    [SerializeField]
+    CameraController camera;
+
+    public CameraController CameraController { get { return camera; } private set { } }
 
     [SerializeField]
     CharacterDisplay _characterDisplay;
@@ -103,6 +102,11 @@ public class GameManager : MonoBehaviour {
         curentState.TileClicked(tile);
     }
 
+    public void RightClick(Tile tile)
+    {
+        curentState.RightClick(tile);
+    }
+
     public void DeactivateAllTiles()
     {
         _gameMap.DeactivateAllTiles();
@@ -150,6 +154,12 @@ public class GameManager : MonoBehaviour {
         tile.ChangeState(tile.GetClearState());
     }
 
+    public void UndoMove()
+    {
+       // GetNextCharacter().TilePawnIsOn.ChangeState(GetNextCharacter().TilePawnIsOn.GetClearState());
+        GetNextCharacter().MoveToPreviousTile();
+    }
+
     public void KeepTrackOfEndTile(Tile tile)
     {
         GetNextCharacter().characterCoaster.onStopMoving = ActionMenu.ShowActionsAtTile;
@@ -158,9 +168,14 @@ public class GameManager : MonoBehaviour {
         
     }
 
+    public void EndTurn()
+    {
+        MoveFirstCharacterToLast();
+        CheckForAIPlayer();
+    }
+
     public void CheckForAIPlayer()
     {
-        // This should move at the same time as out human player;
          if (GetNextCharacter() is AICharacter)
         {
             SetState(GetActionState());
@@ -175,8 +190,7 @@ public class GameManager : MonoBehaviour {
 
     public void Placeholder(Tile tile)
     {
-        MoveFirstCharacterToLast();
-        CheckForAIPlayer();
+        EndTurn();
     }
 
 }

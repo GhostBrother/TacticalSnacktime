@@ -16,42 +16,52 @@ public class CameraController : MonoBehaviour {
     private Vector3 defaultCameraLocation;
     private Vector3 desiredLocation;
     private Vector3 velocity;
-    private const float boundary = 20;
+
+   
     
     void Start()
     {
         defaultCameraLocation = this.transform.position;
         desiredLocation = defaultCameraLocation;
     }
+
+
     private void Update()
     {
-        mainCamera.transform.position = Vector3.SmoothDamp(this.transform.position, desiredLocation, ref velocity, howLongIsPan);
-
-        if(Input.mousePosition.x > Screen.width - boundary)
-        {
-            desiredLocation.x += speed * Time.deltaTime;
-        }
-
-        if (Input.mousePosition.x < 0 + boundary)
-        {
-            desiredLocation.x -= speed * Time.deltaTime;
-        }
-
-        if (Input.mousePosition.y > Screen.height - boundary)
-        {
-            desiredLocation.y += speed * Time.deltaTime;
-        }
-
-
-        if (Input.mousePosition.y < 0 + boundary)
-        {
-            desiredLocation.y -= speed * Time.deltaTime;
-        }
+        mainCamera.transform.position = Vector3.MoveTowards(this.transform.position, desiredLocation, (speed * Time.deltaTime));
     }
 
+    
     public void PanToLocation(Vector3 targetLocation)
     {
-        desiredLocation = new Vector3(targetLocation.x, targetLocation.y, defaultCameraLocation.z);
+        desiredLocation = new Vector3(targetLocation.x, targetLocation.y, mainCamera.transform.position.z);
+    }
+
+    public void PanCamera(Vector3 targetLocation , Vector3 tileSize)
+    {
+
+         // The 3 should be some kind of variable that scales as the map changes size.
+        if (targetLocation.x > (tileSize.x * 4 + desiredLocation.x) )
+        {
+            desiredLocation.x +=  tileSize.x ;
+        }
+
+        if (targetLocation.x < (desiredLocation.x - tileSize.x * 4))
+        {
+            desiredLocation.x -= tileSize.x;
+        }
+
+        if (targetLocation.y > (tileSize.y * 2 + desiredLocation.y))
+        {
+            desiredLocation.y += tileSize.y;
+        }
+
+
+        if (targetLocation.y < (desiredLocation.y - tileSize.y * 2))
+        {
+            desiredLocation.y -= tileSize.y;
+        }
+
     }
 
     private void panToDefaultLocation()

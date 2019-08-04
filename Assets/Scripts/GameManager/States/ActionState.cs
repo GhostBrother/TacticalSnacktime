@@ -22,6 +22,13 @@ public class ActionState : iGameManagerState
        // throw new System.NotImplementedException();
     }
 
+    public void RightClick(Tile tile)
+    {
+        _gameManager.UndoMove();
+        _gameManager.ActionMenu.HideAllActions();
+        _gameManager.SetState(_gameManager.GetIdleState());  
+    }
+
     public void TileClicked(Tile tile)
     {
     
