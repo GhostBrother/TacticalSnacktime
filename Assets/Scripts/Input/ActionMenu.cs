@@ -38,7 +38,10 @@ public class ActionMenu : MonoBehaviour
             {
                 ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
                 // Circular dependancy HACK
-                tempButton.actionMenu = this;
+                 //tempButton.actionMenu = this;
+                //tempButton.onActionTaken = null;
+                tempButton.onActionTaken += HideAllActions;
+                tempButton.onActionTaken += EndTurn;
                 actionButtons.Add(tempButton);
             }
         }

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ActionButton : MonoBehaviour
 {
+    public delegate void OnExecuteCommand();
+    public OnExecuteCommand onActionTaken;
+
     private Command storedCommand;
 
     public Command StoredCommand
@@ -16,17 +19,10 @@ public class ActionButton : MonoBehaviour
             this.GetComponentInChildren<Text>().text = storedCommand.CommandName;
         }
     }
-
-    // Circular dependancy HACK
-    private ActionMenu _actionMenu;
-    public ActionMenu actionMenu { private get { return _actionMenu; } set { _actionMenu = value; } }
     
-  
     public void ExecuteStoredCommand()
     {
-        actionMenu.HideAllActions();
         storedCommand.execute();
-        //Temporary
-        actionMenu.EndTurn();
+        onActionTaken.Invoke();
     }
 }

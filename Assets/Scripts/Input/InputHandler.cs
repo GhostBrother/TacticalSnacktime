@@ -57,8 +57,11 @@ public class InputHandler : MonoBehaviour {
             {
                 if(pointerEvent.selectedObject.GetComponent<ActionButton>() != null)
                 {
-                    pointerEvent.selectedObject.GetComponent<ActionButton>().ExecuteStoredCommand();
-                    return;
+                    if (isMousePressed)
+                    {
+                        pointerEvent.selectedObject.GetComponent<ActionButton>().ExecuteStoredCommand();
+                        return;
+                    }
                 }
             }
    
