@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
     Map _gameMap;
 
-    public List<Character> charactersOnMap { get; private set; }
+    List<Character> charactersOnMap;
 
     [SerializeField]
     MapGenerator _mapGenerator;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
-
+    public Character CurentCharacter { get; private set; }
 
     iGameManagerState idleMode;
     iGameManagerState selectedMode;
@@ -36,11 +36,6 @@ public class GameManager : MonoBehaviour {
     iGameManagerState actionState;
     iGameManagerState curentState;
     iGameManagerState movingState;
- 
-    public GameManager()
-    {
-       
-    }
 
 	// Use this for initialization
 	void Start ()
@@ -56,8 +51,8 @@ public class GameManager : MonoBehaviour {
         charactersOnMap = new List<Character>();
         _characterFactory = new AICharacterFactory();
 
-        // Hack circular dependancy.
-        actionMenu.gameManager = this;
+
+        actionMenu.onTurnEnd = EndTurn;
         
         _gameMap = _mapGenerator.generateMap();
 
@@ -124,25 +119,29 @@ public class GameManager : MonoBehaviour {
         charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
     }
 
-    public Character GetNextCharacter()
+    public void CheckIfCharacterNeedsRemoval() 
     {
-        if (charactersOnMap[0].NeedsRemoval)
+        if (CurentCharacter.NeedsRemoval)
         {
-            charactersOnMap[0].TilePawnIsOn.ChangeState(charactersOnMap[0].TilePawnIsOn.GetClearState());
-            CharacterCoasterPool.Instance.PutBackInPool(charactersOnMap[0].characterCoaster);
-            charactersOnMap[0].HideItem();
-            charactersOnMap.RemoveAt(0);
+            CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
+            CharacterCoasterPool.Instance.PutBackInPool(CurentCharacter.characterCoaster);
+            CurentCharacter.HideItem();
+            charactersOnMap.Remove(CurentCharacter);
         }
-        camera.PanToLocation(charactersOnMap[0].TilePawnIsOn.gameObject.transform.position);
-        characterDisplay.ChangeCharacterArt(charactersOnMap[0].PawnSprite);
-        return charactersOnMap[0];
+        else
+        {
+            charactersOnMap.Remove(CurentCharacter);
+            charactersOnMap.Add(CurentCharacter);
+        }
     }
 
-    public void MoveFirstCharacterToLast()
-    {
-        Character temp = GetNextCharacter();
-        charactersOnMap.Remove(temp);
-        charactersOnMap.Add(temp);
+    public void StartNextCharactersTurn()
+    { 
+        CurentCharacter = charactersOnMap[0];
+
+        camera.PanToLocation(CurentCharacter.TilePawnIsOn.gameObject.transform.position);
+        characterDisplay.ChangeCharacterArt(CurentCharacter.PawnSprite);
+
     }
 
     private void CheckForCustomerSpawn()
@@ -153,55 +152,34 @@ public class GameManager : MonoBehaviour {
         AddCharacterToList(newCharacter2);
 
     }
-
-    public void KeepTrackOfStartTile(Tile tile)
-    {
-        GetNextCharacter().ShowMoveRange();
-        tile.ChangeState(tile.GetClearState());
-    }
-
-    public void UndoMove()
-    {
-        GetNextCharacter().MoveToPreviousTile();
-    }
-
-    public void KeepTrackOfEndTile(Tile tile)
-    {
-        GetNextCharacter().characterCoaster.onStopMoving = ActionOnStopMoving;
-        GetNextCharacter().TilePawnIsOn = tile;
-        tile.ChangeState(tile.GetActiveState());
-    }
-
-    public void ActionOnStopMoving(Tile tile)
-    {
-        ActionMenu.ShowActionsAtTile(tile);
-        SetState(GetActionState());
-    }
-
-    public void EndTurn()
-    {
-        SetState(GetIdleState());
-        MoveFirstCharacterToLast();
-        CheckForAIPlayer();
-    }
+    // Character, what is your interperation of start turn? ( possible question for refactor.
 
     public void CheckForAIPlayer()
     {
-         if (GetNextCharacter() is AICharacter)
+         if (CurentCharacter is AICharacter)
         {
             SetState(GetMovingState());
-            AICharacter tempChar = (AICharacter)GetNextCharacter();
+            AICharacter tempChar = (AICharacter)CurentCharacter;
             tempChar.CheckPath();
             tempChar.Move();
-            tempChar.characterCoaster.onStopMoving = Placeholder;
+            tempChar.characterCoaster.onStopMoving = AILookForAction;
         }
          else
             SetState(GetIdleState());
     }
 
-    public void Placeholder(Tile tile)
+    public void AILookForAction(Tile tile)
     {
+        // TODO, Give the ai a weighted choice of what to do based on tile, even if it is wait paitently. 
         EndTurn();
+    }
+
+    public void EndTurn()
+    {
+        CheckIfCharacterNeedsRemoval();
+        SetState(GetIdleState());
+        StartNextCharactersTurn();
+        CheckForAIPlayer();
     }
 
 }

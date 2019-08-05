@@ -30,7 +30,7 @@ public class TileSelected : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-        if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.GetNextCharacter().TilePawnIsOn)
+        if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
         {
 
             
@@ -38,14 +38,16 @@ public class TileSelected : iGameManagerState
             {
                 if (neighbor.IsTargetableOnTile)
                 {
-                    neighbor.TargetableOnTile.GetTargeter(_gameManager.GetNextCharacter());
+                    neighbor.TargetableOnTile.GetTargeter(_gameManager.CurentCharacter);
 
                     if (neighbor.TargetableOnTile.GetCommand() != null)
                     _gameManager.ActionMenu.AddCommandToList(neighbor.TargetableOnTile.GetCommand());
                 }
             }
 
-            _gameManager.KeepTrackOfEndTile(tile);
+            _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
+            _gameManager.CurentCharacter.TilePawnIsOn = tile;
+            tile.ChangeState(tile.GetActiveState());
             _gameManager.DeactivateAllTiles();
             _gameManager.SetState(_gameManager.GetMovingState());
         }
@@ -54,5 +56,11 @@ public class TileSelected : iGameManagerState
             _gameManager.DeactivateAllTiles();
             _gameManager.SetState(_gameManager.GetIdleState());
         }
+    }
+
+    private void ActionOnStopMoving(Tile tile)
+    {
+        _gameManager.ActionMenu.ShowActionsAtTile(tile);
+        _gameManager.SetState(_gameManager.GetActionState());
     }
 }

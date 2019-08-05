@@ -45,6 +45,7 @@ public class DeployState : iGameManagerState
             _gameManager.SortList();
             _gameManager.SetState(_gameManager.GetIdleState());
             _gameManager.DeactivateAllTiles();
+            _gameManager.StartNextCharactersTurn();
         }
 
         else

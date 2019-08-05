@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class ActionMenu : MonoBehaviour
 {
+
+    public delegate void OnTurnEnd();
+    public OnTurnEnd onTurnEnd;
+
     List<Command> commands;
 
     [SerializeField]
@@ -14,9 +18,6 @@ public class ActionMenu : MonoBehaviour
     ActionButton buttonPrefab;
 
     List<ActionButton> actionButtons;
-
-    private GameManager _gameManager;
-    public GameManager gameManager { private get { return _gameManager; } set { _gameManager = value; } }
 
     public void Start()
     {
@@ -37,9 +38,6 @@ public class ActionMenu : MonoBehaviour
             for (int i = 0; i < temp; i++)
             {
                 ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
-                // Circular dependancy HACK
-                 //tempButton.actionMenu = this;
-                //tempButton.onActionTaken = null;
                 tempButton.onActionTaken += HideAllActions;
                 tempButton.onActionTaken += EndTurn;
                 actionButtons.Add(tempButton);
@@ -66,7 +64,7 @@ public class ActionMenu : MonoBehaviour
 
     public void EndTurn()
     {
-        _gameManager.EndTurn();
+        onTurnEnd.Invoke();
     }
 
     public void AddCommandToList(Command command)

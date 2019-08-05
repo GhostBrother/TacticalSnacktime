@@ -24,7 +24,7 @@ public class ActionState : iGameManagerState
 
     public void RightClick(Tile tile)
     {
-        _gameManager.UndoMove();
+        _gameManager.CurentCharacter.MoveToPreviousTile();
         _gameManager.ActionMenu.HideAllActions();
         _gameManager.SetState(_gameManager.GetIdleState());  
     }

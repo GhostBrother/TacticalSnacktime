@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIState : iGameManagerState
+public class MovingState : iGameManagerState
 {
     public void NextArrow()
     {
