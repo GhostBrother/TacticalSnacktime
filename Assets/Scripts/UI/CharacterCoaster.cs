@@ -28,6 +28,7 @@ public class CharacterCoaster : MonoBehaviour
         }
     }
 
+
     public void MoveAlongPath(Tile[] path, bool isPathFound)
     {
         if (isPathFound)
@@ -40,6 +41,7 @@ public class CharacterCoaster : MonoBehaviour
 
     IEnumerator FollowPath()
     {
+        
         Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, -0.5f);
         int TargetIndex = 0;
         while (true)

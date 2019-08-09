@@ -15,6 +15,9 @@ public class SpriteHolder : MonoBehaviour {
     [SerializeField]
     Sprite[] FoodArt;
 
+    [SerializeField]
+    Sprite TextBubble;
+
     private void Awake()
     {
         instance = this;
@@ -33,5 +36,10 @@ public class SpriteHolder : MonoBehaviour {
     public Sprite GetFoodArtFromIDNumber(int index)
     {
         return FoodArt[index];
+    }
+
+    public Sprite GetTextBubble()
+    {
+        return TextBubble;
     }
 }

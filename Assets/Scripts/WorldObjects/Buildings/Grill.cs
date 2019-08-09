@@ -29,15 +29,14 @@ public class Grill : AbstractInteractablePawn, iCookingStation
     {
         _character.PickUp(foodOnGrill);
         foodOnGrill = null;
-        HideItem();
+        HideCoaster(ItemCoaster);
         grillComand = new CookFood(this);
     }
 
     public void CreateFood()
     {
         foodOnGrill = new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0));
-        ItemSprite = foodOnGrill.CaryableObjectSprite;
-        ShowItem();
+        ShowCoaster(foodOnGrill.CaryableObjectSprite, x => ItemCoaster = x);
         grillComand = new GetFood(this);
     }
 

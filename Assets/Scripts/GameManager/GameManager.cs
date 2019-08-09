@@ -124,8 +124,8 @@ public class GameManager : MonoBehaviour {
         if (CurentCharacter.NeedsRemoval)
         {
             CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
-            CharacterCoasterPool.Instance.PutBackInPool(CurentCharacter.characterCoaster);
-            CurentCharacter.HideItem();
+            CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
+            CurentCharacter.HideCoaster(CurentCharacter.ItemCoaster);
             charactersOnMap.Remove(CurentCharacter);
         }
         else
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour {
         AddCharacterToList(newCharacter2);
 
     }
-    // Character, what is your interperation of start turn? ( possible question for refactor.
+    // Character, what is your interperation of start turn? ( possible question for refactor).
 
     public void CheckForAIPlayer()
     {

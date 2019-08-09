@@ -642,6 +642,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2f00cad8c79dd72489843a840dde56eb, type: 3}
   FoodArt:
   - {fileID: 21300000, guid: 45c53b5edbdf98c4b864ba36e0048d46, type: 3}
+  TextBubble: {fileID: 21300000, guid: ce135b5a20c12004089731ab3e80faf1, type: 3}
 --- !u!1 &640138877
 GameObject:
   m_ObjectHideFlags: 0

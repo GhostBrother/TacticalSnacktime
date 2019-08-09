@@ -43,8 +43,7 @@ public class Character : AbstractInteractablePawn
         if (usedHands < numberOfHands)
         {
             cariedObject = caryable;
-            ItemSprite = cariedObject.CaryableObjectSprite;
-            ShowItem();
+            ShowCoaster(cariedObject.CaryableObjectSprite, x => ItemCoaster = x);
         }
 
     }
@@ -52,8 +51,7 @@ public class Character : AbstractInteractablePawn
     public void GetRidOfItem()
     {
         cariedObject = null;
-        ItemSprite = null;
-        HideItem();
+        HideCoaster(ItemCoaster);
     }
 
     public iCaryable Give()

@@ -45,11 +45,12 @@ public class TileSelected : iGameManagerState
                 }
             }
 
+            _gameManager.SetState(_gameManager.GetMovingState());
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
             _gameManager.CurentCharacter.TilePawnIsOn = tile;
             tile.ChangeState(tile.GetActiveState());
             _gameManager.DeactivateAllTiles();
-            _gameManager.SetState(_gameManager.GetMovingState());
+            
         }
         else
         {

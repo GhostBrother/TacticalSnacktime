@@ -17,6 +17,12 @@ public class OrderFood : IDesireState
 
     public bool isRequestSatisfied()
     {
-        return (aiCharacter.Give() != null);
+        if(aiCharacter.Give() != null)
+        { 
+            aiCharacter.HideCoaster(aiCharacter.NeedCoaster);
+            aiCharacter.HideCoaster(aiCharacter.FoodWantCoaster);
+            return true;
+        }
+        return false;
     }
 }

@@ -71,8 +71,6 @@ public class AICharacter : Character
 
      void FollowPath()
     {
-
-
         if (targetIndex < path.Length)
         {
             if (targetIndex + MoveSpeed >= (path.Length - 1))
@@ -93,14 +91,16 @@ public class AICharacter : Character
             {
                 TilePawnIsOn = TilePawnIsOn;
             }
-            
-
         }
     }
 
     public void DisplayOrder()
     {
-        Debug.Log(desiredFood.Name);
+        const int xCordinateOffset = -1;
+        const int yCordinateOffset = 1;
+
+        ShowCoasterWithOffset(SpriteHolder.instance.GetTextBubble(), xCordinateOffset, yCordinateOffset, x => NeedCoaster = x);
+        ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(0), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
     }
 
 }

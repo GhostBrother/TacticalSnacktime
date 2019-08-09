@@ -1,28 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbstractPawn : MonoBehaviour, iPawn 
 {
+
     private CharacterCoaster _characterCoaster;
     public CharacterCoaster characterCoaster
     {
         get { return _characterCoaster; }
         set { _characterCoaster = value;
-            _characterCoaster.CharacterSprite = PawnSprite;
+           _characterCoaster.CharacterSprite = PawnSprite;
 
         }
     }
 
-    public CharacterCoaster _itemCoaster;
     public CharacterCoaster ItemCoaster
-    {
-        get { return _itemCoaster; }
-        set
-        {
-            _itemCoaster = value;
-        }
-    }
+    { get; set; }
+
+    public CharacterCoaster NeedCoaster
+    { get; set; }
+
+    public CharacterCoaster FoodWantCoaster
+    { get; set; }
 
     private Tile previousTile;
 
@@ -54,13 +55,10 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
 
     public Sprite PawnSprite { get; protected set; }
 
-    public  Sprite ItemSprite { get; protected set; }
-
     public EnumHolder.EntityType EntityType { get; protected set; }
 
     public void MoveToPreviousTile()
     {
-
         tilePawnIsOn.ChangeState(tilePawnIsOn.GetClearState());
         tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         tilePawnIsOn = previousTile;
@@ -73,19 +71,26 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         previousTile.EntityTypeOnTile = EntityType;
 
     }
-    
 
-    public void ShowItem()
+
+    public void ShowCoaster(Sprite sprite, Action<CharacterCoaster> setOutput)
     {
-        _itemCoaster = CharacterCoasterPool.Instance.SpawnFromPool(new Vector3(_characterCoaster.transform.position.x, _characterCoaster.transform.position.y, -1f),Quaternion.identity);
-        _itemCoaster.transform.SetParent(_characterCoaster.transform);
-        _itemCoaster.gameObject.GetComponent<SpriteRenderer>().sprite = ItemSprite;
+       ShowCoasterWithOffset(sprite, 0,0, setOutput);
     }
 
-    public void HideItem()
+    public void ShowCoasterWithOffset( Sprite sprite , float offsetX, float offsetY, Action<CharacterCoaster> setOutput)
     {
-        _itemCoaster.transform.parent = null;
-        CharacterCoasterPool.Instance.PutBackInPool(_itemCoaster);
+            CharacterCoaster coaster =  CharacterCoasterPool.Instance.SpawnFromPool();
+            coaster.transform.parent = _characterCoaster.transform;
+            coaster.transform.position = new Vector3(_characterCoaster.transform.position.x + offsetX, _characterCoaster.transform.position.y + offsetY, -1);
+            coaster.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+            setOutput(coaster);
+    }
+
+    public void HideCoaster(CharacterCoaster coasterToHide)
+    {
+        coasterToHide.transform.parent = null;
+        CharacterCoasterPool.Instance.PutBackInPool(coasterToHide);
     }
 
      void ChangeTileWeight()

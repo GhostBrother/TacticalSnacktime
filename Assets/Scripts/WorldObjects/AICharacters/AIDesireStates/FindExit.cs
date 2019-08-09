@@ -18,11 +18,14 @@ public class FindExit : IDesireState
     // Seems like it could be a generic 
     public bool isRequestSatisfied()
     {
-        for(int i = 0; i < aICharacter.TilePawnIsOn.neighbors.Count; i++)
+        if (aICharacter.Give() != null)
         {
-            if (aICharacter.TilePawnIsOn.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.Door)
+            for (int i = 0; i < aICharacter.TilePawnIsOn.neighbors.Count; i++)
             {
-                return true;
+                if (aICharacter.TilePawnIsOn.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.Door)
+                {
+                    return true;
+                }
             }
         }
 
