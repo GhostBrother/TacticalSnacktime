@@ -17,7 +17,7 @@ public class OrderFood : IDesireState
 
     public bool isRequestSatisfied()
     {
-        if(aiCharacter.Give() != null)
+        if(aiCharacter.CariedObject != null)
         { 
             aiCharacter.HideCoaster(aiCharacter.NeedCoaster);
             aiCharacter.HideCoaster(aiCharacter.FoodWantCoaster);

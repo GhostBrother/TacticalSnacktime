@@ -17,12 +17,11 @@ public class CharacterRoster {
         TheifSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(1);
         DragonSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(2);
 
-        employedCharacters.Add(new Character(1,  KoboldSprite,1));
-        //employedCharacters.Add(new Character(1,  KoboldSprite,1));
-        //employedCharacters.Add(new Character(1, KoboldSprite,1));
+        employedCharacters.Add(new PlayerControledCharacter(1,  KoboldSprite,1));
+        
 
-        employedCharacters.Add(new Character(3,  TheifSprite,2));
-
+        employedCharacters.Add(new PlayerControledCharacter(3,  TheifSprite,2));
+        employedCharacters.Add(new PlayerControledCharacter(3, TheifSprite, 2));
     }
 
     public Character PeekAtNextCharacter()

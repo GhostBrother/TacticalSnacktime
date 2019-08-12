@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class TakeOrder : Command
 {
-    Character employee;
     AICharacter customer;
-    public TakeOrder(Character _employee, AICharacter _customer)
+    public TakeOrder( AICharacter _customer)
     {
-        employee = _employee;
        customer = _customer;
     }
 

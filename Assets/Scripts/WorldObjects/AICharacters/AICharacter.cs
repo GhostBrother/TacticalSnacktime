@@ -9,6 +9,7 @@ public class AICharacter : Character
     Tile[] path;
     int targetIndex;
     Food desiredFood;
+    Command characterCommand;
     List<IDesireState> Desires;
 
     public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
@@ -16,11 +17,10 @@ public class AICharacter : Character
     public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, Food _desiredFood) : base(baseMoveSpeed, characterSprite, speedStat)
     {
         targetIndex = 0;
-        EntityType = EnumHolder.EntityType.None;
         desiredFood = _desiredFood;
 
         // Temporary 
-        Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this), new LeaveResturant(this)};
+        Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this)};
     }
 
     public void setTarget(Tile _target)
@@ -30,19 +30,14 @@ public class AICharacter : Character
 
     public void CheckPath()
     {
-
         for (int i = 0; i < Desires.Count; ++i)
         {
             if (Desires[i].isRequestSatisfied())
             {
-
-                Desires.RemoveAt(i);
-                if (Desires.Count <= 0) { return; }
-                i--;
-            }
-            else
-            {
-                break;
+                for (int j = i; j >= 0; j --)
+                {
+                    Desires.RemoveAt(j);
+                }
             }
         }
 
@@ -96,11 +91,29 @@ public class AICharacter : Character
 
     public void DisplayOrder()
     {
-        const int xCordinateOffset = -1;
-        const int yCordinateOffset = 1;
+        if (CariedObject == null)
+        {
+            const int xCordinateOffset = -1;
+            const int yCordinateOffset = 1;
 
-        ShowCoasterWithOffset(SpriteHolder.instance.GetTextBubble(), xCordinateOffset, yCordinateOffset, x => NeedCoaster = x);
-        ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(0), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
+            ShowCoasterWithOffset(SpriteHolder.instance.GetTextBubble(), xCordinateOffset, yCordinateOffset, x => NeedCoaster = x);
+            ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(0), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
+        }
     }
 
+    public override Command GetCommand()
+    {
+       return characterCommand;
+    }
+
+    public override void GetTargeter(Character character)
+    {
+        if (character is iCanGiveItems && character.CariedObject != null && this.cariedObject == null)
+        {
+            iCanGiveItems giver = (iCanGiveItems)character;
+            characterCommand = new GiveItem(giver, this);
+        }
+        else
+            characterCommand = null;
+    }
 }

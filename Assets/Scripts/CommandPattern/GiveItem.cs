@@ -2,23 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GiveItem : Command
+public class GiveItem : TrasferItemCommand
 {
-    Character _giver;
-    Character _reciver;
 
-    public GiveItem( Character giver, Character reciver)
+    public GiveItem( iCanGiveItems curentCharacter, Character recivingCharacter) : base (curentCharacter, recivingCharacter)
     {
-        _giver = giver;
-        _reciver = reciver;
+        characterName = recivingCharacter.PawnSprite.ToString();
     }
 
-    public string CommandName { get { return "GiveFood"; } }
-
-    public void execute()
-    {
-        _reciver.PickUp(_giver.Give());
-        _giver.GetRidOfItem();
-    }
-
+    public override string CommandName { get { return $"Give {itemName} to {characterName}"; } }
 }

@@ -89,8 +89,11 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
 
     public void HideCoaster(CharacterCoaster coasterToHide)
     {
-        coasterToHide.transform.parent = null;
-        CharacterCoasterPool.Instance.PutBackInPool(coasterToHide);
+        if (coasterToHide != null)
+        {
+            coasterToHide.transform.parent = null;
+            CharacterCoasterPool.Instance.PutBackInPool(coasterToHide);
+        }
     }
 
      void ChangeTileWeight()

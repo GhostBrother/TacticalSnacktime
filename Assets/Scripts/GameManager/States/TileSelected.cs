@@ -32,8 +32,6 @@ public class TileSelected : iGameManagerState
     {
         if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
         {
-
-            
             foreach (Tile neighbor in tile.neighbors)
             {
                 if (neighbor.IsTargetableOnTile)

@@ -5,13 +5,14 @@ using UnityEngine;
 public class Grill : AbstractInteractablePawn, iCookingStation 
 {
     private Food foodOnGrill;
-    Character _character;
-    private Command grillComand; 
+    private Command grillComand;
+    private Food itemToCook;
 
     public Grill()
     {
+        itemToCook = new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0));
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
-        grillComand = new CookFood(this);
+        grillComand = new CookFood(this,itemToCook);
         EntityType = EnumHolder.EntityType.CookingStation;
     }
 
@@ -25,23 +26,32 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         
     }
 
-    public void CollectFood()
+    public iCaryable Give()
     {
-        _character.PickUp(foodOnGrill);
-        foodOnGrill = null;
-        HideCoaster(ItemCoaster);
-        grillComand = new CookFood(this);
+        return foodOnGrill;
     }
 
     public void CreateFood()
     {
-        foodOnGrill = new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0));
+        foodOnGrill = itemToCook;
         ShowCoaster(foodOnGrill.CaryableObjectSprite, x => ItemCoaster = x);
-        grillComand = new GetFood(this);
     }
 
     public override void GetTargeter(Character character)
     {
-        _character = character;
+        if (foodOnGrill != null && character.CariedObject == null)
+            grillComand = new TakeItem(this, character);
+
+        else if (foodOnGrill == null)
+        {
+            grillComand = new CookFood(this, itemToCook);
+        }
+
+    }
+
+    public void GetRidOfItem()
+    {
+        foodOnGrill = null;
+        HideCoaster(ItemCoaster);
     }
 }

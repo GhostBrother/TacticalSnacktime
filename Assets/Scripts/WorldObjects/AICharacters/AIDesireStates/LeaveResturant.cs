@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeaveResturant : IDesireState
+//Do I need this for anything?
+public class LeaveResturant //: IDesireState
 {
-    AICharacter aiCharacter;
-    public LeaveResturant(AICharacter _aiCharacter)
-    {
-        aiCharacter = _aiCharacter;
-    }
+   
+    //AICharacter aiCharacter;
+    //public LeaveResturant(AICharacter _aiCharacter)
+    //{
+    //    aiCharacter = _aiCharacter;
+    //}
 
-    public void MoveTarget()
-    {
+    //public void MoveTarget()
+    //{
 
-    }
+    //}
 
-    public bool isRequestSatisfied()
-    {
-        return true;
-    }
+    //public bool isRequestSatisfied()
+    //{
+    //    return true;
+    //}
 }
