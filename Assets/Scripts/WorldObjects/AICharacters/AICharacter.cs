@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class AICharacter : Character
 {
@@ -90,14 +91,18 @@ public class AICharacter : Character
 
     public void DisplayOrder()
     {
-        if (CariedObject == null)
+        // linq stuff
+        if (Desires.OfType<OrderFood>().Any())
         {
             const int xCordinateOffset = -1;
             const int yCordinateOffset = 1;
 
+            HideCoaster(NeedCoaster);
+            HideCoaster(FoodWantCoaster);
             ShowCoasterWithOffset(SpriteHolder.instance.GetTextBubble(), xCordinateOffset, yCordinateOffset, x => NeedCoaster = x);
             ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(0), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
         }
+
     }
 
     public override List<Command> GetCommands()
