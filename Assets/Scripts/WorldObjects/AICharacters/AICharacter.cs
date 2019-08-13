@@ -9,7 +9,6 @@ public class AICharacter : Character
     Tile[] path;
     int targetIndex;
     Food desiredFood;
-    Command characterCommand;
     List<IDesireState> Desires;
 
     public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
@@ -101,19 +100,19 @@ public class AICharacter : Character
         }
     }
 
-    public override Command GetCommand()
+    public override List<Command> GetCommands()
     {
-       return characterCommand;
+       return SpaceContextualActions;
     }
 
     public override void GetTargeter(Character character)
     {
+        SpaceContextualActions.Clear();
         if (character is iCanGiveItems && character.CariedObject != null && this.cariedObject == null)
         {
             iCanGiveItems giver = (iCanGiveItems)character;
-            characterCommand = new GiveItem(giver, this);
+            SpaceContextualActions.Add(new GiveItem(giver, this));
         }
-        else
-            characterCommand = null;
+
     }
 }

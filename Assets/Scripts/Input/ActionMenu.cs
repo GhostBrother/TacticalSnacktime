@@ -9,7 +9,7 @@ public class ActionMenu : MonoBehaviour
     public delegate void OnTurnEnd();
     public OnTurnEnd onTurnEnd;
 
-    List<Command> commands;
+    List<Command> ActionMenuCommands;
 
     [SerializeField]
     Camera cam;
@@ -21,7 +21,7 @@ public class ActionMenu : MonoBehaviour
 
     public void Start()
     {
-        commands = new List<Command>();
+        ActionMenuCommands = new List<Command>();
         actionButtons = new List<ActionButton>();
     }
 
@@ -30,11 +30,11 @@ public class ActionMenu : MonoBehaviour
 
         this.transform.position = tileWithCommands.transform.position;
 
-        commands.Add(new EndTurn());
+        ActionMenuCommands.Add(new EndTurn());
 
-        if (commands.Count > actionButtons.Count)
+        if (ActionMenuCommands.Count > actionButtons.Count)
         {
-            int temp = commands.Count - actionButtons.Count;
+            int temp = ActionMenuCommands.Count - actionButtons.Count;
             for (int i = 0; i < temp; i++)
             {
                 ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
@@ -44,10 +44,10 @@ public class ActionMenu : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < commands.Count; i++)
+        for(int i = 0; i < ActionMenuCommands.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(true);
-            actionButtons[i].StoredCommand = commands[i];
+            actionButtons[i].StoredCommand = ActionMenuCommands[i];
             actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
         }
 
@@ -59,7 +59,7 @@ public class ActionMenu : MonoBehaviour
         {
             actionButtons[i].gameObject.SetActive(false);
         }
-        commands.Clear();
+        ActionMenuCommands.Clear();
     }
 
     public void EndTurn()
@@ -67,9 +67,10 @@ public class ActionMenu : MonoBehaviour
         onTurnEnd.Invoke();
     }
 
-    public void AddCommandToList(Command command)
+    public void AddCommandsToList(List<Command> commands)
     {
-        commands.Add(command);
+        foreach(Command c in commands)
+        ActionMenuCommands.Add(c);
     }
 
 }

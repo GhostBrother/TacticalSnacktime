@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class AbstractInteractablePawn : AbstractPawn, iTargetable
 {
+    protected List<Command> SpaceContextualActions;
+
+    public AbstractInteractablePawn()
+    {
+        SpaceContextualActions = new List<Command>();
+    }
 
     public override Tile TilePawnIsOn
     {
@@ -15,7 +21,7 @@ public abstract class AbstractInteractablePawn : AbstractPawn, iTargetable
         }
     }
 
-    public abstract Command GetCommand();
+    public abstract List<Command> GetCommands();
 
     public abstract void GetTargeter(Character character);
  

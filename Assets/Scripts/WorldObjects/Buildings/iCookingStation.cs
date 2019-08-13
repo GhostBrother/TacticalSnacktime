@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface iCookingStation : iCanGiveItems
 {
-    void CreateFood();
+    void CreateFood(Food itemToCook);
     void AddToFood(Food food);
 }

@@ -5,20 +5,20 @@ using UnityEngine;
 public class Grill : AbstractInteractablePawn, iCookingStation 
 {
     private Food foodOnGrill;
-    private Command grillComand;
-    private Food itemToCook;
+    private List<Food> itemsToCook;
 
     public Grill()
     {
-        itemToCook = new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0));
+        itemsToCook = new List<Food>();
+        itemsToCook.Add(new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)));
+        itemsToCook.Add(new Food("egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)));
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
-        grillComand = new CookFood(this,itemToCook);
         EntityType = EnumHolder.EntityType.CookingStation;
     }
 
-    public override Command GetCommand()
+    public override List<Command> GetCommands()
     {
-        return grillComand;
+        return SpaceContextualActions;
     }
 
     public void AddToFood(Food food)
@@ -31,7 +31,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         return foodOnGrill;
     }
 
-    public void CreateFood()
+    public void CreateFood(Food itemToCook)
     {
         foodOnGrill = itemToCook;
         ShowCoaster(foodOnGrill.CaryableObjectSprite, x => ItemCoaster = x);
@@ -39,12 +39,17 @@ public class Grill : AbstractInteractablePawn, iCookingStation
 
     public override void GetTargeter(Character character)
     {
+        SpaceContextualActions.Clear();
+
         if (foodOnGrill != null && character.CariedObject == null)
-            grillComand = new TakeItem(this, character);
+            SpaceContextualActions.Add(new TakeItem(this, character));
 
         else if (foodOnGrill == null)
         {
-            grillComand = new CookFood(this, itemToCook);
+            foreach(Food food in itemsToCook)
+            {
+                SpaceContextualActions.Add(new CookFood(this, food));
+            }  
         }
 
     }

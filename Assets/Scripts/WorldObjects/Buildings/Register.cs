@@ -5,27 +5,28 @@ using UnityEngine;
 public class Register : AbstractPawn , iTargetable
 {
     AICharacter customer;
-    private Command CashRegisterCommand;
+    private List<Command> cashRegisterCommands;
     public Register()
     {
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(2);
         EntityType = EnumHolder.EntityType.Register;
+        cashRegisterCommands = new List<Command>();
     }
-    public Command GetCommand()
+    public List<Command> GetCommands()
     {
-        return CashRegisterCommand;
+        return cashRegisterCommands;
     }
 
     public void GetTargeter(Character _character)
     {
-        CashRegisterCommand = null;
+        cashRegisterCommands.Clear();
 
         for(int i = 0; i < TilePawnIsOn.neighbors.Count; i++)
         {
             if (TilePawnIsOn.neighbors[i].TargetableOnTile is AICharacter)
             {
                 customer = (AICharacter)TilePawnIsOn.neighbors[i].TargetableOnTile;
-                CashRegisterCommand = new TakeOrder(customer);
+                cashRegisterCommands.Add(new TakeOrder(customer));
             }
         }
       

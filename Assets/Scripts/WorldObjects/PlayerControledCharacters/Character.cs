@@ -20,7 +20,7 @@ public abstract class Character : AbstractInteractablePawn
     protected iCaryable cariedObject;
     public iCaryable CariedObject { get { return cariedObject; } }
 
-   
+
     public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat)
     {
         MoveSpeed = baseMoveSpeed;
@@ -46,7 +46,7 @@ public abstract class Character : AbstractInteractablePawn
 
     }
 
-    public override abstract Command GetCommand();
+    public override abstract List<Command> GetCommands();
 
     public override abstract void GetTargeter(Character character);
 

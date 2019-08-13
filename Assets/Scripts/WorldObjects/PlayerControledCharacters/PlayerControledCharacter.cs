@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerControledCharacter : Character , iCanGiveItems
 {
-    Command characterCommand;
 
     public PlayerControledCharacter (int baseMoveSpeed, Sprite characterSprite, int speedStat) : base(baseMoveSpeed, characterSprite, speedStat)
     {
@@ -23,25 +22,22 @@ public class PlayerControledCharacter : Character , iCanGiveItems
         return cariedObject;
     }
 
-    public override Command GetCommand()
+    public override List<Command> GetCommands()
     {
-        return characterCommand;
+        return SpaceContextualActions;
     }
 
     public override void GetTargeter(Character character)
     {
-        characterCommand = null;
+        SpaceContextualActions.Clear();
         if (character is PlayerControledCharacter)
         {
-           
             PlayerControledCharacter giver = (PlayerControledCharacter)character;
             // Checks to see if we have something to give. 
             if (character.CariedObject != null)
-                characterCommand = new GiveItem(giver, this);
+                SpaceContextualActions.Add(new GiveItem(giver, this));
             else if (cariedObject != null && character.CariedObject == null)
-                characterCommand = new TakeItem(this, character);
-            else
-                characterCommand = null;
+                SpaceContextualActions.Add(new TakeItem(this, character));
         }
     }
 }

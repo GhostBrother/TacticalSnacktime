@@ -38,8 +38,8 @@ public class TileSelected : iGameManagerState
                 {
                     neighbor.TargetableOnTile.GetTargeter(_gameManager.CurentCharacter);
 
-                    if (neighbor.TargetableOnTile.GetCommand() != null)
-                    _gameManager.ActionMenu.AddCommandToList(neighbor.TargetableOnTile.GetCommand());
+                    if (neighbor.TargetableOnTile.GetCommands().Count > 0)
+                    _gameManager.ActionMenu.AddCommandsToList(neighbor.TargetableOnTile.GetCommands());
                 }
             }
 

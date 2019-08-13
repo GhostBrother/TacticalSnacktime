@@ -6,18 +6,18 @@ public class CookFood : Command
 {
 
     iCookingStation cookingStation;
-    string _foodName;
+    Food _foodToCook;
 
     public CookFood(iCookingStation _cookingStation, Food foodToCook)
     {
         cookingStation = _cookingStation;
-        _foodName = foodToCook.Name;
+        _foodToCook = foodToCook;
     }
 
-    public string CommandName { get { return $"Cook {_foodName}"; } }
+    public string CommandName { get { return $"Cook {_foodToCook.Name}"; } }
 
     public void execute()
     {
-        cookingStation.CreateFood();
+        cookingStation.CreateFood(_foodToCook);
     }
 }
