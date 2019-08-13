@@ -21,12 +21,13 @@ public abstract class Character : AbstractInteractablePawn
     public iCaryable CariedObject { get { return cariedObject; } }
 
 
-    public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat)
+    public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat , string name)
     {
         MoveSpeed = baseMoveSpeed;
         PawnSprite = characterSprite;
         SpeedStat = speedStat;
         EntityType = EnumHolder.EntityType.None;
+        Name = name;
         needsRemoval = false;
     }
 

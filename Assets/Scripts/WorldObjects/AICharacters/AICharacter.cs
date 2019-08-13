@@ -14,7 +14,7 @@ public class AICharacter : Character
 
     public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
 
-    public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, Food _desiredFood) : base(baseMoveSpeed, characterSprite, speedStat)
+    public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, Food _desiredFood, string _name) : base(baseMoveSpeed, characterSprite, speedStat, _name )
     {
         targetIndex = 0;
         desiredFood = _desiredFood;

@@ -14,6 +14,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         itemsToCook.Add(new Food("egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)));
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         EntityType = EnumHolder.EntityType.CookingStation;
+        Name = "Grill";
     }
 
     public override List<Command> GetCommands()

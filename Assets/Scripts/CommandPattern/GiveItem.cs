@@ -7,7 +7,7 @@ public class GiveItem : TrasferItemCommand
 
     public GiveItem( iCanGiveItems curentCharacter, Character recivingCharacter) : base (curentCharacter, recivingCharacter)
     {
-        characterName = recivingCharacter.PawnSprite.ToString();
+        characterName = recivingCharacter.Name;
     }
 
     public override string CommandName { get { return $"Give {itemName} to {characterName}"; } }

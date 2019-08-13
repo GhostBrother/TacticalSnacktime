@@ -10,7 +10,7 @@ public class TakeItem : TrasferItemCommand
         if (givingCharacter is AbstractInteractablePawn)
         {
             AbstractInteractablePawn temp = (AbstractInteractablePawn)givingCharacter;
-            characterName = temp.PawnSprite.ToString();
+            characterName = temp.Name;
             itemName = givingCharacter.Give().Name;
         }
            

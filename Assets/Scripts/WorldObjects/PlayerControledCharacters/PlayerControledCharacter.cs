@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerControledCharacter : Character , iCanGiveItems
 {
-
-    public PlayerControledCharacter (int baseMoveSpeed, Sprite characterSprite, int speedStat) : base(baseMoveSpeed, characterSprite, speedStat)
+    // At some point I want name to be randomly chosen from a jason pool ( common, species and class specific) 
+    public PlayerControledCharacter (int baseMoveSpeed, Sprite characterSprite, int speedStat, string name) : base(baseMoveSpeed, characterSprite, speedStat, name)
     {
         EntityType = EnumHolder.EntityType.Character;
     }

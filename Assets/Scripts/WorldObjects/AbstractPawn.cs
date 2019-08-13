@@ -53,6 +53,8 @@ public abstract class AbstractPawn : MonoBehaviour, iPawn
         }
     }
 
+    public string Name { get; protected set; }
+
     public Sprite PawnSprite { get; protected set; }
 
     public EnumHolder.EntityType EntityType { get; protected set; }
