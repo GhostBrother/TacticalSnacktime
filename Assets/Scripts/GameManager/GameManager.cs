@@ -146,9 +146,9 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForCustomerSpawn()
     {
-        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(0, 1));
+        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(7, 6));
         AddCharacterToList(newCharacter);
-        AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(1,0));
+        AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(6,7));
         AddCharacterToList(newCharacter2);
 
     }
