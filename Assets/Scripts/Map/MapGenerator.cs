@@ -54,7 +54,6 @@ public class MapGenerator : MonoBehaviour
         editorLookUp.Add('R', Clone<Register>);
         editorLookUp.Add('D', Clone<Door>);
         editorLookUp.Add('W', Clone<Wall>);
-
     }
 
     public Map generateMap()

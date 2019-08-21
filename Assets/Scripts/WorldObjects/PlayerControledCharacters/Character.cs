@@ -20,6 +20,24 @@ public abstract class Character : AbstractInteractablePawn
     protected iCaryable cariedObject;
     public iCaryable CariedObject { get { return cariedObject; } }
 
+    List<Command> _cariedObjectCommands;
+    public List<Command> CariedObjectCommands
+    {
+        get
+        {
+            _cariedObjectCommands.Clear();
+            if (cariedObject != null)
+            {
+                foreach(Command c in cariedObject.HeldObjectCommands)
+                {
+                    _cariedObjectCommands.Add(c);
+                }
+            }
+            return _cariedObjectCommands;
+        }
+            
+    }
+
 
     public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat , string name)
     {
@@ -29,6 +47,7 @@ public abstract class Character : AbstractInteractablePawn
         EntityType = EnumHolder.EntityType.None;
         Name = name;
         needsRemoval = false;
+        _cariedObjectCommands = new List<Command>();
     }
 
     public void ShowMoveRange()

@@ -60,11 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CharacterCoasterPool.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\LoadCookStation.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />
@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Map\AiTraversal\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\iHeapItem.cs" />
+    <Compile Include="Assets\Scripts\Map\CharacterCoasterPool.cs" />
     <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\Tile.cs" />
@@ -109,7 +110,8 @@
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Wall.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\Food.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Caryable\Food.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Caryable\Supply.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\Character.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\PlayerControledCharacter.cs" />
@@ -320,6 +322,9 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a4/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -328,33 +333,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/net45/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/netstandard1.3/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/netstandard1.0/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/net35/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/netstandard2.0/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/net40/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Assets/Plugins/Newtonsoft.Json.12.0.2/lib/net20/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a4/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

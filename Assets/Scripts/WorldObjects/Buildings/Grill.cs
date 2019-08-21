@@ -10,8 +10,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
     public Grill()
     {
         itemsToCook = new List<Food>();
-        itemsToCook.Add(new Food("burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)));
-        itemsToCook.Add(new Food("egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)));
+
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         EntityType = EnumHolder.EntityType.CookingStation;
         Name = "Grill";
@@ -42,6 +41,11 @@ public class Grill : AbstractInteractablePawn, iCookingStation
     {
         SpaceContextualActions.Clear();
 
+        if(character.CariedObject is Supply && character is iCanGiveItems)
+        {
+            SpaceContextualActions.Add(new LoadCookStation(this, (iCanGiveItems)character));
+        }
+
         if (foodOnGrill != null && character.CariedObject == null)
             SpaceContextualActions.Add(new TakeItem(this, character));
 
@@ -59,5 +63,11 @@ public class Grill : AbstractInteractablePawn, iCookingStation
     {
         foodOnGrill = null;
         HideCoaster(ItemCoaster);
+    }
+
+    public void LoadSupply(Supply supply)
+    {
+        // Some kind of limiter preventing deep fried burgers?
+        itemsToCook.Add(supply.FoodThisSupplyMakes);
     }
 }

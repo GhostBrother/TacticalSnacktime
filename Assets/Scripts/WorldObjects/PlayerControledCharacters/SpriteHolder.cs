@@ -18,6 +18,9 @@ public class SpriteHolder : MonoBehaviour {
     [SerializeField]
     Sprite TextBubble;
 
+    [SerializeField]
+    Sprite SupplyBox;
+
     private void Awake()
     {
         instance = this;
@@ -41,5 +44,10 @@ public class SpriteHolder : MonoBehaviour {
     public Sprite GetTextBubble()
     {
         return TextBubble;
+    }
+
+    public Sprite GetSupplyBox()
+    {
+        return SupplyBox;
     }
 }

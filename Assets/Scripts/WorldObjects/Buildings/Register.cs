@@ -2,33 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Register : AbstractPawn , iTargetable
+public class Register : AbstractInteractablePawn 
 {
     AICharacter customer;
-    private List<Command> cashRegisterCommands;
     public Register()
     {
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(2);
         EntityType = EnumHolder.EntityType.Register;
-        cashRegisterCommands = new List<Command>();
     }
-    public List<Command> GetCommands()
+    public override List<Command> GetCommands()
     {
-        return cashRegisterCommands;
+        return SpaceContextualActions;
     }
 
-    public void GetTargeter(Character _character)
+    public override void GetTargeter(Character _character)
     {
-        cashRegisterCommands.Clear();
+        SpaceContextualActions.Clear();
 
         for(int i = 0; i < TilePawnIsOn.neighbors.Count; i++)
         {
             if (TilePawnIsOn.neighbors[i].TargetableOnTile is AICharacter)
             {
                 customer = (AICharacter)TilePawnIsOn.neighbors[i].TargetableOnTile;
-                cashRegisterCommands.Add(new TakeOrder(customer));
+                 SpaceContextualActions.Add(new TakeOrder(customer));
             }
         }
       
     }
+
 }

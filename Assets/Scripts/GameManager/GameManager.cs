@@ -150,6 +150,10 @@ public class GameManager : MonoBehaviour {
         AddCharacterToList(newCharacter);
         AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(6,7));
         AddCharacterToList(newCharacter2);
+        //TEST
+        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)) , SpriteHolder.instance.GetSupplyBox());
+        newSupply.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
+        newSupply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 2);
 
     }
     // Character, what is your interperation of start turn? ( possible question for refactor).
