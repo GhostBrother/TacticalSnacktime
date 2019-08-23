@@ -120,4 +120,19 @@ public class AICharacter : Character
         }
 
     }
+
+    public override void TurnStart()
+    {
+        onStartTurn.Invoke(this);
+        CheckPath();
+        Move();
+        characterCoaster.onStopMoving = AILookForAction;
+    }
+
+
+     private void AILookForAction(Tile tile)
+    {
+        // TODO, Give the ai a weighted choice of what to do based on tile, even if it is wait paitently. 
+        onTurnEnd.Invoke();
+    }
 }

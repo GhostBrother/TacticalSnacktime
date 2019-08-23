@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
     Map _gameMap;
 
-    List<Character> charactersOnMap;
+    List<iAffectedByTime> timeAffectedObjects;
 
     [SerializeField]
     MapGenerator _mapGenerator;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
 
         curentState = deployState;
 
-        charactersOnMap = new List<Character>();
+        timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory();
 
 
@@ -96,7 +96,10 @@ public class GameManager : MonoBehaviour {
 
     public void AddCharacterToList(Character character)
     {
-        charactersOnMap.Add(character);
+        character.onStartTurn = MoveCameraToCharacter;
+        character.onStartTurn += SetCharacterAsCurrent;
+        character.onTurnEnd = EndTurn;
+        timeAffectedObjects.Add(character);
     }
 
     public void ActivateTile(Tile tile)
@@ -116,7 +119,7 @@ public class GameManager : MonoBehaviour {
 
     public void SortList()
     {
-        charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
+        //charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
     }
 
     public void CheckIfCharacterNeedsRemoval() 
@@ -126,64 +129,59 @@ public class GameManager : MonoBehaviour {
             CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
             CurentCharacter.HideCoaster(CurentCharacter.ItemCoaster);
-            charactersOnMap.Remove(CurentCharacter);
+            timeAffectedObjects.Remove(CurentCharacter);
         }
         else
         {
-            charactersOnMap.Remove(CurentCharacter);
-            charactersOnMap.Add(CurentCharacter);
+            timeAffectedObjects.Remove(CurentCharacter);
+            timeAffectedObjects.Add(CurentCharacter);
         }
     }
 
     public void StartNextCharactersTurn()
-    { 
-        CurentCharacter = charactersOnMap[0];
-
-        camera.PanToLocation(CurentCharacter.TilePawnIsOn.gameObject.transform.position);
-        characterDisplay.ChangeCharacterArt(CurentCharacter.PawnSprite);
-
+    {
+        timeAffectedObjects[0].TurnStart();
     }
 
     private void CheckForCustomerSpawn()
     {
+        //TEST
         AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(7, 6));
+        newCharacter.onStartTurn += SetStateToMovingState;
         AddCharacterToList(newCharacter);
         AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(6,7));
         AddCharacterToList(newCharacter2);
+        newCharacter2.onStartTurn += SetStateToMovingState;
+
         //TEST
         Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)) , SpriteHolder.instance.GetSupplyBox());
         newSupply.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
         newSupply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 2);
 
     }
-    // Character, what is your interperation of start turn? ( possible question for refactor).
 
-    public void CheckForAIPlayer()
+    private void SetCharacterAsCurrent(Character character)
     {
-         if (CurentCharacter is AICharacter)
-        {
-            SetState(GetMovingState());
-            AICharacter tempChar = (AICharacter)CurentCharacter;
-            tempChar.CheckPath();
-            tempChar.Move();
-            tempChar.characterCoaster.onStopMoving = AILookForAction;
-        }
-         else
-            SetState(GetIdleState());
+        CurentCharacter = character;
     }
 
-    public void AILookForAction(Tile tile)
+    private void MoveCameraToCharacter(Character character)
     {
-        // TODO, Give the ai a weighted choice of what to do based on tile, even if it is wait paitently. 
-        EndTurn();
+        camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
+        characterDisplay.ChangeCharacterArt(character.PawnSprite);
+    }
+    
+    // Hack
+    private void SetStateToMovingState(Character character)
+    {
+        SetState(GetMovingState());
     }
 
-    public void EndTurn()
+    private void EndTurn()
     {
         CheckIfCharacterNeedsRemoval();
         SetState(GetIdleState());
         StartNextCharactersTurn();
-        CheckForAIPlayer();
     }
 
 }

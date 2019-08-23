@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CharacterCoasterPool.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
@@ -85,7 +86,6 @@
     <Compile Include="Assets\Scripts\Map\AiTraversal\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\Pathfinding.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\iHeapItem.cs" />
-    <Compile Include="Assets\Scripts\Map\CharacterCoasterPool.cs" />
     <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\Tile.cs" />
@@ -94,8 +94,8 @@
     <Compile Include="Assets\Scripts\Map\TileStates\HilightedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\OccupiedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\iTileState.cs" />
-    <Compile Include="Assets\Scripts\UI\CharacterCoaster.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
+    <Compile Include="Assets\Scripts\UI\Clock.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />
@@ -103,8 +103,7 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\IDesireState.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\LeaveResturant.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\AbstractInteractablePawn.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\AbstractPawn.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\iPathfinding.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Grill.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />
@@ -112,14 +111,17 @@
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Caryable\Food.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Caryable\Supply.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Caryable\iCaryable.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\CharacterCoaster.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Pawn\AbstractInteractablePawn.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Pawn\AbstractPawn.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Pawn\iPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\Character.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\PlayerControledCharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\SpriteHolder.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\iAffectedByTime.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iCanGiveItems.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\iCaryable.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\iPathfinding.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\iPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

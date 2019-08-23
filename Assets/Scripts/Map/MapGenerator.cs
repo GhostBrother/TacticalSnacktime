@@ -17,22 +17,26 @@ public class MapGenerator : MonoBehaviour
     string path;
     string jsonString;
 
-
-    private const int _rows = 8;
-
-    private const int _columns = 8;
-
     [SerializeField]
     private float _horizontalDistanceBetweenTiles;
 
     [SerializeField]
     private float _verticalDistanceBetweenTiles;
 
-    public int MapSize { get { return _rows * _columns; } }
+    private int _rows;
+    private int _columns;
+
+    public int MapSize
+    { get
+        {
+            if (jObject == null) { Init(); }
+            return _rows * _columns;
+        }
+    }
 
     private Pathfinding pf;
 
-    JObject jay;
+    JObject jObject;
 
     Dictionary<char, Func<AbstractPawn>> editorLookUp;
 
@@ -42,7 +46,9 @@ public class MapGenerator : MonoBehaviour
         using (StreamReader r = new StreamReader(path))
         {
             jsonString = r.ReadToEnd();
-            jay = JObject.Parse(jsonString);
+            jObject = JObject.Parse(jsonString);
+            _rows = jObject["Map"].Count();
+            _columns = jObject["Map"][0].ToString().Length;
         }
 
     }
@@ -58,15 +64,14 @@ public class MapGenerator : MonoBehaviour
 
     public Map generateMap()
     {
-        Init();
         LoadDictionary();
         GameObject temp = null;
         Vector3 tilePos = new Vector3(0, 0, 0);
         Tile prevTile = null;
-        Map mapToReturn = new Map(jay["Map"].Count(), jay["Map"][0].ToString().Length);
-        for (int y = 0; y < jay["Map"].Count(); y++)
+        Map mapToReturn = new Map(_rows, _columns);
+        for (int y = 0; y < _rows; y++)
         {
-            for (int x = 0; x < jay["Map"][y].ToString().Length; x++)
+            for (int x = 0; x < jObject["Map"][y].ToString().Length; x++)
             {
                 temp = Instantiate(_tileToGenerate.gameObject);
                 tilePos.x = (x * _horizontalDistanceBetweenTiles);
@@ -91,7 +96,7 @@ public class MapGenerator : MonoBehaviour
                     temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
                 }
 
-                temp = PlacePawnOnTile(jay["Map"][y].ToString()[x], temp);
+                temp = PlacePawnOnTile(jObject["Map"][y].ToString()[x], temp);
 
                 temp.GetComponent<Tile>().SetXandYPos(x, y);
                 mapToReturn.AddTileToMap(temp.GetComponent<Tile>(), x, y);

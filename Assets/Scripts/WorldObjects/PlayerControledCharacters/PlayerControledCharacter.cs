@@ -40,4 +40,9 @@ public class PlayerControledCharacter : Character , iCanGiveItems
                 SpaceContextualActions.Add(new TakeItem(this, character));
         }
     }
+
+    public override void TurnStart()
+    {
+        onStartTurn.Invoke(this);
+    }
 }
