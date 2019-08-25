@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControledCharacter : Character , iCanGiveItems
+public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
     // At some point I want name to be randomly chosen from a jason pool ( common, species and class specific) 
-    public PlayerControledCharacter (int baseMoveSpeed, Sprite characterSprite, int speedStat, string name) : base(baseMoveSpeed, characterSprite, speedStat, name)
+    public PlayercontrolledCharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, string name) : base(baseMoveSpeed, characterSprite, speedStat, name)
     {
         EntityType = EnumHolder.EntityType.Character;
     }
@@ -30,9 +30,9 @@ public class PlayerControledCharacter : Character , iCanGiveItems
     public override void GetTargeter(Character character)
     {
         SpaceContextualActions.Clear();
-        if (character is PlayerControledCharacter)
+        if (character is PlayercontrolledCharacter)
         {
-            PlayerControledCharacter giver = (PlayerControledCharacter)character;
+            PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
             // Checks to see if we have something to give. 
             if (character.CariedObject != null)
                 SpaceContextualActions.Add(new GiveItem(giver, this));

@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     CharacterDisplay _characterDisplay;
 
+    [SerializeField]
+    Clock _clock;
+
     public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
 
     public Character CurentCharacter { get; private set; }
@@ -51,8 +54,7 @@ public class GameManager : MonoBehaviour {
         timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory();
 
-
-        actionMenu.onTurnEnd = EndTurn;
+        actionMenu.onTurnEnd = EndCharacterTurn;
         
         _gameMap = _mapGenerator.generateMap();
 
@@ -94,12 +96,34 @@ public class GameManager : MonoBehaviour {
         curentState.PrevArrow();
     }
 
-    public void AddCharacterToList(Character character)
+    public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
-        character.onStartTurn = MoveCameraToCharacter;
-        character.onStartTurn += SetCharacterAsCurrent;
-        character.onTurnEnd = EndTurn;
-        timeAffectedObjects.Add(character);
+        character.onStartTurn += OnPlayerControlledStart;
+        AddCharacterToList(character);
+    }
+
+    public void AddCustomerCharacterToList(AICharacter customer)
+    {
+        customer.onStartTurn += OnCustomerStart;
+        AddCharacterToList(customer);
+    }
+
+    private void AddCharacterToList(Character character)
+    {
+        character.onTurnEnd = EndCharacterTurn;
+        AddTimeInfluencedToList(character);
+    }
+
+    private void AddInGameClockToList(Clock clock)
+    {
+        _clock.onTurnEnd = EndNonCharacterTurn;
+        _clock.onDayOver = EndDay;
+        AddTimeInfluencedToList(clock);
+    }
+
+    private void AddTimeInfluencedToList(iAffectedByTime timeAffected)
+    {
+        timeAffectedObjects.Add(timeAffected);
     }
 
     public void ActivateTile(Tile tile)
@@ -119,7 +143,9 @@ public class GameManager : MonoBehaviour {
 
     public void SortList()
     {
-        //charactersOnMap.Sort((x, y) => x.SpeedStat.CompareTo(y.SpeedStat));
+        timeAffectedObjects.Sort((x, y) => x.TurnOrder.CompareTo(y.TurnOrder));
+        _clock.TurnOrder = timeAffectedObjects[timeAffectedObjects.Count -1 ].TurnOrder + 1;
+        AddInGameClockToList(_clock);
     }
 
     public void CheckIfCharacterNeedsRemoval() 
@@ -133,9 +159,14 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            timeAffectedObjects.Remove(CurentCharacter);
-            timeAffectedObjects.Add(CurentCharacter);
+            SwapToNextCharacter();
         }
+    }
+
+    private void SwapToNextCharacter()
+    {
+        timeAffectedObjects.Add(timeAffectedObjects[0]);
+        timeAffectedObjects.RemoveAt(0);
     }
 
     public void StartNextCharactersTurn()
@@ -147,11 +178,10 @@ public class GameManager : MonoBehaviour {
     {
         //TEST
         AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(7, 6));
-        newCharacter.onStartTurn += SetStateToMovingState;
-        AddCharacterToList(newCharacter);
+        AddCustomerCharacterToList(newCharacter);
         AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(6,7));
-        AddCharacterToList(newCharacter2);
-        newCharacter2.onStartTurn += SetStateToMovingState;
+        AddCustomerCharacterToList(newCharacter2);
+
 
         //TEST
         Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)) , SpriteHolder.instance.GetSupplyBox());
@@ -160,28 +190,53 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    private void SetCharacterAsCurrent(Character character)
-    {
-        CurentCharacter = character;
-    }
-
     private void MoveCameraToCharacter(Character character)
     {
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
         characterDisplay.ChangeCharacterArt(character.PawnSprite);
     }
-    
-    // Hack
-    private void SetStateToMovingState(Character character)
+
+    // On Player Start
+
+    private void OnPlayerControlledStart(Character playerCharacter)
     {
+        MoveCameraToCharacter(playerCharacter);
+        CurentCharacter = playerCharacter;
+        SetState(GetIdleState());
+    }
+
+   // On Ai Start
+
+    private void OnCustomerStart(Character customerCharacter)
+    {
+        MoveCameraToCharacter(customerCharacter);
+        CurentCharacter = customerCharacter;
         SetState(GetMovingState());
+    }
+
+   // On all Cooking station Start
+
+    private void EndCharacterTurn()
+    {
+        CheckIfCharacterNeedsRemoval();
+        EndTurn();
+    }
+
+    private void EndNonCharacterTurn()
+    {
+        SwapToNextCharacter();
+        EndTurn();
     }
 
     private void EndTurn()
     {
-        CheckIfCharacterNeedsRemoval();
         SetState(GetIdleState());
         StartNextCharactersTurn();
+    }
+
+    private void EndDay()
+    {
+        Debug.Log("Day is done");
     }
 
 }

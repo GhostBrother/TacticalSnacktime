@@ -7,8 +7,6 @@ public abstract class Character : AbstractInteractablePawn
 
     public int MoveSpeed { get; private set; }
 
-    public int SpeedStat { get; private set; }
-
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 
@@ -43,7 +41,7 @@ public abstract class Character : AbstractInteractablePawn
     {
         MoveSpeed = baseMoveSpeed;
         PawnSprite = characterSprite;
-        SpeedStat = speedStat;
+        TurnOrder = speedStat;
         EntityType = EnumHolder.EntityType.None;
         Name = name;
         needsRemoval = false;

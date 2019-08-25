@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterRoster {
 
-    List<Character> employedCharacters;
+    List<PlayercontrolledCharacter> employedCharacters;
 
     Sprite KoboldSprite;
     Sprite TheifSprite;
@@ -12,26 +12,26 @@ public class CharacterRoster {
 
     public CharacterRoster()
     {
-        employedCharacters = new List<Character>();
+        employedCharacters = new List<PlayercontrolledCharacter>();
         KoboldSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(0);
         TheifSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(1);
         DragonSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(2);
 
-        employedCharacters.Add(new PlayerControledCharacter(1,  KoboldSprite,1, "Kobold"));
+        employedCharacters.Add(new PlayercontrolledCharacter(1,  KoboldSprite,1, "Kobold"));
         
 
-        employedCharacters.Add(new PlayerControledCharacter(3,  TheifSprite,2 , "Creepy Guy"));
-        employedCharacters.Add(new PlayerControledCharacter(3, TheifSprite, 2, "Spooky Man"));
+        employedCharacters.Add(new PlayercontrolledCharacter(3,  TheifSprite,2 , "Creepy Guy"));
+        employedCharacters.Add(new PlayercontrolledCharacter(3, TheifSprite, 2, "Spooky Man"));
     }
 
-    public Character PeekAtNextCharacter()
+    public PlayercontrolledCharacter PeekAtNextCharacter()
     {
         return employedCharacters[0];
     }
 
     public Character getNextEmployedCharacter()
     {
-        Character temp = PeekAtNextCharacter();
+        PlayercontrolledCharacter temp = PeekAtNextCharacter();
         employedCharacters.Remove(temp);
         employedCharacters.Add(temp);
         return PeekAtNextCharacter();
@@ -39,15 +39,15 @@ public class CharacterRoster {
 
     public Character getPreviousEmployedCharacter()
     {
-        Character temp = employedCharacters[employedCharacters.Count -1];
+        PlayercontrolledCharacter temp = employedCharacters[employedCharacters.Count -1];
         employedCharacters.RemoveAt(employedCharacters.Count -1);
         employedCharacters.Insert(0, temp);
         return PeekAtNextCharacter();
     }
 
-    public Character GetCharacterOnTopOfList()
+    public PlayercontrolledCharacter GetCharacterOnTopOfList()
     {
-        Character temp = PeekAtNextCharacter();
+        PlayercontrolledCharacter temp = PeekAtNextCharacter();
         employedCharacters.Remove(temp);
         return temp;
     }
