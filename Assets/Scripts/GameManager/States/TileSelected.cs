@@ -40,6 +40,15 @@ public class TileSelected : iGameManagerState
 
                     if (neighbor.TargetableOnTile.GetCommands().Count > 0)
                     _gameManager.ActionMenu.AddCommandsToList(neighbor.TargetableOnTile.GetCommands());
+
+                    //HACK
+                    if (neighbor.TargetableOnTile is Grill)
+                    {
+                        Grill G = (Grill)neighbor.TargetableOnTile;
+                        G.TurnOrder = _gameManager.CurentCharacter.TurnOrder;
+                        G.AddToTimeline = _gameManager.AddPawnToTimeline;
+                        G.RemoveFromTimeline = _gameManager.RemovePawnFromTimeline;
+                    }
                 }
             }
 

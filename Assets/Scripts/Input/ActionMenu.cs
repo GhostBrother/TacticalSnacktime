@@ -9,6 +9,9 @@ public class ActionMenu : MonoBehaviour
     public delegate void OnTurnEnd();
     public OnTurnEnd onTurnEnd;
 
+    public delegate void AddTimedObjectToList(iAffectedByTime timedObject);
+    public AddTimedObjectToList addTimed;
+
     List<Command> ActionMenuCommands;
 
     [SerializeField]
@@ -60,6 +63,12 @@ public class ActionMenu : MonoBehaviour
             actionButtons[i].gameObject.SetActive(false);
         }
         ActionMenuCommands.Clear();
+    }
+
+    // Hack, mainly for grills and other selected objects.
+    public void AddTimeAffectableToTimeline(iAffectedByTime timedObject)
+    {
+        addTimed.Invoke(timedObject);
     }
 
     public void EndTurn()

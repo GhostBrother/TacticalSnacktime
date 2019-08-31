@@ -55,10 +55,16 @@ public class GameManager : MonoBehaviour {
         _characterFactory = new AICharacterFactory();
 
         actionMenu.onTurnEnd = EndCharacterTurn;
-        
+        actionMenu.addTimed = AddTimeInfluencedToList;
+
+
         _gameMap = _mapGenerator.generateMap();
 
-        CheckForCustomerSpawn();
+        DebugSpawnSupply();
+
+        AddInGameClockToList(_clock);
+        SortList();
+
     }
 
     public iGameManagerState GetIdleState()
@@ -98,7 +104,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
-        character.onStartTurn += OnPlayerControlledStart;
+        character.onStartTurn = OnPlayerControlledStart; // was += 
         AddCharacterToList(character);
     }
 
@@ -106,6 +112,24 @@ public class GameManager : MonoBehaviour {
     {
         customer.onStartTurn += OnCustomerStart;
         AddCharacterToList(customer);
+    }
+
+    public void AddPawnToTimeline(AbstractPawn ap)
+    {
+        ap.onTurnEnd = EndNonCharacterTurn;
+        AddTimeInfluencedToList(ap);
+    }
+
+    public void RemovePawnFromTimeline(AbstractPawn ap)
+    {
+        for (int i = 0; i < timeAffectedObjects.Count; i++)
+        {
+            if (timeAffectedObjects[i] == (iAffectedByTime)ap)
+            {
+                timeAffectedObjects.RemoveAt(i);
+                break;
+            }
+        }
     }
 
     private void AddCharacterToList(Character character)
@@ -117,6 +141,8 @@ public class GameManager : MonoBehaviour {
     private void AddInGameClockToList(Clock clock)
     {
         _clock.onTurnEnd = EndNonCharacterTurn;
+        _clock.onTurnEnd += CheckForCustomerSpawn;
+        _clock.onTurnEnd += SortList;
         _clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
@@ -144,8 +170,7 @@ public class GameManager : MonoBehaviour {
     public void SortList()
     {
         timeAffectedObjects.Sort((x, y) => x.TurnOrder.CompareTo(y.TurnOrder));
-        _clock.TurnOrder = timeAffectedObjects[timeAffectedObjects.Count -1 ].TurnOrder + 1;
-        AddInGameClockToList(_clock);
+        _clock.TurnOrder = timeAffectedObjects[timeAffectedObjects.Count - 1].TurnOrder + 1;
     }
 
     public void CheckIfCharacterNeedsRemoval() 
@@ -174,20 +199,18 @@ public class GameManager : MonoBehaviour {
         timeAffectedObjects[0].TurnStart();
     }
 
-    private void CheckForCustomerSpawn()
+    private void DebugSpawnSupply()
     {
         //TEST
-        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(7, 6));
-        AddCustomerCharacterToList(newCharacter);
-        AICharacter newCharacter2 = _characterFactory.SpawnCharacterAt(_gameMap.GetTileAtRowAndColumn(6,7));
-        AddCustomerCharacterToList(newCharacter2);
-
-
-        //TEST
-        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)) , SpriteHolder.instance.GetSupplyBox());
+        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox());
         newSupply.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
         newSupply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 2);
+    }
 
+    private void CheckForCustomerSpawn()
+    {
+        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileWithType(EnumHolder.EntityType.Door));
+        AddCustomerCharacterToList(newCharacter);
     }
 
     private void MoveCameraToCharacter(Character character)
@@ -237,6 +260,17 @@ public class GameManager : MonoBehaviour {
     private void EndDay()
     {
         Debug.Log("Day is done");
+    }
+
+    private void DebugListAllTimeAffected()
+    {
+        for (int i = 0; i < timeAffectedObjects.Count; i++)
+        {
+            if (timeAffectedObjects[i] is Grill) { Debug.Log(i + ": " + " is gril"); }
+            if (timeAffectedObjects[i] is PlayercontrolledCharacter) { Debug.Log(i + ": " + " is character"); }
+            if (timeAffectedObjects[i] is AICharacter) { Debug.Log(i + ": " + " is customer"); }
+            if (timeAffectedObjects[i] is Clock) { Debug.Log(i + ": " + " is clock"); }
+        }
     }
 
 }

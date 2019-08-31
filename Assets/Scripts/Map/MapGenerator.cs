@@ -26,6 +26,7 @@ public class MapGenerator : MonoBehaviour
     private int _rows;
     private int _columns;
 
+
     public int MapSize
     { get
         {
@@ -50,7 +51,6 @@ public class MapGenerator : MonoBehaviour
             _rows = jObject["Map"].Count();
             _columns = jObject["Map"][0].ToString().Length;
         }
-
     }
 
     private void LoadDictionary()
@@ -60,6 +60,7 @@ public class MapGenerator : MonoBehaviour
         editorLookUp.Add('R', Clone<Register>);
         editorLookUp.Add('D', Clone<Door>);
         editorLookUp.Add('W', Clone<Wall>);
+
     }
 
     public Map generateMap()
@@ -128,6 +129,7 @@ public class MapGenerator : MonoBehaviour
     {
         return new T();
     }
+
 }
 
   

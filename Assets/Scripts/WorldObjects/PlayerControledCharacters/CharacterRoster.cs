@@ -20,8 +20,8 @@ public class CharacterRoster {
         employedCharacters.Add(new PlayercontrolledCharacter(1,  KoboldSprite,1, "Kobold"));
         
 
-        employedCharacters.Add(new PlayercontrolledCharacter(3,  TheifSprite,2 , "Creepy Guy"));
-        employedCharacters.Add(new PlayercontrolledCharacter(3, TheifSprite, 2, "Spooky Man"));
+        employedCharacters.Add(new PlayercontrolledCharacter(3,  TheifSprite,3 , "Creepy Guy"));
+        employedCharacters.Add(new PlayercontrolledCharacter(3, TheifSprite, 3, "Spooky Man"));
     }
 
     public PlayercontrolledCharacter PeekAtNextCharacter()

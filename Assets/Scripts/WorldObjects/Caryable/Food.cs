@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : iCaryable 
+public class Food : iCaryable
 {
+    public enum FoodDoneness { UNDERCOOK, GOOD = 2, GREAT = 3, DELUXE = 4, OVERCOOK = 5, BURN };
+
+    public FoodDoneness Doneness{get; set;}
+
     public List<Command> HeldObjectCommands { get; private set; }
 
     public string Name { get; private set; }
     public string Description { get; private set; }
-   
-
-    // The skill at which this was prepared, 100 is best.  
-    public int Skill { get; set; }
 
     //price
     public decimal price = 0.00M;
@@ -23,8 +23,7 @@ public class Food : iCaryable
 
     public Sprite CaryableObjectSprite { get; private set; }
 
-    
-
+   
     public Food(string name, decimal _price, Sprite caryableObjectSprite)
     {
         Name = name;

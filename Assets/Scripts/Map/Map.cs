@@ -17,6 +17,21 @@ public class Map {
 
     }
 
+    public Tile GetTileWithType(EnumHolder.EntityType entityType)
+    {
+        foreach (Tile[] tileArray in TilesOnMap)
+        {
+            foreach (Tile t in tileArray)
+            {
+                if(t.EntityTypeOnTile == entityType)
+                {
+                    return t;
+                }
+            }
+        }
+        return null;
+    }
+
     public Tile GetTileAtRowAndColumn(int row, int column)
     {
         return tilesOnMap[row][column];
