@@ -112,7 +112,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\Caryable\Food.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Caryable\Supply.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Caryable\iCaryable.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\CharacterCoaster.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Pawn\AbstractInteractablePawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Pawn\AbstractPawn.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Pawn\iPawn.cs" />
@@ -120,9 +119,12 @@
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\CharacterRoster.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\PlayerControledCharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\PlayerControledCharacters\SpriteHolder.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Tokens\CharacterCoaster.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Tokens\CookTimerBar.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iAffectedByTime.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iCanGiveItems.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
+    <None Include="Assets\Shader\CookedFoodShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
