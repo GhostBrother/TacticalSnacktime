@@ -209,8 +209,11 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForCustomerSpawn()
     {
-        AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileWithType(EnumHolder.EntityType.Door));
-        AddCustomerCharacterToList(newCharacter);
+        if (Random.Range(0, 3) == 2)
+        {
+            AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileWithType(EnumHolder.EntityType.Door));
+            AddCustomerCharacterToList(newCharacter);
+        }
     }
 
     private void MoveCameraToCharacter(Character character)
