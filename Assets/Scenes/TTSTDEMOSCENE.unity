@@ -761,11 +761,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 640138877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc150997670da14cafc8ab659f9dc48, type: 3}
+  m_Script: {fileID: 11500000, guid: b83bd4ee59d2d3a4bbe2a298b54a6978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCoaster: {fileID: -1180689058376733656, guid: 40d4078d40c3eae4cb8f94ec8e03930e,
+  Capacity: 10
+  CharacterCoasterprototype: {fileID: -1180689058376733656, guid: 40d4078d40c3eae4cb8f94ec8e03930e,
     type: 3}
+  DonenessTrackerPrototype: {fileID: 1647360427003885496, guid: 961532c7ce6b69b4dbb627745a44225f,
+    type: 3}
+  Expandable: 1
 --- !u!4 &640138879
 Transform:
   m_ObjectHideFlags: 0
@@ -1056,6 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854402819f4ab674481b487f97142a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _monoPool: {fileID: 640138878}
   _mapGenerator: {fileID: 225618906}
   actionMenu: {fileID: 1067517425}
   camera: {fileID: 1203252059}
@@ -1108,6 +1113,11 @@ PrefabInstance:
       propertyPath: _rows
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
+        type: 3}
+      propertyPath: _monoPool
+      value: 
+      objectReference: {fileID: 640138878}
     - target: {fileID: 4949276603105298, guid: 1e6cf0cdbf48f094ba48973194eb31db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.10886

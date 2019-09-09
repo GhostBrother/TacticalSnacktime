@@ -6,18 +6,22 @@ public class CookFood : Command
 {
 
     iCookingStation cookingStation;
-    Food _foodToCook;
+    iCanGiveItems _characterWhoCanCook;
+    Supply _supplyToCook;
+    int _index;
 
-    public CookFood(iCookingStation _cookingStation, Food foodToCook)
+    public CookFood(iCookingStation _cookingStation, iCanGiveItems characterWhoCanCook, int index)
     {
         cookingStation = _cookingStation;
-        _foodToCook = foodToCook;
+        _characterWhoCanCook = characterWhoCanCook;
+        _supplyToCook = (Supply)characterWhoCanCook.Give(_index);
     }
 
-    public string CommandName { get { return $"Cook {_foodToCook.Name}"; } }
+    public string CommandName { get { return $"Cook {_supplyToCook.FoodThisSupplyMakes.Name}"; } }
 
     public void execute()
     {
-        cookingStation.CreateFood(_foodToCook);
+        _characterWhoCanCook.GetRidOfItem(_index);
+        cookingStation.CreateFood(_supplyToCook.FoodThisSupplyMakes);
     }
 }

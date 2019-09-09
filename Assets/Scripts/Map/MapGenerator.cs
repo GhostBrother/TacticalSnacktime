@@ -18,6 +18,9 @@ public class MapGenerator : MonoBehaviour
     string jsonString;
 
     [SerializeField]
+    MonoPool _monoPool;
+
+    [SerializeField]
     private float _horizontalDistanceBetweenTiles;
 
     [SerializeField]
@@ -117,7 +120,8 @@ public class MapGenerator : MonoBehaviour
             {
                 temp.GetComponent<Tile>().TargetableOnTile = (AbstractInteractablePawn)pawnToPlace;
             }
-            pawnToPlace.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
+            pawnToPlace.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+            pawnToPlace._monoPool = _monoPool; 
             pawnToPlace.TilePawnIsOn = temp.GetComponent<Tile>();
         }
 

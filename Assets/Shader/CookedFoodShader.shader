@@ -39,7 +39,7 @@ Shader "Custom/Gradient_3Color" {
 
 			fixed4 frag(v2f i) : COLOR {
 				fixed4 c = lerp(_ColorBot, _ColorMid, i.texcoord.y / _Middle) * step(i.texcoord.y, _Middle);
-				c += lerp(_ColorMid, _ColorTop, (i.texcoord.y - _Middle) / (1 - _Middle)) * step(_Middle, i.texcoord.y);
+				c += lerp(_ColorMid, _ColorTop, (i.texcoord.y - _Middle) / (1 - _Middle)) * (1 - step(i.texcoord.y, _Middle));
 				c.a = 1;
 				return c;
 			}

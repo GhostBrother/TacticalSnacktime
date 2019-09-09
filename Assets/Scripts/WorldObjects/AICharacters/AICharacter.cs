@@ -113,10 +113,14 @@ public class AICharacter : Character
     public override void GetTargeter(Character character)
     {
         SpaceContextualActions.Clear();
-        if (character is iCanGiveItems && character.CariedObject != null && this.cariedObject == null)
+
+        if (character is iCanGiveItems)
         {
-            iCanGiveItems giver = (iCanGiveItems)character;
-            SpaceContextualActions.Add(new GiveItem(giver, this));
+            for (int i = 0; i < character.CariedObjects.Count; i++)
+            {
+                iCanGiveItems giver = (iCanGiveItems)character;
+                SpaceContextualActions.Add(new GiveItem(giver, this, i));
+            }
         }
 
     }

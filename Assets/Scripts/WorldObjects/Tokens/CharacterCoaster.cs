@@ -41,12 +41,10 @@ public class CharacterCoaster : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        
         Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, -0.5f);
         int TargetIndex = 0;
         while (true)
         {
-
             if (transform.position == currentWaypoint)
             {
                 TargetIndex++;

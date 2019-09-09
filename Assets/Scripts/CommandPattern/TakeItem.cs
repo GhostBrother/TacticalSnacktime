@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TakeItem : TrasferItemCommand
 {
-    public TakeItem(iCanGiveItems givingCharacter, Character curentCharacter) : base (givingCharacter , curentCharacter)
+    public TakeItem(iCanGiveItems givingCharacter, Character curentCharacter , int index) : base (givingCharacter , curentCharacter, index)
     {
         characterName = string.Empty;
         if (givingCharacter is AbstractInteractablePawn)
         {
             AbstractInteractablePawn temp = (AbstractInteractablePawn)givingCharacter;
             characterName = temp.Name;
-            itemName = givingCharacter.Give().Name;
+            itemName = givingCharacter.Give(index).Name;
         }
            
     }

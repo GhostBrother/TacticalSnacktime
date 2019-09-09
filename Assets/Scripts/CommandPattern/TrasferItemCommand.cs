@@ -8,18 +8,20 @@ public abstract class TrasferItemCommand : Command
     Character _reciver;
     protected string characterName;
     protected string itemName;
+    int _index;
 
-    public TrasferItemCommand(iCanGiveItems giver, Character reciver)
+    public TrasferItemCommand(iCanGiveItems giver, Character reciver, int index)
     {
         _giver = giver;
         _reciver = reciver;
+        _index = index;
     }
 
     public abstract string CommandName { get; }
 
     public void execute()
     {
-        _reciver.PickUp(_giver.Give());
-        _giver.GetRidOfItem();
+        _reciver.PickUp(_giver.Give(_index));
+        _giver.GetRidOfItem(_index);
     }
 }

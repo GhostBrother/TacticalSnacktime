@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour {
     List<iAffectedByTime> timeAffectedObjects;
 
     [SerializeField]
+    MonoPool _monoPool;
+
+    public MonoPool monoPool{ get { return _monoPool; } }
+
+    [SerializeField]
     MapGenerator _mapGenerator;
 
     [SerializeField]
@@ -52,7 +57,7 @@ public class GameManager : MonoBehaviour {
         curentState = deployState;
 
         timeAffectedObjects = new List<iAffectedByTime>();
-        _characterFactory = new AICharacterFactory();
+        _characterFactory = new AICharacterFactory(_monoPool);
 
         actionMenu.onTurnEnd = EndCharacterTurn;
         actionMenu.addTimed = AddTimeInfluencedToList;
@@ -203,8 +208,19 @@ public class GameManager : MonoBehaviour {
     {
         //TEST
         Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox());
-        newSupply.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
+        newSupply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+        newSupply._monoPool = _monoPool;
         newSupply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 2);
+
+        Supply new2Supply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox());
+        new2Supply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+        new2Supply._monoPool = _monoPool;
+        new2Supply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 3);
+
+        Supply new3Supply = new Supply(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)), SpriteHolder.instance.GetSupplyBox());
+        new3Supply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+        new3Supply._monoPool = _monoPool;
+        new3Supply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(4, 3);
     }
 
     private void CheckForCustomerSpawn()

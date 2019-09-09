@@ -15,7 +15,7 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public List<Command> HeldObjectCommands { get; private set; }
 
-    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite)
+    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite) 
     {
         HeldObjectCommands = new List<Command>();
         FoodThisSupplyMakes = foodThisSupplyMakes;
@@ -23,12 +23,12 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
         CaryableObjectSprite = PawnSprite = caryableObjectSprite;
     }
 
-    public iCaryable Give()
+    public iCaryable Give(int i)
     {
         return this;
     }
 
-    public void GetRidOfItem()
+    public void GetRidOfItem(int i)
     {
         HideCoaster(characterCoaster);
         TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
@@ -42,6 +42,6 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
     public override void GetTargeter(Character character)
     {
         SpaceContextualActions.Clear();
-        SpaceContextualActions.Add(new TakeItem(this, character));
+        SpaceContextualActions.Add(new TakeItem(this, character, 0));
     }
 }

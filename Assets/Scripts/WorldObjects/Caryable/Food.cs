@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Food : iCaryable
 {
-    public enum FoodDoneness { UNDERCOOK, GOOD = 2, GREAT = 3, DELUXE = 4, OVERCOOK = 5, BURN };
+    public int[] Doneness = new int[6];
+    public int CurrentDoness;
 
-    public FoodDoneness Doneness{get; set;}
 
     public List<Command> HeldObjectCommands { get; private set; }
 
@@ -30,5 +30,9 @@ public class Food : iCaryable
         Price = _price;
         CaryableObjectSprite = caryableObjectSprite;
         HeldObjectCommands = new List<Command>();
+        for(int i = 0; i < Doneness.Length; i++)
+        {
+            Doneness[i] = i * 2;
+        }
     }
 }

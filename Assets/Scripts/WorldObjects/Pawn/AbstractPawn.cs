@@ -16,6 +16,8 @@ public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn
         }
     }
 
+    public MonoPool _monoPool { get; set; }
+
     public CharacterCoaster ItemCoaster
     { get; set; }
 
@@ -33,7 +35,6 @@ public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn
         get { return tilePawnIsOn; }
         set
         {
-
             previousTile = tilePawnIsOn;
             tilePawnIsOn = value;
             if (previousTile != null)
@@ -87,7 +88,7 @@ public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn
 
     public void ShowCoasterWithOffset( Sprite sprite , float offsetX, float offsetY, Action<CharacterCoaster> setOutput)
     {
-            CharacterCoaster coaster =  CharacterCoasterPool.Instance.SpawnFromPool();
+            CharacterCoaster coaster = _monoPool.GetCharacterCoasterInstance();
             coaster.transform.parent = _characterCoaster.transform;
             coaster.transform.position = new Vector3(_characterCoaster.transform.position.x + offsetX, _characterCoaster.transform.position.y + offsetY, -1);
             coaster.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -99,7 +100,7 @@ public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn
         if (coasterToHide != null)
         {
             coasterToHide.transform.parent = null;
-            CharacterCoasterPool.Instance.PutBackInPool(coasterToHide);
+            _monoPool.PutInstanceBack(coasterToHide.gameObject);
         }
     }
 

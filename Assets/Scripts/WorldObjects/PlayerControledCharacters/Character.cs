@@ -15,8 +15,8 @@ public abstract class Character : AbstractInteractablePawn
 
     int usedHands = 0; 
 
-    protected iCaryable cariedObject;
-    public iCaryable CariedObject { get { return cariedObject; } }
+    protected List<iCaryable> cariedObjects;
+    public List<iCaryable> CariedObjects { get { return cariedObjects; } }
 
     List<Command> _cariedObjectCommands;
     public List<Command> CariedObjectCommands
@@ -24,11 +24,14 @@ public abstract class Character : AbstractInteractablePawn
         get
         {
             _cariedObjectCommands.Clear();
-            if (cariedObject != null)
+            if (cariedObjects.Count > 0)
             {
-                foreach(Command c in cariedObject.HeldObjectCommands)
+                for (int i = 0; i < cariedObjects.Count; i++)
                 {
-                    _cariedObjectCommands.Add(c);
+                    foreach (Command c in cariedObjects[i].HeldObjectCommands)
+                    {
+                        _cariedObjectCommands.Add(c);
+                    }
                 }
             }
             return _cariedObjectCommands;
@@ -46,6 +49,7 @@ public abstract class Character : AbstractInteractablePawn
         Name = name;
         needsRemoval = false;
         _cariedObjectCommands = new List<Command>();
+        cariedObjects = new List<iCaryable>();
     }
 
     public void ShowMoveRange()
@@ -58,8 +62,8 @@ public abstract class Character : AbstractInteractablePawn
         usedHands += caryable.HandsRequired;
         if (usedHands < numberOfHands)
         {
-            cariedObject = caryable;
-            ShowCoaster(cariedObject.CaryableObjectSprite, x => ItemCoaster = x);
+            cariedObjects.Add(caryable);
+            ShowCoaster(caryable.CaryableObjectSprite, x => ItemCoaster = x);
         }
 
     }

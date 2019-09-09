@@ -35,7 +35,8 @@ public class DeployState : iGameManagerState
         if(tile.GetCurrentState() == tile.GetDeployState())
         {
             PlayercontrolledCharacter CharacterToUse = characterRoster.GetCharacterOnTopOfList();
-            CharacterToUse.characterCoaster = CharacterCoasterPool.Instance.SpawnFromPool();
+            CharacterToUse.characterCoaster = _gameManager.monoPool.GetCharacterCoasterInstance();
+            CharacterToUse._monoPool = _gameManager.monoPool;
             CharacterToUse.TilePawnIsOn = tile;
             _gameManager.AddPlayerControlledCharacterToList(CharacterToUse);
         }

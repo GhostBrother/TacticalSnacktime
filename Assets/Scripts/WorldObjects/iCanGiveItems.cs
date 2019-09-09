@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface iCanGiveItems 
 {
-   iCaryable Give();
-    void GetRidOfItem();
+   iCaryable Give(int i);
+    void GetRidOfItem(int i);
 }

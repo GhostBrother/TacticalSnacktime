@@ -11,15 +11,15 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     }
     
 
-    public void GetRidOfItem()
+    public void GetRidOfItem(int i )
     {
-        cariedObject = null;
+        cariedObjects.RemoveAt(i);
         HideCoaster(ItemCoaster);
     }
 
-    public iCaryable Give()
+    public iCaryable Give(int i)
     {
-        return cariedObject;
+        return cariedObjects[i];
     }
 
     public override List<Command> GetCommands()
@@ -34,10 +34,13 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
         {
             PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
             // Checks to see if we have something to give. 
-            if (character.CariedObject != null)
-                SpaceContextualActions.Add(new GiveItem(giver, this));
-            else if (cariedObject != null && character.CariedObject == null)
-                SpaceContextualActions.Add(new TakeItem(this, character));
+          //  if (character.CariedObjects != null)
+          for(int i = 0; i < character.CariedObjects.Count; i++)
+                SpaceContextualActions.Add(new GiveItem(giver, this,i));
+
+           // else if (cariedObject != null && character.CariedObject == null)
+           for (int j = 0; j < cariedObjects.Count; j++)
+                SpaceContextualActions.Add(new TakeItem(this, character, j));
         }
     }
 

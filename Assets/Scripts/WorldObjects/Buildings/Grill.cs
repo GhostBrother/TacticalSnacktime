@@ -12,9 +12,12 @@ public class Grill : AbstractInteractablePawn, iCookingStation
     public Action<AbstractPawn> AddToTimeline { get; set; }
     public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
+    List<DonenessTracker> donenessTrackers;
+
     public Grill()
     {
         itemsOnGrill = new List<Food>();
+        donenessTrackers = new List<DonenessTracker>();
 
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         EntityType = EnumHolder.EntityType.CookingStation;
@@ -31,62 +34,68 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         
     }
 
-    public iCaryable Give()
-    {
-        // Place holder
-        return itemsOnGrill[0];
-    }
-
     public void CreateFood(Food itemToCook)
     {
-         ShowCoaster(itemToCook.CaryableObjectSprite, x => ItemCoaster = x);
+        const float xCordinateOffset = .5f;
+        const float yCordinateOffset = .5f;
+        ShowCoaster(itemToCook.CaryableObjectSprite, x => ItemCoaster = x);
         itemsOnGrill.Add(itemToCook);
-        // StartsCookingTimer
+        DonenessTracker donenessTrackerToAdd = _monoPool.GetDonenessTrackerInstance();
+        donenessTrackerToAdd.gameObject.transform.position = new Vector3(TilePawnIsOn.transform.position.x + (xCordinateOffset * itemsOnGrill.Count), TilePawnIsOn.transform.position.y + yCordinateOffset, -0.5f);
+        donenessTrackerToAdd.InitMeter(itemToCook.Doneness[itemToCook.Doneness.Length - 1]);
+        donenessTrackers.Add(donenessTrackerToAdd);
+
         AddToTimeline.Invoke(this);
     }
 
     public override void GetTargeter(Character character)
     {
         SpaceContextualActions.Clear();
-
-        if (character.CariedObject is Supply && character is iCanGiveItems)
+        if (character is iCanGiveItems)
         {
-            iCanGiveItems givingCharacter = (iCanGiveItems)character;
-            Supply supply = (Supply)givingCharacter.Give();
-            givingCharacter.GetRidOfItem();
-            SpaceContextualActions.Add(new CookFood(this, supply.FoodThisSupplyMakes));
+            for (int i = 0; i < character.CariedObjects.Count; i++)
+            {
+                if (character.CariedObjects[i] is Supply)
+                {
+                    iCanGiveItems givingCharacter = (iCanGiveItems)character;
+                    SpaceContextualActions.Add(new CookFood(this, givingCharacter, i));
+                }
+            }
         }
 
-        if (itemsOnGrill.Count > 0 && character.CariedObject == null)
-            SpaceContextualActions.Add(new TakeItem(this, character));
+            for(int i = 0; i < itemsOnGrill.Count; i++ )
+            SpaceContextualActions.Add(new TakeItem(this, character, i));
 
-    }
-
-    public void GetRidOfItem()
-    {
-        // Placeholder 0;
-        itemsOnGrill.RemoveAt(0);
-        HideCoaster(ItemCoaster);
-        HideCoaster(FoodWantCoaster);
-        if (itemsOnGrill.Count <= 0)
-        {
-            RemoveFromTimeline.Invoke(this);
-        }
     }
 
     public override void TurnStart()
     {
         if (itemsOnGrill.Count > 0)
         {
-            const int xCordinateOffset = -1;
-            const int yCordinateOffset = 1;
-            for(int i = 0; i < itemsOnGrill.Count; i++)
+            for (int i = 0; i < itemsOnGrill.Count; i++)
             {
-                itemsOnGrill[i].Doneness++;
+                itemsOnGrill[i].CurrentDoness++;
+                donenessTrackers[i].MoveArrowOnTracker(itemsOnGrill[i].CurrentDoness);
             }
-            ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(0), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
             onTurnEnd.Invoke();
         }
     }
 
+    public iCaryable Give(int i)
+    {
+        return itemsOnGrill[i];
+    }
+
+    public void GetRidOfItem(int i)
+    {
+        itemsOnGrill.RemoveAt(i);
+        _monoPool.PutInstanceBack(donenessTrackers[i].gameObject);
+
+        if (itemsOnGrill.Count <= 0)
+        {
+            HideCoaster(ItemCoaster);
+            HideCoaster(FoodWantCoaster);
+            RemoveFromTimeline.Invoke(this);
+        }
+    }
 }

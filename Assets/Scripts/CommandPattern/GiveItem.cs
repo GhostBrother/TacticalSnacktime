@@ -5,7 +5,7 @@ using UnityEngine;
 public class GiveItem : TrasferItemCommand
 {
 
-    public GiveItem( iCanGiveItems curentCharacter, Character recivingCharacter) : base (curentCharacter, recivingCharacter)
+    public GiveItem( iCanGiveItems curentCharacter, Character recivingCharacter, int index) : base (curentCharacter, recivingCharacter, index)
     {
         characterName = recivingCharacter.Name;
     }
