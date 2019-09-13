@@ -23,12 +23,18 @@ public class Food : iCaryable
 
     public Sprite CaryableObjectSprite { get; private set; }
 
-   
-    public Food(string name, decimal _price, Sprite caryableObjectSprite)
+    public int NumberOfItemsInSupply { get; set; }
+
+    public Food(string name, decimal _price, Sprite caryableObjectSprite) : this (name, _price, caryableObjectSprite, 1)
+    {
+
+    }
+    public Food(string name, decimal _price, Sprite caryableObjectSprite, int foodInSupply)
     {
         Name = name;
         Price = _price;
         CaryableObjectSprite = caryableObjectSprite;
+        NumberOfItemsInSupply = foodInSupply;
         HeldObjectCommands = new List<Command>();
         for(int i = 0; i < Doneness.Length; i++)
         {

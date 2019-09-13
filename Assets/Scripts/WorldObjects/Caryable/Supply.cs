@@ -15,12 +15,20 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public List<Command> HeldObjectCommands { get; private set; }
 
-    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite) 
+    public int NumberOfItemsInSupply { get; set; }
+
+    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite) : this(foodThisSupplyMakes, caryableObjectSprite, 1)
+    {
+
+    }
+
+    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite, int numberOfFoodLeftInSupply) 
     {
         HeldObjectCommands = new List<Command>();
         FoodThisSupplyMakes = foodThisSupplyMakes;
         Name = foodThisSupplyMakes.Name;
         CaryableObjectSprite = PawnSprite = caryableObjectSprite;
+        NumberOfItemsInSupply = numberOfFoodLeftInSupply;
     }
 
     public iCaryable Give(int i)
@@ -30,8 +38,8 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public void GetRidOfItem(int i)
     {
-        HideCoaster(characterCoaster);
-        TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+            HideCoaster(characterCoaster);
+            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
     }
 
     public override List<Command> GetCommands()

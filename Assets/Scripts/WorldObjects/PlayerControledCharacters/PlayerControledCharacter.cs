@@ -13,8 +13,12 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public void GetRidOfItem(int i )
     {
-        cariedObjects.RemoveAt(i);
-        HideCoaster(ItemCoaster);
+        cariedObjects[i].NumberOfItemsInSupply--;
+        if (cariedObjects[i].NumberOfItemsInSupply <= 0)
+        {
+            cariedObjects.RemoveAt(i);
+            HideCoaster(ItemCoaster);
+        }
     }
 
     public iCaryable Give(int i)

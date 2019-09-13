@@ -107,6 +107,9 @@ public class MapGenerator : MonoBehaviour
                 prevTile = temp.GetComponent<Tile>();
             }
         }
+
+        DebugSpawnSupply(mapToReturn);
+
         return mapToReturn;
     }
 
@@ -114,7 +117,6 @@ public class MapGenerator : MonoBehaviour
     {
         if (editorLookUp.ContainsKey(marker))
         {
-
             AbstractPawn pawnToPlace = editorLookUp[marker].Invoke();
             if (pawnToPlace is AbstractInteractablePawn)
             {
@@ -132,6 +134,20 @@ public class MapGenerator : MonoBehaviour
     private AbstractPawn Clone<T>() where T : AbstractPawn, new()
     {
         return new T();
+    }
+
+    private void DebugSpawnSupply(Map mapToReturn)
+    {
+        //TEST
+        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox(), 2);
+        newSupply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+        newSupply._monoPool = _monoPool;
+        newSupply.TilePawnIsOn = mapToReturn.GetTileAtRowAndColumn(3, 2);
+
+        Supply new3Supply = new Supply(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)), SpriteHolder.instance.GetSupplyBox());
+        new3Supply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+        new3Supply._monoPool = _monoPool;
+        new3Supply.TilePawnIsOn = mapToReturn.GetTileAtRowAndColumn(4, 3);
     }
 
 }

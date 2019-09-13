@@ -6,11 +6,12 @@ using UnityEngine;
 // Each caryable has a list of hands needed to lift it. 
 // possibly a weight too. 
 
-public interface iCaryable 
+public interface iCaryable
 {
     string Name { get; }
     int HandsRequired { get; }
     int Weight { get; }
     Sprite CaryableObjectSprite { get; }
     List<Command> HeldObjectCommands { get; }
+    int NumberOfItemsInSupply { get; set; }
 }

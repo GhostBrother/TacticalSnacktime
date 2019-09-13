@@ -62,10 +62,7 @@ public class GameManager : MonoBehaviour {
         actionMenu.onTurnEnd = EndCharacterTurn;
         actionMenu.addTimed = AddTimeInfluencedToList;
 
-
         _gameMap = _mapGenerator.generateMap();
-
-        DebugSpawnSupply();
 
         AddInGameClockToList(_clock);
         SortList();
@@ -109,7 +106,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
-        character.onStartTurn = OnPlayerControlledStart; // was += 
+        character.onStartTurn = OnPlayerControlledStart; 
         AddCharacterToList(character);
     }
 
@@ -122,6 +119,13 @@ public class GameManager : MonoBehaviour {
     public void AddPawnToTimeline(AbstractPawn ap)
     {
         ap.onTurnEnd = EndNonCharacterTurn;
+        foreach (iAffectedByTime TA in timeAffectedObjects)
+        {
+            if (TA == (iAffectedByTime)ap)
+            {
+                return;
+            }
+        }
         AddTimeInfluencedToList(ap);
     }
 
@@ -202,25 +206,6 @@ public class GameManager : MonoBehaviour {
     public void StartNextCharactersTurn()
     {
         timeAffectedObjects[0].TurnStart();
-    }
-
-    private void DebugSpawnSupply()
-    {
-        //TEST
-        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox());
-        newSupply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
-        newSupply._monoPool = _monoPool;
-        newSupply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 2);
-
-        Supply new2Supply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox());
-        new2Supply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
-        new2Supply._monoPool = _monoPool;
-        new2Supply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(3, 3);
-
-        Supply new3Supply = new Supply(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)), SpriteHolder.instance.GetSupplyBox());
-        new3Supply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
-        new3Supply._monoPool = _monoPool;
-        new3Supply.TilePawnIsOn = _gameMap.GetTileAtRowAndColumn(4, 3);
     }
 
     private void CheckForCustomerSpawn()

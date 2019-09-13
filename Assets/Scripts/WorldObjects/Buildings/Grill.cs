@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Grill : AbstractInteractablePawn, iCookingStation 
 {
-   // private Food foodOnGrill;
     private List<Food> itemsOnGrill;
 
     // Hack, factor this and any other addable to timelines out. 
@@ -14,24 +13,29 @@ public class Grill : AbstractInteractablePawn, iCookingStation
 
     List<DonenessTracker> donenessTrackers;
 
+    List<Recipe> recipiesThatCanBeCreated;
+
     public Grill()
     {
         itemsOnGrill = new List<Food>();
         donenessTrackers = new List<DonenessTracker>();
+        recipiesThatCanBeCreated = new List<Recipe>();
 
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         EntityType = EnumHolder.EntityType.CookingStation;
         Name = "Grill";
+
+        // PlaceHolder
+        List<Food> breakfastBurger = new List<Food>();
+        breakfastBurger.Add(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0), 1));
+        breakfastBurger.Add(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1), 2));
+        Recipe recipe = new Recipe(breakfastBurger, new Food("Breakfast Burger", 3.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1),3));
+        recipiesThatCanBeCreated.Add(recipe);
     }
 
     public override List<Command> GetCommands()
     {
         return SpaceContextualActions;
-    }
-
-    public void AddToFood(Food food)
-    {
-        
     }
 
     public void CreateFood(Food itemToCook)
@@ -57,8 +61,17 @@ public class Grill : AbstractInteractablePawn, iCookingStation
             {
                 if (character.CariedObjects[i] is Supply)
                 {
+                    Supply supply = (Supply)character.CariedObjects[i];
                     iCanGiveItems givingCharacter = (iCanGiveItems)character;
                     SpaceContextualActions.Add(new CookFood(this, givingCharacter, i));
+
+                    for(int j = 0; j < recipiesThatCanBeCreated.Count; j++)
+                    {
+                       if(recipiesThatCanBeCreated[j].CanCraftFood(itemsOnGrill))
+                        {
+                            SpaceContextualActions.Add(new CraftFood(this, recipiesThatCanBeCreated[j]));
+                        }
+                    }
                 }
             }
         }
@@ -86,15 +99,28 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         return itemsOnGrill[i];
     }
 
+    public void RemoveFoodFromStation(Food foodToRemove)
+    {
+        for(int i = 0; i < itemsOnGrill.Count; i++)
+        {
+            if (foodToRemove.Name == itemsOnGrill[i].Name)
+            {
+                GetRidOfItem(i);
+                break;
+            }
+        }
+    }
+
     public void GetRidOfItem(int i)
     {
         itemsOnGrill.RemoveAt(i);
         _monoPool.PutInstanceBack(donenessTrackers[i].gameObject);
+        donenessTrackers.RemoveAt(i);
+        HideCoaster(ItemCoaster);
+        HideCoaster(FoodWantCoaster);
 
         if (itemsOnGrill.Count <= 0)
         {
-            HideCoaster(ItemCoaster);
-            HideCoaster(FoodWantCoaster);
             RemoveFromTimeline.Invoke(this);
         }
     }
