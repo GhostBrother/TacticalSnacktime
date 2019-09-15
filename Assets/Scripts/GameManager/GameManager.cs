@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour {
         timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory(_monoPool);
 
+        _characterDisplay.InitCharacterDisplay();
+
         actionMenu.onTurnEnd = EndCharacterTurn;
         actionMenu.addTimed = AddTimeInfluencedToList;
 
@@ -221,6 +223,7 @@ public class GameManager : MonoBehaviour {
     {
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
         characterDisplay.ChangeCharacterArt(character.PawnSprite);
+        characterDisplay.ChangeHeldItemArt(character.CariedObjects);
     }
 
     // On Player Start

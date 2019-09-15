@@ -162,6 +162,9 @@
     <Reference Include="Unity.ugui.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.ugui.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a4/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>

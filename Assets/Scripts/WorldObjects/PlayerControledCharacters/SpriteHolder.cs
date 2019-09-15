@@ -16,6 +16,9 @@ public class SpriteHolder : MonoBehaviour {
     Sprite[] FoodArt;
 
     [SerializeField]
+    Sprite[] NumberArt;
+
+    [SerializeField]
     Sprite TextBubble;
 
     [SerializeField]
@@ -39,6 +42,11 @@ public class SpriteHolder : MonoBehaviour {
     public Sprite GetFoodArtFromIDNumber(int index)
     {
         return FoodArt[index];
+    }
+
+    public Sprite GetNumberArtFromIDNumber(int index)
+    {
+        return NumberArt[index];
     }
 
     public Sprite GetTextBubble()

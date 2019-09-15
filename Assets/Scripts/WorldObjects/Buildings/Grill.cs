@@ -29,7 +29,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         List<Food> breakfastBurger = new List<Food>();
         breakfastBurger.Add(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0), 1));
         breakfastBurger.Add(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1), 2));
-        Recipe recipe = new Recipe(breakfastBurger, new Food("Breakfast Burger", 3.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1),3));
+        Recipe recipe = new Recipe(breakfastBurger, new Food("Breakfast Burger", 3.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(2)));
         recipiesThatCanBeCreated.Add(recipe);
     }
 

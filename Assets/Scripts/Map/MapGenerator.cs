@@ -139,7 +139,7 @@ public class MapGenerator : MonoBehaviour
     private void DebugSpawnSupply(Map mapToReturn)
     {
         //TEST
-        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox(), 2);
+        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox(), 52);
         newSupply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
         newSupply._monoPool = _monoPool;
         newSupply.TilePawnIsOn = mapToReturn.GetTileAtRowAndColumn(3, 2);
