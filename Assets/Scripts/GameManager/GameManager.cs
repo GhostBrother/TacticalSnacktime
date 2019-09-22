@@ -239,9 +239,9 @@ public class GameManager : MonoBehaviour {
 
     private void OnCustomerStart(Character customerCharacter)
     {
-        MoveCameraToCharacter(customerCharacter);
         CurentCharacter = customerCharacter;
         SetState(GetMovingState());
+        MoveCameraToCharacter(customerCharacter);
     }
 
    // On all Cooking station Start

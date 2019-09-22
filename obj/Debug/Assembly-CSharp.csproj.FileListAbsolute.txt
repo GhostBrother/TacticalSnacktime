@@ -271,3 +271,5 @@ C:\Users\natha\Documents\TacticalSnackTime\obj\Debug\Assembly-CSharp.csproj.Core
 C:\Users\natha\Documents\TacticalSnackTime\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\natha\Documents\TacticalSnackTime\obj\Debug\Assembly-CSharp.dll
 C:\Users\natha\Documents\TacticalSnackTime\obj\Debug\Assembly-CSharp.pdb
+C:\Users\natha\Documents\TacticalSnackTime\Temp\bin\Debug\Unity.2D.Sprite.Editor.dll
+C:\Users\natha\Documents\TacticalSnackTime\Temp\bin\Debug\Unity.2D.Sprite.Editor.pdb

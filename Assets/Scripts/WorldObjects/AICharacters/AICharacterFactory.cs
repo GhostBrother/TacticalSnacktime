@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AICharacterFactory 
 {
@@ -16,6 +17,7 @@ public class AICharacterFactory
         AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetCharacterArtFromIDNumber(3), 2, new Food("Cheeseburger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), "Dargon");
         aICharacter.characterCoaster = _monoPool.GetCharacterCoasterInstance();
         aICharacter._monoPool = _monoPool;
+       
 
         if (targetTile.GetCurrentState() != targetTile.GetActiveState())
         {

@@ -11,6 +11,9 @@ public class CharacterDisplay : MonoBehaviour {
     [SerializeField]
     Image[] itemSprites;
 
+    [SerializeField]
+    DonenessTracker[] donessTrackers;
+
     heldItems[] items;
 
     struct heldItems
@@ -32,6 +35,7 @@ public class CharacterDisplay : MonoBehaviour {
             {
                 items[i].quantityOfItemNumber[j] = itemSprites[i].transform.GetChild(j).GetComponent<Image>();
             }
+            donessTrackers[i].InitMeter(0);
         }
         SetAllHeldItemsToBlank();
     }
@@ -54,6 +58,11 @@ public class CharacterDisplay : MonoBehaviour {
             for (int j = 0; j < items[i].quantityOfItemNumber.Length; j++)
             {  
               items[i].quantityOfItemNumber[j].sprite = SpriteHolder.instance.GetNumberArtFromIDNumber((int)(caryables[i].NumberOfItemsInSupply * Mathf.Pow(.10f, j) % 10));
+            }
+
+            if(caryables[i] is Food)
+            {
+                donessTrackers[i].gameObject.SetActive(true);
             }
             
         }
