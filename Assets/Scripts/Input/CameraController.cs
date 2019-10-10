@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
+    public delegate void OnCameraStopMoving();
+    public OnCameraStopMoving onStopMoving;
+
     [SerializeField]
     float speed;
 
@@ -20,20 +23,25 @@ public class CameraController : MonoBehaviour {
 
     private bool iSFreePanModeOn;
 
-   
     
     void Start()
     {
         defaultCameraLocation = this.gameObject.transform.position;
         desiredLocation = defaultCameraLocation;
-      
     }
 
 
     private void Update()
     {
         mainCamera.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, desiredLocation, (speed * Time.deltaTime));
-        if (mainCamera.gameObject.transform.position == desiredLocation ) { iSFreePanModeOn = true; }
+        if (mainCamera.gameObject.transform.position == desiredLocation  && !iSFreePanModeOn)
+        {
+            iSFreePanModeOn = true;
+            if (onStopMoving != null)
+            {
+                onStopMoving.Invoke();
+            }
+        }
     }
 
     

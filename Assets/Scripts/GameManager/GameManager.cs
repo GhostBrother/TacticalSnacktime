@@ -190,7 +190,6 @@ public class GameManager : MonoBehaviour {
         {
             CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
-            CurentCharacter.HideCoaster(CurentCharacter.ItemCoaster);
             timeAffectedObjects.Remove(CurentCharacter);
         }
         else
@@ -223,13 +222,14 @@ public class GameManager : MonoBehaviour {
     {
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
         characterDisplay.ChangeCharacterArt(character.PawnSprite);
-        characterDisplay.ChangeHeldItemArt(character.CariedObjects);
+        characterDisplay.ChangeHeldItemArt(character.CariedObjects, character.NumberOfItemsCanCary);
     }
 
     // On Player Start
 
     private void OnPlayerControlledStart(Character playerCharacter)
     {
+        camera.onStopMoving = playerCharacter.MoveCharacter;
         MoveCameraToCharacter(playerCharacter);
         CurentCharacter = playerCharacter;
         SetState(GetIdleState());
@@ -239,9 +239,14 @@ public class GameManager : MonoBehaviour {
 
     private void OnCustomerStart(Character customerCharacter)
     {
-        CurentCharacter = customerCharacter;
-        SetState(GetMovingState());
-        MoveCameraToCharacter(customerCharacter);
+        if (customerCharacter is AICharacter)
+        {
+            AICharacter c = (AICharacter)customerCharacter;
+            CurentCharacter = customerCharacter;
+            SetState(GetMovingState());
+            camera.onStopMoving = c.MoveCharacter;
+            MoveCameraToCharacter(customerCharacter);
+        }
     }
 
    // On all Cooking station Start

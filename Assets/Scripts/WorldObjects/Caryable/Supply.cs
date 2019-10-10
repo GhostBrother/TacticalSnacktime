@@ -4,31 +4,24 @@ using UnityEngine;
 
 public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable 
 {
+    public string NameOfFoodInSupply { get; set; }
 
     public int HandsRequired { get; set; }
 
-    public int Weight { get; set; }
-
     public Sprite CaryableObjectSprite { get; private set; }
 
-    public Food FoodThisSupplyMakes { get; private set; }
+    public Food FoodThisSupplyMakes { get; set; }
 
     public List<Command> HeldObjectCommands { get; private set; }
 
     public int NumberOfItemsInSupply { get; set; }
 
-    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite) : this(foodThisSupplyMakes, caryableObjectSprite, 1)
-    {
 
-    }
-
-    public Supply(Food foodThisSupplyMakes, Sprite caryableObjectSprite, int numberOfFoodLeftInSupply) 
+    public Supply()  // Food foodThisSupplyMakes, Sprite caryableObjectSprite, int numberOfFoodLeftInSupply
     {
         HeldObjectCommands = new List<Command>();
-        FoodThisSupplyMakes = foodThisSupplyMakes;
-        Name = foodThisSupplyMakes.Name;
-        CaryableObjectSprite = PawnSprite = caryableObjectSprite;
-        NumberOfItemsInSupply = numberOfFoodLeftInSupply;
+        CaryableObjectSprite = PawnSprite = SpriteHolder.instance.GetSupplyBox();
+        SetName();
     }
 
     public iCaryable Give(int i)
@@ -38,8 +31,8 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public void GetRidOfItem(int i)
     {
-            HideCoaster(characterCoaster);
-            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+       HideCoaster(characterCoaster);
+       TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
     }
 
     public override List<Command> GetCommands()
@@ -49,7 +42,13 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public override void GetTargeter(Character character)
     {
+        SetName();
         SpaceContextualActions.Clear();
-        SpaceContextualActions.Add(new TakeItem(this, character, 0));
+        SpaceContextualActions.Add(new PickUpItem(this, character, 0));
+    }
+
+    public void SetName()
+    {
+        Name = $"Box of {NumberOfItemsInSupply} {NameOfFoodInSupply} "; //{NumberOfItemsInSupply} {FoodThisSupplyMakes.Name}
     }
 }

@@ -1,14 +1,15 @@
 {
 
-    "Map": [
-      "oooooooo",
-      "oWGooGWo",
-      "oWooooWo",
-      "oooooooo",
-      "oWWRWWWo",
-      "oooooooo",
-      "oooooooo",
-      "Dooooooo"
-    ]
+  "Map":
+  [
+    "ooooSooo",
+    "oWGooGWo",
+    "oWooooWo",
+    "oooooooo",
+    "oWWRWWWo",
+    "oooooooo",
+    "oooooooo",
+    "Dooooooo"
+  ]
 
 }

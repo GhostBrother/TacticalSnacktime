@@ -21,7 +21,9 @@ public abstract class TrasferItemCommand : Command
 
     public void execute()
     {
-        _reciver.PickUp(_giver.Give(_index));
+        iCaryable swapedItem = _giver.Give(_index);
         _giver.GetRidOfItem(_index);
+        _reciver.PickUp(swapedItem);
+        
     }
 }

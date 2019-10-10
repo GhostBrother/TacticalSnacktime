@@ -128,6 +128,10 @@ public class AICharacter : Character
     public override void TurnStart()
     {
         onStartTurn.Invoke(this);
+    }
+
+    public override void MoveCharacter()
+    {
         CheckPath();
         Move();
         characterCoaster.onStopMoving = AILookForAction;

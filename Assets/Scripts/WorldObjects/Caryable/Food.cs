@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Food : iCaryable
 {
-    public int[] Doneness = new int[6];
+    public int[] DonenessesLevels = new int[6];
     public int CurrentDoness;
 
 
@@ -25,20 +25,20 @@ public class Food : iCaryable
 
     public int NumberOfItemsInSupply { get; set; }
 
-    public Food(string name, decimal _price, Sprite caryableObjectSprite) : this (name, _price, caryableObjectSprite, 1)
-    {
+    public int ID;
 
-    }
-    public Food(string name, decimal _price, Sprite caryableObjectSprite, int foodInSupply)
+
+
+    public Food(string Name, decimal Price, int[] DonenessesLevels, string Description, int HandsRequired, int ID)
     {
-        Name = name;
-        Price = _price;
-        CaryableObjectSprite = caryableObjectSprite;
-        NumberOfItemsInSupply = foodInSupply;
+        this.Name = Name;
+        this.Price = Price;
+        this.ID = ID;
+        CaryableObjectSprite = SpriteHolder.instance.GetFoodArtFromIDNumber(ID);
+        this.Description = Description;
+        this.DonenessesLevels = DonenessesLevels;
+        this.HandsRequired = HandsRequired;
         HeldObjectCommands = new List<Command>();
-        for(int i = 0; i < Doneness.Length; i++)
-        {
-            Doneness[i] = i * 2;
-        }
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Grill : AbstractInteractablePawn, iCookingStation 
@@ -15,6 +16,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
 
     List<Recipe> recipiesThatCanBeCreated;
 
+
     public Grill()
     {
         itemsOnGrill = new List<Food>();
@@ -24,13 +26,12 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
         EntityType = EnumHolder.EntityType.CookingStation;
         Name = "Grill";
+    }
 
-        // PlaceHolder
-        List<Food> breakfastBurger = new List<Food>();
-        breakfastBurger.Add(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0), 1));
-        breakfastBurger.Add(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1), 2));
-        Recipe recipe = new Recipe(breakfastBurger, new Food("Breakfast Burger", 3.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(2)));
-        recipiesThatCanBeCreated.Add(recipe);
+
+    public void LoadRecipies(List<Recipe> recipes)
+    {
+        recipiesThatCanBeCreated = recipes;
     }
 
     public override List<Command> GetCommands()
@@ -46,7 +47,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         itemsOnGrill.Add(itemToCook);
         DonenessTracker donenessTrackerToAdd = _monoPool.GetDonenessTrackerInstance();
         donenessTrackerToAdd.gameObject.transform.position = new Vector3(TilePawnIsOn.transform.position.x + (xCordinateOffset * itemsOnGrill.Count), TilePawnIsOn.transform.position.y + yCordinateOffset, -0.5f);
-        donenessTrackerToAdd.InitMeter(itemToCook.Doneness[itemToCook.Doneness.Length - 1]);
+        donenessTrackerToAdd.InitMeter(itemToCook.DonenessesLevels[itemToCook.DonenessesLevels.Length - 1]);
         donenessTrackers.Add(donenessTrackerToAdd);
 
         AddToTimeline.Invoke(this);
@@ -54,24 +55,36 @@ public class Grill : AbstractInteractablePawn, iCookingStation
 
     public override void GetTargeter(Character character)
     {
+
+        // Should every cookable do this? Should there be an abstract cookable
         SpaceContextualActions.Clear();
+       
         if (character is iCanGiveItems)
         {
+            List<Food> heldFood = new List<Food>();
             for (int i = 0; i < character.CariedObjects.Count; i++)
             {
-                if (character.CariedObjects[i] is Supply)
+      
+               if(character.CariedObjects[i] is Supply)
                 {
                     Supply supply = (Supply)character.CariedObjects[i];
-                    iCanGiveItems givingCharacter = (iCanGiveItems)character;
-                    SpaceContextualActions.Add(new CookFood(this, givingCharacter, i));
+                    heldFood.Add(supply.FoodThisSupplyMakes);
+                }
 
-                    for(int j = 0; j < recipiesThatCanBeCreated.Count; j++)
-                    {
-                       if(recipiesThatCanBeCreated[j].CanCraftFood(itemsOnGrill))
-                        {
-                            SpaceContextualActions.Add(new CraftFood(this, recipiesThatCanBeCreated[j]));
-                        }
-                    }
+               if(character.CariedObjects[i] is Food)
+                {
+                    Food food = (Food)character.CariedObjects[i];
+                    heldFood.Add(food);
+                }
+
+            }
+
+            heldFood.AddRange(itemsOnGrill);
+            for (int j = 0; j < recipiesThatCanBeCreated.Count; j++)
+            {
+                if (recipiesThatCanBeCreated[j].CanCraftFood(heldFood))
+                {
+                    SpaceContextualActions.Add(new CraftFood(this, character ,recipiesThatCanBeCreated[j]));
                 }
             }
         }
@@ -99,11 +112,12 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         return itemsOnGrill[i];
     }
 
-    public void RemoveFoodFromStation(Food foodToRemove)
+    public void RemoveFoodFromStation(string foodToRemove)
     {
+
         for(int i = 0; i < itemsOnGrill.Count; i++)
         {
-            if (foodToRemove.Name == itemsOnGrill[i].Name)
+            if (foodToRemove == itemsOnGrill[i].Name)
             {
                 GetRidOfItem(i);
                 break;

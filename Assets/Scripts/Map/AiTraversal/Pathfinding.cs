@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    // Has to be the number of tiles on the map... 
+    //// Has to be the number of tiles on the map... 
     [SerializeField]
     MapGenerator mg;
-     int maxSize;
+    int maxSize;
+
     PathRequestManager requestManager;
 
-     void Awake()
+     void Start()
     {
         requestManager = GetComponent<PathRequestManager>();
         maxSize = mg.MapSize;

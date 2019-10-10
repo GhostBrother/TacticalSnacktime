@@ -10,7 +10,6 @@ public interface iCaryable
 {
     string Name { get; }
     int HandsRequired { get; }
-    int Weight { get; }
     Sprite CaryableObjectSprite { get; }
     List<Command> HeldObjectCommands { get; }
     int NumberOfItemsInSupply { get; set; }

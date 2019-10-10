@@ -12,13 +12,13 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     
 
     public void GetRidOfItem(int i )
-    {
-        cariedObjects[i].NumberOfItemsInSupply--;
-        if (cariedObjects[i].NumberOfItemsInSupply <= 0)
-        {
+    {      
+        //cariedObjects[i].NumberOfItemsInSupply--;
+        //if (cariedObjects[i].NumberOfItemsInSupply < 1)
+        //{
+            usedHands--;
             cariedObjects.RemoveAt(i);
-            HideCoaster(ItemCoaster);
-        }
+        //}
     }
 
     public iCaryable Give(int i)
@@ -37,12 +37,11 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
         if (character is PlayercontrolledCharacter)
         {
             PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
-            // Checks to see if we have something to give. 
-          //  if (character.CariedObjects != null)
+
           for(int i = 0; i < character.CariedObjects.Count; i++)
                 SpaceContextualActions.Add(new GiveItem(giver, this,i));
 
-           // else if (cariedObject != null && character.CariedObject == null)
+
            for (int j = 0; j < cariedObjects.Count; j++)
                 SpaceContextualActions.Add(new TakeItem(this, character, j));
         }

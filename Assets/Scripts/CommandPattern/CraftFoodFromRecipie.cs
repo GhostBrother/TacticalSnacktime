@@ -9,29 +9,61 @@ public class CraftFood : Command
     public string CommandName { get { return _commandName; } }
     iCookingStation _cookingStation;
     Recipe _recipieToMake;
+    Character _character;
 
-    public CraftFood( iCookingStation cookStaion ,Recipe recipeToMake)
+    public CraftFood( iCookingStation cookStaion,Character character,Recipe recipeToMake)
     {
         createCommandName(recipeToMake);
         _cookingStation = cookStaion;
         _recipieToMake = recipeToMake;
+        _character = character;
     }
 
     void createCommandName(Recipe recipeToMake)
     {
         _commandName = "Combine ";
-        for(int i = 0; i < recipeToMake.IngredentsForRecipe.Count -1; i++)
+        for(int i = 0; i < recipeToMake.NameOfIngredentsForRecipe.Count -1; i++)
         {
-            _commandName += $"{recipeToMake.IngredentsForRecipe[i].Name} + ";
+            _commandName += $"{recipeToMake.NameOfIngredentsForRecipe[i]} + ";
         }
-        _commandName += $"{recipeToMake.IngredentsForRecipe[recipeToMake.IngredentsForRecipe.Count-1].Name} for {recipeToMake.FoodCreated}";
+        _commandName += $"{recipeToMake.NameOfIngredentsForRecipe[recipeToMake.NameOfIngredentsForRecipe.Count-1]} for {recipeToMake.FoodCreated}";
     }
 
     public void execute()
     {
-        for(int i = 0; i < _recipieToMake.IngredentsForRecipe.Count; i++)
+        Debug.Log("Craft Food From Recipie hit");
+        List<string> names = new List<string>();
+        for(int k = 0; k < _recipieToMake.NameOfIngredentsForRecipe.Count; k++)
         {
-            _cookingStation.RemoveFoodFromStation(_recipieToMake.IngredentsForRecipe[i]);
+            names.Add(_recipieToMake.NameOfIngredentsForRecipe[k]);
+        }
+
+        for(int j = 0; j < _character.CariedObjects.Count; j++)
+        {
+            string s = string.Empty;
+            if(_character.CariedObjects[j] is Food)
+            {
+                Food f = (Food)_character.CariedObjects[j];
+                s = f.Name;
+            }
+
+            if(_character.CariedObjects[j] is Supply)
+            {
+                Supply supply = (Supply)_character.CariedObjects[j];
+                s = supply.FoodThisSupplyMakes.Name;
+            }
+
+            if(names.Contains(s))
+            {
+                Debug.Log("Removing " + _character.CariedObjects[j].Name);
+                names.Remove(_character.CariedObjects[j].Name);
+                _character.CariedObjects.RemoveAt(j);
+                j--;
+            }
+        }
+        for(int i = 0; i < names.Count; i++)
+        {
+            _cookingStation.RemoveFoodFromStation(names[i]);
         }
         _cookingStation.CreateFood(_recipieToMake.FoodCreated);
     }

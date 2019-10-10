@@ -46,6 +46,7 @@ public class SpriteHolder : MonoBehaviour {
 
     public Sprite GetNumberArtFromIDNumber(int index)
     {
+        Debug.Log("Number thing" + index);
         return NumberArt[index];
     }
 

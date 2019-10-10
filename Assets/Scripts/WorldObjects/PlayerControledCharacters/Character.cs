@@ -11,9 +11,10 @@ public abstract class Character : AbstractInteractablePawn
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 
     // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
-    int numberOfHands = 2;
+    int numberOfItemsCanCary = 2;
+    public int NumberOfItemsCanCary { get { return numberOfItemsCanCary; }}
 
-    int usedHands = 0; 
+    protected int usedHands = 0; 
 
     protected List<iCaryable> cariedObjects;
     public List<iCaryable> CariedObjects { get { return cariedObjects; } }
@@ -59,12 +60,16 @@ public abstract class Character : AbstractInteractablePawn
 
     public void PickUp(iCaryable caryable)
     {
-        usedHands += caryable.HandsRequired;
-        if (usedHands < numberOfHands)
+        if (!cariedObjects.Contains(caryable))
         {
+            Debug.Log("Hello");
+            usedHands += caryable.HandsRequired;
             cariedObjects.Add(caryable);
-            ShowCoaster(caryable.CaryableObjectSprite, x => ItemCoaster = x);
         }
+    }
+
+    public virtual void MoveCharacter()
+    {
 
     }
 

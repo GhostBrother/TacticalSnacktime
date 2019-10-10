@@ -45,18 +45,24 @@ public class CharacterDisplay : MonoBehaviour {
         characterPortrait.sprite = image;
     }
 
-    public void ChangeHeldItemArt(List<iCaryable> caryables)
+    public void ChangeHeldItemArt(List<iCaryable> caryables , int MaxItemsCharacterCanHold)
     {
         SetAllHeldItemsToBlank();
+
+        for(int j = 0; j < MaxItemsCharacterCanHold; j++)
+        {
+            items[j].heldItemImage.transform.parent.gameObject.SetActive(true);
+        }
         for (int i = 0; i< caryables.Count; i++)
         {
-            items[i].heldItemImage.transform.parent.gameObject.SetActive(true);
             items[i].inUse = true;
+            items[i].heldItemImage.gameObject.SetActive(true);
             items[i].heldItemImage.sprite = caryables[i].CaryableObjectSprite;
 
             // Sets ones tens and hundreds of items
             for (int j = 0; j < items[i].quantityOfItemNumber.Length; j++)
-            {  
+            {
+              items[i].quantityOfItemNumber[j].gameObject.SetActive(true);
               items[i].quantityOfItemNumber[j].sprite = SpriteHolder.instance.GetNumberArtFromIDNumber((int)(caryables[i].NumberOfItemsInSupply * Mathf.Pow(.10f, j) % 10));
             }
 
@@ -73,6 +79,13 @@ public class CharacterDisplay : MonoBehaviour {
         for (int i = 0; i < items.Length; i++)
         {
             items[i].heldItemImage.transform.parent.gameObject.SetActive(false);
+            donessTrackers[i].gameObject.SetActive(false);
+            items[i].heldItemImage.gameObject.SetActive(false);
+
+            for (int j = 0; j < items[i].quantityOfItemNumber.Length; j++)
+            {
+                items[i].quantityOfItemNumber[j].gameObject.SetActive(false);
+            }
         }
     }
 

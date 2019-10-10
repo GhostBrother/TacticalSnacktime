@@ -2,20 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using System.Linq;
-using Newtonsoft;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
-public class MapGenerator : MonoBehaviour
+
+public class MapGenerator : JsonLoader<Map>
 {
 
     [SerializeField]
     private Tile _tileToGenerate;
-
-    string path;
-    string jsonString;
 
     [SerializeField]
     MonoPool _monoPool;
@@ -26,6 +20,8 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private float _verticalDistanceBetweenTiles;
 
+    FoodContainerFactory cookingStationFactory;
+
     private int _rows;
     private int _columns;
 
@@ -33,33 +29,30 @@ public class MapGenerator : MonoBehaviour
     public int MapSize
     { get
         {
-            if (jObject == null) { Init(); }
             return _rows * _columns;
         }
     }
 
-    private Pathfinding pf;
-
-    JObject jObject;
-
     Dictionary<char, Func<AbstractPawn>> editorLookUp;
 
-    public void Init()
+    public void Start()
     {
-        path = "Assets/JsonMaps/TestMap.json";
-        using (StreamReader r = new StreamReader(path))
-        {
-            jsonString = r.ReadToEnd();
-            jObject = JObject.Parse(jsonString);
-            _rows = jObject["Map"].Count();
-            _columns = jObject["Map"][0].ToString().Length;
-        }
+        Init("Assets/JsonMaps/TestMap.json");
+    }
+
+    public override void Init(string filePath)
+    {
+        base.Init(filePath);
+       _rows = jObject["Map"].Count();
+       _columns = jObject["Map"][0].ToString().Length;
+        
     }
 
     private void LoadDictionary()
     {
         editorLookUp = new Dictionary<char, Func<AbstractPawn>>();
-        editorLookUp.Add('G', Clone<Grill>);
+        editorLookUp.Add('G', AddRecipies<Grill>);
+        editorLookUp.Add('S', BundleSuppply<Supply>);
         editorLookUp.Add('R', Clone<Register>);
         editorLookUp.Add('D', Clone<Door>);
         editorLookUp.Add('W', Clone<Wall>);
@@ -107,9 +100,6 @@ public class MapGenerator : MonoBehaviour
                 prevTile = temp.GetComponent<Tile>();
             }
         }
-
-        DebugSpawnSupply(mapToReturn);
-
         return mapToReturn;
     }
 
@@ -136,18 +126,31 @@ public class MapGenerator : MonoBehaviour
         return new T();
     }
 
-    private void DebugSpawnSupply(Map mapToReturn)
+    private AbstractPawn AddRecipies<T>() where T : AbstractPawn, new()
     {
-        //TEST
-        Supply newSupply = new Supply(new Food("Burger", 2.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(0)), SpriteHolder.instance.GetSupplyBox(), 52);
-        newSupply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
-        newSupply._monoPool = _monoPool;
-        newSupply.TilePawnIsOn = mapToReturn.GetTileAtRowAndColumn(3, 2);
+        if (cookingStationFactory == null)
+        {
+            cookingStationFactory = new FoodContainerFactory();
+        }
+        AbstractPawn toDecorate = new T();
+        toDecorate = cookingStationFactory.LoadCookStation(toDecorate);
+        return toDecorate;
+    }
 
-        Supply new3Supply = new Supply(new Food("Egg", 1.00M, SpriteHolder.instance.GetFoodArtFromIDNumber(1)), SpriteHolder.instance.GetSupplyBox());
-        new3Supply.characterCoaster = _monoPool.GetCharacterCoasterInstance();
-        new3Supply._monoPool = _monoPool;
-        new3Supply.TilePawnIsOn = mapToReturn.GetTileAtRowAndColumn(4, 3);
+    private AbstractPawn BundleSuppply<T>() where T : Supply , new()
+    {
+
+        if (cookingStationFactory == null)
+        {
+            cookingStationFactory = new FoodContainerFactory();
+        }
+        Supply supply = new T();
+            supply.HandsRequired = 1;
+            //Temp
+            supply.NumberOfItemsInSupply = 1;
+            supply.NameOfFoodInSupply = "Patty";
+            supply = cookingStationFactory.LoadSupply(supply);
+        return supply;
     }
 
 }

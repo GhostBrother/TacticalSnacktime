@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class Recipe
 {
-    public List<Food> IngredentsForRecipe { get; private set; }
-    public Food FoodCreated { get; private set; } 
 
-    public Recipe(List<Food> _ingredentsForRecipe, Food _foodToCreate)
+    public string Name { get; private set; }
+    public int id { get; private set; }
+    public List<string> NameOfIngredentsForRecipe { get; private set; }
+    public Food FoodCreated { get;  set; } 
+
+    public Recipe( string Name , List<string> Recipe, int ID)                                  
     {
-        IngredentsForRecipe = _ingredentsForRecipe;
-        FoodCreated = _foodToCreate;
+        NameOfIngredentsForRecipe = Recipe;
+        id = ID;
+        this.Name = Name;
     }
 
     public bool CanCraftFood(List<Food> foodForCrafting)
     {
         foodForCrafting.Sort((x, y) => x.Name.CompareTo(y.Name));
-        for ( int i = 0; i < IngredentsForRecipe.Count; i++) 
+
+
+        for ( int i = 0; i < NameOfIngredentsForRecipe.Count; i++) 
         {
-            if (!foodForCrafting.Exists(x => x.Name == IngredentsForRecipe[i].Name))
+            if (!foodForCrafting.Exists(x => x.Name == NameOfIngredentsForRecipe[i]))
             {
                 return false;
             }
@@ -28,9 +34,14 @@ public class Recipe
 
     public void CraftFood(List<Food> foodForCrafting)
     {
-        for(int i = 0; i < IngredentsForRecipe.Count; i++)
+        foodForCrafting.Sort((x, y) => x.Name.CompareTo(y.Name));
+        for (int i = 0; i < NameOfIngredentsForRecipe.Count; i++)
         {
-            foodForCrafting.Remove(IngredentsForRecipe[i]);
+            if(foodForCrafting.Exists(x => x.Name == NameOfIngredentsForRecipe[i]))
+            {
+                foodForCrafting.RemoveAt(i);
+            }
+            //foodForCrafting.Remove(IngredentsForRecipe[i]);
         }
 
     }

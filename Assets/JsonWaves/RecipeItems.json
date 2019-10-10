@@ -1,0 +1,44 @@
+{
+
+    "Grill":
+  [
+
+    {
+      "Name": "Burger",
+      "Recipe": [ "Patty" ],
+      "ID": 0
+    },
+
+
+    {
+
+      "Name": "Fried Egg",
+      "Recipe": [ "Egg" ],
+      "ID": 1
+    },
+
+
+    {
+
+      "Name": "BreakfastBurger",
+      "Recipe": [ "Burger", "Fried Egg" ],
+      "ID": 2
+    }
+
+
+  ],
+
+  "DeepFrier":
+  [
+
+    {
+      "Name": "Fries",
+      "Recipe": [ "FrozenFries" ],
+      "ID": 3
+    }
+
+
+  ]
+
+
+}
