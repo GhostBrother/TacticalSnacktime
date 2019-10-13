@@ -36,10 +36,6 @@ public class TileSelected : iGameManagerState
             {
                 if (neighbor.IsTargetableOnTile)
                 {
-                    neighbor.TargetableOnTile.GetTargeter(_gameManager.CurentCharacter);
-
-                    if (neighbor.TargetableOnTile.GetCommands().Count > 0)
-                    _gameManager.ActionMenu.AddCommandsToList(neighbor.TargetableOnTile.GetCommands());
 
                     //HACK
                     if (neighbor.TargetableOnTile is Grill)
@@ -51,8 +47,6 @@ public class TileSelected : iGameManagerState
                     }
                 }
             }
-
-            _gameManager.ActionMenu.AddCommandsToList(_gameManager.CurentCharacter.CariedObjectCommands);
 
             _gameManager.SetState(_gameManager.GetMovingState());
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
@@ -70,7 +64,7 @@ public class TileSelected : iGameManagerState
 
     private void ActionOnStopMoving(Tile tile)
     {
-        _gameManager.ActionMenu.ShowActionsAtTile(tile);
+        _gameManager.ActionMenu.ShowActionsAtTile();
         _gameManager.SetState(_gameManager.GetActionState());
     }
 }

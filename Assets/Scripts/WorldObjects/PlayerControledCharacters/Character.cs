@@ -62,7 +62,6 @@ public abstract class Character : AbstractInteractablePawn
     {
         if (!cariedObjects.Contains(caryable))
         {
-            Debug.Log("Hello");
             usedHands += caryable.HandsRequired;
             cariedObjects.Add(caryable);
         }

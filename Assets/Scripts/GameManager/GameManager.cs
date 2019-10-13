@@ -206,6 +206,11 @@ public class GameManager : MonoBehaviour {
 
     public void StartNextCharactersTurn()
     {
+        if(timeAffectedObjects[0] is Character)
+        {
+            Character nextCharacter = (Character)timeAffectedObjects[0];
+            actionMenu.SetCurrentCharacter(nextCharacter);
+        }
         timeAffectedObjects[0].TurnStart();
     }
 

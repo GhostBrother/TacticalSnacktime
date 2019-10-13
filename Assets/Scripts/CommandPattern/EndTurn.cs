@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class EndTurn : Command
 {
-
-    public EndTurn()
+    ActionMenu _actionMenu;
+    public EndTurn(ActionMenu actionMenu)
     {
+        _actionMenu = actionMenu;
     }
 
     public string CommandName { get { return "Wait"; } }
 
     public void execute()
     {
-        
+        _actionMenu.EndTurn();  
     }
 
 }

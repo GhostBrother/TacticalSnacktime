@@ -60,6 +60,7 @@ public class InputHandler : MonoBehaviour {
                     if (isMousePressed)
                     {
                         pointerEvent.selectedObject.GetComponent<ActionButton>().ExecuteStoredCommand();
+                        isMousePressed = false;
                         return;
                     }
                 }

@@ -22,47 +22,67 @@ public class ActionMenu : MonoBehaviour
 
     List<ActionButton> actionButtons;
 
+    //Hack
+    Character _currentCharacter;
+
     public void Start()
     {
         ActionMenuCommands = new List<Command>();
         actionButtons = new List<ActionButton>();
     }
 
-    public void ShowActionsAtTile(Tile tileWithCommands)
+    public void SetCurrentCharacter(Character character)
     {
+        _currentCharacter = character;
+    }
 
-        this.transform.position = tileWithCommands.transform.position;
+    public void ShowActionsAtTile()
+    {
+        this.transform.position = _currentCharacter.TilePawnIsOn.transform.position;
+        OpenMenu();       
+    }
 
-        ActionMenuCommands.Add(new EndTurn());
+     void OpenMenu()
+    {
+        GetAllActionsFromTile();
 
         if (ActionMenuCommands.Count > actionButtons.Count)
         {
             int temp = ActionMenuCommands.Count - actionButtons.Count;
             for (int i = 0; i < temp; i++)
             {
-                ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
+                ActionButton tempButton = Instantiate(buttonPrefab, this.transform); // ActionButton
                 tempButton.onActionTaken += HideAllActions;
-                tempButton.onActionTaken += EndTurn;
+                tempButton.onActionTaken += OpenMenu;
                 actionButtons.Add(tempButton);
             }
         }
 
-        for(int i = 0; i < ActionMenuCommands.Count; i++)
+        for (int i = 0; i < ActionMenuCommands.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(true);
             actionButtons[i].StoredCommand = ActionMenuCommands[i];
             actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
         }
 
+        ActionButton endButton = Instantiate(buttonPrefab, this.transform);
+        endButton.StoredCommand = new EndTurn(this);
+        endButton.onActionTaken += HideAllActions;
+        endButton.gameObject.SetActive(true);
+        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + (ActionMenuCommands.Count * endButton.gameObject.transform.lossyScale.y), this.transform.position.z));
+        actionButtons.Add(endButton);
     }
+
 
     public void HideAllActions()
     {
+
         for (int i = 0; i < actionButtons.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(false);
         }
         ActionMenuCommands.Clear();
+        actionButtons.Clear();
     }
 
     // Hack, mainly for grills and other selected objects.
@@ -78,8 +98,23 @@ public class ActionMenu : MonoBehaviour
 
     public void AddCommandsToList(List<Command> commands)
     {
-        foreach(Command c in commands)
-        ActionMenuCommands.Add(c);
+        foreach (Command c in commands)
+        {
+            ActionMenuCommands.Add(c);
+        }
     }
 
+    void GetAllActionsFromTile()
+    {
+        foreach (Tile neighbor in _currentCharacter.TilePawnIsOn.neighbors)
+        {
+            if (neighbor.IsTargetableOnTile)
+            {
+                neighbor.TargetableOnTile.GetTargeter(_currentCharacter);
+                AddCommandsToList(neighbor.TargetableOnTile.GetCommands());
+            }
+
+            AddCommandsToList(_currentCharacter.CariedObjectCommands);
+        }
+    }
 }
