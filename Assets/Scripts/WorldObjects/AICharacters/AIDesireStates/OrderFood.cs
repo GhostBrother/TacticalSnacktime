@@ -19,9 +19,10 @@ public class OrderFood : IDesireState
     public bool isRequestSatisfied()
     {
         if(aiCharacter.CariedObjects.Count > 0)
-        { 
+        {
             aiCharacter.HideCoaster(aiCharacter.NeedCoaster);
             aiCharacter.HideCoaster(aiCharacter.FoodWantCoaster);
+            aiCharacter.AssessQuality();
             return true;
         }
         return false;

@@ -12,13 +12,13 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     
 
     public void GetRidOfItem(int i )
-    {      
-        //cariedObjects[i].NumberOfItemsInSupply--;
-        //if (cariedObjects[i].NumberOfItemsInSupply < 1)
-        //{
+    {
+        cariedObjects[i].NumberOfItemsInSupply--;
+        if (cariedObjects[i].NumberOfItemsInSupply < 1)
+        {
             usedHands--;
             cariedObjects.RemoveAt(i);
-        //}
+        }
     }
 
     public iCaryable Give(int i)

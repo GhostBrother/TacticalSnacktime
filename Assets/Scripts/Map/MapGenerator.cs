@@ -33,7 +33,7 @@ public class MapGenerator : JsonLoader<Map>
         }
     }
 
-    Dictionary<char, Func<AbstractPawn>> editorLookUp;
+    Dictionary<char, Func<string,AbstractPawn>> editorLookUp;
 
     public void Start()
     {
@@ -43,14 +43,13 @@ public class MapGenerator : JsonLoader<Map>
     public override void Init(string filePath)
     {
         base.Init(filePath);
-       _rows = jObject["Map"].Count();
-       _columns = jObject["Map"][0].ToString().Length;
-        
+        _rows = jObject["Map"].Count();
+        _columns = jObject["Map"][0].ToString().Split(' ').Length;
     }
 
     private void LoadDictionary()
     {
-        editorLookUp = new Dictionary<char, Func<AbstractPawn>>();
+        editorLookUp = new Dictionary<char, Func<string,AbstractPawn>>();
         editorLookUp.Add('G', AddRecipies<Grill>);
         editorLookUp.Add('S', BundleSuppply<Supply>);
         editorLookUp.Add('R', Clone<Register>);
@@ -66,9 +65,12 @@ public class MapGenerator : JsonLoader<Map>
         Vector3 tilePos = new Vector3(0, 0, 0);
         Tile prevTile = null;
         Map mapToReturn = new Map(_rows, _columns);
+
         for (int y = 0; y < _rows; y++)
         {
-            for (int x = 0; x < jObject["Map"][y].ToString().Length; x++)
+            string[] tiles = jObject["Map"][y].ToString().Split(' ');
+
+            for(int x = 0; x < tiles.Length; x++)
             {
                 temp = Instantiate(_tileToGenerate.gameObject);
                 tilePos.x = (x * _horizontalDistanceBetweenTiles);
@@ -93,9 +95,9 @@ public class MapGenerator : JsonLoader<Map>
                     temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
                 }
 
-                temp = PlacePawnOnTile(jObject["Map"][y].ToString()[x], temp);
+                temp = PlacePawnOnTile(tiles[x], temp);
 
-                temp.GetComponent<Tile>().SetXandYPos(x, y);
+        temp.GetComponent<Tile>().SetXandYPos(x, y);
                 mapToReturn.AddTileToMap(temp.GetComponent<Tile>(), x, y);
                 prevTile = temp.GetComponent<Tile>();
             }
@@ -103,11 +105,11 @@ public class MapGenerator : JsonLoader<Map>
         return mapToReturn;
     }
 
-    private GameObject PlacePawnOnTile(char marker, GameObject temp)
+    private GameObject PlacePawnOnTile(string marker, GameObject temp)
     {
-        if (editorLookUp.ContainsKey(marker))
+        if (editorLookUp.ContainsKey(marker[0]))
         {
-            AbstractPawn pawnToPlace = editorLookUp[marker].Invoke();
+            AbstractPawn pawnToPlace = editorLookUp[marker[0]].Invoke(marker);
             if (pawnToPlace is AbstractInteractablePawn)
             {
                 temp.GetComponent<Tile>().TargetableOnTile = (AbstractInteractablePawn)pawnToPlace;
@@ -121,12 +123,12 @@ public class MapGenerator : JsonLoader<Map>
 
     }
 
-    private AbstractPawn Clone<T>() where T : AbstractPawn, new()
+    private AbstractPawn Clone<T>(string args) where T : AbstractPawn, new()
     {
         return new T();
     }
 
-    private AbstractPawn AddRecipies<T>() where T : AbstractPawn, new()
+    private AbstractPawn AddRecipies<T>(string CookStationType) where T : AbstractPawn, new()
     {
         if (cookingStationFactory == null)
         {
@@ -137,7 +139,7 @@ public class MapGenerator : JsonLoader<Map>
         return toDecorate;
     }
 
-    private AbstractPawn BundleSuppply<T>() where T : Supply , new()
+    private AbstractPawn BundleSuppply<T>(string SupplyTypeAndNumber) where T : Supply , new()
     {
 
         if (cookingStationFactory == null)
@@ -145,11 +147,8 @@ public class MapGenerator : JsonLoader<Map>
             cookingStationFactory = new FoodContainerFactory();
         }
         Supply supply = new T();
-            supply.HandsRequired = 1;
-            //Temp
-            supply.NumberOfItemsInSupply = 1;
-            supply.NameOfFoodInSupply = "Patty";
-            supply = cookingStationFactory.LoadSupply(supply);
+
+       supply = cookingStationFactory.LoadSupply(supply, SupplyTypeAndNumber);
         return supply;
     }
 

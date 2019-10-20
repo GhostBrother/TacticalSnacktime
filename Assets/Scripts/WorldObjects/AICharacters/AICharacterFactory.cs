@@ -6,18 +6,19 @@ using UnityEngine;
 public class AICharacterFactory 
 {
     MonoPool _monoPool;
-    FoodLoader foodLoader;
+    DesireContainer _desireContainer;
 
     public AICharacterFactory(MonoPool monoPool)
     {
         _monoPool = monoPool;
-        foodLoader = new FoodLoader();
+        _desireContainer = new DesireContainer();
     }
 
     public AICharacter SpawnCharacterAt(Tile targetTile)
     {
 
-        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetCharacterArtFromIDNumber(3), 2, foodLoader.GetFoodById("Burger"), "Dargon");
+        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetCharacterArtFromIDNumber(3), 2,"Dragon");
+        aICharacter.ChooseWhatToEat(_desireContainer.chooseWhatToEatBasedOnTaste(aICharacter.Name));
         aICharacter.characterCoaster = _monoPool.GetCharacterCoasterInstance();
         aICharacter._monoPool = _monoPool;
 

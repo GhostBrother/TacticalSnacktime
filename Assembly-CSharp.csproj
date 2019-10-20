@@ -60,10 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FoodContainerFactory.cs" />
-    <Compile Include="Assets\FoodLoader.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
-    <Compile Include="Assets\RecipeLoader.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
@@ -73,9 +70,12 @@
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />
+    <Compile Include="Assets\Scripts\DesireContainer.cs" />
     <Compile Include="Assets\Scripts\DonenessTracker.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
     <Compile Include="Assets\Scripts\Food\Recipe.cs" />
+    <Compile Include="Assets\Scripts\FoodContainerFactory.cs" />
+    <Compile Include="Assets\Scripts\FoodLoader.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\AITurn.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Map\TileStates\OccupiedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\iTileState.cs" />
     <Compile Include="Assets\Scripts\MonoPool.cs" />
+    <Compile Include="Assets\Scripts\RecipeLoader.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />

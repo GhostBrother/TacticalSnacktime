@@ -10,17 +10,23 @@ public class AICharacter : Character
     Tile[] path;
     int targetIndex;
     Food desiredFood;
+    int satisfaction;
     List<IDesireState> Desires;
+    public bool OrderHasBeenTaken { get; set; }
 
     public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
 
-    public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, Food _desiredFood, string _name) : base(baseMoveSpeed, characterSprite, speedStat, _name )
+    public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, string _name) : base(baseMoveSpeed, characterSprite, speedStat, _name )
     {
         targetIndex = 0;
-        desiredFood = _desiredFood;
-
+        OrderHasBeenTaken = false;
         // Temporary 
         Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this)};
+    }
+
+    public void ChooseWhatToEat(Food food)
+    {
+        desiredFood = food; 
     }
 
     public void setTarget(Tile _target)
@@ -100,7 +106,7 @@ public class AICharacter : Character
             HideCoaster(NeedCoaster);
             HideCoaster(FoodWantCoaster);
             ShowCoasterWithOffset(SpriteHolder.instance.GetTextBubble(), xCordinateOffset, yCordinateOffset, x => NeedCoaster = x);
-            ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(0), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
+            ShowCoasterWithOffset(SpriteHolder.instance.GetFoodArtFromIDNumber(desiredFood.ID), xCordinateOffset, yCordinateOffset, x => FoodWantCoaster = x);
         }
 
     }
@@ -123,6 +129,34 @@ public class AICharacter : Character
             }
         }
 
+    }
+
+    public void AssessQuality()
+    {
+      for(int i = 0; i < cariedObjects.Count; i++)
+        {
+            if (cariedObjects[i] is Food)
+            {
+                Food weighedFood = (Food)cariedObjects[i];
+
+                // is order correct
+                if(weighedFood.ID == desiredFood.ID)
+                {
+                    satisfaction += 50;
+                }
+                // if weighed food is the same type += 15 
+
+               // if doneness scale is in the middle 
+
+            // time it takes to get food. 
+
+            // Price? 
+
+            // flare? 
+
+            // Give em a pop up that shows how the customer feels. 
+            }
+        }
     }
 
     public override void TurnStart()

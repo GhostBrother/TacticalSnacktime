@@ -18,12 +18,25 @@ public class Register : AbstractInteractablePawn
     public override void GetTargeter(Character _character)
     {
         SpaceContextualActions.Clear();
+ 
 
         for(int i = 0; i < TilePawnIsOn.neighbors.Count; i++)
         {
             if (TilePawnIsOn.neighbors[i].TargetableOnTile is AICharacter)
             {
+                
                 customer = (AICharacter)TilePawnIsOn.neighbors[i].TargetableOnTile;
+                 for(int j = 0; j < _character.CariedObjects.Count; j++)
+                {
+                    if(_character.CariedObjects[j] is Food)
+                    {
+                        PlayercontrolledCharacter givingCharacter = (PlayercontrolledCharacter)_character;
+                        SpaceContextualActions.Add(new GiveItem(givingCharacter, customer, j));
+
+                    }
+                }
+
+                 if(!customer.OrderHasBeenTaken)
                  SpaceContextualActions.Add(new TakeOrder(customer));
             }
         }

@@ -31,7 +31,6 @@ public class CraftFood : Command
 
     public void execute()
     {
-        Debug.Log("Craft Food From Recipie hit");
         List<string> names = new List<string>();
         for(int k = 0; k < _recipieToMake.NameOfIngredentsForRecipe.Count; k++)
         {
@@ -55,7 +54,6 @@ public class CraftFood : Command
 
             if(names.Contains(s))
             {
-                Debug.Log("Removing " + _character.CariedObjects[j].Name);
                 names.Remove(_character.CariedObjects[j].Name);
                 _character.CariedObjects.RemoveAt(j);
                 j--;

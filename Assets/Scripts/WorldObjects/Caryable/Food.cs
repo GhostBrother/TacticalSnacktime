@@ -27,9 +27,11 @@ public class Food : iCaryable
 
     public int ID;
 
+    public List<string> CustomersWhoLikeThis { get; private set; }
 
 
-    public Food(string Name, decimal Price, int[] DonenessesLevels, string Description, int HandsRequired, int ID)
+
+    public Food(string Name, decimal Price, int[] DonenessesLevels, string Description, int HandsRequired, int ID, List<string> Customers)
     {
         this.Name = Name;
         this.Price = Price;
@@ -39,6 +41,6 @@ public class Food : iCaryable
         this.DonenessesLevels = DonenessesLevels;
         this.HandsRequired = HandsRequired;
         HeldObjectCommands = new List<Command>();
-        
+        CustomersWhoLikeThis = Customers;
     }
 }

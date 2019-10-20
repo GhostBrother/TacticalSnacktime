@@ -10,6 +10,7 @@ public class PickUpItem : TrasferItemCommand
         {
             AbstractInteractablePawn temp = (AbstractInteractablePawn)ItemToPickUp;
             characterName = temp.Name;
+            
         }
     }
     public override string CommandName { get { return $"Pickup {characterName} from floor"; } }

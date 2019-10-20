@@ -9,7 +9,8 @@
       "DonenessesLevels": [ 0, 2, 4, 6, 8, 10 ],
       "Description": "A Tiny DAB of suntan lotion",
       "HandsRequired": 1,
-      "ID": 0
+      "ID": 0,
+      "Customers": ["Dragon"]
     },
 
 
@@ -20,7 +21,8 @@
       "DonenessesLevels": [ 0, 1, 3, 4, 5, 7 ],
       "Description": "Breakfast in my pjs, and dinner looking dapper",
       "HandsRequired": 1,
-      "ID": 1
+      "ID": 1,
+      "Customers": [ "Dragon" ]
     },
 
 
@@ -31,7 +33,8 @@
       "DonenessesLevels": [ 0, 2, 4, 6, 8, 10 ],
       "Description": "My favorite thing ever.",
       "HandsRequired": 1,
-      "ID": 2
+      "ID": 2,
+      "Customers": [ "Dragon" ]
     },
 
 
@@ -42,7 +45,8 @@
       "DonenessesLevels": [ 0, 2, 4, 6, 8, 10 ],
       "Description": "A Tiny DAB of suntan lotion",
       "HandsRequired": 1,
-      "ID": 3
+      "ID": 3,
+      "Customers": [ "Dragon" ]
     },
 
     {
@@ -51,7 +55,8 @@
       "DonenessesLevels": [ 0, 2, 4, 6, 8, 10 ],
       "Description": "A frozen beef patty, cook this into a burger",
       "HandsRequired": 1,
-      "ID": 4
+      "ID": 4,
+      "Customers": [ "Dragon" ]
     }
 
 

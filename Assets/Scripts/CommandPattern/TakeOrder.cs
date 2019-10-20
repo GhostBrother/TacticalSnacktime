@@ -14,6 +14,7 @@ public class TakeOrder : Command
 
     public void execute()
     {
+       customer.OrderHasBeenTaken = true;
        customer.DisplayOrder();
     }
 }
