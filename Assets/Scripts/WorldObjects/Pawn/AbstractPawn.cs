@@ -54,9 +54,11 @@ public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn
         }
     }
 
-    public string Name { get; protected set; }
+    public string Name { get; set; }
 
-    public Sprite PawnSprite { get; protected set; }
+    public Sprite PawnSprite { get; set; }
+
+    public int ID { get; set; }
 
     public EnumHolder.EntityType EntityType { get; protected set; }
  

@@ -30,8 +30,9 @@ public class JsonLoader<T> : MonoBehaviour
     protected List<T> GetObjectListFromFilePathByString(string indexer)
     {
         List<T> toReturn = new List<T>();
+        
         foreach (var item in jObject[indexer])
-        {
+        { 
             toReturn.Add(JsonConvert.DeserializeObject<T>(item.ToString()));
         }
         return toReturn;

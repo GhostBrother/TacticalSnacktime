@@ -6,22 +6,16 @@ public class CharacterRoster {
 
     List<PlayercontrolledCharacter> employedCharacters;
 
-    Sprite KoboldSprite;
-    Sprite TheifSprite;
-    Sprite DragonSprite;
+    CharacterLoader _characterLoader; 
 
     public CharacterRoster()
     {
         employedCharacters = new List<PlayercontrolledCharacter>();
-        KoboldSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(0);
-        TheifSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(1);
-        DragonSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(2);
+        _characterLoader = new CharacterLoader();
 
-        employedCharacters.Add(new PlayercontrolledCharacter(1,  KoboldSprite,1, "Kobold"));
-        
-
-        employedCharacters.Add(new PlayercontrolledCharacter(3,  TheifSprite,3 , "Creepy Guy"));
-        employedCharacters.Add(new PlayercontrolledCharacter(3, TheifSprite, 3, "Spooky Man"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Kobold"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Theif"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Ghost"));
     }
 
     public PlayercontrolledCharacter PeekAtNextCharacter()

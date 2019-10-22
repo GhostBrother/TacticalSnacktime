@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CharacterLoader.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
@@ -70,11 +71,12 @@
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />
-    <Compile Include="Assets\Scripts\DesireContainer.cs" />
+    <Compile Include="Assets\Scripts\Containers\DesireContainer.cs" />
+    <Compile Include="Assets\Scripts\Containers\FoodContainerFactory.cs" />
+    <Compile Include="Assets\Scripts\CustomerLoader.cs" />
     <Compile Include="Assets\Scripts\DonenessTracker.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
     <Compile Include="Assets\Scripts\Food\Recipe.cs" />
-    <Compile Include="Assets\Scripts\FoodContainerFactory.cs" />
     <Compile Include="Assets\Scripts\FoodLoader.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\AITurn.cs" />

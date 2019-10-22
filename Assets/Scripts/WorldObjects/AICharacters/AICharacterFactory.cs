@@ -7,18 +7,20 @@ public class AICharacterFactory
 {
     MonoPool _monoPool;
     DesireContainer _desireContainer;
+    CustomerLoader _customerLoader;
 
     public AICharacterFactory(MonoPool monoPool)
     {
         _monoPool = monoPool;
         _desireContainer = new DesireContainer();
+        _customerLoader = new CustomerLoader();
     }
 
     public AICharacter SpawnCharacterAt(Tile targetTile)
     {
 
-        AICharacter aICharacter = new AICharacter(1, SpriteHolder.instance.GetCharacterArtFromIDNumber(3), 2,"Dragon");
-        aICharacter.ChooseWhatToEat(_desireContainer.chooseWhatToEatBasedOnTaste(aICharacter.Name));
+        AICharacter aICharacter = _customerLoader.GetCustomerByType("Dragon");
+        aICharacter.ChooseWhatToEat(_desireContainer.chooseWhatToEatBasedOnTaste(aICharacter.Race));
         aICharacter.characterCoaster = _monoPool.GetCharacterCoasterInstance();
         aICharacter._monoPool = _monoPool;
 

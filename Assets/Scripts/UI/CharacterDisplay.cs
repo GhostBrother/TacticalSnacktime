@@ -53,7 +53,7 @@ public class CharacterDisplay : MonoBehaviour {
         {
             items[j].heldItemImage.transform.parent.gameObject.SetActive(true);
         }
-        for (int i = 0; i< caryables.Count; i++)
+        for (int i = 0; i < caryables.Count; i++)
         {
             items[i].inUse = true;
             items[i].heldItemImage.gameObject.SetActive(true);

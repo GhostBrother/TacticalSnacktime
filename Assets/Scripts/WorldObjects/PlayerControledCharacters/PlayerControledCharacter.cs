@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
-    // At some point I want name to be randomly chosen from a jason pool ( common, species and class specific) 
-    public PlayercontrolledCharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, string name) : base(baseMoveSpeed, characterSprite, speedStat, name)
+    //public int baseMoveSpeed { get; set; }
+    //public int speedStat { get; set; }
+    //public string race { get; set; }
+    //public int id { get; set; }
+
+    // At some point I want name to be randomly chosen from a json pool ( common, species and class specific) 
+    //public PlayercontrolledCharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, string race, string name, int id) : base(baseMoveSpeed, characterSprite,speedStat,race ,name, id)
+    //{
+    //    EntityType = EnumHolder.EntityType.Character;
+    //}
+
+    public PlayercontrolledCharacter()
     {
         EntityType = EnumHolder.EntityType.Character;
     }
-    
 
     public void GetRidOfItem(int i )
     {

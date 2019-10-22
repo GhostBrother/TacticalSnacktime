@@ -12,17 +12,23 @@ public class AICharacter : Character
     Food desiredFood;
     int satisfaction;
     List<IDesireState> Desires;
-    public bool OrderHasBeenTaken { get; set; }
 
+    public bool OrderHasBeenTaken { get; set; }
     public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
 
-    public AICharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, string _name) : base(baseMoveSpeed, characterSprite, speedStat, _name )
+    public AICharacter()
     {
         targetIndex = 0;
         OrderHasBeenTaken = false;
         // Temporary 
-        Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this)};
+        Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this) };
     }
+
+
+    //public AICharacter(int baseMoveSpeed, int speedStat, string race ,string _name , int id) : base(baseMoveSpeed, SpriteHolder.instance.GetCharacterArtFromIDNumber(id), speedStat, race,_name, id )
+    //{
+     
+    //}
 
     public void ChooseWhatToEat(Food food)
     {

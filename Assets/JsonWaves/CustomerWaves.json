@@ -1,0 +1,40 @@
+{
+
+  "Races": [
+
+    {
+      "MoveSpeed": 1,
+      "speedStat": 1,
+      "Race": "Kobold",
+      "Name": "Burger Kobold",
+      "id": 0
+    },
+
+    {
+      "MoveSpeed": 3,
+      "speedStat": 3,
+      "Race": "Theif",
+      "Name": "Creepy Guy",
+      "id": 1
+    },
+
+    {
+      "MoveSpeed": 2,
+      "speedStat": 2,
+      "Race": "Ghost",
+      "Name": "Spooksly",
+      "id": 2
+    },
+
+    {
+      "MoveSpeed": 2,
+      "speedStat": 3,
+      "Race": "Dragon",
+      "Name": "Lil Chompy",
+      "id": 3
+    }
+
+
+
+  ]
+}
