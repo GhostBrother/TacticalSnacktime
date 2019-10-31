@@ -18,7 +18,6 @@ public class DesireContainer
 
     public Food chooseWhatToEatBasedOnTaste(string customer)
     {
-        Debug.Log(customer);
         int rand;
         if (customerLookUp.ContainsKey(customer))
         {

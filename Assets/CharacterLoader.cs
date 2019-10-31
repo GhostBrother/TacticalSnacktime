@@ -2,41 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterLoader : JsonLoader<PlayercontrolledCharacter>
+public class CharacterLoader<T> : JsonLoader<T> where T : Character
 {
 
-    List<PlayercontrolledCharacter> characters;
+    protected List<T> characters;
     public CharacterLoader()
     {
         Init("Assets/JsonWaves/CustomerWaves.json");
         characters = GetObjectListFromFilePathByString("Races");
     }
 
-    public PlayercontrolledCharacter GetCharacterByType(string Type)
+    public T GetCharacterByType<T>(string Type) where T : Character, new()
     {
-       
+        T characterToReturn = null;
         for (int i = 0; i < characters.Count; i++)
         {
-            PlayercontrolledCharacter characterToReturn;
             if (Type == characters[i].Race)
             {
-                characterToReturn = (PlayercontrolledCharacter)Clone<PlayercontrolledCharacter>(characters[i]);
+                characterToReturn = new T();
                 characterToReturn.Name = characters[i].Name;
                 characterToReturn.MoveSpeed = characters[i].MoveSpeed;
                 characterToReturn.SpeedStat = characters[i].SpeedStat;
                 characterToReturn.ID = characters[i].ID;
                 characterToReturn.PawnSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(characterToReturn.ID);
                 characterToReturn.Race = characters[i].Race;
-                return characterToReturn;
+
             }
         }
 
-        return null;
-        
+        return characterToReturn;
+
     }
 
-    private Character Clone<T>(Character characterToClone) where T : Character, new()
-    {
-        return new T();
-    }
 }

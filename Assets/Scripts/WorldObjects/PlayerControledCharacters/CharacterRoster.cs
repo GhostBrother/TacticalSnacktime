@@ -6,16 +6,18 @@ public class CharacterRoster {
 
     List<PlayercontrolledCharacter> employedCharacters;
 
-    CharacterLoader _characterLoader; 
+    CharacterLoader<PlayercontrolledCharacter> _characterLoader; 
 
     public CharacterRoster()
     {
         employedCharacters = new List<PlayercontrolledCharacter>();
-        _characterLoader = new CharacterLoader();
+        _characterLoader = new CharacterLoader<PlayercontrolledCharacter>();
 
-        employedCharacters.Add(_characterLoader.GetCharacterByType("Kobold"));
-        employedCharacters.Add(_characterLoader.GetCharacterByType("Theif"));
-        employedCharacters.Add(_characterLoader.GetCharacterByType("Ghost"));
+        // Try to get rid of the template methoid
+        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Kobold"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Kobold"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Theif"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Ghost"));
     }
 
     public PlayercontrolledCharacter PeekAtNextCharacter()

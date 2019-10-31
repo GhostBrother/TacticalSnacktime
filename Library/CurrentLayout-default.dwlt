@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 678, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 677, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 4875
+  controlID: 969
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 4876
+  controlID: 970
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 4877
+  controlID: 941
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 422e0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 60fbffff
       m_RenameOverlay:
@@ -576,16 +576,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Containers
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\natha\Documents\TacticalSnackTime
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 93}
+    scrollPos: {x: 0, y: 79}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096360000983600009a3600009c3600009e360000a0360000a236000000ca9a3b
+    m_ExpandedIDs: 000000009e360000a0360000a2360000a4360000a6360000a8360000aa36000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -613,7 +613,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096360000983600009a3600009c3600009e360000a0360000a236000000ca9a3b
+    m_ExpandedIDs: 000000009e360000a0360000a2360000a4360000a6360000a8360000aa36000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
