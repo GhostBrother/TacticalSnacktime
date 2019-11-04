@@ -18,55 +18,48 @@ public class Idle : iGameManagerState
     }
 
 
-        public void TileClicked(Tile tile)
+    public void TileClicked(Tile tile)
+    {
+        if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
         {
-            if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
+
+            _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);
+            _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridY - _gameManager.CurentCharacter.TilePawnIsOn.GridY);
+            foreach (Tile neighbor in tile.neighbors)
             {
-
-                _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);
-                _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridY - _gameManager.CurentCharacter.TilePawnIsOn.GridY);
-                foreach (Tile neighbor in tile.neighbors)
+                if (neighbor.IsTargetableOnTile)
                 {
-                    if (neighbor.IsTargetableOnTile)
-                    {
 
-                        //HACK
-                        if (neighbor.TargetableOnTile is Grill)
-                        {
-                            Grill G = (Grill)neighbor.TargetableOnTile;
-                            G.TurnOrder = _gameManager.CurentCharacter.TurnOrder;
-                            G.AddToTimeline = _gameManager.AddPawnToTimeline;
-                            G.RemoveFromTimeline = _gameManager.RemovePawnFromTimeline;
-                        }
+                    //HACK
+                    if (neighbor.TargetableOnTile is Grill)
+                    {
+                        Grill G = (Grill)neighbor.TargetableOnTile;
+                        G.TurnOrder = _gameManager.CurentCharacter.TurnOrder;
+                        G.AddToTimeline = _gameManager.AddPawnToTimeline;
+                        G.RemoveFromTimeline = _gameManager.RemovePawnFromTimeline;
                     }
                 }
-
-                _gameManager.SetState(_gameManager.GetMovingState());
-                _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
-                _gameManager.CurentCharacter.TilePawnIsOn = tile;
-                tile.ChangeState(tile.GetActiveState());
-                _gameManager.DeactivateAllTiles();
-
             }
-            else
-            {
-                _gameManager.DeactivateAllTiles();
-                _gameManager.SetState(_gameManager.GetIdleState());
-            }
+
+            _gameManager.SetState(_gameManager.GetMovingState());
+            _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
+            _gameManager.CurentCharacter.TilePawnIsOn = tile;
+            tile.ChangeState(tile.GetActiveState());
+            _gameManager.DeactivateAllTiles();
+
         }
-
-        private void ActionOnStopMoving(Tile tile)
+        else
         {
-            _gameManager.ActionMenu.ShowActionsAtTile();
-            _gameManager.SetState(_gameManager.GetActionState());
+            _gameManager.DeactivateAllTiles();
+            _gameManager.SetState(_gameManager.GetIdleState());
         }
+    }
 
-        //if (_gameManager.CurentCharacter.TilePawnIsOn == tile)
-        //{
-        //   // _gameManager.CurentCharacter.ShowMoveRange();
-        //    //tile.ChangeState(tile.GetClearState());
-        //   // _gameManager.SetState(_gameManager.GetSelectedState());
-        //}
+    private void ActionOnStopMoving(Tile tile)
+    {
+        _gameManager.ActionMenu.ShowActionsAtTile();
+        _gameManager.SetState(_gameManager.GetActionState());
+    }
 
 
     public void NextArrow()

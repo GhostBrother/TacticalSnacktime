@@ -9,6 +9,9 @@ public class ActionMenu : MonoBehaviour
     public delegate void OnTurnEnd();
     public OnTurnEnd onTurnEnd;
 
+    public delegate void OnButtonClick();
+    public OnButtonClick onButtonClick;
+
     public delegate void AddTimedObjectToList(iAffectedByTime timedObject);
     public AddTimedObjectToList addTimed;
 
@@ -38,7 +41,7 @@ public class ActionMenu : MonoBehaviour
         _Gm = gm;
     }
 
-    public void SetCurrentCharacter() //Character character
+    public void SetCurrentCharacter() 
     {
         _currentCharacter = _Gm.CurentCharacter;
     }
@@ -61,6 +64,7 @@ public class ActionMenu : MonoBehaviour
                 ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
                 tempButton.onActionTaken += HideAllActions;
                 tempButton.onActionTaken += OpenMenu;
+                tempButton.onActionTaken += onButtonClick.Invoke;
                 actionButtons.Add(tempButton);
             }
         }

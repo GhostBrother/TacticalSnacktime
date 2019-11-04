@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour {
 
         actionMenu.onTurnEnd = EndCharacterTurn;
         actionMenu.addTimed = AddTimeInfluencedToList;
+        actionMenu.onButtonClick = UpdateCharacterDisplay;
         actionMenu.SetGM(this);
        
         _gameMap = _mapGenerator.generateMap();
@@ -230,7 +231,7 @@ public class GameManager : MonoBehaviour {
     {
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
         characterDisplay.ChangeCharacterArt(character.PawnSprite);
-        characterDisplay.ChangeHeldItemArt(character.CariedObjects, character.NumberOfItemsCanCary);
+        UpdateCharacterDisplay();
     }
 
     // On Player Start
@@ -239,7 +240,6 @@ public class GameManager : MonoBehaviour {
     {
         camera.onStopMoving = playerCharacter.MoveCharacter;
         MoveCameraToCharacter(playerCharacter);
-       // CurentCharacter = playerCharacter;
         SetState(GetIdleState());
     }
 
@@ -250,7 +250,6 @@ public class GameManager : MonoBehaviour {
         if (customerCharacter is AICharacter)
         {
             AICharacter c = (AICharacter)customerCharacter;
-           // CurentCharacter = customerCharacter;
             SetState(GetMovingState());
             camera.onStopMoving = c.MoveCharacter;
             MoveCameraToCharacter(customerCharacter);
@@ -291,6 +290,12 @@ public class GameManager : MonoBehaviour {
             if (timeAffectedObjects[i] is AICharacter) { Debug.Log(i + ": " + " is customer"); }
             if (timeAffectedObjects[i] is Clock) { Debug.Log(i + ": " + " is clock"); }
         }
+    }
+
+
+    public void UpdateCharacterDisplay()
+    {
+       characterDisplay.ChangeHeldItemArt(CurentCharacter.CariedObjects, CurentCharacter.NumberOfItemsCanCary);
     }
 
 }
