@@ -63,7 +63,8 @@ public class GameManager : MonoBehaviour {
 
         actionMenu.onTurnEnd = EndCharacterTurn;
         actionMenu.addTimed = AddTimeInfluencedToList;
-
+        actionMenu.SetGM(this);
+       
         _gameMap = _mapGenerator.generateMap();
 
         AddInGameClockToList(_clock);
@@ -206,10 +207,12 @@ public class GameManager : MonoBehaviour {
 
     public void StartNextCharactersTurn()
     {
-        if(timeAffectedObjects[0] is Character)
+
+        if (timeAffectedObjects[0] is Character)
         {
             Character nextCharacter = (Character)timeAffectedObjects[0];
-            actionMenu.SetCurrentCharacter(nextCharacter);
+            CurentCharacter = nextCharacter;
+            actionMenu.SetCurrentCharacter(); //nextCharacter
         }
         timeAffectedObjects[0].TurnStart();
     }
@@ -236,7 +239,7 @@ public class GameManager : MonoBehaviour {
     {
         camera.onStopMoving = playerCharacter.MoveCharacter;
         MoveCameraToCharacter(playerCharacter);
-        CurentCharacter = playerCharacter;
+       // CurentCharacter = playerCharacter;
         SetState(GetIdleState());
     }
 
@@ -247,7 +250,7 @@ public class GameManager : MonoBehaviour {
         if (customerCharacter is AICharacter)
         {
             AICharacter c = (AICharacter)customerCharacter;
-            CurentCharacter = customerCharacter;
+           // CurentCharacter = customerCharacter;
             SetState(GetMovingState());
             camera.onStopMoving = c.MoveCharacter;
             MoveCameraToCharacter(customerCharacter);

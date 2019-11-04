@@ -8,6 +8,7 @@ public abstract class Character : AbstractInteractablePawn
     public int MoveSpeed { get; set; }
     public string Race { get;  set; }
     public int SpeedStat { get; set; }
+    public int _MoveRemaining { get; set; }
 
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
@@ -38,36 +39,25 @@ public abstract class Character : AbstractInteractablePawn
                 }
             }
             return _cariedObjectCommands;
-        }
-            
+        }     
     }
 
     public Character()
     {
-
         EntityType = EnumHolder.EntityType.None;
         needsRemoval = false;
         _cariedObjectCommands = new List<Command>();
         cariedObjects = new List<iCaryable>();
     }
 
-    //public Character(int baseMoveSpeed, Sprite characterSprite, int speedStat , string race, string name, int _id)
-    //{
-    //    MoveSpeed = baseMoveSpeed;
-    //    PawnSprite = characterSprite;
-    //    TurnOrder = speedStat;
-    //    EntityType = EnumHolder.EntityType.None;
-    //    Race = race;
-    //    Name = name;
-    //    ID = _id;
-    //    needsRemoval = false;
-    //    _cariedObjectCommands = new List<Command>();
-    //    cariedObjects = new List<iCaryable>();
-    //}
+    protected void ResetMoveValue()
+    {
+        _MoveRemaining = MoveSpeed;
+    }
 
     public void ShowMoveRange()
     {
-        TilePawnIsOn.ColorAllAdjacent(MoveSpeed);
+        TilePawnIsOn.ColorAllAdjacent(_MoveRemaining); 
     }
 
     public void PickUp(iCaryable caryable)

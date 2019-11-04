@@ -14,6 +14,8 @@ public class ActionMenu : MonoBehaviour
 
     List<Command> ActionMenuCommands;
 
+    GameManager _Gm;
+
     [SerializeField]
     Camera cam;
 
@@ -31,9 +33,14 @@ public class ActionMenu : MonoBehaviour
         actionButtons = new List<ActionButton>();
     }
 
-    public void SetCurrentCharacter(Character character)
+    public void SetGM(GameManager gm)
     {
-        _currentCharacter = character;
+        _Gm = gm;
+    }
+
+    public void SetCurrentCharacter() //Character character
+    {
+        _currentCharacter = _Gm.CurentCharacter;
     }
 
     public void ShowActionsAtTile()
@@ -51,7 +58,7 @@ public class ActionMenu : MonoBehaviour
             int temp = ActionMenuCommands.Count - actionButtons.Count;
             for (int i = 0; i < temp; i++)
             {
-                ActionButton tempButton = Instantiate(buttonPrefab, this.transform); // ActionButton
+                ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
                 tempButton.onActionTaken += HideAllActions;
                 tempButton.onActionTaken += OpenMenu;
                 actionButtons.Add(tempButton);
@@ -69,14 +76,24 @@ public class ActionMenu : MonoBehaviour
         endButton.StoredCommand = new EndTurn(this);
         endButton.onActionTaken += HideAllActions;
         endButton.gameObject.SetActive(true);
-        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + (ActionMenuCommands.Count * endButton.gameObject.transform.lossyScale.y), this.transform.position.z));
+        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + ((ActionMenuCommands.Count) * endButton.gameObject.transform.lossyScale.y), this.transform.position.z));
         actionButtons.Add(endButton);
+
+        if (_Gm.CurentCharacter._MoveRemaining > 0)
+        {
+            ActionButton moveButton = Instantiate(buttonPrefab, this.transform);
+            moveButton.StoredCommand = new MoveCommand(_Gm);
+            moveButton.onActionTaken += HideAllActions;
+            moveButton.gameObject.SetActive(true);
+            moveButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + ((ActionMenuCommands.Count + 1) * moveButton.gameObject.transform.lossyScale.y), this.transform.position.z));
+            actionButtons.Add(moveButton);
+        }
+
     }
 
 
     public void HideAllActions()
     {
-
         for (int i = 0; i < actionButtons.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(false);

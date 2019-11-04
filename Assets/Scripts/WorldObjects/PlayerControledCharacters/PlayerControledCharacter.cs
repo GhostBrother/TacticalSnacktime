@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
-    //public int baseMoveSpeed { get; set; }
-    //public int speedStat { get; set; }
-    //public string race { get; set; }
-    //public int id { get; set; }
-
-    // At some point I want name to be randomly chosen from a json pool ( common, species and class specific) 
-    //public PlayercontrolledCharacter(int baseMoveSpeed, Sprite characterSprite, int speedStat, string race, string name, int id) : base(baseMoveSpeed, characterSprite,speedStat,race ,name, id)
-    //{
-    //    EntityType = EnumHolder.EntityType.Character;
-    //}
 
     public PlayercontrolledCharacter()
     {
@@ -22,12 +12,12 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public void GetRidOfItem(int i )
     {
-        cariedObjects[i].NumberOfItemsInSupply--;
-        if (cariedObjects[i].NumberOfItemsInSupply < 1)
-        {
+        //cariedObjects[i].NumberOfItemsInSupply--;
+       // if (cariedObjects[i].NumberOfItemsInSupply < 1)
+       // {
             usedHands--;
             cariedObjects.RemoveAt(i);
-        }
+        //}
     }
 
     public iCaryable Give(int i)
@@ -58,6 +48,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void TurnStart()
     {
+        ResetMoveValue();
         onStartTurn.Invoke(this);
     }
 }

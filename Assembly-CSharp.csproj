@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\MoveCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />

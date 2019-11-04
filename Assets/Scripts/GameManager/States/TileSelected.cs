@@ -32,6 +32,9 @@ public class TileSelected : iGameManagerState
     {
         if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
         {
+
+            _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);
+            _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridY - _gameManager.CurentCharacter.TilePawnIsOn.GridY);
             foreach (Tile neighbor in tile.neighbors)
             {
                 if (neighbor.IsTargetableOnTile)
