@@ -15,6 +15,7 @@ public abstract class TrasferItemCommand : Command
         _giver = giver;
         _reciver = reciver;
         _index = index;
+        itemName = _giver.Give(index).Name; //Change name of Method to "GetItemFromIndex" for clarity
     }
 
     public abstract string CommandName { get; }

@@ -21,12 +21,13 @@ public class CraftFood : Command
 
     void createCommandName(Recipe recipeToMake)
     {
-        _commandName = "Combine ";
+        _commandName = "Cook ";
         for(int i = 0; i < recipeToMake.NameOfIngredentsForRecipe.Count -1; i++)
         {
+            _commandName = "Combine ";
             _commandName += $"{recipeToMake.NameOfIngredentsForRecipe[i]} + ";
         }
-        _commandName += $"{recipeToMake.NameOfIngredentsForRecipe[recipeToMake.NameOfIngredentsForRecipe.Count-1]} for {recipeToMake.FoodCreated}";
+        _commandName += $"{recipeToMake.NameOfIngredentsForRecipe[recipeToMake.NameOfIngredentsForRecipe.Count-1]} for {recipeToMake.FoodCreated.Name}";
     }
 
     public void execute()

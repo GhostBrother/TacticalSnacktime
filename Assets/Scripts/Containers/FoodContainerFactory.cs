@@ -52,7 +52,6 @@ public class FoodContainerFactory
                     }
             }
             supply.FoodThisSupplyMakes = foodLoader.GetFoodById(supplyToFind);
-
             int numberOfSupply;
             if (int.TryParse(supplyParams[2].ToString(), out numberOfSupply))
                 supply.NumberOfItemsInSupply = numberOfSupply;

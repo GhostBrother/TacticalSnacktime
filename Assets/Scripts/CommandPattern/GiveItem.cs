@@ -10,5 +10,10 @@ public class GiveItem : TrasferItemCommand
         characterName = recivingCharacter.Name;
     }
 
-    public override string CommandName { get { return $"Give {itemName} to {characterName}"; } }
+    public override string CommandName {
+        get
+        {
+            return $"Give {itemName} to {characterName}";
+        }
+    }
 }

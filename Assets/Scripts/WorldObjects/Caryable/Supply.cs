@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable 
 {
-    public string NameOfFoodInSupply { get; set; }
-
     public int HandsRequired { get; set; }
 
     public Sprite CaryableObjectSprite { get; private set; }
@@ -17,11 +15,10 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
     public int NumberOfItemsInSupply { get; set; }
 
 
-    public Supply()  // Food foodThisSupplyMakes, Sprite caryableObjectSprite, int numberOfFoodLeftInSupply
+    public Supply()  
     {
         HeldObjectCommands = new List<Command>();
         CaryableObjectSprite = PawnSprite = SpriteHolder.instance.GetSupplyBox();
-        SetName();
     }
 
     public iCaryable Give(int i)
@@ -49,6 +46,6 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public void SetName()
     {
-        Name = $"Box of {NumberOfItemsInSupply} {NameOfFoodInSupply} "; //{NumberOfItemsInSupply} {FoodThisSupplyMakes.Name}
+        Name = $"Box of {NumberOfItemsInSupply} {FoodThisSupplyMakes.Name}";
     }
 }
