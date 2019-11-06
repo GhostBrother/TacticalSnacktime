@@ -69,29 +69,31 @@ public class ActionMenu : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < ActionMenuCommands.Count; i++)
-        {
-            actionButtons[i].gameObject.SetActive(true);
-            actionButtons[i].StoredCommand = ActionMenuCommands[i];
-            actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
-        }
-
-        ActionButton endButton = Instantiate(buttonPrefab, this.transform);
-        endButton.StoredCommand = new EndTurn(this);
-        endButton.onActionTaken += HideAllActions;
-        endButton.gameObject.SetActive(true);
-        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + ((ActionMenuCommands.Count) * endButton.gameObject.transform.lossyScale.y), this.transform.position.z));
-        actionButtons.Add(endButton);
-
         if (_Gm.CurentCharacter._MoveRemaining > 0)
         {
             ActionButton moveButton = Instantiate(buttonPrefab, this.transform);
             moveButton.StoredCommand = new MoveCommand(_Gm);
             moveButton.onActionTaken += HideAllActions;
             moveButton.gameObject.SetActive(true);
-            moveButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + ((ActionMenuCommands.Count + 1) * moveButton.gameObject.transform.lossyScale.y), this.transform.position.z));
+            moveButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z)); 
             actionButtons.Add(moveButton);
         }
+
+        for (int i = 0; i < ActionMenuCommands.Count; i++)
+        {
+            actionButtons[i].gameObject.SetActive(true);
+            actionButtons[i].StoredCommand = ActionMenuCommands[i];
+            actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
+        }
+
+        ActionButton endButton = Instantiate(buttonPrefab, this.transform);
+        endButton.StoredCommand = new EndTurn(this);
+        endButton.onActionTaken += HideAllActions;
+        endButton.gameObject.SetActive(true);
+        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - ((ActionMenuCommands.Count) * endButton.gameObject.transform.lossyScale.y), this.transform.position.z)); // +1
+        actionButtons.Add(endButton);
+
+       
 
     }
 

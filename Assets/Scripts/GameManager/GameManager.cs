@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour {
         {
             Character nextCharacter = (Character)timeAffectedObjects[0];
             CurentCharacter = nextCharacter;
-            actionMenu.SetCurrentCharacter(); //nextCharacter
+            actionMenu.SetCurrentCharacter(); 
         }
         timeAffectedObjects[0].TurnStart();
     }
