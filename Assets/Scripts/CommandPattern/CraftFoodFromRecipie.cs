@@ -41,13 +41,13 @@ public class CraftFood : Command
         for(int j = 0; j < _character.CariedObjects.Count; j++)
         {
             string s = string.Empty;
-            if(_character.CariedObjects[j] is Food)
+            if (_character.CariedObjects[j] is Food)
             {
                 Food f = (Food)_character.CariedObjects[j];
                 s = f.Name;
             }
 
-            if(_character.CariedObjects[j] is Supply)
+            if (_character.CariedObjects[j] is Supply)
             {
                 Supply supply = (Supply)_character.CariedObjects[j];
                 s = supply.FoodThisSupplyMakes.Name;
@@ -55,15 +55,21 @@ public class CraftFood : Command
 
             if(names.Contains(s))
             {
-                names.Remove(_character.CariedObjects[j].Name);
-                _character.CariedObjects.RemoveAt(j);
-                j--;
+                names.Remove(s);
+                _character.CariedObjects[j].NumberOfItemsInSupply--;
+                if (_character.CariedObjects[j].NumberOfItemsInSupply == 0)
+                {
+                    _character.CariedObjects.RemoveAt(j);
+                }
+                //j--;
             }
+
         }
         for(int i = 0; i < names.Count; i++)
         {
             _cookingStation.RemoveFoodFromStation(names[i]);
         }
-        _cookingStation.CreateFood(_recipieToMake.FoodCreated);
+
+        _cookingStation.CreateFood(new Food(_recipieToMake.FoodCreated.Name, _recipieToMake.FoodCreated.price, _recipieToMake.FoodCreated.DonenessesLevels, _recipieToMake.FoodCreated.Description, _recipieToMake.FoodCreated.HandsRequired, _recipieToMake.FoodCreated.ID, _recipieToMake.FoodCreated.CustomersWhoLikeThis)); //_recipieToMake.FoodCreated
     }
 }

@@ -25,6 +25,7 @@ public abstract class TrasferItemCommand : Command
         iCaryable swapedItem = _giver.Give(_index);
         _giver.GetRidOfItem(_index);
         _reciver.PickUp(swapedItem);
-        
+       
+
     }
 }

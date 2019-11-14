@@ -9,9 +9,15 @@ public class PickUpItem : TrasferItemCommand
         if (ItemToPickUp is AbstractInteractablePawn)
         {
             AbstractInteractablePawn temp = (AbstractInteractablePawn)ItemToPickUp;
-            characterName = temp.Name;
+            itemName = temp.Name;
             
         }
+
+        if (ItemToPickUp is iCaryable)
+        {
+            iCaryable temp = (iCaryable)ItemToPickUp;
+            itemName = temp.NumberOfItemsInSupply + " " + temp.Name;
+        }
     }
-    public override string CommandName { get { return $"Pickup {characterName} from floor"; } }
+    public override string CommandName { get { return $"Pickup {itemName} from floor"; } }
 }

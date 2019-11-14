@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Grill : AbstractInteractablePawn, iCookingStation 
@@ -44,7 +42,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         const float xCordinateOffset = .5f;
         const float yCordinateOffset = .5f;
         ShowCoaster(itemToCook.CaryableObjectSprite, x => ItemCoaster = x);
-        itemsOnGrill.Add(itemToCook);
+        itemsOnGrill.Add(itemToCook);      
         DonenessTracker donenessTrackerToAdd = _monoPool.GetDonenessTrackerInstance();
         donenessTrackerToAdd.gameObject.transform.position = new Vector3(TilePawnIsOn.transform.position.x + (xCordinateOffset * itemsOnGrill.Count), TilePawnIsOn.transform.position.y + yCordinateOffset, -0.5f);
         donenessTrackerToAdd.InitMeter(itemToCook.DonenessesLevels[itemToCook.DonenessesLevels.Length - 1]);
@@ -79,7 +77,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
 
             }
 
-            heldFood.AddRange(itemsOnGrill);
+            heldFood.AddRange(itemsOnGrill);    
             for (int j = 0; j < recipiesThatCanBeCreated.Count; j++)
             {
                 if (recipiesThatCanBeCreated[j].CanCraftFood(heldFood))
@@ -89,7 +87,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
             }
         }
 
-            for(int i = 0; i < itemsOnGrill.Count; i++ )
+            for (int i = 0; i < itemsOnGrill.Count; i++)
             SpaceContextualActions.Add(new TakeItem(this, character, i));
 
     }
@@ -137,5 +135,6 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         {
             RemoveFromTimeline.Invoke(this);
         }
+
     }
 }

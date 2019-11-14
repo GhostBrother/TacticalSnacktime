@@ -42,5 +42,6 @@ public class Food : iCaryable
         this.HandsRequired = HandsRequired;
         HeldObjectCommands = new List<Command>();
         CustomersWhoLikeThis = Customers;
+        NumberOfItemsInSupply = 1;
     }
 }

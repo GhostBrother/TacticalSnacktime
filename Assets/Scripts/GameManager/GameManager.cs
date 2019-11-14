@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     MonoPool _monoPool;
 
+    [SerializeField]
+    GoldCounter _GoldCounter;
+
     public MonoPool monoPool{ get { return _monoPool; } }
 
     [SerializeField]

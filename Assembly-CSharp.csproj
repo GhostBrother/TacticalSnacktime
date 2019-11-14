@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\RecipeLoader.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
+    <Compile Include="Assets\Scripts\UI\GoldCounter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />

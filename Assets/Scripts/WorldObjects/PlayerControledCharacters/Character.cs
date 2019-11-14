@@ -62,11 +62,18 @@ public abstract class Character : AbstractInteractablePawn
 
     public void PickUp(iCaryable caryable)
     {
-        if (!cariedObjects.Contains(caryable))
+        Debug.Log(caryable.Name);
+
+        for (int i = 0; i < cariedObjects.Count; i++)
         {
-            usedHands += caryable.HandsRequired;
-            cariedObjects.Add(caryable);
+            if (cariedObjects[i].Name == caryable.Name) 
+            {
+                cariedObjects[i].NumberOfItemsInSupply += caryable.NumberOfItemsInSupply;
+                return;
+            }
         }
+        usedHands += caryable.HandsRequired;
+        cariedObjects.Add(caryable);
     }
 
     public virtual void MoveCharacter()
