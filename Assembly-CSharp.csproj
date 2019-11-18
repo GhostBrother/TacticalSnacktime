@@ -136,6 +136,7 @@
     <Compile Include="Assets\Scripts\WorldObjects\iAffectedByTime.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iCanGiveItems.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
+    <Compile Include="Assets\Scripts\iContainItems.cs" />
     <Compile Include="Assets\Scripts\iPool.cs" />
     <None Include="Assets\Shader\CookedFoodShader.shader" />
     <Reference Include="Unity.Timeline.Editor">

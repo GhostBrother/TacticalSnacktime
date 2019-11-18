@@ -62,7 +62,7 @@ public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn
 
     public EnumHolder.EntityType EntityType { get; protected set; }
  
-    public Action<Character> onStartTurn { get; set; }
+    public Action<AbstractPawn> onStartTurn { get; set; } // Character
     public Action onTurnEnd { get; set; }
 
     public int TurnOrder { get; set; }

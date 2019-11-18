@@ -9,7 +9,7 @@ public class ActionMenu : MonoBehaviour
     public delegate void OnTurnEnd();
     public OnTurnEnd onTurnEnd;
 
-    public delegate void OnButtonClick();
+    public delegate void OnButtonClick(); 
     public OnButtonClick onButtonClick;
 
     public delegate void AddTimedObjectToList(iAffectedByTime timedObject);

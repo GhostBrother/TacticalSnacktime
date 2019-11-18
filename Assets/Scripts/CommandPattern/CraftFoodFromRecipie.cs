@@ -38,28 +38,28 @@ public class CraftFood : Command
             names.Add(_recipieToMake.NameOfIngredentsForRecipe[k]);
         }
 
-        for(int j = 0; j < _character.CariedObjects.Count; j++)
+        for(int j = 0; j < _character.cariedObjects.Count; j++)
         {
             string s = string.Empty;
-            if (_character.CariedObjects[j] is Food)
+            if (_character.cariedObjects[j] is Food)
             {
-                Food f = (Food)_character.CariedObjects[j];
+                Food f = (Food)_character.cariedObjects[j];
                 s = f.Name;
             }
 
-            if (_character.CariedObjects[j] is Supply)
+            if (_character.cariedObjects[j] is Supply)
             {
-                Supply supply = (Supply)_character.CariedObjects[j];
+                Supply supply = (Supply)_character.cariedObjects[j];
                 s = supply.FoodThisSupplyMakes.Name;
             }
 
             if(names.Contains(s))
             {
                 names.Remove(s);
-                _character.CariedObjects[j].NumberOfItemsInSupply--;
-                if (_character.CariedObjects[j].NumberOfItemsInSupply == 0)
+                _character.cariedObjects[j].NumberOfItemsInSupply--;
+                if (_character.cariedObjects[j].NumberOfItemsInSupply == 0)
                 {
-                    _character.CariedObjects.RemoveAt(j);
+                    _character.cariedObjects.RemoveAt(j);
                 }
                 //j--;
             }

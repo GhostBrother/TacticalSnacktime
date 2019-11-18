@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : AbstractInteractablePawn
+public abstract class Character : AbstractInteractablePawn , iContainCaryables
 {
 
     public int MoveSpeed { get; set; }
@@ -13,14 +13,16 @@ public abstract class Character : AbstractInteractablePawn
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 
-    // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
-    int numberOfItemsCanCary = 2;
-    public int NumberOfItemsCanCary { get { return numberOfItemsCanCary; }}
+ 
+
 
     protected int usedHands = 0; 
 
-    protected List<iCaryable> cariedObjects;
-    public List<iCaryable> CariedObjects { get { return cariedObjects; } }
+    public List<iCaryable> cariedObjects { get; protected set; }
+
+    // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
+    private int _numberOfCarriedObjects;
+    public int numberOfCarriedObjects { get { return 2; } protected set { _numberOfCarriedObjects = value; } }
 
     List<Command> _cariedObjectCommands;
     public List<Command> CariedObjectCommands
@@ -62,8 +64,6 @@ public abstract class Character : AbstractInteractablePawn
 
     public void PickUp(iCaryable caryable)
     {
-        Debug.Log(caryable.Name);
-
         for (int i = 0; i < cariedObjects.Count; i++)
         {
             if (cariedObjects[i].Name == caryable.Name) 

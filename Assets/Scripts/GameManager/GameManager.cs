@@ -125,6 +125,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddPawnToTimeline(AbstractPawn ap)
     {
+        ap.onStartTurn = OnPawnStart;
         ap.onTurnEnd = EndNonCharacterTurn;
         foreach (iAffectedByTime TA in timeAffectedObjects)
         {
@@ -211,11 +212,9 @@ public class GameManager : MonoBehaviour {
 
     public void StartNextCharactersTurn()
     {
-
         if (timeAffectedObjects[0] is Character)
         {
-            Character nextCharacter = (Character)timeAffectedObjects[0];
-            CurentCharacter = nextCharacter;
+            CurentCharacter = (Character)timeAffectedObjects[0];
             actionMenu.SetCurrentCharacter(); 
         }
         timeAffectedObjects[0].TurnStart();
@@ -230,33 +229,46 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void MoveCameraToCharacter(Character character)
+
+    private void MoveCameraToPawn(AbstractPawn character) //Character character
     {
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
-        characterDisplay.ChangeCharacterArt(character.PawnSprite);
+        characterDisplay.ChangeCharacterArt(character.PawnSprite);  
         UpdateCharacterDisplay();
     }
 
     // On Player Start
 
-    private void OnPlayerControlledStart(Character playerCharacter)
+    private void OnPlayerControlledStart(AbstractPawn playerCharacter)
     {
-        camera.onStopMoving = playerCharacter.MoveCharacter;
-        MoveCameraToCharacter(playerCharacter);
-        SetState(GetIdleState());
+        if (playerCharacter is PlayercontrolledCharacter)
+        {
+            PlayercontrolledCharacter pc = (PlayercontrolledCharacter)playerCharacter;
+            camera.onStopMoving = pc.MoveCharacter;
+            MoveCameraToPawn(playerCharacter);
+            SetState(GetIdleState());
+        }
     }
 
    // On Ai Start
 
-    private void OnCustomerStart(Character customerCharacter)
+    private void OnCustomerStart(AbstractPawn customerCharacter)
     {
         if (customerCharacter is AICharacter)
         {
             AICharacter c = (AICharacter)customerCharacter;
             SetState(GetMovingState());
             camera.onStopMoving = c.MoveCharacter;
-            MoveCameraToCharacter(customerCharacter);
+            MoveCameraToPawn(customerCharacter);
         }
+    }
+
+    private void OnPawnStart(AbstractPawn abstractPawn)
+    {
+        SetState(GetMovingState());
+        // Show bars going up
+        //camera.onStopMoving = 
+        MoveCameraToPawn(abstractPawn);
     }
 
    // On all Cooking station Start
@@ -298,7 +310,13 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateCharacterDisplay()
     {
-       characterDisplay.ChangeHeldItemArt(CurentCharacter.CariedObjects, CurentCharacter.NumberOfItemsCanCary);
+        // Hack
+        if (timeAffectedObjects[0] is iContainCaryables)
+        {
+            iContainCaryables character = (iContainCaryables)timeAffectedObjects[0];
+            characterDisplay.ChangeHeldItemArt(character.cariedObjects, character.numberOfCarriedObjects);
+        }
     }
+
 
 }

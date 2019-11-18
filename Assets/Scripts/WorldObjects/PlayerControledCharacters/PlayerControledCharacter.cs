@@ -37,7 +37,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
         {
             PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
 
-          for(int i = 0; i < character.CariedObjects.Count; i++)
+          for(int i = 0; i < character.cariedObjects.Count; i++)
                 SpaceContextualActions.Add(new GiveItem(giver, this,i));
 
 

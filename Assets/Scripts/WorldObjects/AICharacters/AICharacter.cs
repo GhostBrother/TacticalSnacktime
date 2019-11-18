@@ -24,12 +24,6 @@ public class AICharacter : Character
         Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this) };
     }
 
-
-    //public AICharacter(int baseMoveSpeed, int speedStat, string race ,string _name , int id) : base(baseMoveSpeed, SpriteHolder.instance.GetCharacterArtFromIDNumber(id), speedStat, race,_name, id )
-    //{
-     
-    //}
-
     public void ChooseWhatToEat(Food food)
     {
         desiredFood = food; 
@@ -128,7 +122,7 @@ public class AICharacter : Character
 
         if (character is iCanGiveItems)
         {
-            for (int i = 0; i < character.CariedObjects.Count; i++)
+            for (int i = 0; i < character.cariedObjects.Count; i++)
             {
                 iCanGiveItems giver = (iCanGiveItems)character;
                 SpaceContextualActions.Add(new GiveItem(giver, this, i));

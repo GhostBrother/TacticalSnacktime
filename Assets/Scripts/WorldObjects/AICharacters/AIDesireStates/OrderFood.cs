@@ -18,7 +18,7 @@ public class OrderFood : IDesireState
     // Hack, should check quality of food and kind
     public bool isRequestSatisfied()
     {
-        if(aiCharacter.CariedObjects.Count > 0)
+        if(aiCharacter.cariedObjects.Count > 0)
         {
             aiCharacter.HideCoaster(aiCharacter.NeedCoaster);
             aiCharacter.HideCoaster(aiCharacter.FoodWantCoaster);

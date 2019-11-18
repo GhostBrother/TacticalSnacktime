@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour, iAffectedByTime
 {
-    public Action<Character> onStartTurn { get; set; }
+    public Action<AbstractPawn> onStartTurn { get; set; }
     public Action onTurnEnd { get ; set; }
     public Action onDayOver { get; set; }
 

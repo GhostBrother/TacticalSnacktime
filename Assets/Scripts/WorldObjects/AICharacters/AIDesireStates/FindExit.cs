@@ -18,7 +18,7 @@ public class FindExit : IDesireState
     // Seems like it could be a generic 
     public bool isRequestSatisfied()
     {
-        if (aICharacter.CariedObjects.Count > 0)
+        if (aICharacter.cariedObjects.Count > 0)
         {
             for (int i = 0; i < aICharacter.TilePawnIsOn.neighbors.Count; i++)
             {

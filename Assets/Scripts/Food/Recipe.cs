@@ -17,7 +17,7 @@ public class Recipe
         this.Name = Name;
     }
 
-    public bool CanCraftFood(List<Food> foodForCrafting)
+    public bool CanCraftFood(List<iCaryable> foodForCrafting)
     {
         foodForCrafting.Sort((x, y) => x.Name.CompareTo(y.Name));
 

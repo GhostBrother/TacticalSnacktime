@@ -26,9 +26,9 @@ public class Register : AbstractInteractablePawn
             {
                 
                 customer = (AICharacter)TilePawnIsOn.neighbors[i].TargetableOnTile;
-                 for(int j = 0; j < _character.CariedObjects.Count; j++)
+                 for(int j = 0; j < _character.cariedObjects.Count; j++)
                 {
-                    if(_character.CariedObjects[j] is Food)
+                    if(_character.cariedObjects[j] is Food)
                     {
                         PlayercontrolledCharacter givingCharacter = (PlayercontrolledCharacter)_character;
                         SpaceContextualActions.Add(new GiveItem(givingCharacter, customer, j));

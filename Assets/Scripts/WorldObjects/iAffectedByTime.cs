@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface iAffectedByTime 
 {
-    Action<Character> onStartTurn { set; get; }
+    Action<AbstractPawn> onStartTurn { set; get; } // Character
     int TurnOrder { get; }
     void TurnStart();
     Action onTurnEnd { set; get; }
