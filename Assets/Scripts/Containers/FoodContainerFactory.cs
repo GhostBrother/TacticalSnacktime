@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodContainerFactory 
 {
    RecipeLoader recipeLoader = new RecipeLoader();
-    FoodLoader foodLoader = new FoodLoader();
+   FoodLoader foodLoader = new FoodLoader();
+
+    
+   public Action<iAffectedByTime> AddToTimeline {get; set; }
+   public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
     public AbstractPawn LoadCookStation(AbstractPawn abstractPawn)
     {
@@ -13,6 +18,13 @@ public class FoodContainerFactory
         {
             iCookingStation cookingStation = (iCookingStation)abstractPawn;
             cookingStation.LoadRecipies(recipeLoader.GetRecipiesForCooktop(abstractPawn.Name));
+        }
+
+        if (abstractPawn is iAffectedByTime)
+        {
+            iAffectedByTime affectedByTime = (iAffectedByTime)abstractPawn;
+            affectedByTime.AddToTimeline = AddToTimeline;
+            affectedByTime.RemoveFromTimeline = RemoveFromTimeline;
         }
 
         return abstractPawn;

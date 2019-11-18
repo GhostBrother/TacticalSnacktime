@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : AbstractInteractablePawn , iContainCaryables
+public abstract class Character : AbstractInteractablePawn , iContainCaryables , iAffectedByTime
 {
 
     public int MoveSpeed { get; set; }
@@ -43,6 +44,9 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables
             return _cariedObjectCommands;
         }     
     }
+
+    public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action<AbstractPawn> RemoveFromTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public Character()
     {

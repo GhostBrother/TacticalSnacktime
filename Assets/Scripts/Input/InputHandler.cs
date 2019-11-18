@@ -96,14 +96,4 @@ public class InputHandler : MonoBehaviour {
         }
 
     }
-
-    public void NextAvailableCharacter()
-    {
-        Gm.NextButtonPressed();
-    }
-
-    public void PreviousAvailableCharacter()
-    {
-        Gm.PrevButtonPressed();
-    }
 }

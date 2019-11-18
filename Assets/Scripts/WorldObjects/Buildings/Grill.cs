@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grill : AbstractInteractablePawn, iCookingStation 
+public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
 {
 
-    // Hack, factor this and any other addable to timelines out. 
-    public Action<AbstractPawn> AddToTimeline { get; set; }
+    public Action<iAffectedByTime> AddToTimeline { get; set; }
     public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
     public List<iCaryable> cariedObjects { get; private set; }
@@ -28,6 +27,7 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         EntityType = EnumHolder.EntityType.CookingStation;
 
         // HACK hardcode
+        TurnOrder = 1; 
         numberOfCarriedObjects = 4; 
         Name = "Grill";
     }
@@ -54,7 +54,6 @@ public class Grill : AbstractInteractablePawn, iCookingStation
         donenessTrackerToAdd.gameObject.transform.position = new Vector3(TilePawnIsOn.transform.position.x + (xCordinateOffset * cariedObjects.Count), TilePawnIsOn.transform.position.y + yCordinateOffset, -0.5f);
         donenessTrackerToAdd.InitMeter(itemToCook.DonenessesLevels[itemToCook.DonenessesLevels.Length - 1]);
         donenessTrackers.Add(donenessTrackerToAdd);
-
         AddToTimeline.Invoke(this);
     }
 

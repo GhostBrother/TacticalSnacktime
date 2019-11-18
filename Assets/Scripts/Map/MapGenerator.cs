@@ -22,6 +22,10 @@ public class MapGenerator : JsonLoader<Map>
 
     FoodContainerFactory cookingStationFactory;
 
+
+    // Hack for now
+    GameManager _Gm; 
+
     private int _rows;
     private int _columns;
 
@@ -56,6 +60,15 @@ public class MapGenerator : JsonLoader<Map>
         editorLookUp.Add('D', Clone<Door>);
         editorLookUp.Add('W', Clone<Wall>);
 
+    }
+
+    // HACK
+    public void SetGm(GameManager gm)
+    {
+        _Gm = gm;
+        cookingStationFactory = new FoodContainerFactory();
+        cookingStationFactory.AddToTimeline = _Gm.AddPawnToTimeline;
+        cookingStationFactory.RemoveFromTimeline = _Gm.RemovePawnFromTimeline;
     }
 
     public Map generateMap()
@@ -130,10 +143,6 @@ public class MapGenerator : JsonLoader<Map>
 
     private AbstractPawn AddRecipies<T>(string CookStationType) where T : AbstractPawn, new()
     {
-        if (cookingStationFactory == null)
-        {
-            cookingStationFactory = new FoodContainerFactory();
-        }
         AbstractPawn toDecorate = new T();
         toDecorate = cookingStationFactory.LoadCookStation(toDecorate);
         return toDecorate;
@@ -141,11 +150,6 @@ public class MapGenerator : JsonLoader<Map>
 
     private AbstractPawn BundleSuppply<T>(string SupplyTypeAndNumber) where T : Supply , new()
     {
-
-        if (cookingStationFactory == null)
-        {
-            cookingStationFactory = new FoodContainerFactory();
-        }
         Supply supply = new T();
 
        supply = cookingStationFactory.LoadSupply(supply, SupplyTypeAndNumber);

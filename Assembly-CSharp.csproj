@@ -63,7 +63,6 @@
     <Compile Include="Assets\CharacterLoader.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
-    <Compile Include="Assets\Scripts\CommandPattern\CookFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
@@ -79,10 +78,10 @@
     <Compile Include="Assets\Scripts\Food\Recipe.cs" />
     <Compile Include="Assets\Scripts\FoodLoader.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\AITurn.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />
+    <Compile Include="Assets\Scripts\GameManager\States\MovingState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\TileSelected.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\iGameManagerState.cs" />
     <Compile Include="Assets\Scripts\Input\ActionButton.cs" />

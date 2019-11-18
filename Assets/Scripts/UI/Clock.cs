@@ -13,6 +13,8 @@ public class Clock : MonoBehaviour, iAffectedByTime
     Text _time;
    
     public int TurnOrder { get; set; }
+    public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action<AbstractPawn> RemoveFromTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     int _openingHour = 12;
     int _openingMinute = 0;

@@ -17,7 +17,6 @@ public class Idle : iGameManagerState
         // Info about tile or object on tile. 
     }
 
-
     public void TileClicked(Tile tile)
     {
         if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
@@ -25,21 +24,6 @@ public class Idle : iGameManagerState
 
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridY - _gameManager.CurentCharacter.TilePawnIsOn.GridY);
-            foreach (Tile neighbor in tile.neighbors)
-            {
-                if (neighbor.IsTargetableOnTile)
-                {
-
-                    //HACK
-                    if (neighbor.TargetableOnTile is Grill)
-                    {
-                        Grill G = (Grill)neighbor.TargetableOnTile;
-                        G.TurnOrder = _gameManager.CurentCharacter.TurnOrder;
-                        G.AddToTimeline = _gameManager.AddPawnToTimeline;
-                        G.RemoveFromTimeline = _gameManager.RemovePawnFromTimeline;
-                    }
-                }
-            }
 
             _gameManager.SetState(_gameManager.GetMovingState());
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
@@ -58,18 +42,6 @@ public class Idle : iGameManagerState
     private void ActionOnStopMoving(Tile tile)
     {
         _gameManager.ActionMenu.ShowActionsAtTile();
-        _gameManager.SetState(_gameManager.GetActionState());
-    }
-
-
-    public void NextArrow()
-    {
-        // Move camera to next ready character;
-
-    }
-
-    public void PrevArrow()
-    {
-        // Move camera to last ready character;
+        _gameManager.SetState(_gameManager.GetMovingState());
     }
 }

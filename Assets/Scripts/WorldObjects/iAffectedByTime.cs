@@ -5,9 +5,12 @@ using UnityEngine;
 
 public interface iAffectedByTime 
 {
-    Action<AbstractPawn> onStartTurn { set; get; } // Character
+    Action<AbstractPawn> onStartTurn { get; set; } // Character
     int TurnOrder { get; }
     void TurnStart();
     Action onTurnEnd { set; get; }
     void TurnEnd();
+
+    Action<iAffectedByTime> AddToTimeline { get; set; }
+    Action<AbstractPawn> RemoveFromTimeline { get; set; }
 }

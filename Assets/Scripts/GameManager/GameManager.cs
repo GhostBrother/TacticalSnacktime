@@ -6,45 +6,46 @@ public class GameManager : MonoBehaviour {
 
     AICharacterFactory _characterFactory;
 
-    Map _gameMap;
-
     List<iAffectedByTime> timeAffectedObjects;
 
     [SerializeField]
     MonoPool _monoPool;
 
-    [SerializeField]
-    GoldCounter _GoldCounter;
+    public MonoPool monoPool { get { return _monoPool; } }
 
-    public MonoPool monoPool{ get { return _monoPool; } }
-
-    [SerializeField]
-    MapGenerator _mapGenerator;
-
-    [SerializeField]
-    ActionMenu actionMenu;
-
-    public ActionMenu ActionMenu { get { return actionMenu; } private set { } }
-
-    [SerializeField]
-    CameraController camera;
-
-    public CameraController CameraController { get { return camera; } private set { } }
-
+    #region GameUI
     [SerializeField]
     CharacterDisplay _characterDisplay;
+
+    public CharacterDisplay characterDisplay { get { return _characterDisplay; }  }
+
+    [SerializeField]
+    GoldCounter _GoldCounter;
 
     [SerializeField]
     Clock _clock;
 
-    public CharacterDisplay characterDisplay { get { return _characterDisplay; } private set {; } }
+    [SerializeField]
+    ActionMenu actionMenu;
+
+    public ActionMenu ActionMenu { get { return actionMenu; } }
+    #endregion
+
+    [SerializeField]
+    MapGenerator _mapGenerator;
+
+    Map _gameMap;
+
+    [SerializeField]
+    CameraController camera;
+
+    public CameraController CameraController { get { return camera; } }
 
     public Character CurentCharacter { get; private set; }
 
     iGameManagerState idleMode;
     iGameManagerState selectedMode;
     iGameManagerState deployState;
-    iGameManagerState actionState;
     iGameManagerState curentState;
     iGameManagerState movingState;
 
@@ -54,7 +55,6 @@ public class GameManager : MonoBehaviour {
         idleMode = new Idle(this);
         selectedMode = new TileSelected(this);
         deployState = new DeployState(this);
-        actionState = new ActionState(this);
         movingState = new MovingState();
 
         curentState = deployState;
@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour {
         actionMenu.addTimed = AddTimeInfluencedToList;
         actionMenu.onButtonClick = UpdateCharacterDisplay;
         actionMenu.SetGM(this);
-       
+
+        _mapGenerator.SetGm(this);
         _gameMap = _mapGenerator.generateMap();
 
         AddInGameClockToList(_clock);
@@ -86,11 +87,6 @@ public class GameManager : MonoBehaviour {
         return selectedMode;
     }
 
-    public iGameManagerState GetActionState()
-    {
-        return actionState;
-    }
-
     public iGameManagerState GetMovingState()
     {
         return movingState;
@@ -99,16 +95,6 @@ public class GameManager : MonoBehaviour {
     public void SetState(iGameManagerState newState)
     {
         curentState = newState;
-    }
-
-    public void NextButtonPressed()
-    {
-        curentState.NextArrow();
-    }
-
-    public void PrevButtonPressed()
-    {
-        curentState.PrevArrow();
     }
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
@@ -123,7 +109,7 @@ public class GameManager : MonoBehaviour {
         AddCharacterToList(customer);
     }
 
-    public void AddPawnToTimeline(AbstractPawn ap)
+    public void AddPawnToTimeline(iAffectedByTime ap) //AbstractPawn
     {
         ap.onStartTurn = OnPawnStart;
         ap.onTurnEnd = EndNonCharacterTurn;

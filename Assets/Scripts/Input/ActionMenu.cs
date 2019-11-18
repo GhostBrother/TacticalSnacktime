@@ -92,9 +92,6 @@ public class ActionMenu : MonoBehaviour
         endButton.gameObject.SetActive(true);
         endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - ((ActionMenuCommands.Count) * endButton.gameObject.transform.lossyScale.y), this.transform.position.z)); // +1
         actionButtons.Add(endButton);
-
-       
-
     }
 
 
@@ -106,12 +103,6 @@ public class ActionMenu : MonoBehaviour
         }
         ActionMenuCommands.Clear();
         actionButtons.Clear();
-    }
-
-    // Hack, mainly for grills and other selected objects.
-    public void AddTimeAffectableToTimeline(iAffectedByTime timedObject)
-    {
-        addTimed.Invoke(timedObject);
     }
 
     public void EndTurn()

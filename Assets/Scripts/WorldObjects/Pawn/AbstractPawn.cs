@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractPawn : MonoBehaviour, iAffectedByTime , iPawn 
+public abstract class AbstractPawn : MonoBehaviour , iPawn 
 {
 
     private CharacterCoaster _characterCoaster;

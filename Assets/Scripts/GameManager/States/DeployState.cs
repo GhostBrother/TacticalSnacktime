@@ -15,16 +15,6 @@ public class DeployState : iGameManagerState
         LoadDisplayWithCharacterArt(characterRoster.PeekAtNextCharacter());
     }
 
-    public void NextArrow()
-    {
-        LoadDisplayWithCharacterArt(characterRoster.getNextEmployedCharacter());
-    }
-
-    public void PrevArrow()
-    {
-        LoadDisplayWithCharacterArt(characterRoster.getPreviousEmployedCharacter()); 
-    }
-
     public void RightClick(Tile tile)
     {
 
