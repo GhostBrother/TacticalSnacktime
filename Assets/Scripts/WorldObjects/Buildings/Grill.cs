@@ -12,15 +12,13 @@ public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
 
     public int numberOfCarriedObjects { get; private set; }
 
-    List<DonenessTracker> donenessTrackers;
-
     List<Recipe> recipiesThatCanBeCreated;
+
 
 
     public Grill()
     {
         cariedObjects = new List<iCaryable>();
-        donenessTrackers = new List<DonenessTracker>();
         recipiesThatCanBeCreated = new List<Recipe>();
 
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(0);
@@ -50,10 +48,6 @@ public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
         HideCoaster(ItemCoaster);
         ShowCoaster(itemToCook.CaryableObjectSprite, x => ItemCoaster = x);
         cariedObjects.Add(itemToCook);      
-        DonenessTracker donenessTrackerToAdd = _monoPool.GetDonenessTrackerInstance();
-        donenessTrackerToAdd.gameObject.transform.position = new Vector3(TilePawnIsOn.transform.position.x + (xCordinateOffset * cariedObjects.Count), TilePawnIsOn.transform.position.y + yCordinateOffset, -0.5f);
-        donenessTrackerToAdd.InitMeter(itemToCook.DonenessesLevels[itemToCook.DonenessesLevels.Length - 1]);
-        donenessTrackers.Add(donenessTrackerToAdd);
         AddToTimeline.Invoke(this);
     }
 
@@ -107,13 +101,21 @@ public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
             {
                 if (cariedObjects[i] is Food)
                 {
+
                     Food food = (Food)cariedObjects[i];
                     food.CurrentDoness++;
-                    donenessTrackers[i].MoveArrowOnTracker(food.CurrentDoness);
                 }
+
             }
-            //onTurnEnd.Invoke();
+           
         }
+
+        // TurnEnd();
+    }
+
+    public override void TurnEnd()
+    {
+        onTurnEnd.Invoke();
     }
 
     public iCaryable Give(int i)
@@ -137,8 +139,6 @@ public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
     public void GetRidOfItem(int i)
     {
         cariedObjects.RemoveAt(i);
-        _monoPool.PutInstanceBack(donenessTrackers[i].gameObject);
-        donenessTrackers.RemoveAt(i);
 
         if (cariedObjects.Count <= 0)
         {

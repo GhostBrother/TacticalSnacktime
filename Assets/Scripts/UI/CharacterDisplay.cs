@@ -66,11 +66,21 @@ public class CharacterDisplay : MonoBehaviour {
               items[i].quantityOfItemNumber[j].sprite = SpriteHolder.instance.GetNumberArtFromIDNumber((int)(caryables[i].NumberOfItemsInSupply * Mathf.Pow(.10f, j) % 10));
             }
 
-            if(caryables[i] is Food)
+         
+        }
+    }
+
+    public void UpdateDonenessTrackers(List<iCaryable> caryables)
+    {
+        for (int i = 0; i < caryables.Count; i++)
+        {
+            if (caryables[i] is Food)
             {
+                Food food = (Food)caryables[i];
                 donessTrackers[i].gameObject.SetActive(true);
+                donessTrackers[i].InitMeter(food.DonenessesLevels[5]);
+                donessTrackers[i].MoveArrowAlongTrack(food.CurrentDoness);
             }
-            
         }
     }
 

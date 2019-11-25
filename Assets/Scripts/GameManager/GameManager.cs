@@ -79,16 +79,19 @@ public class GameManager : MonoBehaviour {
 
     public iGameManagerState GetIdleState()
     {
+
         return idleMode;
     }
 
     public iGameManagerState GetSelectedState()
     {
+
         return selectedMode;
     }
 
     public iGameManagerState GetMovingState()
     {
+
         return movingState;
     }
 
@@ -143,9 +146,9 @@ public class GameManager : MonoBehaviour {
 
     private void AddInGameClockToList(Clock clock)
     {
-        _clock.onTurnEnd = EndNonCharacterTurn;
         _clock.onTurnEnd += CheckForCustomerSpawn;
         _clock.onTurnEnd += SortList;
+        _clock.onTurnEnd = EndNonCharacterTurn;
         _clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
@@ -213,14 +216,15 @@ public class GameManager : MonoBehaviour {
             AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileWithType(EnumHolder.EntityType.Door));
             AddCustomerCharacterToList(newCharacter);
         }
+
     }
 
 
-    private void MoveCameraToPawn(AbstractPawn character) //Character character
+    private void MoveCameraToPawn(AbstractPawn character)
     {
-        camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
         characterDisplay.ChangeCharacterArt(character.PawnSprite);  
         UpdateCharacterDisplay();
+        camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
     }
 
     // On Player Start
@@ -252,8 +256,7 @@ public class GameManager : MonoBehaviour {
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
         SetState(GetMovingState());
-        // Show bars going up
-        //camera.onStopMoving = 
+        camera.onStopMoving = MoveDonenessMeter;
         MoveCameraToPawn(abstractPawn);
     }
 
@@ -303,6 +306,17 @@ public class GameManager : MonoBehaviour {
             characterDisplay.ChangeHeldItemArt(character.cariedObjects, character.numberOfCarriedObjects);
         }
     }
+
+    void MoveDonenessMeter()
+    {
+        if (timeAffectedObjects[0] is iContainCaryables)
+        {
+            iContainCaryables character = (iContainCaryables)timeAffectedObjects[0];
+            characterDisplay.UpdateDonenessTrackers(character.cariedObjects);
+        }
+    }
+
+    
 
 
 }

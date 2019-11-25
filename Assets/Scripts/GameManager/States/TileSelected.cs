@@ -35,21 +35,7 @@ public class TileSelected : iGameManagerState
 
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridY - _gameManager.CurentCharacter.TilePawnIsOn.GridY);
-            //foreach (Tile neighbor in tile.neighbors)
-            //{
-            //    if (neighbor.IsTargetableOnTile)
-            //    {
 
-            //        //HACK
-            //        if (neighbor.TargetableOnTile is Grill)
-            //        {
-            //            Grill G = (Grill)neighbor.TargetableOnTile;
-            //            G.TurnOrder = _gameManager.CurentCharacter.TurnOrder;
-            //            G.AddToTimeline = _gameManager.AddPawnToTimeline;
-            //            G.RemoveFromTimeline = _gameManager.RemovePawnFromTimeline;
-            //        }
-            //    }
-            //}
 
             _gameManager.SetState(_gameManager.GetMovingState());
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
@@ -67,7 +53,7 @@ public class TileSelected : iGameManagerState
 
     private void ActionOnStopMoving(Tile tile)
     {
-        //_gameManager.ActionMenu.ShowActionsAtTile();
-        //_gameManager.SetState(_gameManager.GetActionState());
+        _gameManager.ActionMenu.ShowActionsAtTile();
+       // _gameManager.SetState(_gameManager.GetActionState());
     }
 }

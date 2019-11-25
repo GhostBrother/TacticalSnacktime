@@ -25,7 +25,6 @@ public class Idle : iGameManagerState
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridY - _gameManager.CurentCharacter.TilePawnIsOn.GridY);
 
-            _gameManager.SetState(_gameManager.GetMovingState());
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
             _gameManager.CurentCharacter.TilePawnIsOn = tile;
             tile.ChangeState(tile.GetActiveState());
@@ -42,6 +41,6 @@ public class Idle : iGameManagerState
     private void ActionOnStopMoving(Tile tile)
     {
         _gameManager.ActionMenu.ShowActionsAtTile();
-        _gameManager.SetState(_gameManager.GetMovingState());
+       // _gameManager.SetState(_gameManager.GetMovingState());
     }
 }
