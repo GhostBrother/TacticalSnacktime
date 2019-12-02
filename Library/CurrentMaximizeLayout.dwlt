@@ -20,11 +20,11 @@ MonoBehaviour:
     x: 0
     y: 30
     width: 1904
-    height: 929
-  m_MinSize: {x: 679, y: 342}
-  m_MaxSize: {x: 12004, y: 8042}
+    height: 927
+  m_MinSize: {x: 679, y: 321}
+  m_MaxSize: {x: 12004, y: 8021}
   vertical: 0
-  controlID: 4159
+  controlID: 3355
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,11 +126,11 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1366
-    height: 929
-  m_MinSize: {x: 403, y: 342}
-  m_MaxSize: {x: 8003, y: 8042}
+    height: 927
+  m_MinSize: {x: 403, y: 321}
+  m_MaxSize: {x: 8003, y: 8021}
   vertical: 1
-  controlID: 4135
+  controlID: 3356
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 4136
+  controlID: 3357
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,8 +175,8 @@ MonoBehaviour:
     y: 0
     width: 403
     height: 432
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -204,16 +204,16 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 8
-    y: 83
+    y: 85
     width: 402
     height: 411
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 25}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 82fbffff
+      m_ExpandedIDs: e4fafffff2faffff08fbffff0efbffff40fbffff52fbffff7cfbffff82fbfffff6330000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 411
-    y: 83
+    y: 85
     width: 961
     height: 411
   m_ViewDataDictionary: {fileID: 0}
@@ -409,9 +409,9 @@ MonoBehaviour:
     x: 0
     y: 432
     width: 1366
-    height: 497
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+    height: 495
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 11}
@@ -440,12 +440,12 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 8
-    y: 515
+    y: 517
     width: 1365
-    height: 476
+    height: 474
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
-    m_NameFilter: display
+    m_NameFilter: 
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -457,19 +457,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/UI
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\natha\Documents\TacticalSnackTime
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
+    m_SelectedIDs: 86370000
+    m_LastClickedID: 14214
     m_ExpandedIDs: 000000002e37000030370000323700003437000036370000383700003a37000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -523,8 +523,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 2a2d0000
-    m_LastClickedInstanceID: 11562
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300006e34000068600000
     m_RenameOverlay:
@@ -576,9 +576,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 8
-    y: 515
+    y: 517
     width: 1365
-    height: 476
+    height: 474
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &13
 MonoBehaviour:
@@ -598,7 +598,7 @@ MonoBehaviour:
     x: 1366
     y: 0
     width: 538
-    height: 929
+    height: 927
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
@@ -628,9 +628,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1374
-    y: 83
+    y: 85
     width: 537
-    height: 908
+    height: 906
   m_ViewDataDictionary: {fileID: 0}
   m_OpenAddComponentMenu: 0
   m_ObjectsLockedBeforeSerialization: []

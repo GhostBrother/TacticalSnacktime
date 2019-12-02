@@ -14,6 +14,9 @@ public class CharacterDisplay : MonoBehaviour {
     [SerializeField]
     DonenessTracker[] donessTrackers;
 
+    public delegate void OnArrowStopMoving();
+    public OnArrowStopMoving onStopMoving;
+
     heldItems[] items;
 
     struct heldItems
@@ -35,8 +38,13 @@ public class CharacterDisplay : MonoBehaviour {
             {
                 items[i].quantityOfItemNumber[j] = itemSprites[i].transform.GetChild(j).GetComponent<Image>();
             }
-            donessTrackers[i].InitMeter(0);
         }
+
+        for(int j = 0; j < donessTrackers.Length; j++)
+        {
+            donessTrackers[j].InitMeter();
+        }
+
         SetAllHeldItemsToBlank();
     }
 
@@ -49,7 +57,7 @@ public class CharacterDisplay : MonoBehaviour {
     {
         SetAllHeldItemsToBlank();
 
-        for(int j = 0; j < MaxItemsCharacterCanHold; j++)
+        for (int j = 0; j < MaxItemsCharacterCanHold; j++)
         {
             items[j].heldItemImage.transform.parent.gameObject.SetActive(true);
         }
@@ -66,20 +74,44 @@ public class CharacterDisplay : MonoBehaviour {
               items[i].quantityOfItemNumber[j].sprite = SpriteHolder.instance.GetNumberArtFromIDNumber((int)(caryables[i].NumberOfItemsInSupply * Mathf.Pow(.10f, j) % 10));
             }
 
-         
+            if (caryables[i] is Food)
+            {
+                Food food = (Food)caryables[i];
+                donessTrackers[i].gameObject.SetActive(true);
+                
+
+            }
+
         }
     }
 
-    public void UpdateDonenessTrackers(List<iCaryable> caryables)
+    // Sets doneness to where it was before the last round.
+    public void SetDonenessTracks(List<iCaryable> caryables)
     {
         for (int i = 0; i < caryables.Count; i++)
         {
             if (caryables[i] is Food)
             {
                 Food food = (Food)caryables[i];
-                donessTrackers[i].gameObject.SetActive(true);
-                donessTrackers[i].InitMeter(food.DonenessesLevels[5]);
-                donessTrackers[i].MoveArrowAlongTrack(food.CurrentDoness);
+                donessTrackers[i].SetMaxValue(food.DonenessesLevels[5]);
+                donessTrackers[i].SetArrowOnDonessTracker(food.CurrentDoness);
+            }
+        }
+    }
+
+    // Slides arrow along track, showing the plwyer that their food is cooking. 
+    public void UpdateDonenessTrackers(List<iCaryable> caryables)
+    {
+        for (int i = 0; i < caryables.Count; i++)
+        {
+            if (caryables[i] is Food)
+            {
+                if (donessTrackers[i].isActiveAndEnabled)
+                {
+                    Food food = (Food)caryables[i];
+                    donessTrackers[i].onStopMoving = onStopMoving.Invoke;
+                    donessTrackers[i].MoveArrowAlongTrack(food.CurrentDoness);
+                }
             }
         }
     }
@@ -98,6 +130,7 @@ public class CharacterDisplay : MonoBehaviour {
             }
         }
     }
+
 
     public void SetHeldItemArt(Sprite image)
     {

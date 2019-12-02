@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour {
         AddCharacterToList(customer);
     }
 
-    public void AddPawnToTimeline(iAffectedByTime ap) //AbstractPawn
+    public void AddPawnToTimeline(iAffectedByTime ap) 
     {
         ap.onStartTurn = OnPawnStart;
         ap.onTurnEnd = EndNonCharacterTurn;
@@ -255,6 +255,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
+        SetDonenessTracks();
         SetState(GetMovingState());
         camera.onStopMoving = MoveDonenessMeter;
         MoveCameraToPawn(abstractPawn);
@@ -312,7 +313,17 @@ public class GameManager : MonoBehaviour {
         if (timeAffectedObjects[0] is iContainCaryables)
         {
             iContainCaryables character = (iContainCaryables)timeAffectedObjects[0];
+            characterDisplay.onStopMoving = timeAffectedObjects[0].TurnEnd;
             characterDisplay.UpdateDonenessTrackers(character.cariedObjects);
+        }
+    }
+
+    void SetDonenessTracks()
+    {
+        if (timeAffectedObjects[0] is iContainCaryables)
+        {
+            iContainCaryables character = (iContainCaryables)timeAffectedObjects[0];
+            characterDisplay.SetDonenessTracks(character.cariedObjects);
         }
     }
 

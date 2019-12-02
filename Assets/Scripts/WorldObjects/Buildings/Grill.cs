@@ -109,8 +109,6 @@ public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
             }
            
         }
-
-        // TurnEnd();
     }
 
     public override void TurnEnd()
