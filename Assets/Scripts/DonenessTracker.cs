@@ -33,10 +33,9 @@ public class DonenessTracker : MonoBehaviour
     {
         ResetArrowToStartOfTracker();
         _Arrow.rectTransform.localPosition = new Vector3(_Arrow.transform.localPosition.x, _arrowStartPosition.y + (_tracker.rect.height * (doneness / _maxValue)), -0.0f);
-       // Debug.Log("Doneness:" + doneness + "POS:" + _Arrow.rectTransform.localPosition);
     }
 
-    public void MoveArrowAlongTrack(float doneness)
+    public void MoveArrowsAlongTrack(float doneness)
     {
         _doneness = doneness;
         StartCoroutine("MoveArrowOnTracker");
@@ -61,6 +60,6 @@ public class DonenessTracker : MonoBehaviour
 
     public void ResetArrowToStartOfTracker()
     {
-        _Arrow.rectTransform.localPosition = _arrowStartPosition; //_arrowDesiredPosition
+        _Arrow.rectTransform.localPosition = _arrowStartPosition; 
     }
 }

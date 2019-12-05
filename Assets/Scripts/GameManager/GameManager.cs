@@ -222,6 +222,7 @@ public class GameManager : MonoBehaviour {
 
     private void MoveCameraToPawn(AbstractPawn character)
     {
+        SetDonenessTracks();
         characterDisplay.ChangeCharacterArt(character.PawnSprite);  
         UpdateCharacterDisplay();
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
@@ -255,7 +256,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
-        SetDonenessTracks();
+       // SetDonenessTracks();
         SetState(GetMovingState());
         camera.onStopMoving = MoveDonenessMeter;
         MoveCameraToPawn(abstractPawn);
@@ -314,7 +315,7 @@ public class GameManager : MonoBehaviour {
         {
             iContainCaryables character = (iContainCaryables)timeAffectedObjects[0];
             characterDisplay.onStopMoving = timeAffectedObjects[0].TurnEnd;
-            characterDisplay.UpdateDonenessTrackers(character.cariedObjects);
+            characterDisplay.UpdateDonenessTrackers(character.cariedObjects, 0);
         }
     }
 

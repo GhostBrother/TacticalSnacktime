@@ -19,6 +19,10 @@ public class CharacterDisplay : MonoBehaviour {
 
     heldItems[] items;
 
+    //HACK
+    List<iCaryable> _caryables;
+    int _index;
+
     struct heldItems
     {
         public bool inUse { get; set; }
@@ -57,6 +61,9 @@ public class CharacterDisplay : MonoBehaviour {
     {
         SetAllHeldItemsToBlank();
 
+        _caryables = caryables;
+        _index = 0;
+        
         for (int j = 0; j < MaxItemsCharacterCanHold; j++)
         {
             items[j].heldItemImage.transform.parent.gameObject.SetActive(true);
@@ -78,8 +85,6 @@ public class CharacterDisplay : MonoBehaviour {
             {
                 Food food = (Food)caryables[i];
                 donessTrackers[i].gameObject.SetActive(true);
-                
-
             }
 
         }
@@ -100,20 +105,31 @@ public class CharacterDisplay : MonoBehaviour {
     }
 
     // Slides arrow along track, showing the plwyer that their food is cooking. 
-    public void UpdateDonenessTrackers(List<iCaryable> caryables)
+    public void UpdateDonenessTrackers(List<iCaryable> caryables, int i)
     {
-        for (int i = 0; i < caryables.Count; i++)
-        {
+        //for (int i = 0; i < caryables.Count; i++)
+        //{
             if (caryables[i] is Food)
             {
                 if (donessTrackers[i].isActiveAndEnabled)
                 {
                     Food food = (Food)caryables[i];
-                    donessTrackers[i].onStopMoving = onStopMoving.Invoke;
-                    donessTrackers[i].MoveArrowAlongTrack(food.CurrentDoness);
+
+                    if (i == caryables.Count -1)
+                        donessTrackers[i].onStopMoving = onStopMoving.Invoke;
+                    else
+                        donessTrackers[i].onStopMoving = MoveNextTracker;
+
+                    donessTrackers[i].MoveArrowsAlongTrack(food.CurrentDoness);
                 }
             }
-        }
+       // }
+    }
+
+    // HACK
+    void MoveNextTracker()
+    {
+        UpdateDonenessTrackers(_caryables, ++_index);
     }
 
     private void SetAllHeldItemsToBlank()
