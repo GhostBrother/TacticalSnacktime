@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterLoader<T> : JsonLoader<T> where T : Character
+public class CharacterLoader<T> : JsonLoader<T> where T : Character, new() // something about this feels wrong
 {
 
-    protected List<T> characters;
+    List<T> characters;
     public CharacterLoader()
     {
         Init("Assets/JsonWaves/CustomerWaves.json");
         characters = GetObjectListFromFilePathByString("Races");
     }
 
-    public T GetCharacterByType<T>(string Type) where T : Character, new()
+    public T GetCharacterByType(string Type)
     {
         T characterToReturn = null;
         for (int i = 0; i < characters.Count; i++)
@@ -31,7 +31,17 @@ public class CharacterLoader<T> : JsonLoader<T> where T : Character
         }
 
         return characterToReturn;
-
     }
+
+    public T GetRandomCharacter()
+    {
+        int index = Random.Range(0, characters.Count);
+        return GetCharacterByType(characters[index].Race);
+    }
+
+    //public T GetCharacterByTime(string time)
+    //{
+
+    //}
 
 }

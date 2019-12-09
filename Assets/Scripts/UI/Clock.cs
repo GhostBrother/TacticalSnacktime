@@ -19,8 +19,10 @@ public class Clock : MonoBehaviour, iAffectedByTime
     int _openingHour = 12;
     int _openingMinute = 0;
 
-    int _hour;
+    int _hour { get; set; }
     int _minute;
+
+    public string Time { get { return _time.text; } } 
 
 
     int _closingHour = 2;
@@ -49,16 +51,16 @@ public class Clock : MonoBehaviour, iAffectedByTime
 
     public void TurnEnd()
     {
-        if (_hour == _closingHour  && _closingMinute == _minute)
+        if (_hour == _closingHour && _closingMinute == _minute)
             onDayOver.Invoke();
         else
-            onTurnEnd.Invoke();
+         onTurnEnd.Invoke();
+
         
     }
 
     private void UpdateClock()
     {
-
         if (_minute >= 60)
         { _minute -= 60;
             _hour += 1;

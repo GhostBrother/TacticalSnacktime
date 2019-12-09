@@ -48,6 +48,6 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public void SetName()
     {
-        Name = $"Box of {FoodThisSupplyMakes.Name}"; //
+        Name = $"Box of {FoodThisSupplyMakes.Name}"; 
     }
 }

@@ -12,8 +12,6 @@ public class JsonLoader<T> : MonoBehaviour
     string _path;
     string _jsonString;
 
-   // protected JArray jArray { get; private set; }
-
    protected JObject jObject { get; private set; }
 
 

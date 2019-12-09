@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour {
     {
         _clock.onTurnEnd += CheckForCustomerSpawn;
         _clock.onTurnEnd += SortList;
-        _clock.onTurnEnd = EndNonCharacterTurn;
+        _clock.onTurnEnd += EndNonCharacterTurn; // Didn't have + before
         _clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
@@ -211,12 +211,13 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForCustomerSpawn()
     {
-        if (Random.Range(0, 3) == 2)
-        {
-            AICharacter newCharacter = _characterFactory.SpawnCharacterAt(_gameMap.GetTileWithType(EnumHolder.EntityType.Door));
-            AddCustomerCharacterToList(newCharacter);
-        }
 
+        List<AICharacter> aICharacters = _characterFactory.GetCharacterSpawnsForTime(_clock.Time, _gameMap.GetTileWithType(EnumHolder.EntityType.Door));
+        for (int i = 0; i < aICharacters.Count; i++)
+        {
+            AddCustomerCharacterToList(aICharacters[i]);
+        }
+            
     }
 
 

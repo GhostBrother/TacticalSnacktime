@@ -14,7 +14,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 
- 
+    public string ArrivalTime { get; set; }
 
 
     protected int usedHands = 0; 

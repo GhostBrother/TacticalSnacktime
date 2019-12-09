@@ -14,10 +14,10 @@ public class CharacterRoster {
         _characterLoader = new CharacterLoader<PlayercontrolledCharacter>();
 
         // Try to get rid of the template methoid
-        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Kobold"));
-        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Kobold"));
-        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Theif"));
-        employedCharacters.Add(_characterLoader.GetCharacterByType<PlayercontrolledCharacter>("Ghost"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Kobold"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Kobold"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Theif"));
+        employedCharacters.Add(_characterLoader.GetCharacterByType("Ghost"));
     }
 
     public PlayercontrolledCharacter PeekAtNextCharacter()

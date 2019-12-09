@@ -43,8 +43,6 @@ public class Grill : AbstractInteractablePawn, iCookingStation , iAffectedByTime
 
     public void CreateFood(Food itemToCook)
     {
-        const float xCordinateOffset = .5f;
-        const float yCordinateOffset = .5f;
         HideCoaster(ItemCoaster);
         ShowCoaster(itemToCook.CaryableObjectSprite, x => ItemCoaster = x);
         cariedObjects.Add(itemToCook);      

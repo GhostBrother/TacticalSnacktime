@@ -107,8 +107,6 @@ public class CharacterDisplay : MonoBehaviour {
     // Slides arrow along track, showing the plwyer that their food is cooking. 
     public void UpdateDonenessTrackers(List<iCaryable> caryables, int i)
     {
-        //for (int i = 0; i < caryables.Count; i++)
-        //{
             if (caryables[i] is Food)
             {
                 if (donessTrackers[i].isActiveAndEnabled)
@@ -123,7 +121,6 @@ public class CharacterDisplay : MonoBehaviour {
                     donessTrackers[i].MoveArrowsAlongTrack(food.CurrentDoness);
                 }
             }
-       // }
     }
 
     // HACK

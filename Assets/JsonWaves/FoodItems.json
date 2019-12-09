@@ -10,7 +10,7 @@
       "Description": "A Tiny DAB of suntan lotion",
       "HandsRequired": 1,
       "ID": 0,
-      "Customers": ["Dragon"]
+      "Customers": [  ]
     },
 
 
@@ -22,7 +22,7 @@
       "Description": "Breakfast in my pjs, and dinner looking dapper",
       "HandsRequired": 1,
       "ID": 1,
-      "Customers": [ "Dragon" ]
+      "Customers": [ "Dragon", "Kobold", "Theif", "Ghost" ]
     },
 
 
@@ -56,7 +56,7 @@
       "Description": "A frozen beef patty, cook this into a burger",
       "HandsRequired": 1,
       "ID": 4,
-      "Customers": [ "Dragon" ]
+      "Customers": [ "Dragon"]
     }
 
 
