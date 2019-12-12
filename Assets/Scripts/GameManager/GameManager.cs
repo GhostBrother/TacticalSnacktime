@@ -147,8 +147,8 @@ public class GameManager : MonoBehaviour {
     private void AddInGameClockToList(Clock clock)
     {
         _clock.onTurnEnd += CheckForCustomerSpawn;
-        _clock.onTurnEnd += SortList;
         _clock.onTurnEnd += EndNonCharacterTurn; // Didn't have + before
+        _clock.onTurnEnd += SortList;
         _clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
@@ -175,8 +175,11 @@ public class GameManager : MonoBehaviour {
 
     public void SortList()
     {
+        timeAffectedObjects.Remove(_clock);
         timeAffectedObjects.Sort((x, y) => x.TurnOrder.CompareTo(y.TurnOrder));
-        _clock.TurnOrder = timeAffectedObjects[timeAffectedObjects.Count - 1].TurnOrder + 1;
+        timeAffectedObjects.Add(_clock);
+        //_clock.TurnOrder = timeAffectedObjects[timeAffectedObjects.Count - 1].TurnOrder + 2; //+1 
+
     }
 
     public void CheckIfCharacterNeedsRemoval() 
@@ -204,7 +207,7 @@ public class GameManager : MonoBehaviour {
         if (timeAffectedObjects[0] is Character)
         {
             CurentCharacter = (Character)timeAffectedObjects[0];
-            actionMenu.SetCurrentCharacter(); 
+            actionMenu.SetCurrentCharacter();
         }
         timeAffectedObjects[0].TurnStart();
     }
@@ -257,7 +260,6 @@ public class GameManager : MonoBehaviour {
 
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
-       // SetDonenessTracks();
         SetState(GetMovingState());
         camera.onStopMoving = MoveDonenessMeter;
         MoveCameraToPawn(abstractPawn);
@@ -273,7 +275,7 @@ public class GameManager : MonoBehaviour {
 
     private void EndNonCharacterTurn()
     {
-        SwapToNextCharacter();
+        SwapToNextCharacter(); // Remove?
         EndTurn();
     }
 
