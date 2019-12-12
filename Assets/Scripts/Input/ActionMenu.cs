@@ -54,6 +54,7 @@ public class ActionMenu : MonoBehaviour
 
      void OpenMenu()
     {
+        HideAllActions(); // here
         GetAllActionsFromTile();
 
         if (ActionMenuCommands.Count > actionButtons.Count)
@@ -90,7 +91,7 @@ public class ActionMenu : MonoBehaviour
         endButton.StoredCommand = new EndTurn(this);
         endButton.onActionTaken += HideAllActions;
         endButton.gameObject.SetActive(true);
-        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - ((ActionMenuCommands.Count) * endButton.gameObject.transform.lossyScale.y), this.transform.position.z)); // +1
+        endButton.transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - ((ActionMenuCommands.Count) * endButton.gameObject.transform.lossyScale.y), this.transform.position.z)); 
         actionButtons.Add(endButton);
     }
 

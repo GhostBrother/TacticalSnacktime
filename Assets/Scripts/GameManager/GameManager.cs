@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour {
     private void AddInGameClockToList(Clock clock)
     {
         _clock.onTurnEnd += CheckForCustomerSpawn;
-        _clock.onTurnEnd += EndNonCharacterTurn; // Didn't have + before
+        _clock.onTurnEnd += EndNonCharacterTurn; 
         _clock.onTurnEnd += SortList;
         _clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
@@ -178,8 +178,6 @@ public class GameManager : MonoBehaviour {
         timeAffectedObjects.Remove(_clock);
         timeAffectedObjects.Sort((x, y) => x.TurnOrder.CompareTo(y.TurnOrder));
         timeAffectedObjects.Add(_clock);
-        //_clock.TurnOrder = timeAffectedObjects[timeAffectedObjects.Count - 1].TurnOrder + 2; //+1 
-
     }
 
     public void CheckIfCharacterNeedsRemoval() 
