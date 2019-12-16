@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CharacterLoader.cs" />
+    <Compile Include="Assets\CookstationLoader.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
@@ -107,7 +108,7 @@
     <Compile Include="Assets\Scripts\RecipeLoader.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
-    <Compile Include="Assets\Scripts\UI\GoldCounter.cs" />
+    <Compile Include="Assets\Scripts\UI\ResturantStats.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\LeaveResturant.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\iPathfinding.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Buildings\AbstractCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Grill.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />

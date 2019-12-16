@@ -16,7 +16,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
     public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public Action<AbstractPawn> RemoveFromTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    int _openingHour = 12;
+    int _openingHour = 8;
     int _openingMinute = 0;
 
     int _hour { get; set; }

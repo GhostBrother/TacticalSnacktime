@@ -7,7 +7,7 @@ public class Register : AbstractInteractablePawn
     AICharacter customer;
     public Register()
     {
-        PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(2);
+        PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(3);
         EntityType = EnumHolder.EntityType.Register;
     }
     public override List<Command> GetCommands()

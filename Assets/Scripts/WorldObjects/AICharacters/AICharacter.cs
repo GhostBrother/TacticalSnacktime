@@ -10,7 +10,7 @@ public class AICharacter : Character
     Tile[] path;
     int targetIndex;
     Food desiredFood;
-    int satisfaction;
+    public int Satisfaction { get; private set; }
     List<IDesireState> Desires;
 
     public bool OrderHasBeenTaken { get; set; }
@@ -40,10 +40,12 @@ public class AICharacter : Character
         {
             if (Desires[i].isRequestSatisfied())
             {
-                for (int j = i; j >= 0; j --)
-                {
-                    Desires.RemoveAt(j);
-                }
+                Desires.RemoveAt(i);
+                i--;
+                //for (int j = i; j >= 0; j--)
+                //{
+                //    Desires.RemoveAt(j);
+                //}
             }
         }
 
@@ -142,9 +144,9 @@ public class AICharacter : Character
                 // is order correct
                 if(weighedFood.ID == desiredFood.ID)
                 {
-                    satisfaction += 50;
+                    Satisfaction += 10;
                 }
-                // if weighed food is the same type += 15 
+                // if weighed food is the same type 
 
                // if doneness scale is in the middle 
 

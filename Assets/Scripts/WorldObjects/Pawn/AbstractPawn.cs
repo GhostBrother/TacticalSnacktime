@@ -60,9 +60,9 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public int ID { get; set; }
 
-    public EnumHolder.EntityType EntityType { get; protected set; }
+    public EnumHolder.EntityType EntityType { get;  set; }
  
-    public Action<AbstractPawn> onStartTurn { get; set; } // Character
+    public Action<AbstractPawn> onStartTurn { get; set; } 
     public Action onTurnEnd { get; set; }
 
     public int TurnOrder { get; set; }

@@ -7,27 +7,22 @@ public class FoodContainerFactory
 {
    RecipeLoader recipeLoader = new RecipeLoader();
    FoodLoader foodLoader = new FoodLoader();
-
+    CookstationLoader cookstationLoader = new CookstationLoader();
     
    public Action<iAffectedByTime> AddToTimeline {get; set; }
    public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
-    public AbstractPawn LoadCookStation(AbstractPawn abstractPawn)
+    public AbstractCookingStation LoadCookStation(AbstractCookingStation cookingStation, string cookStationType)  //AbstractPawn abstractPawn
     {
-        if (abstractPawn is iCookingStation)
-        {
-            iCookingStation cookingStation = (iCookingStation)abstractPawn;
-            cookingStation.LoadRecipies(recipeLoader.GetRecipiesForCooktop(abstractPawn.Name));
-        }
+        int numberOfSupply;
+        if (int.TryParse(cookStationType[1].ToString(), out numberOfSupply))
+            cookingStation = cookstationLoader.GetCookingStationById(numberOfSupply);
 
-        if (abstractPawn is iAffectedByTime)
-        {
-            iAffectedByTime affectedByTime = (iAffectedByTime)abstractPawn;
-            affectedByTime.AddToTimeline = AddToTimeline;
-            affectedByTime.RemoveFromTimeline = RemoveFromTimeline;
-        }
+         cookingStation.LoadRecipies(recipeLoader.GetRecipiesForCooktop(cookingStation.Name));
+         cookingStation.AddToTimeline = AddToTimeline;
+         cookingStation.RemoveFromTimeline = RemoveFromTimeline;
 
-        return abstractPawn;
+        return cookingStation;
     }
 
     public Supply LoadSupply(Supply supply, string supplyParams)
@@ -59,7 +54,7 @@ public class FoodContainerFactory
 
                 case 'f':
                     {
-                        supplyToFind = "Fries";
+                        supplyToFind = "FrozenFries";
                         break;
                     }
             }

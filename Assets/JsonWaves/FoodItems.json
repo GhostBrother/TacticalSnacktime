@@ -56,9 +56,19 @@
       "Description": "A frozen beef patty, cook this into a burger",
       "HandsRequired": 1,
       "ID": 4,
-      "Customers": [ "Dragon"]
-    }
+      "Customers": [ "Dragon" ]
+    },
 
+
+    {
+      "Name": "FrozenFries",
+      "Price": 2.00,
+      "DonenessesLevels": [ 0, 2, 4, 6, 8, 10 ],
+      "Description": "Cold fries, makes hot fries if deep fried",
+      "HandsRequired": 1,
+      "ID": 5,
+      "Customers": [ "Dragon" ]
+    }
 
   ]
 

@@ -61,7 +61,6 @@ public class CraftFood : Command
                 {
                     _character.cariedObjects.RemoveAt(j);
                 }
-                //j--;
             }
 
         }

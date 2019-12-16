@@ -54,7 +54,7 @@ public class MapGenerator : JsonLoader<Map>
     private void LoadDictionary()
     {
         editorLookUp = new Dictionary<char, Func<string,AbstractPawn>>();
-        editorLookUp.Add('G', AddRecipies<Grill>);
+        editorLookUp.Add('G', AddRecipies<Grill>); //
         editorLookUp.Add('S', BundleSuppply<Supply>);
         editorLookUp.Add('R', Clone<Register>);
         editorLookUp.Add('D', Clone<Door>);
@@ -141,10 +141,10 @@ public class MapGenerator : JsonLoader<Map>
         return new T();
     }
 
-    private AbstractPawn AddRecipies<T>(string CookStationType) where T : AbstractPawn, new()
+    private AbstractPawn AddRecipies<T>(string CookStationType) where T : AbstractCookingStation , new() 
     {
-        AbstractPawn toDecorate = new T();
-        toDecorate = cookingStationFactory.LoadCookStation(toDecorate);
+        AbstractCookingStation toDecorate = new T();
+        toDecorate = cookingStationFactory.LoadCookStation(toDecorate,CookStationType);
         return toDecorate;
     }
 

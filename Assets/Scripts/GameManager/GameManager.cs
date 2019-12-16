@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     public CharacterDisplay characterDisplay { get { return _characterDisplay; }  }
 
     [SerializeField]
-    GoldCounter _GoldCounter;
+    ResturantStats _ResturantStats;
 
     [SerializeField]
     Clock _clock;
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour {
 
         _characterDisplay.InitCharacterDisplay();
 
-        actionMenu.onTurnEnd = EndCharacterTurn;
+        actionMenu.onTurnEnd = EndTurn;
         actionMenu.addTimed = AddTimeInfluencedToList;
         actionMenu.onButtonClick = UpdateCharacterDisplay;
         actionMenu.SetGM(this);
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour {
     public void AddPawnToTimeline(iAffectedByTime ap) 
     {
         ap.onStartTurn = OnPawnStart;
-        ap.onTurnEnd = EndNonCharacterTurn;
+        ap.onTurnEnd = EndTurn;
         foreach (iAffectedByTime TA in timeAffectedObjects)
         {
             if (TA == (iAffectedByTime)ap)
@@ -140,14 +140,14 @@ public class GameManager : MonoBehaviour {
 
     private void AddCharacterToList(Character character)
     {
-        character.onTurnEnd = EndCharacterTurn;
+        character.onTurnEnd = EndTurn;
         AddTimeInfluencedToList(character);
     }
 
     private void AddInGameClockToList(Clock clock)
     {
         _clock.onTurnEnd += CheckForCustomerSpawn;
-        _clock.onTurnEnd += EndNonCharacterTurn; 
+        _clock.onTurnEnd += EndTurn; 
         _clock.onTurnEnd += SortList;
         _clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
@@ -263,22 +263,9 @@ public class GameManager : MonoBehaviour {
         MoveCameraToPawn(abstractPawn);
     }
 
-   // On all Cooking station Start
-
-    private void EndCharacterTurn()
-    {
-        CheckIfCharacterNeedsRemoval();
-        EndTurn();
-    }
-
-    private void EndNonCharacterTurn()
-    {
-        SwapToNextCharacter(); // Remove?
-        EndTurn();
-    }
-
     private void EndTurn()
     {
+        CheckIfCharacterNeedsRemoval();
         SetState(GetIdleState());
         StartNextCharactersTurn();
     }

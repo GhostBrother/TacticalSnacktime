@@ -429,6 +429,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ebecddc7eab0acb42b7bae6b7220f41e, type: 3}
   BuildingArt:
   - {fileID: 21300000, guid: 434059162593a8240a80d0c411e8821b, type: 3}
+  - {fileID: 21300000, guid: de643a10a2b193b448381251d51104a2, type: 3}
   - {fileID: 21300000, guid: 54dc7d57eaed3c04e9fce83998d39ae1, type: 3}
   - {fileID: 21300000, guid: 82dd24ffb148dad4aaefcbb2acfec7cc, type: 3}
   - {fileID: 21300000, guid: 2f00cad8c79dd72489843a840dde56eb, type: 3}
@@ -438,6 +439,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0af69dd3fe7d47e4aa90d2f74d08fca0, type: 3}
   - {fileID: 21300000, guid: b7690706296c5a642a1cdfa5a0f5059a, type: 3}
   - {fileID: 21300000, guid: 61326b2be63008547b558973f78612d7, type: 3}
+  - {fileID: 21300000, guid: fc920a3f9d6609e4cae38e0b25ebd0cb, type: 3}
   NumberArt:
   - {fileID: -1714170818647609589, guid: d4431e64df0ac314a82ff966b0a7559f, type: 3}
   - {fileID: 9122598170299701932, guid: d4431e64df0ac314a82ff966b0a7559f, type: 3}
@@ -784,7 +786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monoPool: {fileID: 640138878}
   _characterDisplay: {fileID: 624344100}
-  _GoldCounter: {fileID: 2133532044}
+  _GoldCounter: {fileID: 0}
   _clock: {fileID: 530968435}
   actionMenu: {fileID: 1067517425}
   _mapGenerator: {fileID: 225618906}

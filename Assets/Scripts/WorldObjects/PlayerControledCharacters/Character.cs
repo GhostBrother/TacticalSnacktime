@@ -8,9 +8,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public int MoveSpeed { get; set; }
     public string Race { get;  set; }
-    public int SpeedStat { get; set; }
     public int _MoveRemaining { get; set; }
-
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 

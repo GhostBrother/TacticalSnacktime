@@ -1,0 +1,16 @@
+{
+  "Stations": [
+
+    {
+      "numberOfCarriedObjects": 4,
+      "Name": "Grill",
+      "id": 0
+    },
+
+    {
+      "numberOfCarriedObjects": 4,
+      "Name": "DeepFrier",
+      "id": 1
+    }
+  ]
+}
