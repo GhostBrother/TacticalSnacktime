@@ -19,7 +19,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public List<iCaryable> cariedObjects { get; protected set; }
 
-    // for now, our employees can hold 2 one handed items ( a burger and a dagger) or 1 two handed object ( A mop or a greatsword) 
+
     private int _numberOfCarriedObjects;
     public int numberOfCarriedObjects { get { return 2; } protected set { _numberOfCarriedObjects = value; } }
 

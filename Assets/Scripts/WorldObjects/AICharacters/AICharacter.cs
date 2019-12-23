@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -12,6 +13,10 @@ public class AICharacter : Character
     Food desiredFood;
     public int Satisfaction { get; private set; }
     List<IDesireState> Desires;
+
+    //Hack
+    public Action<AICharacter> OnExit;
+    public Action<decimal> OnPay;
 
     public bool OrderHasBeenTaken { get; set; }
     public override bool NeedsRemoval { get { return Desires.Count == 0; } set { } }
@@ -42,10 +47,6 @@ public class AICharacter : Character
             {
                 Desires.RemoveAt(i);
                 i--;
-                //for (int j = i; j >= 0; j--)
-                //{
-                //    Desires.RemoveAt(j);
-                //}
             }
         }
 
@@ -142,10 +143,13 @@ public class AICharacter : Character
                 Food weighedFood = (Food)cariedObjects[i];
 
                 // is order correct
-                if(weighedFood.ID == desiredFood.ID)
+                if (weighedFood.ID == desiredFood.ID)
                 {
                     Satisfaction += 10;
                 }
+                else
+                    Satisfaction += 5; 
+
                 // if weighed food is the same type 
 
                // if doneness scale is in the middle 
@@ -159,6 +163,11 @@ public class AICharacter : Character
             // Give em a pop up that shows how the customer feels. 
             }
         }
+    }
+
+    public void PayForFood()
+    {
+        OnPay.Invoke(desiredFood.Price);
     }
 
     public override void TurnStart()

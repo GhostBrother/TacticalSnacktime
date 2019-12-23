@@ -23,6 +23,7 @@ public class OrderFood : IDesireState
             aiCharacter.HideCoaster(aiCharacter.NeedCoaster);
             aiCharacter.HideCoaster(aiCharacter.FoodWantCoaster);
             aiCharacter.AssessQuality();
+            aiCharacter.PayForFood();
             return true;
         }
         return false;

@@ -102,20 +102,21 @@ public class GameManager : MonoBehaviour {
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
-        character.onStartTurn = OnPlayerControlledStart; 
-        AddCharacterToList(character);
+        character.onStartTurn = OnPlayerControlledStart;
+        AddTimeInfluencedToList(character);
     }
 
     public void AddCustomerCharacterToList(AICharacter customer)
     {
-        customer.onStartTurn += OnCustomerStart;
-        AddCharacterToList(customer);
+        customer.onStartTurn = OnCustomerStart;
+        customer.OnExit = GiveRating;
+        customer.OnPay = PayForFood;
+        AddTimeInfluencedToList(customer);
     }
 
     public void AddPawnToTimeline(iAffectedByTime ap) 
     {
         ap.onStartTurn = OnPawnStart;
-        ap.onTurnEnd = EndTurn;
         foreach (iAffectedByTime TA in timeAffectedObjects)
         {
             if (TA == (iAffectedByTime)ap)
@@ -138,23 +139,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void AddCharacterToList(Character character)
-    {
-        character.onTurnEnd = EndTurn;
-        AddTimeInfluencedToList(character);
-    }
-
     private void AddInGameClockToList(Clock clock)
     {
-        _clock.onTurnEnd += CheckForCustomerSpawn;
-        _clock.onTurnEnd += EndTurn; 
-        _clock.onTurnEnd += SortList;
-        _clock.onDayOver = EndDay;
+        clock.onTurnEnd += CheckForCustomerSpawn;
+       // clock.onTurnEnd += SortList;
+        clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
 
     private void AddTimeInfluencedToList(iAffectedByTime timeAffected)
     {
+        timeAffected.onTurnEnd += EndTurn;
         timeAffectedObjects.Add(timeAffected);
     }
 
@@ -175,15 +170,16 @@ public class GameManager : MonoBehaviour {
 
     public void SortList()
     {
-        timeAffectedObjects.Remove(_clock);
-        timeAffectedObjects.Sort((x, y) => x.TurnOrder.CompareTo(y.TurnOrder));
-        timeAffectedObjects.Add(_clock);
+       timeAffectedObjects.Remove(_clock);
+       timeAffectedObjects.Sort((x, y) => x.TurnOrder.CompareTo(y.TurnOrder));
+       timeAffectedObjects.Add(_clock);
     }
 
     public void CheckIfCharacterNeedsRemoval() 
     {
         if (CurentCharacter.NeedsRemoval)
         {
+            
             CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
             timeAffectedObjects.Remove(CurentCharacter);
@@ -212,13 +208,12 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForCustomerSpawn()
     {
-
         List<AICharacter> aICharacters = _characterFactory.GetCharacterSpawnsForTime(_clock.Time, _gameMap.GetTileWithType(EnumHolder.EntityType.Door));
         for (int i = 0; i < aICharacters.Count; i++)
         {
             AddCustomerCharacterToList(aICharacters[i]);
         }
-            
+
     }
 
 
@@ -268,6 +263,16 @@ public class GameManager : MonoBehaviour {
         CheckIfCharacterNeedsRemoval();
         SetState(GetIdleState());
         StartNextCharactersTurn();
+    }
+
+    private void GiveRating(AICharacter aICharacter)
+    {
+        _ResturantStats.ReputationCounter += aICharacter.Satisfaction;
+    }
+
+    private void PayForFood(decimal price)
+    {
+        _ResturantStats.GoldCounter += price;
     }
 
     private void EndDay()

@@ -8,8 +8,18 @@ public class ResturantStats : MonoBehaviour
     [SerializeField]
     Text goldCount;
 
-    public string goldCounter {get{ return goldCount.text; } set{ goldCount.text = value; }}
+    [SerializeField]
+    Text influenceCount;
 
-    public int ReputationPoints { get; set; }
+    public string GoldCounter {get{ return goldCount.text; } set{ goldCount.text = FormatMoneyText(value); }}
+
+    public string ReputationCounter { get { return influenceCount.text; } set { influenceCount.text = value; } }
+
+    private string FormatMoneyText(string s)
+    {
+        Debug.Log(s);
+        Debug.Log(string.Format("{0:0.00}", s));
+        return string.Format("{0:0.00}", s);
+    }
 
 }
