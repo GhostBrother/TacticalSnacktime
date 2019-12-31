@@ -53,4 +53,9 @@ public class CharacterRoster {
         return employedCharacters.Count == 0;
     }
 
+    public void AddCharacterBackToList(PlayercontrolledCharacter characterToAdd)
+    {
+        employedCharacters.Add(characterToAdd);
+    }
+
 }

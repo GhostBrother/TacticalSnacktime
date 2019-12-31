@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MoveCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\PickUpItem.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\StartNextDay.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />

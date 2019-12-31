@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
     AICharacterFactory _characterFactory;
+
+     CharacterRoster _characterRoster;
 
     List<iAffectedByTime> timeAffectedObjects;
 
@@ -52,9 +55,14 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        _ResturantStats.startNextDay = StartDay;
+        _ResturantStats.init();
+        //Hack
+        _characterRoster = new CharacterRoster();
+
         idleMode = new Idle(this);
         selectedMode = new TileSelected(this);
-        deployState = new DeployState(this);
+        deployState = new DeployState(this, _characterRoster);
         movingState = new MovingState();
 
         curentState = deployState;
@@ -79,7 +87,6 @@ public class GameManager : MonoBehaviour {
 
     public iGameManagerState GetIdleState()
     {
-
         return idleMode;
     }
 
@@ -275,9 +282,29 @@ public class GameManager : MonoBehaviour {
         _ResturantStats.GoldCounter += price;
     }
 
+    private void StartDay()
+    {
+        _ResturantStats.ShowEndPage(false);
+        curentState = deployState;
+
+    }
+
     private void EndDay()
     {
         Debug.Log("Day is done");
+
+        _ResturantStats.ShowEndPage(true);
+
+        foreach(PlayercontrolledCharacter pc in timeAffectedObjects.OfType<PlayercontrolledCharacter>())
+        {
+            _characterRoster.AddCharacterBackToList(pc);
+            CurentCharacter.TilePawnIsOn.ChangeState(pc.TilePawnIsOn.GetClearState());
+            CurentCharacter.HideCoaster(pc.characterCoaster);
+            //timeAffectedObjects.Remove(pc);
+
+        }
+        // Hack
+        timeAffectedObjects.Clear();
     }
 
     private void DebugListAllTimeAffected()
