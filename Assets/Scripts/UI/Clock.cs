@@ -32,14 +32,13 @@ public class Clock : MonoBehaviour, iAffectedByTime
     private void Start()
     {
         _time = this.GetComponentInChildren<Text>();
-        SetOpeningTime();
-        UpdateClock();
     }
 
-    void SetOpeningTime()
+    public void SetClockToStartOfDay()
     {
         _hour = _openingHour;
         _minute = _openingMinute;
+        UpdateClock();
     }
 
     public void TurnStart()

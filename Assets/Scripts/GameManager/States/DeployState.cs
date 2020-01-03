@@ -47,6 +47,5 @@ public class DeployState : iGameManagerState
     {
       _gameManager.characterDisplay.ChangeCharacterArt(characterToDisplay.PawnSprite);
     }
-
-    
+ 
 }

@@ -12,7 +12,7 @@ public class FoodContainerFactory
    public Action<iAffectedByTime> AddToTimeline {get; set; }
    public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
-    public AbstractCookingStation LoadCookStation(AbstractCookingStation cookingStation, string cookStationType)  //AbstractPawn abstractPawn
+    public AbstractCookingStation LoadCookStation(AbstractCookingStation cookingStation, string cookStationType) 
     {
         int numberOfSupply;
         if (int.TryParse(cookStationType[1].ToString(), out numberOfSupply))

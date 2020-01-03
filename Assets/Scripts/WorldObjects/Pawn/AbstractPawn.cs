@@ -111,6 +111,13 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         tilePawnIsOn.movementPenalty = 255;
     }
 
+    public void RemovePawn(CharacterCoaster coasterToHide)
+    {
+        HideCoaster(coasterToHide);
+        tilePawnIsOn = null;
+        previousTile = null;
+    }
+
     public virtual void TurnStart()
     {
 

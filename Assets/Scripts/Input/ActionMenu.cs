@@ -9,7 +9,7 @@ public class ActionMenu : MonoBehaviour
     public delegate void OnTurnEnd();
     public OnTurnEnd onTurnEnd;
 
-    public delegate void OnButtonClick(); 
+    public delegate void OnButtonClick();
     public OnButtonClick onButtonClick;
 
     public delegate void AddTimedObjectToList(iAffectedByTime timedObject);
@@ -63,9 +63,6 @@ public class ActionMenu : MonoBehaviour
             for (int i = 0; i < temp; i++)
             {
                 ActionButton tempButton = Instantiate(buttonPrefab, this.transform);
-                tempButton.onActionTaken += HideAllActions;
-                tempButton.onActionTaken += OpenMenu;
-                tempButton.onActionTaken += onButtonClick.Invoke;
                 actionButtons.Add(tempButton);
             }
         }
@@ -84,6 +81,9 @@ public class ActionMenu : MonoBehaviour
         {
             actionButtons[i].gameObject.SetActive(true);
             actionButtons[i].StoredCommand = ActionMenuCommands[i];
+            actionButtons[i].onActionTaken += HideAllActions;
+            actionButtons[i].onActionTaken += OpenMenu;
+            actionButtons[i].onActionTaken += onButtonClick.Invoke;
             actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
         }
 

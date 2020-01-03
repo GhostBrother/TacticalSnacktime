@@ -7,8 +7,11 @@ public class Map {
     private Tile[][] tilesOnMap;
     public Tile[][] TilesOnMap { get { return tilesOnMap; } private set { tilesOnMap = value; } }
 
+    List<Tile> deployTiles;
+
     public Map(int _rows, int _columns)
     {
+        deployTiles = new List<Tile>();
         tilesOnMap = new Tile[_rows][];
         for (int i = 0; i < TilesOnMap.Length; i++)
         {
@@ -40,6 +43,8 @@ public class Map {
     public void AddTileToMap(Tile tileToAdd, int row, int column)
     {
         tilesOnMap[row][column] = tileToAdd;
+        if (tileToAdd.IsDeployTile)
+            deployTiles.Add(tileToAdd);
     }
 
     public void DeactivateAllTiles()
@@ -48,6 +53,20 @@ public class Map {
         {
             for(int y = 0; y < tilesOnMap[x].Length ; y++)
             tilesOnMap[x][y].DeactivateTile();
+        }
+    }
+
+    public void AddTileToDeployTiles(Tile tileToAdd)
+    {
+        deployTiles.Add(tileToAdd);
+    }
+
+    public void AcivateAllDeployTiles()
+    {
+        for (int i = 0; i < deployTiles.Count; i++)
+        {
+            if(deployTiles[i].GetCurrentState() != deployTiles[i].GetActiveState())
+            deployTiles[i].ChangeState(deployTiles[i].GetComponent<Tile>().GetDeployState());
         }
     }
 }

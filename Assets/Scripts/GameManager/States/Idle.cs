@@ -41,6 +41,5 @@ public class Idle : iGameManagerState
     private void ActionOnStopMoving(Tile tile)
     {
         _gameManager.ActionMenu.ShowActionsAtTile();
-       // _gameManager.SetState(_gameManager.GetMovingState());
     }
 }

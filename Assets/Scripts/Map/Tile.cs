@@ -48,6 +48,9 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public bool IsTargetableOnTile { get { return targetableOnTile != null; }  }
 
+    //Added 
+    public bool IsDeployTile { get; set; }
+
     private iTileState clear;
     private iTileState hilighted;
     private iTileState occupiedSquare;

@@ -34,9 +34,7 @@ public class ResturantStats : MonoBehaviour
 
     public void init()
     {
-        // Refactor this to some sort of bututton super class that does not have this, or better yet factor out the onAction taken part. 
         startDayButton.StoredCommand = new StartNextDay(startNextDay.Invoke);
-        startDayButton.onActionTaken = startNextDay.Invoke;
     }
 
 }

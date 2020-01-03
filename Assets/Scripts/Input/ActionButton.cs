@@ -17,12 +17,12 @@ public class ActionButton : MonoBehaviour
         {
             storedCommand = value;
             this.GetComponentInChildren<Text>().text = storedCommand.CommandName;
+            onActionTaken += storedCommand.execute;
         }
     }
     
     public void ExecuteStoredCommand()
     {
-        storedCommand.execute();
-        onActionTaken.Invoke();
+        onActionTaken.Invoke(); 
     }
 }

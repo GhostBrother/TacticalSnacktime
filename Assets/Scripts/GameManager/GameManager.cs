@@ -65,8 +65,6 @@ public class GameManager : MonoBehaviour {
         deployState = new DeployState(this, _characterRoster);
         movingState = new MovingState();
 
-        curentState = deployState;
-
         timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory(_monoPool);
 
@@ -82,7 +80,7 @@ public class GameManager : MonoBehaviour {
 
         AddInGameClockToList(_clock);
         SortList();
-
+        StartDay();
     }
 
     public iGameManagerState GetIdleState()
@@ -223,7 +221,6 @@ public class GameManager : MonoBehaviour {
 
     }
 
-
     private void MoveCameraToPawn(AbstractPawn character)
     {
         SetDonenessTracks();
@@ -285,23 +282,21 @@ public class GameManager : MonoBehaviour {
     private void StartDay()
     {
         _ResturantStats.ShowEndPage(false);
+        _gameMap.AcivateAllDeployTiles();
+        _clock.SetClockToStartOfDay();
         curentState = deployState;
 
     }
 
     private void EndDay()
     {
-        Debug.Log("Day is done");
-
         _ResturantStats.ShowEndPage(true);
 
         foreach(PlayercontrolledCharacter pc in timeAffectedObjects.OfType<PlayercontrolledCharacter>())
         {
             _characterRoster.AddCharacterBackToList(pc);
-            CurentCharacter.TilePawnIsOn.ChangeState(pc.TilePawnIsOn.GetClearState());
-            CurentCharacter.HideCoaster(pc.characterCoaster);
-            //timeAffectedObjects.Remove(pc);
-
+            pc.TilePawnIsOn.ChangeState(pc.TilePawnIsOn.GetClearState());
+            pc.RemovePawn(pc.characterCoaster);
         }
         // Hack
         timeAffectedObjects.Clear();

@@ -59,7 +59,6 @@ public class MapGenerator : JsonLoader<Map>
         editorLookUp.Add('R', Clone<Register>);
         editorLookUp.Add('D', Clone<Door>);
         editorLookUp.Add('W', Clone<Wall>);
-
     }
 
     // HACK
@@ -89,6 +88,7 @@ public class MapGenerator : JsonLoader<Map>
                 tilePos.x = (x * _horizontalDistanceBetweenTiles);
                 tilePos.y = (y * -_verticalDistanceBetweenTiles);
                 temp.transform.position = tilePos;
+                AddDeployTile(tiles[x],temp.GetComponent<Tile>());
 
                 if (y != 0)
                 {
@@ -96,21 +96,15 @@ public class MapGenerator : JsonLoader<Map>
                     mapToReturn.GetTileAtRowAndColumn(x, (y - 1)).SetNeighbor(temp.GetComponent<Tile>());
                 }
 
-
                 if (x != 0)
                 {
                     temp.GetComponent<Tile>().SetNeighbor(prevTile);
                     prevTile.SetNeighbor(temp.GetComponent<Tile>());
                 }
 
-                if (y >= 1)
-                {
-                    temp.GetComponent<Tile>().ChangeState(temp.GetComponent<Tile>().GetDeployState());
-                }
-
                 temp = PlacePawnOnTile(tiles[x], temp);
-
-        temp.GetComponent<Tile>().SetXandYPos(x, y);
+                
+                temp.GetComponent<Tile>().SetXandYPos(x, y);
                 mapToReturn.AddTileToMap(temp.GetComponent<Tile>(), x, y);
                 prevTile = temp.GetComponent<Tile>();
             }
@@ -154,6 +148,12 @@ public class MapGenerator : JsonLoader<Map>
 
        supply = cookingStationFactory.LoadSupply(supply, SupplyTypeAndNumber);
         return supply;
+    }
+
+    private void AddDeployTile(string marker ,Tile tileToAdd)
+    {
+        if(marker[marker.Length -1] == 'P')
+        tileToAdd.IsDeployTile = true;
     }
 
 }
