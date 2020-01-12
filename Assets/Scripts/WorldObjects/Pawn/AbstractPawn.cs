@@ -18,8 +18,17 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public MonoPool _monoPool { get; set; }
 
+    CharacterCoaster _itemCoaster;
+
     public CharacterCoaster ItemCoaster
-    { get; set; }
+    {
+        get {
+            return _itemCoaster;
+            }
+        set {
+            _itemCoaster = value;
+            }
+    }
 
     public CharacterCoaster NeedCoaster
     { get; set; }
@@ -103,6 +112,8 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         {
             coasterToHide.transform.parent = null;
             _monoPool.PutInstanceBack(coasterToHide.gameObject);
+            coasterToHide = null;
+
         }
     }
 

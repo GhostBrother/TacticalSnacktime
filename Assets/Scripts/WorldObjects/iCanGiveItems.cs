@@ -6,5 +6,4 @@ public interface iCanGiveItems
 {
    iCaryable Give(int i);
     void GetRidOfItem(int i);
-
 }

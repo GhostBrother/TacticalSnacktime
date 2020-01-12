@@ -54,31 +54,4 @@ public class AICharacterFactory
 
         return aICharacter;
     }
-    //public AICharacter SpawnCharacterAt(Tile targetTile)
-    //{
-
-    //    AICharacter aICharacter = _customerLoader.GetCharacterByType<AICharacter>("Dragon");
-    //    aICharacter.ChooseWhatToEat(_desireContainer.chooseWhatToEatBasedOnTaste(aICharacter.Race));
-    //    aICharacter.characterCoaster = _monoPool.GetCharacterCoasterInstance();
-    //    aICharacter._monoPool = _monoPool;
-
-
-    //    if (targetTile.GetCurrentState() != targetTile.GetActiveState())
-    //    {
-    //        aICharacter.TilePawnIsOn = targetTile;
-    //    }
-
-    //    else
-    //        for (int i = 0; i < targetTile.neighbors.Count; i++)
-    //        {
-    //            if (targetTile.neighbors[i].GetCurrentState() != targetTile.neighbors[i].GetActiveState())
-    //            {
-    //                aICharacter.TilePawnIsOn = targetTile.neighbors[i];
-    //                break;
-    //            }
-    //        }
-
-    //    return aICharacter;
-
-    //}
 }

@@ -27,7 +27,7 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
     public void CreateFood(Food itemToCook)
     {
         HideCoaster(ItemCoaster);
-        ShowCoaster(itemToCook.CaryableObjectSprite, x => ItemCoaster = x);
+        ShowCoaster(itemToCook.CaryableObjectSprite, x => { Debug.Log(" set in create food" + x.CharacterSprite.name); ItemCoaster = x; });
         cariedObjects.Add(itemToCook);
         AddToTimeline.Invoke(this);
     }
@@ -125,5 +125,18 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
         }
 
     }
+    
+    void GetRidOfAllItems()
+    {
+        for(int i = 0; i < cariedObjects.Count; i++)
+        {
+            GetRidOfItem(i);
+        }
+    }
 
+    public void OnEndDay()
+    {
+        GetRidOfAllItems();
+        ItemCoaster = null;
+    }
 }

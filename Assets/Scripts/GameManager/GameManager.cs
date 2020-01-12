@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour {
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
         character.onStartTurn = OnPlayerControlledStart;
+        character.PutCharacterBack = _characterRoster.AddCharacterBackToList;
         AddTimeInfluencedToList(character);
     }
 
@@ -122,6 +123,7 @@ public class GameManager : MonoBehaviour {
     public void AddPawnToTimeline(iAffectedByTime ap) 
     {
         ap.onStartTurn = OnPawnStart;
+       
         foreach (iAffectedByTime TA in timeAffectedObjects)
         {
             if (TA == (iAffectedByTime)ap)
@@ -155,6 +157,7 @@ public class GameManager : MonoBehaviour {
     private void AddTimeInfluencedToList(iAffectedByTime timeAffected)
     {
         timeAffected.onTurnEnd += EndTurn;
+        timeAffected.RemoveFromTimeline += RemovePawnFromTimeline;
         timeAffectedObjects.Add(timeAffected);
     }
 
@@ -184,7 +187,6 @@ public class GameManager : MonoBehaviour {
     {
         if (CurentCharacter.NeedsRemoval)
         {
-            
             CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
             timeAffectedObjects.Remove(CurentCharacter);
@@ -281,8 +283,11 @@ public class GameManager : MonoBehaviour {
 
     private void StartDay()
     {
+
         _ResturantStats.ShowEndPage(false);
         _gameMap.AcivateAllDeployTiles();
+       // AddInGameClockToList(_clock);
+        SortList();
         _clock.SetClockToStartOfDay();
         curentState = deployState;
 
@@ -292,21 +297,28 @@ public class GameManager : MonoBehaviour {
     {
         _ResturantStats.ShowEndPage(true);
 
-        foreach(PlayercontrolledCharacter pc in timeAffectedObjects.OfType<PlayercontrolledCharacter>())
+        timeAffectedObjects.Remove(_clock);
+        for (int i = 0; i < timeAffectedObjects.Count;)
         {
-            _characterRoster.AddCharacterBackToList(pc);
-            pc.TilePawnIsOn.ChangeState(pc.TilePawnIsOn.GetClearState());
-            pc.RemovePawn(pc.characterCoaster);
+            timeAffectedObjects[i].OnEndDay();
         }
-        // Hack
-        timeAffectedObjects.Clear();
+
+        //foreach (PlayercontrolledCharacter pc in timeAffectedObjects.OfType<PlayercontrolledCharacter>())
+        //{
+        //    _characterRoster.AddCharacterBackToList(pc);
+        //    pc.TilePawnIsOn.ChangeState(pc.TilePawnIsOn.GetClearState());
+        //    pc.RemovePawn(pc.characterCoaster);
+        //}
+
+        ////Hack
+        // timeAffectedObjects.Clear();
     }
 
     private void DebugListAllTimeAffected()
     {
         for (int i = 0; i < timeAffectedObjects.Count; i++)
         {
-            if (timeAffectedObjects[i] is Grill) { Debug.Log(i + ": " + " is gril"); }
+            if (timeAffectedObjects[i] is AbstractCookingStation) { Debug.Log(i + ": " + " is cooking station"); }
             if (timeAffectedObjects[i] is PlayercontrolledCharacter) { Debug.Log(i + ": " + " is character"); }
             if (timeAffectedObjects[i] is AICharacter) { Debug.Log(i + ": " + " is customer"); }
             if (timeAffectedObjects[i] is Clock) { Debug.Log(i + ": " + " is clock"); }

@@ -1,10 +1,13 @@
-﻿
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
+
+    public Action<PlayercontrolledCharacter> PutCharacterBack; 
+
     public PlayercontrolledCharacter()
     {
         EntityType = EnumHolder.EntityType.Character;
@@ -46,5 +49,20 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     {
         ResetMoveValue();
         onStartTurn.Invoke(this);
+    }
+
+    public override void OnEndDay()
+    {
+        GetRidOfAllItems();
+        PutCharacterBack.Invoke(this);
+        base.OnEndDay();
+    }
+
+    void GetRidOfAllItems()
+    {
+        for(int i = 0; i < cariedObjects.Count; i++)
+        {
+            GetRidOfItem(i);  
+        }
     }
 }

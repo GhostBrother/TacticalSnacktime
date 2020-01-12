@@ -14,7 +14,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
    
     public int TurnOrder { get; set; }
     public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Action<AbstractPawn> RemoveFromTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
     int _openingHour = 8;
     int _openingMinute = 0;
@@ -26,7 +26,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
 
 
     int _closingHour = 8;
-    int _closingMinute = 15;
+    int _closingMinute = 30;
 
 
     private void Start()
@@ -34,7 +34,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
         _time = this.GetComponentInChildren<Text>();
     }
 
-    public void SetClockToStartOfDay()
+   public void SetClockToStartOfDay()
     {
         _hour = _openingHour;
         _minute = _openingMinute;
@@ -76,4 +76,8 @@ public class Clock : MonoBehaviour, iAffectedByTime
         return n.ToString().PadLeft(2, '0');
     }
 
+    public void OnEndDay()
+    {
+        SetClockToStartOfDay();
+    }
 }

@@ -44,7 +44,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
     }
 
     public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public Action<AbstractPawn> RemoveFromTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
     public Character()
     {
@@ -87,4 +87,10 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public override abstract void GetTargeter(Character character);
 
+    public virtual void OnEndDay()
+    {
+        TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+        RemovePawn(characterCoaster);
+        RemoveFromTimeline.Invoke(this);
+    }
 }

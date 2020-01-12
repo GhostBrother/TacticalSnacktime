@@ -11,6 +11,8 @@ public interface iAffectedByTime
     Action onTurnEnd { set; get; }
     void TurnEnd();
 
+    void OnEndDay();
+
     Action<iAffectedByTime> AddToTimeline { get; set; }
     Action<AbstractPawn> RemoveFromTimeline { get; set; }
 }

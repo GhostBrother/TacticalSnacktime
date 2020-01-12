@@ -120,7 +120,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\iPathfinding.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\AbstractCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\Buildings\Grill.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Wall.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />
