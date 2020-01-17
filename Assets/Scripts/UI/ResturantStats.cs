@@ -18,13 +18,19 @@ public class ResturantStats : MonoBehaviour
     public delegate void NextDay();
     public NextDay startNextDay;
 
-    public string GoldCounter {get{ return goldCount.text; } set{ goldCount.text = FormatMoneyText(value); }}
+    decimal _goldCounter;
 
     public string ReputationCounter { get { return influenceCount.text; } set { influenceCount.text = value; } }
 
-    private string FormatMoneyText(string s)
+     public void AddMoney(decimal money)
     {
-        return string.Format("{0:0.00}", s);
+        _goldCounter += money;
+        
+    }
+
+    public void UpdateGoldText()
+    {
+        goldCount.text += string.Format("{0:0.00}", _goldCounter);
     }
 
     public void ShowEndPage(bool ShowPage)

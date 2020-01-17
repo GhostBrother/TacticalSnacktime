@@ -31,6 +31,7 @@ public class CharacterCoaster : MonoBehaviour
 
     public void MoveAlongPath(Tile[] path, bool isPathFound)
     {
+
         if (isPathFound)
         {
             _path = path;

@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour {
     {
         character.onStartTurn = OnPlayerControlledStart;
         character.PutCharacterBack = _characterRoster.AddCharacterBackToList;
+        character.onTurnEnd = EndTurn;
         AddTimeInfluencedToList(character);
     }
 
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour {
         customer.onStartTurn = OnCustomerStart;
         customer.OnExit = GiveRating;
         customer.OnPay = PayForFood;
+        customer.onTurnEnd = EndTurn;
         AddTimeInfluencedToList(customer);
     }
 
@@ -126,11 +128,13 @@ public class GameManager : MonoBehaviour {
        
         foreach (iAffectedByTime TA in timeAffectedObjects)
         {
-            if (TA == (iAffectedByTime)ap)
+            if (TA == ap)
             {
+
                 return;
             }
         }
+        ap.onTurnEnd = EndTurn;
         AddTimeInfluencedToList(ap);
     }
 
@@ -149,15 +153,17 @@ public class GameManager : MonoBehaviour {
     private void AddInGameClockToList(Clock clock)
     {
         clock.onTurnEnd += CheckForCustomerSpawn;
-       // clock.onTurnEnd += SortList;
+        clock.onTurnEnd += EndTurn;
+        // clock.onTurnEnd += SortList;
         clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
 
     private void AddTimeInfluencedToList(iAffectedByTime timeAffected)
     {
-        timeAffected.onTurnEnd += EndTurn;
-        timeAffected.RemoveFromTimeline += RemovePawnFromTimeline;
+        // this plus is causing trouble with grill; 
+        //timeAffected.onTurnEnd += EndTurn;
+        timeAffected.RemoveFromTimeline = RemovePawnFromTimeline; // Was +=
         timeAffectedObjects.Add(timeAffected);
     }
 
@@ -190,11 +196,14 @@ public class GameManager : MonoBehaviour {
             CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
             timeAffectedObjects.Remove(CurentCharacter);
+            
         }
         else
         {
             SwapToNextCharacter();
         }
+
+        
     }
 
     private void SwapToNextCharacter()
@@ -278,7 +287,7 @@ public class GameManager : MonoBehaviour {
 
     private void PayForFood(decimal price)
     {
-        _ResturantStats.GoldCounter += price;
+        _ResturantStats.AddMoney(price);
     }
 
     private void StartDay()
@@ -302,16 +311,6 @@ public class GameManager : MonoBehaviour {
         {
             timeAffectedObjects[i].OnEndDay();
         }
-
-        //foreach (PlayercontrolledCharacter pc in timeAffectedObjects.OfType<PlayercontrolledCharacter>())
-        //{
-        //    _characterRoster.AddCharacterBackToList(pc);
-        //    pc.TilePawnIsOn.ChangeState(pc.TilePawnIsOn.GetClearState());
-        //    pc.RemovePawn(pc.characterCoaster);
-        //}
-
-        ////Hack
-        // timeAffectedObjects.Clear();
     }
 
     private void DebugListAllTimeAffected()

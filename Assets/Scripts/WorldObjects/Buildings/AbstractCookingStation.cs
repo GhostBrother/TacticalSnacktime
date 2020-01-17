@@ -27,7 +27,7 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
     public void CreateFood(Food itemToCook)
     {
         HideCoaster(ItemCoaster);
-        ShowCoaster(itemToCook.CaryableObjectSprite, x => { Debug.Log(" set in create food" + x.CharacterSprite.name); ItemCoaster = x; });
+        ShowCoaster(itemToCook.CaryableObjectSprite, x => {  ItemCoaster = x; });
         cariedObjects.Add(itemToCook);
         AddToTimeline.Invoke(this);
     }

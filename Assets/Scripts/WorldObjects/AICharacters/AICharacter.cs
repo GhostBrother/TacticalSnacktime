@@ -41,6 +41,7 @@ public class AICharacter : Character
 
     public void CheckPath()
     {
+
         for (int i = 0; i < Desires.Count; ++i)
         {
             if (Desires[i].isRequestSatisfied())
@@ -52,24 +53,28 @@ public class AICharacter : Character
 
         if (Desires.Count <= 0) { return; }
         Desires[0].MoveTarget();
+       
     }
 
     public void Move()
     {
-        if(path != null)
+        if (path != null)
         {
             FollowPath();
         }
+        else
+            Debug.Log("Path is null");
     }
 
     public void OnPathFound(Tile[] newPath, bool pathSuccessful)
     {
-        if(pathSuccessful)
+        if (pathSuccessful)
         {
             path = newPath;
 
             targetIndex = 0;
         }
+   
 
     }
 
@@ -79,22 +84,29 @@ public class AICharacter : Character
         {
             if (targetIndex + MoveSpeed >= (path.Length - 1))
             {
-                targetIndex = (path.Length  - (targetIndex + MoveSpeed + 1) );
+                targetIndex = (path.Length - (targetIndex + MoveSpeed + 1));
                 if (targetIndex < 0) { targetIndex = 0; }
             }
             else
                 targetIndex += MoveSpeed;
 
+            walkBack(targetIndex);
+          
+        }
 
-            if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState())
-            {
-                TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
-                TilePawnIsOn = path[targetIndex];
-            }
-            else
-            {
-                TilePawnIsOn = TilePawnIsOn;
-            }
+    }
+
+    void walkBack(int targetIndex)
+    {
+        if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState() || targetIndex <= 0)
+        {
+            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+            characterCoaster.onStopMoving = AILookForAction;
+            TilePawnIsOn = path[targetIndex];
+        }
+        else
+        {
+            walkBack(targetIndex - 1);
         }
     }
 
@@ -172,6 +184,7 @@ public class AICharacter : Character
 
     public override void TurnStart()
     {
+        // put path find here? 
         onStartTurn.Invoke(this);
     }
 
@@ -179,7 +192,7 @@ public class AICharacter : Character
     {
         CheckPath();
         Move();
-        characterCoaster.onStopMoving = AILookForAction;
+        
     }
 
 
@@ -187,5 +200,6 @@ public class AICharacter : Character
     {
         // TODO, Give the ai a weighted choice of what to do based on tile, even if it is wait paitently. 
         onTurnEnd.Invoke();
+        
     }
 }

@@ -12,7 +12,7 @@ public class FindRegister : IDesireState
 
     public void MoveTarget()
     {
-        PathRequestManager.RequestPath(aICharacter.TilePawnIsOn, PathRequestManager.FindClosestEntityOfType(aICharacter.TilePawnIsOn, EnumHolder.EntityType.Register), aICharacter.OnPathFound);  
+        PathRequestManager.RequestPath(aICharacter.TilePawnIsOn, PathRequestManager.FindClosestEntityOfType(aICharacter.TilePawnIsOn, EnumHolder.EntityType.Register), aICharacter.OnPathFound);
     }
 
     public bool isRequestSatisfied()

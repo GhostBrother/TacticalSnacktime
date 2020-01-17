@@ -5,8 +5,9 @@ using UnityEngine;
 public class CustomerScheduler 
 {
 
-    readonly int[] _HOURSToInclude = { 9,10,11,12, 1,2,3,4,5,6 };
+    readonly int[] _HOURSToInclude = { 9, 10, 11, 12, 1, 2, 3, 4, 5, 6 }; 
     CharacterLoader<AICharacter> _customerLoader;
+    int _debugMultiplier = 1; 
 
     public CustomerScheduler()
     {
@@ -31,9 +32,9 @@ public class CustomerScheduler
     {
         int hourIndex = Random.Range(0, _HOURSToInclude.Length);
 
-        string time = _HOURSToInclude[hourIndex].ToString().PadLeft(2, '0');
-
-        time += ":" + (Random.Range(0, 4) * 15).ToString().PadLeft(2,'0');
+        string time = _HOURSToInclude[hourIndex].ToString().PadLeft(2, '0'); 
+        time += ":" + (Random.Range(0,4) * 15).ToString().PadLeft(2,'0');
         return time;
     }
+
 }

@@ -21,7 +21,6 @@ public class Pathfinding : MonoBehaviour
 
     void FindPath(Tile startPos, Tile targetPos) 
     {
-        
         Tile[] waypoints = new Tile[0];
         bool pathSuccess = false;
         Heap<Tile> openSet = new Heap<Tile>(maxSize);
@@ -67,6 +66,7 @@ public class Pathfinding : MonoBehaviour
             waypoints = RetracePath(startPos, targetPos);
 
         }
+
         requestManager.FinishedProcessingPath(waypoints,pathSuccess);
     }
 
@@ -79,11 +79,15 @@ public class Pathfinding : MonoBehaviour
         while (currentTile != startTile)
         {
             path.Add(currentTile);
+            //Start here
+            //if (currentTile.GetCurrentState() == currentTile.GetActiveState())
+            //    path.Clear();
+
             currentTile = currentTile.Parent;
+           
         }
 
-        //HACK
-        if (path.Count == 0) { path.Add(startTile); }
+        path.Add(startTile);
 
         Tile[] waypoints = path.ToArray();
         Array.Reverse(waypoints);
