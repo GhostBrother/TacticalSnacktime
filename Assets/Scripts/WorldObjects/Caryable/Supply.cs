@@ -25,13 +25,18 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public iCaryable Give(int i)
     {
-        return this;
+        return Copy();//this;
     }
 
     public void GetRidOfItem(int i)
     {
-       HideCoaster(characterCoaster);
-       TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+        NumberOfItemsInSupply--;
+        if (NumberOfItemsInSupply == 0)
+        {
+            HideCoaster(characterCoaster);
+            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+        }
+
     }
 
     public override List<Command> GetCommands()
@@ -49,5 +54,10 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
     public void SetName()
     {
         Name = $"Box of {FoodThisSupplyMakes.Name}"; 
+    }
+
+    public iCaryable Copy()
+    {
+       return FoodThisSupplyMakes.Copy();
     }
 }

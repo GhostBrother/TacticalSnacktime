@@ -13,4 +13,6 @@ public interface iCaryable
     Sprite CaryableObjectSprite { get; }
     List<Command> HeldObjectCommands { get; }
     int NumberOfItemsInSupply { get; set; }
+    //New
+    iCaryable Copy();
 }

@@ -63,6 +63,7 @@
     <Compile Include="Assets\CharacterLoader.cs" />
     <Compile Include="Assets\CookstationLoader.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\ChangeEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\EndTurn.cs" />
@@ -75,11 +76,17 @@
     <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />
     <Compile Include="Assets\Scripts\Containers\DesireContainer.cs" />
     <Compile Include="Assets\Scripts\Containers\FoodContainerFactory.cs" />
-    <Compile Include="Assets\Scripts\CustomerScheduler.cs" />
-    <Compile Include="Assets\Scripts\DonenessTracker.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\EndOfDayPannel.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\EditMap.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\OrderingSupplys.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\ResturantStats.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\StaffSetup.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\iEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
+    <Compile Include="Assets\Scripts\Food\FoodLoader.cs" />
     <Compile Include="Assets\Scripts\Food\Recipe.cs" />
-    <Compile Include="Assets\Scripts\FoodLoader.cs" />
+    <Compile Include="Assets\Scripts\Food\RecipeLoader.cs" />
+    <Compile Include="Assets\Scripts\GameManager\CustomerScheduler.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
@@ -92,7 +99,6 @@
     <Compile Include="Assets\Scripts\Input\CameraController.cs" />
     <Compile Include="Assets\Scripts\Input\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
-    <Compile Include="Assets\Scripts\ListPool.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\Heap.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\Pathfinding.cs" />
@@ -105,11 +111,12 @@
     <Compile Include="Assets\Scripts\Map\TileStates\HilightedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\OccupiedTile.cs" />
     <Compile Include="Assets\Scripts\Map\TileStates\iTileState.cs" />
-    <Compile Include="Assets\Scripts\MonoPool.cs" />
-    <Compile Include="Assets\Scripts\RecipeLoader.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\ListPool.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\MonoPool.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\iPool.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
-    <Compile Include="Assets\Scripts\UI\ResturantStats.cs" />
+    <Compile Include="Assets\Scripts\UI\DonenessTracker.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />
@@ -139,7 +146,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\iCanGiveItems.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
     <Compile Include="Assets\Scripts\iContainItems.cs" />
-    <Compile Include="Assets\Scripts\iPool.cs" />
     <None Include="Assets\Shader\CookedFoodShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

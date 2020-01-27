@@ -26,7 +26,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
 
 
     int _closingHour = 12;
-    int _closingMinute = 30;
+    int _closingMinute = 45;
 
 
     private void Start()

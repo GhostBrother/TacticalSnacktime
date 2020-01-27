@@ -79,9 +79,6 @@ public class Pathfinding : MonoBehaviour
         while (currentTile != startTile)
         {
             path.Add(currentTile);
-            //Start here
-            //if (currentTile.GetCurrentState() == currentTile.GetActiveState())
-            //    path.Clear();
 
             currentTile = currentTile.Parent;
            

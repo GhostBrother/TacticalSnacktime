@@ -74,17 +74,18 @@ public class AICharacter : Character
 
             targetIndex = 0;
         }
-   
-
+        else
+            Debug.Log("Cant create path");
+    
     }
 
      void FollowPath()
     {
-        if (targetIndex < path.Length)
+        if (targetIndex < path.Length) 
         {
             if (targetIndex + MoveSpeed >= (path.Length - 1))
             {
-                targetIndex = (path.Length - (targetIndex + MoveSpeed + 1));
+                targetIndex = path.Length- 1;//(path.Length - (targetIndex + MoveSpeed + 1));
                 if (targetIndex < 0) { targetIndex = 0; }
             }
             else
@@ -93,12 +94,14 @@ public class AICharacter : Character
             walkBack(targetIndex);
           
         }
+        else
+        Debug.Log("Cant find path");
 
     }
 
     void walkBack(int targetIndex)
     {
-        if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState() || targetIndex <= 0)
+        if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState() || path[targetIndex] == TilePawnIsOn)
         {
             TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
             characterCoaster.onStopMoving = AILookForAction;

@@ -15,13 +15,17 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public void GetRidOfItem(int i )
     {
+        cariedObjects[i].NumberOfItemsInSupply--;
+        if (cariedObjects[i].NumberOfItemsInSupply == 0)
+        {
             usedHands--;
             cariedObjects.RemoveAt(i);
+        }
     }
 
     public iCaryable Give(int i)
     {
-        return cariedObjects[i];
+        return cariedObjects[i].Copy();
     }
 
     public override List<Command> GetCommands()
@@ -42,6 +46,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
             for (int j = 0; j < cariedObjects.Count; j++)
                 SpaceContextualActions.Add(new TakeItem(this, character, j));
+            
         }
     }
 

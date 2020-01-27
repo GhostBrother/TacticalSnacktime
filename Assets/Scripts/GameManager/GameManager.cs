@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
     public CharacterDisplay characterDisplay { get { return _characterDisplay; }  }
 
     [SerializeField]
-    ResturantStats _ResturantStats;
+    EndOfDayPannel _EndOfDayPannel;
 
     [SerializeField]
     Clock _clock;
@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        _ResturantStats.startNextDay = StartDay;
-        _ResturantStats.init();
+        _EndOfDayPannel.startNextDay = StartDay;
+        _EndOfDayPannel.Init();
         //Hack
         _characterRoster = new CharacterRoster();
 
@@ -282,19 +282,20 @@ public class GameManager : MonoBehaviour {
 
     private void GiveRating(AICharacter aICharacter)
     {
-        _ResturantStats.ReputationCounter += aICharacter.Satisfaction;
+        _EndOfDayPannel.AddReputation(aICharacter.Satisfaction); //ReputationCounter += aICharacter.Satisfaction;
     }
 
     private void PayForFood(decimal price)
     {
-        _ResturantStats.AddMoney(price);
+        _EndOfDayPannel.AddMoney(price);
     }
 
     private void StartDay()
     {
 
-        _ResturantStats.ShowEndPage(false);
+        _EndOfDayPannel.HideEndOfDayPage();
         _gameMap.AcivateAllDeployTiles();
+        _characterFactory.RollCharactersForDay();
        // AddInGameClockToList(_clock);
         SortList();
         _clock.SetClockToStartOfDay();
@@ -304,7 +305,7 @@ public class GameManager : MonoBehaviour {
 
     private void EndDay()
     {
-        _ResturantStats.ShowEndPage(true);
+        _EndOfDayPannel.ShowEndOfDayPage();
 
         timeAffectedObjects.Remove(_clock);
         for (int i = 0; i < timeAffectedObjects.Count;)

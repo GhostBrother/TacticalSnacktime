@@ -44,4 +44,10 @@ public class Food : iCaryable
         CustomersWhoLikeThis = Customers;
         NumberOfItemsInSupply = 1;
     }
+
+    public iCaryable Copy()
+    {
+        iCaryable clone = new Food(Name, Price, DonenessesLevels, Description, HandsRequired, ID, CustomersWhoLikeThis);
+        return clone;
+    }
 }

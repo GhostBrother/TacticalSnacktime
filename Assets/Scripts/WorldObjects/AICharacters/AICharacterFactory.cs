@@ -15,7 +15,7 @@ public class AICharacterFactory
         _monoPool = monoPool;
         _desireContainer = new DesireContainer();
         _customerScheduler = new CustomerScheduler();
-        _charactersForDay = _customerScheduler.MakeListOfCustomers();
+        _charactersForDay = new List<AICharacter>();
     }
 
     public List<AICharacter> GetCharacterSpawnsForTime(string time, Tile targetTile)
@@ -53,5 +53,11 @@ public class AICharacterFactory
             }
 
         return aICharacter;
+    }
+
+    public void RollCharactersForDay()
+    {
+        _charactersForDay.Clear();
+        _charactersForDay = _customerScheduler.MakeListOfCustomers();
     }
 }
