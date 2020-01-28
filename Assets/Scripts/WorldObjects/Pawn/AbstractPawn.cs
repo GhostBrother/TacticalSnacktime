@@ -37,6 +37,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
     { get; set; }
 
     private Tile previousTile;
+    protected Tile PreviousTile { get { return previousTile; } set{ previousTile = value; } }
 
     private Tile tilePawnIsOn;
     public virtual Tile TilePawnIsOn
@@ -46,13 +47,9 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         {
             previousTile = tilePawnIsOn;
             tilePawnIsOn = value;
-            if (previousTile != null)
+            if (previousTile == null)
             {
-                PathRequestManager.RequestPath(previousTile, value, characterCoaster.MoveAlongPath);
-            }
-            else
-            {
-                _characterCoaster.transform.position = new Vector3(TilePawnIsOn.transform.position.x, TilePawnIsOn.transform.position.y, -0.5f);
+                characterCoaster.transform.position = new Vector3(TilePawnIsOn.transform.position.x, TilePawnIsOn.transform.position.y, -0.5f);
             }
 
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());

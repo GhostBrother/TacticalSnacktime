@@ -78,10 +78,8 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
         cariedObjects.Add(caryable);
     }
 
-    public virtual void MoveCharacter()
-    {
+    public abstract void MoveCharacter();
 
-    }
 
     public override abstract List<Command> GetCommands();
 

@@ -74,8 +74,6 @@ public class AICharacter : Character
 
             targetIndex = 0;
         }
-        else
-            Debug.Log("Cant create path");
     
     }
 
@@ -94,8 +92,7 @@ public class AICharacter : Character
             walkBack(targetIndex);
           
         }
-        else
-        Debug.Log("Cant find path");
+        
 
     }
 

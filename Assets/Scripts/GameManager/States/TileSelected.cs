@@ -40,6 +40,8 @@ public class TileSelected : iGameManagerState
             _gameManager.SetState(_gameManager.GetMovingState());
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
             _gameManager.CurentCharacter.TilePawnIsOn = tile;
+            // Added
+            _gameManager.CurentCharacter.MoveCharacter();
             tile.ChangeState(tile.GetActiveState());
             _gameManager.DeactivateAllTiles();
             
@@ -54,6 +56,5 @@ public class TileSelected : iGameManagerState
     private void ActionOnStopMoving(Tile tile)
     {
         _gameManager.ActionMenu.ShowActionsAtTile();
-       // _gameManager.SetState(_gameManager.GetActionState());
     }
 }

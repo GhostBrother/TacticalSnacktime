@@ -55,10 +55,12 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        _EndOfDayPannel.startNextDay = StartDay;
-        _EndOfDayPannel.Init();
+       
         //Hack
         _characterRoster = new CharacterRoster();
+
+        _EndOfDayPannel.startNextDay = StartDay;
+        _EndOfDayPannel.Init(_characterRoster);
 
         idleMode = new Idle(this);
         selectedMode = new TileSelected(this);
@@ -244,13 +246,8 @@ public class GameManager : MonoBehaviour {
 
     private void OnPlayerControlledStart(AbstractPawn playerCharacter)
     {
-        if (playerCharacter is PlayercontrolledCharacter)
-        {
-            PlayercontrolledCharacter pc = (PlayercontrolledCharacter)playerCharacter;
-            camera.onStopMoving = pc.MoveCharacter;
             MoveCameraToPawn(playerCharacter);
             SetState(GetIdleState());
-        }
     }
 
    // On Ai Start
@@ -264,6 +261,7 @@ public class GameManager : MonoBehaviour {
             camera.onStopMoving = c.MoveCharacter;
             MoveCameraToPawn(customerCharacter);
         }
+
     }
 
     private void OnPawnStart(AbstractPawn abstractPawn)

@@ -13,7 +13,6 @@ public class CharacterRoster {
         employedCharacters = new List<PlayercontrolledCharacter>();
         _characterLoader = new CharacterLoader<PlayercontrolledCharacter>();
 
-        // Try to get rid of the template methoid
         employedCharacters.Add(_characterLoader.GetCharacterByType("Kobold"));
         employedCharacters.Add(_characterLoader.GetCharacterByType("Kobold"));
         employedCharacters.Add(_characterLoader.GetCharacterByType("Theif"));

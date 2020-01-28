@@ -27,6 +27,8 @@ public class Idle : iGameManagerState
 
             _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
             _gameManager.CurentCharacter.TilePawnIsOn = tile;
+            // Added
+            _gameManager.CurentCharacter.MoveCharacter();
             tile.ChangeState(tile.GetActiveState());
             _gameManager.DeactivateAllTiles();
 

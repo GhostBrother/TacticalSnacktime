@@ -50,6 +50,11 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
         }
     }
 
+    public override void MoveCharacter()
+    {
+        PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
+    }
+
     public override void TurnStart()
     {
         ResetMoveValue();

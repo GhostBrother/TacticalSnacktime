@@ -41,7 +41,7 @@ public class EndOfDayPannel : MonoBehaviour
     public delegate void NextDay();
     public NextDay startNextDay;
 
-    public void Init()
+    public void Init(CharacterRoster characterRoster)
     {
         startDayButton.StoredCommand = new StartNextDay(startNextDay.Invoke);
 
@@ -62,6 +62,7 @@ public class EndOfDayPannel : MonoBehaviour
 
         _Schedule.EndOfDayPannel = this;
          scheduleButton.StoredCommand = new ChangeEndOfDayState(this, _Schedule);
+        _Schedule.SetRoster(characterRoster);
         _Schedule.ButtonForState = scheduleButton;
         
 
