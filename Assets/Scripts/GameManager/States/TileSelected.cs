@@ -44,7 +44,7 @@ public class TileSelected : iGameManagerState
             _gameManager.CurentCharacter.MoveCharacter();
             tile.ChangeState(tile.GetActiveState());
             _gameManager.DeactivateAllTiles();
-            
+
         }
         else
         {
