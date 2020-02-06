@@ -96,7 +96,10 @@ public class EndOfDayPannel : MonoBehaviour
 
     public void HideEndOfDayPage()
     {
+        ChangeState(_Stats);
+        ShowPropsForState();
         this.gameObject.SetActive(false);
+        
     }
 
     public void ChangeState(iEndOfDayState newState)
@@ -113,4 +116,6 @@ public class EndOfDayPannel : MonoBehaviour
     {
         _curState.HideProps();
     }
+
+
 }

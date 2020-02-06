@@ -7,7 +7,7 @@ using UnityEngine;
 ///  This is the state where a game piece is moving or doing some other action
 ///  The point is to freeze click input and allow the unit to move and get to it's final destination. 
 /// </summary>
-public class MovingState : iGameManagerState
+public class ControlsDisabled : iGameManagerState
 {
     public void RightClick(Tile tile)
     {

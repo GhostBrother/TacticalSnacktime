@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class ResturantStats : MonoBehaviour, iEndOfDayState
 {
     [SerializeField]
+    GameObject _statsTextHolder;
+
+    [SerializeField]
     Text goldCount;
 
     [SerializeField]
@@ -27,16 +30,13 @@ public class ResturantStats : MonoBehaviour, iEndOfDayState
 
     public void DisplayProps()
     {
-        goldCount.gameObject.SetActive(true);
+        _statsTextHolder.SetActive(true);
         UpdateGoldText();
-        ReputationCount.gameObject.SetActive(true);
         UpdateReputation();
-
     }
 
     public void HideProps()
     {
-        goldCount.gameObject.SetActive(false);
-        ReputationCount.gameObject.SetActive(false);
+        _statsTextHolder.SetActive(false);
     }
 }

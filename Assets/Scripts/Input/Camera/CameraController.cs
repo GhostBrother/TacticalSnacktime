@@ -16,6 +16,16 @@ public class CameraController : MonoBehaviour {
     [SerializeField]
     float howLongIsPan;
 
+    // Control, user can control camera;
+    iCameraState _playerControlled;
+    // panning, camera is moving on it's own and cannot be moved by the player. 
+
+    // Following, the camera is following a moving object, it cannot be moved by the player
+
+    // Freeze, camera is not moving nor can the player move it. 
+
+    // Curent camera state
+
     private Vector3 currentLocation;
     private Vector3 defaultCameraLocation;
     private Vector3 desiredLocation;
@@ -55,7 +65,7 @@ public class CameraController : MonoBehaviour {
     public void PanCamera(Vector3 targetLocation , Vector3 tileSize)
     {
 
-        // The 3 should be some kind of variable that scales as the map changes size.
+        // The 4 should be some kind of variable that scales as the map changes size.
         if (iSFreePanModeOn)
         {
             if (targetLocation.x > (tileSize.x * 4 + desiredLocation.x))
@@ -80,6 +90,8 @@ public class CameraController : MonoBehaviour {
         }
 
     }
+
+    // Need a way to lock the camera in position. 
 
     private void panToDefaultLocation()
     {

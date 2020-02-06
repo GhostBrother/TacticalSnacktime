@@ -78,9 +78,13 @@
     <Compile Include="Assets\Scripts\Containers\FoodContainerFactory.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\EndOfDayPannel.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\EditMap.cs" />
-    <Compile Include="Assets\Scripts\EndOfDay\States\OrderingSupplys.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\ResturantStats.cs" />
-    <Compile Include="Assets\Scripts\EndOfDay\States\StaffSetup.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Staff\HireNewEmployee.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Staff\ShowEmployeeStats.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Staff\StaffEntry.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Staff\StaffSetup.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Supply\OrderingSupplys.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Supply\SupplyOption.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\iEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
     <Compile Include="Assets\Scripts\Food\FoodLoader.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Assets\Scripts\GameManager\CustomerScheduler.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
+    <Compile Include="Assets\Scripts\GameManager\States\ControlsDisabled.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\MovingState.cs" />
@@ -96,7 +101,12 @@
     <Compile Include="Assets\Scripts\GameManager\States\iGameManagerState.cs" />
     <Compile Include="Assets\Scripts\Input\ActionButton.cs" />
     <Compile Include="Assets\Scripts\Input\ActionMenu.cs" />
-    <Compile Include="Assets\Scripts\Input\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\States\Following.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\States\Frozen.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\States\PanningToCharacter.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\States\PlayerControlled.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\States\iCameraState.cs" />
     <Compile Include="Assets\Scripts\Input\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\Heap.cs" />

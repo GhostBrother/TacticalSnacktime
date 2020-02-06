@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
     iGameManagerState selectedMode;
     iGameManagerState deployState;
     iGameManagerState curentState;
-    iGameManagerState movingState;
+    iGameManagerState controlsDisabled;
 
 	// Use this for initialization
 	void Start ()
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
         idleMode = new Idle(this);
         selectedMode = new TileSelected(this);
         deployState = new DeployState(this, _characterRoster);
-        movingState = new MovingState();
+        controlsDisabled = new ControlsDisabled();
 
         timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory(_monoPool);
@@ -96,15 +96,16 @@ public class GameManager : MonoBehaviour {
         return selectedMode;
     }
 
-    public iGameManagerState GetMovingState()
+    public iGameManagerState GetDisableControls()
     {
 
-        return movingState;
+        return controlsDisabled;
     }
 
     public void SetState(iGameManagerState newState)
     {
         curentState = newState;
+        Debug.Log("Current state is" + curentState);
     }
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
@@ -239,6 +240,8 @@ public class GameManager : MonoBehaviour {
         SetDonenessTracks();
         characterDisplay.ChangeCharacterArt(character.PawnSprite);  
         UpdateCharacterDisplay();
+        // HACK
+        camera.onStopMoving = null;
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
     }
 
@@ -257,7 +260,7 @@ public class GameManager : MonoBehaviour {
         if (customerCharacter is AICharacter)
         {
             AICharacter c = (AICharacter)customerCharacter;
-            SetState(GetMovingState());
+            SetState(GetDisableControls());
             camera.onStopMoving = c.MoveCharacter;
             MoveCameraToPawn(customerCharacter);
         }
@@ -266,7 +269,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
-        SetState(GetMovingState());
+        SetState(GetDisableControls());
         camera.onStopMoving = MoveDonenessMeter;
         MoveCameraToPawn(abstractPawn);
     }
@@ -290,7 +293,7 @@ public class GameManager : MonoBehaviour {
 
     private void StartDay()
     {
-
+   
         _EndOfDayPannel.HideEndOfDayPage();
         _gameMap.AcivateAllDeployTiles();
         _characterFactory.RollCharactersForDay();
@@ -304,12 +307,14 @@ public class GameManager : MonoBehaviour {
     private void EndDay()
     {
         _EndOfDayPannel.ShowEndOfDayPage();
+        SetState(GetDisableControls());
 
         timeAffectedObjects.Remove(_clock);
         for (int i = 0; i < timeAffectedObjects.Count;)
         {
             timeAffectedObjects[i].OnEndDay();
         }
+        
     }
 
     private void DebugListAllTimeAffected()
