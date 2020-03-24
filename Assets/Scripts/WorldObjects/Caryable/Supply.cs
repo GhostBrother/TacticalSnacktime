@@ -25,7 +25,7 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public iCaryable Give(int i)
     {
-        return Copy();//this;
+        return Copy();
     }
 
     public void GetRidOfItem(int i)

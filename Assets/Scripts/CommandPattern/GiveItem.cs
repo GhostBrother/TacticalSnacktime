@@ -7,13 +7,19 @@ public class GiveItem : TrasferItemCommand
 
     public GiveItem( iCanGiveItems curentCharacter, Character recivingCharacter, int index) : base (curentCharacter, recivingCharacter, index)
     {
-        characterName = recivingCharacter.Name;
+        if (curentCharacter is Character)
+        {
+            Character temp = (Character)curentCharacter;
+            typeOfCommand = new HighlightTilesCommand(1, temp.TilePawnIsOn);
+        }
     }
 
     public override string CommandName {
         get
         {
-            return $"Give {itemName} to {characterName}";
+            return "Give"; 
         }
     }
+
+    public override bool isUsable => true;
 }

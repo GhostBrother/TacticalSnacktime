@@ -30,6 +30,7 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
         ShowCoaster(itemToCook.CaryableObjectSprite, x => {  ItemCoaster = x; });
         cariedObjects.Add(itemToCook);
         AddToTimeline.Invoke(this);
+        
     }
 
     public override void GetTargeter(Character character)

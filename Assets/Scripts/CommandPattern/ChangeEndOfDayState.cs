@@ -14,6 +14,10 @@ public class ChangeEndOfDayState : Command
 
     public string CommandName { get { return _stateToChangeTo.ToString();} }
 
+    public bool isUsable => true;
+
+    public iCommandKind typeOfCommand { get; set; }
+
     public void execute()
     {
         _endOfDayPannel.HidePropsForState();

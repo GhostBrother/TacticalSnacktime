@@ -54,6 +54,6 @@ public class TileSelected : iGameManagerState
 
     private void ActionOnStopMoving(Tile tile)
     {
-        _gameManager.ActionMenu.ShowActionsAtTile();
+        _gameManager.ActionMenu.ShowActionsAtTile(_gameManager.CurentCharacter);
     }
 }

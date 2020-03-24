@@ -8,6 +8,7 @@ public class ActionButton : MonoBehaviour
     public delegate void OnExecuteCommand();
     public OnExecuteCommand onActionTaken;
 
+
     private Command storedCommand;
 
     public Command StoredCommand
@@ -17,12 +18,15 @@ public class ActionButton : MonoBehaviour
         {
             storedCommand = value;
             this.GetComponentInChildren<Text>().text = storedCommand.CommandName;
-            onActionTaken += storedCommand.execute;
         }
     }
     
     public void ExecuteStoredCommand()
     {
-        onActionTaken.Invoke(); 
+        if (storedCommand.isUsable)
+        onActionTaken.Invoke();
+
+        storedCommand.typeOfCommand.ActivateType();
+       // storedCommand.execute();
     }
 }

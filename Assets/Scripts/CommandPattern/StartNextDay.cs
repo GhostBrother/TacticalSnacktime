@@ -14,6 +14,10 @@ public class StartNextDay : Command
 
     public string CommandName { get { return "Start the next day"; } }
 
+    public bool isUsable => true;
+
+    public iCommandKind typeOfCommand { get; set; }
+
     public void execute()
     {
         _startNextDay.Invoke();

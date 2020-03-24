@@ -5,17 +5,21 @@ using UnityEngine;
 public class MoveCommand : Command
 {
     public string CommandName { get { return "Move"; } }
-    GameManager _GM;
 
-    public MoveCommand(GameManager gm)
+    public bool isUsable => _character._MoveRemaining > 0;
+
+    public iCommandKind typeOfCommand { get; set; }
+
+    Character _character;
+
+    public MoveCommand(Character c)
     {
-        _GM = gm;
+        _character = c;
+        typeOfCommand = new HighlightTilesCommand(_character._MoveRemaining, _character.TilePawnIsOn);
     }
 
     public void execute()
     {
-        _GM.CurentCharacter.ShowMoveRange();
-        _GM.CurentCharacter.TilePawnIsOn.ChangeState(_GM.CurentCharacter.TilePawnIsOn.GetClearState());
-        _GM.SetState(_GM.GetSelectedState());
+        typeOfCommand.ActivateType();
     }
 }

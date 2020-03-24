@@ -199,8 +199,19 @@ public class AICharacter : Character
 
      private void AILookForAction(Tile tile)
     {
-        // TODO, Give the ai a weighted choice of what to do based on tile, even if it is wait paitently. 
+        
         onTurnEnd.Invoke();
         
+    }
+
+    public override List<Command> LoadCommands()
+    {
+        return null;
+    }
+
+    public override List<Command> GetAllActionsFromTile()
+    {
+        // TODO, Give the ai a weighted choice of what to do based on tile, even if it is wait paitently. 
+        return null;
     }
 }

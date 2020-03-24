@@ -20,4 +20,6 @@ public class PickUpItem : TrasferItemCommand
         }
     }
     public override string CommandName { get { return $"Pickup {itemName} from floor"; } }
+
+    public override bool isUsable => true;
 }

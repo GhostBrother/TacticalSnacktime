@@ -15,6 +15,10 @@ public class ShowEmployeeStats : Command
 
     public string CommandName { get; private set; }
 
+    public bool isUsable => true;
+
+    public iCommandKind typeOfCommand { get; set; }
+
     public void execute()
     {
         _staffSetup.ShowCharacterArt(_pcc.PawnSprite);

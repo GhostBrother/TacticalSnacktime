@@ -6,15 +6,10 @@ public class TakeItem : TrasferItemCommand
 {
     public TakeItem(iCanGiveItems givingCharacter, Character curentCharacter , int index) : base (givingCharacter , curentCharacter, index)
     {
-        characterName = string.Empty;
-        if (givingCharacter is AbstractInteractablePawn)
-        {
-            AbstractInteractablePawn temp = (AbstractInteractablePawn)givingCharacter;
-            characterName = temp.Name;
-            itemName = givingCharacter.Give(index).Name;
-        }
-           
+        typeOfCommand = new HighlightTilesCommand(1, curentCharacter.TilePawnIsOn);        
     }
 
-    public override string CommandName { get { return $"Take {itemName} From {characterName}"; } }
+    public override string CommandName { get { return "Take"; } }
+
+    public override bool isUsable => true;
 }

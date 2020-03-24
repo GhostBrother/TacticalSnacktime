@@ -12,9 +12,15 @@ public class TakeOrder : Command
 
     public string CommandName { get { return "Take Order"; } }
 
+    public bool isUsable => true;
+
+    public iCommandKind typeOfCommand { get; set; }
+
     public void execute()
     {
        customer.OrderHasBeenTaken = true;
        customer.DisplayOrder();
     }
+
+
 }

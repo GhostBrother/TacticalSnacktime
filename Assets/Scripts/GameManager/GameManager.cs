@@ -72,10 +72,9 @@ public class GameManager : MonoBehaviour {
 
         _characterDisplay.InitCharacterDisplay();
 
-        actionMenu.onTurnEnd = EndTurn;
-        actionMenu.addTimed = AddTimeInfluencedToList;
+       
+       // actionMenu.addTimed = AddTimeInfluencedToList;
         actionMenu.onButtonClick = UpdateCharacterDisplay;
-        actionMenu.SetGM(this);
 
         _mapGenerator.SetGm(this);
         _gameMap = _mapGenerator.generateMap();
@@ -105,7 +104,7 @@ public class GameManager : MonoBehaviour {
     public void SetState(iGameManagerState newState)
     {
         curentState = newState;
-        Debug.Log("Current state is" + curentState);
+       
     }
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
@@ -208,7 +207,7 @@ public class GameManager : MonoBehaviour {
 
         
     }
-
+    
     private void SwapToNextCharacter()
     {
         timeAffectedObjects.Add(timeAffectedObjects[0]);
@@ -220,7 +219,7 @@ public class GameManager : MonoBehaviour {
         if (timeAffectedObjects[0] is Character)
         {
             CurentCharacter = (Character)timeAffectedObjects[0];
-            actionMenu.SetCurrentCharacter();
+           // actionMenu.SetCurrentCharacter();
         }
         timeAffectedObjects[0].TurnStart();
     }

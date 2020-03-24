@@ -7,6 +7,11 @@ public class CraftFood : Command
 
     string _commandName;
     public string CommandName { get { return _commandName; } }
+
+    public bool isUsable => true;
+
+    public iCommandKind typeOfCommand { get; set; }
+
     iCookingStation _cookingStation;
     Recipe _recipieToMake;
     Character _character;
@@ -17,6 +22,7 @@ public class CraftFood : Command
         _cookingStation = cookStaion;
         _recipieToMake = recipeToMake;
         _character = character;
+       // typeOfCommand = new CloseMenu();
     }
 
     void createCommandName(Recipe recipeToMake)

@@ -21,7 +21,8 @@ public class Idle : iGameManagerState
     {
         if ( tile == _gameManager.CurentCharacter.TilePawnIsOn)
         {
-            _gameManager.ActionMenu.ShowActionsAtTile();
+            _gameManager.ActionMenu.ShowActionsAtTile(_gameManager.CurentCharacter);
+            _gameManager.SetState(_gameManager.GetSelectedState());
         }
         else
         {

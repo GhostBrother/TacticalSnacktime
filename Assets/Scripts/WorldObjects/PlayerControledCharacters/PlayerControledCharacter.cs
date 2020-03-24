@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
 
-    public Action<PlayercontrolledCharacter> PutCharacterBack; 
+    public Action<PlayercontrolledCharacter> PutCharacterBack;
 
     public PlayercontrolledCharacter()
     {
@@ -35,7 +35,6 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void GetTargeter(Character character)
     {
-        SpaceContextualActions.Clear();
         if (character is PlayercontrolledCharacter)
         {
             PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
@@ -52,6 +51,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void MoveCharacter()
     {
+        TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
         PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
     }
 
@@ -75,4 +75,44 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
             GetRidOfItem(i);  
         }
     }
+
+    public override List<Command> LoadCommands()
+    {
+        SpaceContextualActions.Add(new MoveCommand(this));
+        SpaceContextualActions.Add(new Act(GetAllActionsFromTile(), SpaceContextualActions));
+        SpaceContextualActions.Add(new Wait(this));
+        SpaceContextualActions.Add(new StatusCommand(this));
+        return SpaceContextualActions;
+    }
+
+    public override List<Command> GetAllActionsFromTile()
+    {
+        List<Command> ListToReturn = new List<Command>();
+        SpaceContextualActions.Clear();
+        foreach (Tile neighbor in TilePawnIsOn.neighbors)
+        {
+            if (neighbor.IsTargetableOnTile)
+            {
+                neighbor.TargetableOnTile.GetTargeter(this);
+
+               for(int i = 0; i < neighbor.TargetableOnTile.GetCommands().Count; i++)
+                {
+                    if(!ListToReturn.Exists(x => x.GetType() == neighbor.TargetableOnTile.GetCommands()[i].GetType()))
+                    {
+                        if(neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand == null)
+                        {
+                            TransferMenuCommand temp = new TransferMenuCommand(SpaceContextualActions);
+                            neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand = temp;
+                        }
+                        ListToReturn.Add(neighbor.TargetableOnTile.GetCommands()[i]);
+                    }
+                }
+            }
+            
+        }
+        ListToReturn.AddRange(CariedObjectCommands);
+        return ListToReturn;
+    }
+
+
 }

@@ -54,14 +54,11 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
         cariedObjects = new List<iCaryable>();
     }
 
+    public abstract List<Command> LoadCommands();
+
     protected void ResetMoveValue()
     {
         _MoveRemaining = MoveSpeed;
-    }
-
-    public void ShowMoveRange()
-    {
-        TilePawnIsOn.ColorAllAdjacent(_MoveRemaining); 
     }
 
     public void PickUp(iCaryable caryable)
@@ -82,6 +79,9 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
 
     public override abstract List<Command> GetCommands();
+
+
+    public abstract List<Command> GetAllActionsFromTile();
 
     public override abstract void GetTargeter(Character character);
 
