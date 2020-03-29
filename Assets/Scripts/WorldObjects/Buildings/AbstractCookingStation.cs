@@ -12,6 +12,9 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
 
     public int numberOfCarriedObjects { get; set; }
 
+    //Added
+    public Action<AbstractPawn> onStartTurn { get; set; }
+
     protected List<Recipe> recipiesThatCanBeCreated;
 
     public void LoadRecipies(List<Recipe> recipes)

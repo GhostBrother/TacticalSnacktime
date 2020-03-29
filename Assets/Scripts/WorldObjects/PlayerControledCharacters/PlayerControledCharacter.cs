@@ -35,6 +35,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void GetTargeter(Character character)
     {
+        
         if (character is PlayercontrolledCharacter)
         {
             PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
@@ -51,7 +52,6 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void MoveCharacter()
     {
-        TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
         PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
     }
 
@@ -78,17 +78,19 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override List<Command> LoadCommands()
     {
-        SpaceContextualActions.Add(new MoveCommand(this));
-        SpaceContextualActions.Add(new Act(GetAllActionsFromTile(), SpaceContextualActions));
-        SpaceContextualActions.Add(new Wait(this));
-        SpaceContextualActions.Add(new StatusCommand(this));
-        return SpaceContextualActions;
+        List<Command> BaseCommands = new List<Command>();
+        BaseCommands.Add(new MoveCommand(this));
+        BaseCommands.Add(new Act(GetAllActionsFromTile(), LoadCommands));
+        BaseCommands.Add(new Wait(this));
+        BaseCommands.Add(new StatusCommand(this));
+        return BaseCommands;
     }
 
     public override List<Command> GetAllActionsFromTile()
     {
+    
         List<Command> ListToReturn = new List<Command>();
-        SpaceContextualActions.Clear();
+        
         foreach (Tile neighbor in TilePawnIsOn.neighbors)
         {
             if (neighbor.IsTargetableOnTile)
@@ -101,7 +103,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
                     {
                         if(neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand == null)
                         {
-                            TransferMenuCommand temp = new TransferMenuCommand(SpaceContextualActions);
+                            TransferMenuCommand temp = new TransferMenuCommand(LoadCommands);
                             neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand = temp;
                         }
                         ListToReturn.Add(neighbor.TargetableOnTile.GetCommands()[i]);

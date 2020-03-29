@@ -45,6 +45,8 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public Action<AbstractPawn> RemoveFromTimeline { get; set; }
+    //Added
+    public Action<AbstractPawn> onStartTurn { get ; set; }
 
     public Character()
     {

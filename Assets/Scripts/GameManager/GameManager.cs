@@ -219,7 +219,6 @@ public class GameManager : MonoBehaviour {
         if (timeAffectedObjects[0] is Character)
         {
             CurentCharacter = (Character)timeAffectedObjects[0];
-           // actionMenu.SetCurrentCharacter();
         }
         timeAffectedObjects[0].TurnStart();
     }
@@ -249,7 +248,8 @@ public class GameManager : MonoBehaviour {
     private void OnPlayerControlledStart(AbstractPawn playerCharacter)
     {
             MoveCameraToPawn(playerCharacter);
-            SetState(GetIdleState());
+            SetState(GetIdleState());// Unlocks control.
+
     }
 
    // On Ai Start

@@ -5,19 +5,17 @@ using UnityEngine;
 
 public class TransferMenuCommand : iCommandKind
 {
-
-    public List<Command> nextMenu { get; set; }
-
-
-    public TransferMenuCommand(List<Command> commandToGoTo)
-    {
-        nextMenu = commandToGoTo;
-    }
+    Func<List<Command>> _nextMenu;
 
     public Action<List<Command>> LoadNewMenu { get; set; }
 
+    public TransferMenuCommand(Func<List<Command>> commands)
+    {
+        _nextMenu = commands;
+    }
+
     public void ActivateType()
     {
-        LoadNewMenu.Invoke(nextMenu);
+        LoadNewMenu.Invoke(_nextMenu.Invoke());
     }
 }

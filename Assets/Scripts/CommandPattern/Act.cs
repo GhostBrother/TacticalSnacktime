@@ -3,22 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Act : Command//MenuTransitionCommand
+public class Act : Command
 {
     public string CommandName => "Action";
 
-    // public List<Command> NextMenu { get; private set; }
-
     public bool isUsable => true; //typeOfCommand.NextMenu.Count > 0;
 
-   // public List<Command> BackMenu { get; private set; }
+    private List<Command> _NextCommands;
+
+    private List<Command> GetCommands()
+    {
+        return _NextCommands;
+    }
 
     public iCommandKind typeOfCommand { get; set; }
 
-    public Act(List<Command> commands, List<Command> back) 
+    public Act(List<Command> commands, Func<List<Command>> back ) 
     {
-        commands.Add(new MenuBack(back));
-        typeOfCommand = new TransferMenuCommand(commands);
+        _NextCommands = commands;
+        _NextCommands.Add(new MenuBack(back));
+        typeOfCommand = new TransferMenuCommand(GetCommands);
     }
 
     public void execute()

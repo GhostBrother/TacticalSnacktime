@@ -6,7 +6,7 @@ public class MoveCommand : Command
 {
     public string CommandName { get { return "Move"; } }
 
-    public bool isUsable => _character._MoveRemaining > 0;
+    public bool isUsable => true; // _character._MoveRemaining > 0;
 
     public iCommandKind typeOfCommand { get; set; }
 
@@ -21,5 +21,7 @@ public class MoveCommand : Command
     public void execute()
     {
         typeOfCommand.ActivateType();
+       
     }
+
 }
