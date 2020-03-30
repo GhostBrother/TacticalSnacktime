@@ -22,7 +22,7 @@ public class DeployState : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-        if(tile.GetCurrentState() == tile.GetDeployState())
+        if(tile.curentState == tile.GetDeployState())
         {
             PlayercontrolledCharacter CharacterToUse = _characterRoster.GetCharacterOnTopOfList();
             CharacterToUse.characterCoaster = _gameManager.monoPool.GetCharacterCoasterInstance();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
 
     public List<Tile> neighbors { get; }
+
+    public Action onClick { get; set; }
 
     // Feasibly abstract this out to like an iNavigatable or something
     public int gCost { get; set; }
@@ -41,7 +44,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     [SerializeField]
     Color deployZoneColor;
-    public Color DeployZoneColor { get { return deployZoneColor; } private set {; } }
+    public Color DeployZoneColor { get { return deployZoneColor; }  }
 
     private iTargetable targetableOnTile; 
     public iTargetable TargetableOnTile { get { return targetableOnTile; } set { targetableOnTile = value; } }
@@ -55,7 +58,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     private iTileState hilighted;
     private iTileState occupiedSquare;
     private iTileState deployZoneTile;
-    private iTileState curentState;
+    public iTileState curentState { get; private set; }
 
     [SerializeField]
     string DEBUGSTATE;
@@ -89,6 +92,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     {
         // HACK invest in a moved off function for pawns.
         EntityTypeOnTile = EnumHolder.EntityType.None;
+        onClick = null;
         TargetableOnTile = null;
         return clear;
     }
@@ -108,14 +112,9 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         return deployZoneTile;
     }
 
-    public iTileState GetCurrentState()
-    {
-        return curentState;
-    }
-
     public void DeactivateTile()
     {
-        if (GetCurrentState() != GetActiveState())
+        if (curentState != GetActiveState())
         {
             movementPenalty = 0;
             ChangeState(clear);  
@@ -139,13 +138,13 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         {
             numToHilight--;
 
-            if (GetCurrentState() != GetActiveState()) 
+            if (curentState != GetActiveState()) 
                 ChangeState(hilighted);
 
             for (int i = 0; i < neighbors.Count; i++)
             {
                 
-                if (neighbors[i].GetCurrentState() != neighbors[i].GetActiveState())
+                if (neighbors[i].curentState != neighbors[i].GetActiveState())
                 {
                     neighbors[i].ColorAllAdjacent(numToHilight);
                 }

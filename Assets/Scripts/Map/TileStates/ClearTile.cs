@@ -18,13 +18,11 @@ public class ClearTile : iTileState
 
     public void ChangeColor()
     {
-        //_tile.GetComponent<SpriteRenderer>().sprite = null;
-        //_tile.FoodImageRenderer.sprite = null;
 
     }
 
     public void TileClicked()
     {
-        
+        // Does nothing when clicked, might revert state of board? 
     }
 }

@@ -171,7 +171,13 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateTile(Tile tile)
     {
-        curentState.TileClicked(tile);
+        //Debug scafolding
+        if (curentState == deployState)
+        {
+            curentState.TileClicked(tile);
+        }
+        else
+        tile.curentState.TileClicked();
     }
 
     public void RightClick(Tile tile)
@@ -247,8 +253,9 @@ public class GameManager : MonoBehaviour {
 
     private void OnPlayerControlledStart(AbstractPawn playerCharacter)
     {
-            MoveCameraToPawn(playerCharacter);
-            SetState(GetIdleState());// Unlocks control.
+        MoveCameraToPawn(playerCharacter);
+        playerCharacter.TilePawnIsOn.onClick = ShowCharacterActions;
+        SetState(GetIdleState());// Unlocks control.
 
     }
 
@@ -357,7 +364,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    
-
+    void ShowCharacterActions()
+    {
+        ActionMenu.ShowActionsAtTile(CurentCharacter); 
+    }
 
 }

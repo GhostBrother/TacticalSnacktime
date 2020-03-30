@@ -18,6 +18,6 @@ public class HilightedTile : iTileState
 
     public void TileClicked()
     {
-        // Here would be where tile swaping info goes. 
+      // Do current action to execute, like moving the character
     }
 }

@@ -47,6 +47,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
     public Action<AbstractPawn> RemoveFromTimeline { get; set; }
     //Added
     public Action<AbstractPawn> onStartTurn { get ; set; }
+    public Action onTurnEnd { get; set; }
 
     public Character()
     {

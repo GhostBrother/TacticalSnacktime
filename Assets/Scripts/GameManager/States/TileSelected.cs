@@ -30,7 +30,7 @@ public class TileSelected : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-        if (tile.GetCurrentState() == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
+        if (tile.curentState == tile.GetHilightedState() || tile == _gameManager.CurentCharacter.TilePawnIsOn)
         {
 
             _gameManager.CurentCharacter._MoveRemaining -= Mathf.Abs(tile.GridX - _gameManager.CurentCharacter.TilePawnIsOn.GridX);

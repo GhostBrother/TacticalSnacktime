@@ -65,7 +65,7 @@ public class Map {
     {
         for (int i = 0; i < deployTiles.Count; i++)
         {
-            if(deployTiles[i].GetCurrentState() != deployTiles[i].GetActiveState())
+            if(deployTiles[i].curentState != deployTiles[i].GetActiveState())
             deployTiles[i].ChangeState(deployTiles[i].GetComponent<Tile>().GetDeployState());
         }
     }

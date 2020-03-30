@@ -14,6 +14,7 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
 
     //Added
     public Action<AbstractPawn> onStartTurn { get; set; }
+    public Action onTurnEnd { get; set; }
 
     protected List<Recipe> recipiesThatCanBeCreated;
 

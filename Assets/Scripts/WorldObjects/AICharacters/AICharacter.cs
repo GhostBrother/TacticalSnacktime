@@ -98,7 +98,7 @@ public class AICharacter : Character
 
     void walkBack(int targetIndex)
     {
-        if (path[targetIndex].GetCurrentState() != path[targetIndex].GetActiveState() || path[targetIndex] == TilePawnIsOn)
+        if (path[targetIndex].curentState != path[targetIndex].GetActiveState() || path[targetIndex] == TilePawnIsOn)
         {
             TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
             characterCoaster.onStopMoving = AILookForAction;

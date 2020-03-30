@@ -19,7 +19,7 @@ public class OccupiedTile : iTileState
 
     public void TileClicked()
     {
-
+        _tile.onClick.Invoke();
     }
 
 }
