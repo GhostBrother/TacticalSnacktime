@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public List<Tile> neighbors { get; }
 
-    public Action onClick { get; set; }
+    public Action<Tile> onClick { get; set; }
 
     // Feasibly abstract this out to like an iNavigatable or something
     public int gCost { get; set; }
@@ -119,6 +119,8 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
             movementPenalty = 0;
             ChangeState(clear);  
         }
+
+        onClick = null;
         BackgroundTile.color = DeactiveColor;
     }
 
@@ -132,21 +134,25 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         curentState.TileClicked();
     }
 
-    public void ColorAllAdjacent(int numToHilight)
+    public void ColorAllAdjacent(int numToHilight, Action<Tile> actionForTile)
     {
         if (numToHilight >= 0)
         {
             numToHilight--;
 
-            if (curentState != GetActiveState()) 
+            if (curentState != GetActiveState())
+            {
                 ChangeState(hilighted);
+                onClick = actionForTile;
+
+            }
 
             for (int i = 0; i < neighbors.Count; i++)
             {
                 
                 if (neighbors[i].curentState != neighbors[i].GetActiveState())
                 {
-                    neighbors[i].ColorAllAdjacent(numToHilight);
+                    neighbors[i].ColorAllAdjacent(numToHilight, actionForTile);
                 }
 
             }

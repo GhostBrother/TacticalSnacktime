@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class CharacterCoaster : MonoBehaviour
 {
-    public delegate void OnStopMoving(Tile tile);
-    public OnStopMoving onStopMoving;
+    public Action<Tile> OnStopMoving;
     float speed = 0.005f;
     Tile[] _path;
 
@@ -51,7 +50,7 @@ public class CharacterCoaster : MonoBehaviour
                 TargetIndex++;
                 if (TargetIndex == _path.Length)
                 {
-                    onStopMoving.Invoke(_path[TargetIndex-1]);
+                    OnStopMoving.Invoke(_path[TargetIndex-1]);
                     yield break;
                 }
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -0.5f);

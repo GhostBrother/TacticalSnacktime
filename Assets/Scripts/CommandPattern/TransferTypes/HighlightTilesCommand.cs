@@ -12,17 +12,19 @@ public class HighlightTilesCommand : iCommandKind
 {
     int range;
     Tile startTile;
+    Action<Tile> actionForTiles;
 
-    public HighlightTilesCommand(int _range, Tile _startTile)
+    public HighlightTilesCommand(int _range, Tile _startTile, Action<Tile> _ActionForTiles)
     {
         range = _range;
         startTile = _startTile;
+        actionForTiles = _ActionForTiles;
     }
 
     public Action<List<Command>> LoadNewMenu { get; set; }
 
     public void ActivateType()
     {
-      startTile.ColorAllAdjacent(range);
+      startTile.ColorAllAdjacent(range, actionForTiles);
     }
 }

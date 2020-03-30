@@ -10,7 +10,7 @@ public class GiveItem : TrasferItemCommand
         if (curentCharacter is Character)
         {
             Character temp = (Character)curentCharacter;
-            typeOfCommand = new HighlightTilesCommand(1, temp.TilePawnIsOn);
+           // typeOfCommand = new HighlightTilesCommand(1, temp.TilePawnIsOn);
         }
     }
 

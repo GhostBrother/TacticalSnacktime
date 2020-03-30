@@ -18,6 +18,7 @@ public class HilightedTile : iTileState
 
     public void TileClicked()
     {
-      // Do current action to execute, like moving the character
+        // Do current action to execute, like moving the character
+        _tile.onClick.Invoke(_tile);
     }
 }

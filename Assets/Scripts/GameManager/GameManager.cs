@@ -255,7 +255,8 @@ public class GameManager : MonoBehaviour {
     {
         MoveCameraToPawn(playerCharacter);
         playerCharacter.TilePawnIsOn.onClick = ShowCharacterActions;
-        SetState(GetIdleState());// Unlocks control.
+        playerCharacter.characterCoaster.OnStopMoving = ShowCharacterActions;
+       // SetState(GetIdleState());// Unlocks control.
 
     }
 
@@ -364,9 +365,12 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void ShowCharacterActions()
+    void ShowCharacterActions(Tile tile)
     {
-        ActionMenu.ShowActionsAtTile(CurentCharacter); 
+        ActionMenu.ShowActionsAtTile(tile);
+        ActionMenu.OpenMenu(CurentCharacter.LoadCommands());
+        // Hack;
+        DeactivateAllTiles();
     }
 
 }

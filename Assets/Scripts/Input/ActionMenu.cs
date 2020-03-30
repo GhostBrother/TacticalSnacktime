@@ -21,14 +21,12 @@ public class ActionMenu : MonoBehaviour
         actionButtons = new List<ActionButton>();
     }   
 
-    public void ShowActionsAtTile(Character character)
+    public void ShowActionsAtTile(Tile tile)
     {
-        this.transform.position = character.characterCoaster.transform.position;
-        
-        OpenMenu(character.LoadCommands());
+        this.transform.position = tile.transform.position;
     }
 
-    void OpenMenu(List<Command> commands)
+    public void OpenMenu(List<Command> commands)
     {
         if (commands.Count > actionButtons.Count)
         {

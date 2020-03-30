@@ -101,7 +101,7 @@ public class AICharacter : Character
         if (path[targetIndex].curentState != path[targetIndex].GetActiveState() || path[targetIndex] == TilePawnIsOn)
         {
             TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
-            characterCoaster.onStopMoving = AILookForAction;
+            characterCoaster.OnStopMoving = AILookForAction;
             TilePawnIsOn = path[targetIndex];
             PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
         }
