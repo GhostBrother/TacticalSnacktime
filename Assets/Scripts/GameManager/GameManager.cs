@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour {
     public Character CurentCharacter { get; private set; }
 
     iGameManagerState idleMode;
-    iGameManagerState selectedMode;
     iGameManagerState deployState;
     iGameManagerState curentState;
     iGameManagerState controlsDisabled;
@@ -63,7 +62,6 @@ public class GameManager : MonoBehaviour {
         _EndOfDayPannel.Init(_characterRoster);
 
         idleMode = new Idle(this);
-        selectedMode = new TileSelected(this);
         deployState = new DeployState(this, _characterRoster);
         controlsDisabled = new ControlsDisabled();
 
@@ -87,12 +85,6 @@ public class GameManager : MonoBehaviour {
     public iGameManagerState GetIdleState()
     {
         return idleMode;
-    }
-
-    public iGameManagerState GetSelectedState()
-    {
-
-        return selectedMode;
     }
 
     public iGameManagerState GetDisableControls()
@@ -268,8 +260,8 @@ public class GameManager : MonoBehaviour {
         {
             AICharacter c = (AICharacter)customerCharacter;
             SetState(GetDisableControls());
-            camera.onStopMoving = c.MoveCharacter;
             MoveCameraToPawn(customerCharacter);
+            camera.onStopMoving = c.MoveCharacter;  
         }
 
     }
@@ -277,8 +269,8 @@ public class GameManager : MonoBehaviour {
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
         SetState(GetDisableControls());
-        camera.onStopMoving = MoveDonenessMeter;
         MoveCameraToPawn(abstractPawn);
+        camera.onStopMoving = MoveDonenessMeter;
     }
 
     private void EndTurn()

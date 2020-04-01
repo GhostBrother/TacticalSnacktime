@@ -108,7 +108,6 @@
     <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\MovingState.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\TileSelected.cs" />
     <Compile Include="Assets\Scripts\GameManager\States\iGameManagerState.cs" />
     <Compile Include="Assets\Scripts\Input\ActionButton.cs" />
     <Compile Include="Assets\Scripts\Input\ActionMenu.cs" />

@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    public delegate void OnCameraStopMoving();
-    public OnCameraStopMoving onStopMoving;
+     public Action onStopMoving { private get; set; }
 
     [SerializeField]
     float speed;

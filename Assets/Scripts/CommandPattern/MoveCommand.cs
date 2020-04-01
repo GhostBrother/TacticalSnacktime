@@ -30,8 +30,6 @@ public class MoveCommand : Command
         _character._MoveRemaining -= Mathf.Abs(tile.GridX - _character.TilePawnIsOn.GridX);
         _character._MoveRemaining -= Mathf.Abs(tile.GridY - _character.TilePawnIsOn.GridY);
 
-        //Move out
-      //  _gameManager.SetState(_gameManager.GetDisableControls());
 
         _character.TilePawnIsOn.ChangeState(_character.TilePawnIsOn.GetClearState());
 
