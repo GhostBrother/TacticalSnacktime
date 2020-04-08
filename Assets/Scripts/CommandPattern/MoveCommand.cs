@@ -26,21 +26,17 @@ public class MoveCommand : Command
 
     void onClick(Tile tile)
     {
-
         _character._MoveRemaining -= Mathf.Abs(tile.GridX - _character.TilePawnIsOn.GridX);
         _character._MoveRemaining -= Mathf.Abs(tile.GridY - _character.TilePawnIsOn.GridY);
 
-
         _character.TilePawnIsOn.ChangeState(_character.TilePawnIsOn.GetClearState());
 
-        
         _character.TilePawnIsOn = tile;
         PathRequestManager.RequestPath(tile, _character.TilePawnIsOn, _character.characterCoaster.MoveAlongPath);
 
         tile.ChangeState(tile.GetActiveState());
 
-
-        
+        // Clear tiles goes here? 
         _character.MoveCharacter();
     }
 

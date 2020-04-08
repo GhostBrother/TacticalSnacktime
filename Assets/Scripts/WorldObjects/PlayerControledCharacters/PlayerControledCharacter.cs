@@ -8,6 +8,8 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public Action<PlayercontrolledCharacter> PutCharacterBack;
 
+    public Action ClearTiles;
+
     public PlayercontrolledCharacter()
     {
         EntityType = EnumHolder.EntityType.Character;
@@ -52,24 +54,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void MoveCharacter()
     {
-
-        //_MoveRemaining -= Mathf.Abs(tile.GridX - TilePawnIsOn.GridX);
-        //_MoveRemaining -= Mathf.Abs(tile.GridY - TilePawnIsOn.GridY);
-
-        // //Move out
-        // _gameManager.SetState(_gameManager.GetDisableControls());
-
-        //  TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
-
-        // //Move out
-        // _gameManager.CurentCharacter.characterCoaster.onStopMoving = ActionOnStopMoving;
-        // _gameManager.CurentCharacter.TilePawnIsOn = tile;
-        // _gameManager.CurentCharacter.MoveCharacter();
-        // tile.ChangeState(tile.GetActiveState());
-        // //Move out
-        // _gameManager.DeactivateAllTiles();
-
-        // PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
+        ClearTiles.Invoke();
     }
 
     public override void TurnStart()

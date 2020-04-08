@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour {
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
         character.onStartTurn = OnPlayerControlledStart;
+        character.ClearTiles = _gameMap.DeactivateAllTiles;
         character.PutCharacterBack = _characterRoster.AddCharacterBackToList;
         character.onTurnEnd = EndTurn;
         AddTimeInfluencedToList(character);
@@ -201,9 +202,7 @@ public class GameManager : MonoBehaviour {
         else
         {
             SwapToNextCharacter();
-        }
-
-        
+        }     
     }
     
     private void SwapToNextCharacter()

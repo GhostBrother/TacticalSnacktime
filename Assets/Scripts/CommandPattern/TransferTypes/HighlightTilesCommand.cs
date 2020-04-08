@@ -27,4 +27,5 @@ public class HighlightTilesCommand : iCommandKind
     {
       startTile.ColorAllAdjacent(range, actionForTiles);
     }
+
 }
