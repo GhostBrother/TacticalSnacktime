@@ -18,4 +18,9 @@ public class TransferMenuCommand : iCommandKind
     {
         LoadNewMenu.Invoke(_nextMenu.Invoke());
     }
+
+    public void UndoType()
+    {
+        throw new NotImplementedException();
+    }
 }

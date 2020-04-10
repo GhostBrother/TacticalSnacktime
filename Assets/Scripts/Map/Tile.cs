@@ -159,6 +159,26 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         }
     }
 
+    public void ClearAllAdjacent(int numToClear)
+    {
+        if (numToClear >= 0)
+        {
+            numToClear--;
+            DeactivateTile();
+
+            for (int i = 0; i < neighbors.Count; i++)
+            {
+
+                if (neighbors[i].curentState != neighbors[i].GetActiveState())
+                {
+                    Debug.Log("X: " + GridX + "Y: " + GridY);
+                    neighbors[i].ClearAllAdjacent(numToClear);
+                }
+
+            }
+        }
+    }
+
     public int CompareTo(Tile TileToCompare)
     {
         int compare = fCost.CompareTo(TileToCompare.fCost);

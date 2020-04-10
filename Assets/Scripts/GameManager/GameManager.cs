@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour {
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
     {
         character.onStartTurn = OnPlayerControlledStart;
-        character.ClearTiles = _gameMap.DeactivateAllTiles;
         character.PutCharacterBack = _characterRoster.AddCharacterBackToList;
         character.onTurnEnd = EndTurn;
         AddTimeInfluencedToList(character);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface Command
 {
-    iCommandKind typeOfCommand { get; set; }
+     iCommandKind typeOfCommand { get; set; }
      bool isUsable { get; }
      string CommandName { get; }
      void execute();

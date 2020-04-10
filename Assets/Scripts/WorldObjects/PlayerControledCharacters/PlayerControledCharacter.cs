@@ -8,8 +8,6 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public Action<PlayercontrolledCharacter> PutCharacterBack;
 
-    public Action ClearTiles;
-
     public PlayercontrolledCharacter()
     {
         EntityType = EnumHolder.EntityType.Character;
@@ -54,7 +52,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void MoveCharacter()
     {
-        ClearTiles.Invoke();
+
     }
 
     public override void TurnStart()

@@ -11,4 +11,9 @@ public class CloseMenu : iCommandKind
     {
 
     }
+
+    public void UndoType()
+    {
+        
+    }
 }

@@ -28,4 +28,9 @@ public class HighlightTilesCommand : iCommandKind
       startTile.ColorAllAdjacent(range, actionForTiles);
     }
 
+    public void UndoType()
+    {
+        // Can we reuse color all adjacent for clearing tiles?
+        startTile.ClearAllAdjacent(range);
+    }
 }

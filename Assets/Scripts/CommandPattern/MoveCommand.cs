@@ -26,6 +26,9 @@ public class MoveCommand : Command
 
     void onClick(Tile tile)
     {
+
+        typeOfCommand.UndoType();
+
         _character._MoveRemaining -= Mathf.Abs(tile.GridX - _character.TilePawnIsOn.GridX);
         _character._MoveRemaining -= Mathf.Abs(tile.GridY - _character.TilePawnIsOn.GridY);
 
