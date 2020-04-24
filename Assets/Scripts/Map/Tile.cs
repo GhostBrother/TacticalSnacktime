@@ -171,7 +171,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
                 if (neighbors[i].curentState != neighbors[i].GetActiveState())
                 {
-                    Debug.Log("X: " + GridX + "Y: " + GridY);
                     neighbors[i].ClearAllAdjacent(numToClear);
                 }
 

@@ -56,6 +56,7 @@ public class EndOfDayPannel : MonoBehaviour
         
 
         _Supply.EndOfDayPannel = this;
+        _Supply.Init();
         OrderSupplyButton.StoredCommand = new ChangeEndOfDayState(this, _Supply);
         _Supply.ButtonForState = OrderSupplyButton;
         
@@ -91,7 +92,8 @@ public class EndOfDayPannel : MonoBehaviour
 
     public void ShowEndOfDayPage()
     {
-        this.gameObject.SetActive(true);   
+        this.gameObject.SetActive(true);
+        _Supply.LoadStoreItems();
     }
 
     public void HideEndOfDayPage()

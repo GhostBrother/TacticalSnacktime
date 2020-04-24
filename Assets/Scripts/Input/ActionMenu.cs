@@ -45,7 +45,6 @@ public class ActionMenu : MonoBehaviour
             actionButtons[i].StoredCommand = commands[i];
             actionButtons[i].enabled = commands[i].isUsable;
             actionButtons[i].onActionTaken = HideAllActions;
-            actionButtons[i].onActionTaken += commands[i].execute;
             actionButtons[i].onActionTaken += onButtonClick.Invoke;
             actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
         }

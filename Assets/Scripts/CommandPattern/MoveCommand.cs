@@ -21,7 +21,6 @@ public class MoveCommand : Command
     public void execute()
     {
         typeOfCommand.ActivateType();
-       
     }
 
     void onClick(Tile tile)

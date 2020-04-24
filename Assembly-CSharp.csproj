@@ -67,8 +67,10 @@
     <Compile Include="Assets\Scripts\CommandPattern\ChangeEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\DecrementValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\FindCharacters.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\IncrementValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MenuBack.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MenuTransitionCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MoveCommand.cs" />
@@ -94,7 +96,6 @@
     <Compile Include="Assets\Scripts\EndOfDay\States\Staff\StaffSetup.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Supply\ItemInStore.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Supply\OrderingSupplys.cs" />
-    <Compile Include="Assets\Scripts\EndOfDay\States\Supply\Store.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Supply\SupplyStore.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\iEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />

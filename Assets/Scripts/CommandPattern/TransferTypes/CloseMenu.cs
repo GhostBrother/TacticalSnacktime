@@ -9,7 +9,7 @@ public class CloseMenu : iCommandKind
 
     public void ActivateType()
     {
-
+        
     }
 
     public void UndoType()

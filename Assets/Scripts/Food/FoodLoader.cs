@@ -20,6 +20,7 @@ public class FoodLoader : JsonLoader<Food>
         AllFoods = GetObjectListFromFilePathByString("Food");
     }
 
+    //TODO: Get Food by name rename
     public Food GetFoodById(string nameOfFoodToFind)
     {
         for(int i = 0; i < AllFoods.Count; i++)
@@ -29,6 +30,12 @@ public class FoodLoader : JsonLoader<Food>
                 return AllFoods[i]; 
             }
         }
+        Debug.Log($"Food named {nameOfFoodToFind} not found in loader" );
         return null;
+    }
+
+    public Food GetRandomFood()
+    {
+        return AllFoods[Random.Range(0, AllFoods.Count)];
     }
 }

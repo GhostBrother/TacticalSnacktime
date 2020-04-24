@@ -23,10 +23,12 @@ public class ActionButton : MonoBehaviour
     
     public void ExecuteStoredCommand()
     {
-        if (storedCommand.isUsable)
+        if (storedCommand.isUsable && onActionTaken != null)
         onActionTaken.Invoke();
 
+        storedCommand.execute();
+
         storedCommand.typeOfCommand.ActivateType();
-       // storedCommand.execute();
+        
     }
 }

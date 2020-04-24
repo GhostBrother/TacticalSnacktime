@@ -6,20 +6,28 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 {
 
     [SerializeField]
-    GameObject _orderSupplyPage;
+    SupplyStore _orderSupplyPage;
 
     public EndOfDayPannel EndOfDayPannel { private get; set; }
     public ActionButton ButtonForState { private get;  set; }
 
+    public void Init()
+    {
+        _orderSupplyPage.Init();
+    }
+
     public void DisplayProps()
     {
-        _orderSupplyPage.SetActive(true);
+        _orderSupplyPage.gameObject.SetActive(true);
     }
 
     public void HideProps()
     {
-        _orderSupplyPage.SetActive(false);
+        _orderSupplyPage.gameObject.SetActive(false);
     }
 
-
+    public void LoadStoreItems()
+    {
+        _orderSupplyPage.LoadShop();
+    }
 }
