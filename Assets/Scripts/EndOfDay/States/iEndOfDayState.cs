@@ -6,6 +6,5 @@ public interface iEndOfDayState
 {
     void DisplayProps();
     void HideProps();
-    EndOfDayPannel EndOfDayPannel {  set; }
     ActionButton ButtonForState { set; }
 }

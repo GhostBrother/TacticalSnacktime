@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,48 +42,18 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text NameOfFood;
 
-    //Set
+    public Money _moneyRefrence { get; set; }
 
-    public void Init()
+
+    public void SetFood(Food foodToShow)
     {
-        IncrementTotal.StoredCommand = new IncrementValue(this);
-        DecrementTotal.StoredCommand = new DecrementValue(this);
-    }
-
-    public void SetFood (Food foodToShow)
-    {
-        // Might need to find a way to flux prices, looking at visitor pattern. 
-        CostText.text = FormatMoney(foodToShow.Price);
-
-        _Cost = foodToShow.Price;
-
-        // TODO quantity owned, we need how much the player has. 
-
+        CostText.text = foodToShow.Price.ToString("$ 0.00");
+        _Cost = foodToShow.Price; 
         PictureOfProduct.sprite = foodToShow.CaryableObjectSprite;
-
         NameOfFood.text = foodToShow.Name;
         _RunningTotal = 0;
-        RunningTotalText.text = FormatMoney(_RunningTotal); 
-    }
 
-    public void IncrementCount()
-    {
-        _RunningTotal += _Cost;
-        RunningTotalText.text = FormatMoney(_RunningTotal);
+        IncrementTotal.StoredCommand = new IncrementValue<decimal>(_moneyRefrence, _Cost);
+        DecrementTotal.StoredCommand = new DecrementValue<decimal>(_moneyRefrence, _Cost);
     }
-
-    public void DecrementCount()
-    {
-        if (_RunningTotal > 0)
-        {
-            _RunningTotal -= _Cost;
-            RunningTotalText.text = FormatMoney(_RunningTotal);
-        }
-    }
-
-    string FormatMoney(decimal money)
-    {
-        return "$ " + money.ToString("0.00");
-    }
-
 }

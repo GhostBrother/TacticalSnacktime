@@ -1,33 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 {
 
-    [SerializeField]
-    SupplyStore _orderSupplyPage;
+    // Knowlage of food stats
+    FoodLoader foodLoader;
+
+    // List of foods currently for sale
+    List<Food> foodForSale;
 
     public EndOfDayPannel EndOfDayPannel { private get; set; }
     public ActionButton ButtonForState { private get;  set; }
 
-    public void Init()
+    // Vend slots for Shop
+    [SerializeField]
+    List<ItemInStore> itemsInStore;
+
+
+    public void Init(Money money)
     {
-        _orderSupplyPage.Init();
+        foreach (ItemInStore item in itemsInStore)
+        {
+            item._moneyRefrence = money; 
+        }
     }
 
     public void DisplayProps()
     {
-        _orderSupplyPage.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
+        for (int i = 0; i < itemsInStore.Count; i++)
+        {
+            itemsInStore[i].gameObject.SetActive(true);
+        }
     }
 
     public void HideProps()
     {
-        _orderSupplyPage.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+        for(int i = 0; i < itemsInStore.Count; i++)
+        {
+            itemsInStore[i].gameObject.SetActive(false);
+        }
     }
 
     public void LoadStoreItems()
     {
-        _orderSupplyPage.LoadShop();
+        if (!foodLoader) { foodLoader = new FoodLoader(); }
+        for (int i = 0; i < itemsInStore.Count; i++)
+        {
+            itemsInStore[i].SetFood(foodLoader.GetRandomFood());
+        }
     }
+
+
 }

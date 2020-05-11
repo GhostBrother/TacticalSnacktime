@@ -63,6 +63,9 @@
     <Compile Include="Assets\CharacterLoader.cs" />
     <Compile Include="Assets\CookstationLoader.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
+    <Compile Include="Assets\Prototypes\Money.cs" />
+    <Compile Include="Assets\Prototypes\Reputation.cs" />
+    <Compile Include="Assets\Prototypes\iMuteableValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Act.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\ChangeEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />

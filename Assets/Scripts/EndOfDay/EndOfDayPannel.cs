@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EndOfDayPannel : MonoBehaviour
 {
@@ -34,60 +37,50 @@ public class EndOfDayPannel : MonoBehaviour
     [SerializeField]
     ActionButton OrderSupplyButton;
 
-    public decimal Money { get; private set; }
+    [SerializeField]
+    Text MoneyText;
 
-    public int Reputation { get; private set; }
+    [SerializeField]
+    Text ReputationText;
 
-    public delegate void NextDay();
-    public NextDay startNextDay;
+    public Money money { get; set; }
+
+    public Reputation reputation { get; private set; }
+
+    public Action startNextDay;
 
     public void Init(CharacterRoster characterRoster)
     {
+
+        money = new Money();
+        money.textRefrence = MoneyText;
+
+        reputation = new Reputation();
+        reputation.textRefrence = ReputationText;
+
+
         startDayButton.StoredCommand = new StartNextDay(startNextDay.Invoke);
 
-        _Stats.EndOfDayPannel = this;
         StatsButton.StoredCommand = new ChangeEndOfDayState(this, _Stats);
         _Stats.ButtonForState = StatsButton;
        
 
-        _EditMap.EndOfDayPannel = this;
         MapButton.StoredCommand = new ChangeEndOfDayState(this, _EditMap);
         _EditMap.ButtonForState = MapButton;
         
 
         _Supply.EndOfDayPannel = this;
-        _Supply.Init();
+        _Supply.Init(money);
         OrderSupplyButton.StoredCommand = new ChangeEndOfDayState(this, _Supply);
         _Supply.ButtonForState = OrderSupplyButton;
         
 
-        _Schedule.EndOfDayPannel = this;
          scheduleButton.StoredCommand = new ChangeEndOfDayState(this, _Schedule);
         _Schedule.SetRoster(characterRoster);
         _Schedule.ButtonForState = scheduleButton;
         
 
         _curState = _Stats;
-    }
-
-    public void AddMoney(decimal price)
-    {
-        Money += price;
-    }
-
-    public void SubtractMoney(decimal cost)
-    {
-        Money -= cost;
-    }
-
-    public void AddReputation(int satisfaction)
-    {
-        Reputation += satisfaction;
-    }
-
-    public void SubtractReputation(int satisfaction)
-    {
-        Reputation -= satisfaction;
     }
 
     public void ShowEndOfDayPage()
@@ -99,9 +92,7 @@ public class EndOfDayPannel : MonoBehaviour
     public void HideEndOfDayPage()
     {
         ChangeState(_Stats);
-        ShowPropsForState();
         this.gameObject.SetActive(false);
-        
     }
 
     public void ChangeState(iEndOfDayState newState)

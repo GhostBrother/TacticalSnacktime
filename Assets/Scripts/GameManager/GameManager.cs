@@ -280,12 +280,12 @@ public class GameManager : MonoBehaviour {
 
     private void GiveRating(AICharacter aICharacter)
     {
-        _EndOfDayPannel.AddReputation(aICharacter.Satisfaction); //ReputationCounter += aICharacter.Satisfaction;
+        _EndOfDayPannel.reputation.Increment(aICharacter.Satisfaction);
     }
 
     private void PayForFood(decimal price)
     {
-        _EndOfDayPannel.AddMoney(price);
+        _EndOfDayPannel.money.Increment(price);
     }
 
     private void StartDay()

@@ -19,10 +19,7 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
     [SerializeField]
     GameObject _staffPage;
 
-
     CharacterRoster _characterRoster;
-
-    public EndOfDayPannel EndOfDayPannel { private get; set; }
 
     public ActionButton ButtonForState { private get;  set; }
 

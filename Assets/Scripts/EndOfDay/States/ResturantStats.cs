@@ -9,29 +9,20 @@ public class ResturantStats : MonoBehaviour, iEndOfDayState
     GameObject _statsTextHolder;
 
     [SerializeField]
-    Text goldCount;
-
-    [SerializeField]
     Text ReputationCount;
 
     public EndOfDayPannel EndOfDayPannel { private get;  set; }
 
     public ActionButton ButtonForState { private get;  set; }
 
-    void UpdateGoldText()
-    {
-        goldCount.text = string.Format("Gold {0:0.00}", EndOfDayPannel.Money);
-    }
-
     void UpdateReputation()
     {
-        ReputationCount.text = string.Format("Reputation {0}",EndOfDayPannel.Reputation);
+        ReputationCount.text = string.Format("Reputation {0}",EndOfDayPannel.reputation.Format());
     }
 
     public void DisplayProps()
     {
         _statsTextHolder.SetActive(true);
-        UpdateGoldText();
         UpdateReputation();
     }
 
