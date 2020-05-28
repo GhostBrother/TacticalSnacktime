@@ -19,6 +19,7 @@ public class OccupiedTile : iTileState
 
     public void TileClicked()
     {
+        if(_tile.onClick != null)
         _tile.onClick.Invoke(_tile);
     }
 

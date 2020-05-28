@@ -19,12 +19,15 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
     [SerializeField]
     List<ItemInStore> itemsInStore;
 
+    Money _money;
+
 
     public void Init(Money money)
     {
+        _money = money;
         foreach (ItemInStore item in itemsInStore)
         {
-            item._moneyRefrence = money; 
+            item.UpdateReceiptTotal += UpdateReciptTotal;
         }
     }
 
@@ -53,6 +56,17 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
         {
             itemsInStore[i].SetFood(foodLoader.GetRandomFood());
         }
+    }
+
+    void UpdateReciptTotal()
+    {
+        decimal total = 0;
+        foreach(ItemInStore item in itemsInStore)
+        {
+            total += item.RunningTotal;
+        }
+        _money.valueToStore = total;
+        _money.updateTextRefrence();
     }
 
 

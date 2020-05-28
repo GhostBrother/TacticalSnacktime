@@ -1,12 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class IncrementValue<T> : Command
 {
-    iMuteableValue<T> number;
+    // iMuteableValue<T> number;
 
-    T ammountToAdd;
+    //Text _valueText;
+
+   InputField _valueText;
+
+    //T ammountToAdd;
 
 
     public iCommandKind typeOfCommand { get; set; }
@@ -15,17 +21,22 @@ public class IncrementValue<T> : Command
 
     public string CommandName { get { return string.Empty; }  }
 
-    public IncrementValue(iMuteableValue<T> value, T _amountToAdd)
+    public IncrementValue(InputField valueText) //iMuteableValue<T> value , // // T ammount To add
     {
-        number = value;
+        // number = value;
+        _valueText = valueText;
         typeOfCommand = new CloseMenu();
-        ammountToAdd = _amountToAdd;
+        //ammountToAdd = _amountToAdd;
     }
 
 
     public void execute()
     {
-        number.Increment(ammountToAdd);
-        number.updateTextRefrence();
+        int i;
+        Int32.TryParse(_valueText.text, out i);
+        i++;
+        _valueText.text = i.ToString();
+        //number.Increment(ammountToAdd);
+        //number.updateTextRefrence();
     }
 }

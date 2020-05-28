@@ -13,13 +13,16 @@ public class ItemInStore : MonoBehaviour
 
     decimal _Cost;
 
+    public decimal RunningTotal { get; private set; }
+
     //Running Total
     [SerializeField]
     Text RunningTotalText;
 
-    decimal _RunningTotal;
 
     // Textbox for quantity purchase
+    [SerializeField]
+    InputField inputField;
 
 
     //Increment
@@ -42,7 +45,7 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text NameOfFood;
 
-    public Money _moneyRefrence { get; set; }
+    public event Action UpdateReceiptTotal;
 
 
     public void SetFood(Food foodToShow)
@@ -51,9 +54,34 @@ public class ItemInStore : MonoBehaviour
         _Cost = foodToShow.Price; 
         PictureOfProduct.sprite = foodToShow.CaryableObjectSprite;
         NameOfFood.text = foodToShow.Name;
-        _RunningTotal = 0;
 
-        IncrementTotal.StoredCommand = new IncrementValue<decimal>(_moneyRefrence, _Cost);
-        DecrementTotal.StoredCommand = new DecrementValue<decimal>(_moneyRefrence, _Cost);
+        inputField.text = "0";
+
+        IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField); //_moneyRefrence
+        DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField); //_moneyRefrence
+
+        inputField.characterValidation = InputField.CharacterValidation.Integer;
+        inputField.onValueChanged.AddListener(UpdateReceipt);
+        RunningTotalText.text = "$ 0.00";
+        
+    }
+
+    void UpdateReceipt(string numberIn)
+    {
+        int numberOfGood;
+
+
+       if(int.TryParse(numberIn, out numberOfGood))
+        {
+            inputField.text = numberIn;
+
+            RunningTotal = (_Cost * numberOfGood);
+            RunningTotalText.text = RunningTotal.ToString("$ 0.00");
+
+            UpdateReceiptTotal.Invoke();
+
+        }
+
+
     }
 }

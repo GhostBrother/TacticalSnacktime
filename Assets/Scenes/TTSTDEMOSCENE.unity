@@ -4023,6 +4023,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6cf0cdbf48f094ba48973194eb31db, type: 3}
+--- !u!114 &1538238985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 503079266497080101, guid: e63e3f12e1420d346ae5207eb9eb9f6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8481980395585761174}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539306206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6000,6 +6012,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1971404421}
     m_Modifications:
+    - target: {fileID: 8296777672145836411, guid: e63e3f12e1420d346ae5207eb9eb9f6d,
+        type: 3}
+      propertyPath: inputField
+      value: 
+      objectReference: {fileID: 1538238985}
     - target: {fileID: 3176708872422902738, guid: e63e3f12e1420d346ae5207eb9eb9f6d,
         type: 3}
       propertyPath: m_LocalPosition.x

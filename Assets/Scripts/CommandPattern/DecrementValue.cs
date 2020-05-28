@@ -1,12 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DecrementValue<T> : Command
 {
-    iMuteableValue<T> number;
-    T ammountToSubtract;
+
+    // iMuteableValue<T> number;
+
+    InputField _valueText;
+
+    T ammountToAdd;
 
     public iCommandKind typeOfCommand { get; set; }
 
@@ -14,16 +19,20 @@ public class DecrementValue<T> : Command
 
     public string CommandName { get { return string.Empty; } }
 
-    public DecrementValue(iMuteableValue<T> value, T _amountToSubtract)
+    public DecrementValue(InputField valueText) // iMuteableValue<T> number; T _amountToAdd
     {
-        number = value;
+        _valueText = valueText;
         typeOfCommand = new CloseMenu();
-        ammountToSubtract = _amountToSubtract;
+       // ammountToAdd = _amountToAdd;
     }
 
     public void execute()
     {
-        number.Decrement(ammountToSubtract);
-        number.updateTextRefrence();
+        int i;
+        Int32.TryParse(_valueText.text, out i);
+        i--;
+        _valueText.text = i.ToString();
+        //number.Decrement(ammountToSubtract);
+        //number.updateTextRefrence();
     }
 }

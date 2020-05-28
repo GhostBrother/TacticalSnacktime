@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Money : iMuteableValue<decimal>
 {
-    public decimal valueToStore { get; private set; }
+    public decimal valueToStore { get; set; }
     public Text textRefrence { get; set; }
 
     public string Format()
