@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 {
@@ -27,7 +27,8 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
         _money = money;
         foreach (ItemInStore item in itemsInStore)
         {
-            item.UpdateReceiptTotal += UpdateReciptTotal;
+            item.CheckTotal += totalAllItems;
+            item.ReciptTotal += UpdateReciptTotal;
         }
     }
 
@@ -58,14 +59,20 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
         }
     }
 
-    void UpdateReciptTotal()
+    decimal totalAllItems()
     {
-        decimal total = 0;
-        foreach(ItemInStore item in itemsInStore)
+        decimal total = 10.00M;
+        foreach (ItemInStore item in itemsInStore)
         {
-            total += item.RunningTotal;
+            total -= item.RunningTotal;
         }
-        _money.valueToStore = total;
+        return total;
+    }
+
+    void UpdateReciptTotal() 
+    {
+        // Hack
+        _money.valueToStore = totalAllItems();
         _money.updateTextRefrence();
     }
 

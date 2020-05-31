@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class DecrementValue<T> : Command
 {
 
-    // iMuteableValue<T> number;
-
     InputField _valueText;
 
     T ammountToAdd;
@@ -19,20 +17,20 @@ public class DecrementValue<T> : Command
 
     public string CommandName { get { return string.Empty; } }
 
-    public DecrementValue(InputField valueText) // iMuteableValue<T> number; T _amountToAdd
+    public DecrementValue(InputField valueText)
     {
         _valueText = valueText;
         typeOfCommand = new CloseMenu();
-       // ammountToAdd = _amountToAdd;
     }
 
     public void execute()
     {
         int i;
         Int32.TryParse(_valueText.text, out i);
-        i--;
-        _valueText.text = i.ToString();
-        //number.Decrement(ammountToSubtract);
-        //number.updateTextRefrence();
+        if (i > 0)
+        {
+            i--;
+            _valueText.text = i.ToString();
+        }
     }
 }

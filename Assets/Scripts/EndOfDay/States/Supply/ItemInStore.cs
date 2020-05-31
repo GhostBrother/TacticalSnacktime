@@ -37,6 +37,8 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text QuantityOwned;
 
+    int curentQuantity;
+
     // Picture.
     [SerializeField]
     Image PictureOfProduct;
@@ -45,7 +47,9 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text NameOfFood;
 
-    public event Action UpdateReceiptTotal;
+    public event Func<decimal> CheckTotal;
+
+    public event Action ReciptTotal;
 
 
     public void SetFood(Food foodToShow)
@@ -57,31 +61,46 @@ public class ItemInStore : MonoBehaviour
 
         inputField.text = "0";
 
-        IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField); //_moneyRefrence
-        DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField); //_moneyRefrence
+        IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField); 
+        DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField); 
 
         inputField.characterValidation = InputField.CharacterValidation.Integer;
-        inputField.onValueChanged.AddListener(UpdateReceipt);
+        inputField.onValueChanged.AddListener(CheckIfCanAfford);
         RunningTotalText.text = "$ 0.00";
+
+        curentQuantity = 0;
         
     }
 
     void UpdateReceipt(string numberIn)
     {
+      inputField.text = numberIn.ToString();
+   
+      RunningTotalText.text = RunningTotal.ToString("$ 0.00");
+
+      ReciptTotal.Invoke();     
+    }
+
+    void CheckIfCanAfford(string numberIn)
+    {
         int numberOfGood;
 
-
-       if(int.TryParse(numberIn, out numberOfGood))
+        if (!int.TryParse(numberIn, out numberOfGood) || numberOfGood <= 0)
         {
-            inputField.text = numberIn;
-
-            RunningTotal = (_Cost * numberOfGood);
-            RunningTotalText.text = RunningTotal.ToString("$ 0.00");
-
-            UpdateReceiptTotal.Invoke();
-
+            numberOfGood = 0;
         }
 
+        decimal placeHolder = CheckTotal.Invoke();
+        placeHolder += (curentQuantity - numberOfGood) * _Cost;
+       
+        if (placeHolder < 0)
+        {
+            numberOfGood = curentQuantity;
+        }
 
+        RunningTotal = (_Cost * numberOfGood);
+        curentQuantity = numberOfGood;
+        UpdateReceipt(numberOfGood.ToString());
+ 
     }
 }
