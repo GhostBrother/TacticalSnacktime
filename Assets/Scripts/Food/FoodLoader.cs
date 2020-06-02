@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FoodLoader : JsonLoader<Food>
 {
@@ -20,8 +21,7 @@ public class FoodLoader : JsonLoader<Food>
         AllFoods = GetObjectListFromFilePathByString("Food");
     }
 
-    //TODO: Get Food by name rename
-    public Food GetFoodById(string nameOfFoodToFind)
+    public Food GetFoodByName(string nameOfFoodToFind)
     {
         for(int i = 0; i < AllFoods.Count; i++)
         {
@@ -37,5 +37,17 @@ public class FoodLoader : JsonLoader<Food>
     public Food GetRandomFood()
     {
         return AllFoods[Random.Range(0, AllFoods.Count)];
+    }
+
+    public Food RandomOfType(string TypeOfFoodToFind)
+    {
+
+        var match = AllFoods.FindAll(item => item.TypeOfFood.Contains(TypeOfFoodToFind));
+        if (match == null)
+        {
+            Debug.Log($"Type {TypeOfFoodToFind} could not be found");
+        }
+
+        return match[Random.Range(0, match.Count)];
     }
 }

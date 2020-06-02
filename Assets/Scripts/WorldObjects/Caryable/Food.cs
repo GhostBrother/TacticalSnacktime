@@ -27,11 +27,13 @@ public class Food : iCaryable
 
     public int ID;
 
+    public List<string> TypeOfFood;
+
     public List<string> CustomersWhoLikeThis { get; private set; }
 
 
 
-    public Food(string Name, decimal Price, int[] DonenessesLevels, string Description, int HandsRequired, int ID, List<string> Customers)
+    public Food(string Name, decimal Price, int[] DonenessesLevels, string Description, int HandsRequired, int ID, List<string> type,List<string> Customers)
     {
         this.Name = Name;
         this.Price = Price;
@@ -42,12 +44,13 @@ public class Food : iCaryable
         this.HandsRequired = HandsRequired;
         HeldObjectCommands = new List<Command>();
         CustomersWhoLikeThis = Customers;
+        TypeOfFood = type;
         NumberOfItemsInSupply = 1;
     }
 
     public iCaryable Copy()
     {
-        iCaryable clone = new Food(Name, Price, DonenessesLevels, Description, HandsRequired, ID, CustomersWhoLikeThis);
+        iCaryable clone = new Food(Name, Price, DonenessesLevels, Description, HandsRequired, ID, TypeOfFood, CustomersWhoLikeThis);
         return clone;
     }
 }

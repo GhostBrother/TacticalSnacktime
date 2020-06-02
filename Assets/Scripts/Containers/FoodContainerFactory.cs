@@ -58,7 +58,7 @@ public class FoodContainerFactory
                         break;
                     }
             }
-            supply.FoodThisSupplyMakes = foodLoader.GetFoodById(supplyToFind);
+            supply.FoodThisSupplyMakes = foodLoader.GetFoodByName(supplyToFind);
             int numberOfSupply;
             if (int.TryParse(supplyParams[2].ToString(), out numberOfSupply))
                 supply.NumberOfItemsInSupply = numberOfSupply;

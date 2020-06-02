@@ -39,9 +39,4 @@ public class CharacterLoader<T> : JsonLoader<T> where T : Character, new() // so
         return GetCharacterByType(characters[index].Race);
     }
 
-    //public T GetCharacterByTime(string time)
-    //{
-
-    //}
-
 }

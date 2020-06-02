@@ -75,6 +75,6 @@ public class CraftFood : Command
             _cookingStation.RemoveFoodFromStation(names[i]);
         }
 
-        _cookingStation.CreateFood(new Food(_recipieToMake.FoodCreated.Name, _recipieToMake.FoodCreated.price, _recipieToMake.FoodCreated.DonenessesLevels, _recipieToMake.FoodCreated.Description, _recipieToMake.FoodCreated.HandsRequired, _recipieToMake.FoodCreated.ID, _recipieToMake.FoodCreated.CustomersWhoLikeThis)); //_recipieToMake.FoodCreated
+        _cookingStation.CreateFood(new Food(_recipieToMake.FoodCreated.Name, _recipieToMake.FoodCreated.price, _recipieToMake.FoodCreated.DonenessesLevels, _recipieToMake.FoodCreated.Description, _recipieToMake.FoodCreated.HandsRequired, _recipieToMake.FoodCreated.ID, _recipieToMake.FoodCreated.TypeOfFood, _recipieToMake.FoodCreated.CustomersWhoLikeThis)); //_recipieToMake.FoodCreated
     }
 }

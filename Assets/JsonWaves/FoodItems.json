@@ -9,6 +9,7 @@
       "Description": "A Tiny DAB of suntan lotion",
       "HandsRequired": 1,
       "ID": 0,
+      "Type": ["Meat"],
       "Customers": []
     },
 
@@ -21,6 +22,7 @@
       "Description": "Breakfast in my pjs, and dinner looking dapper",
       "HandsRequired": 1,
       "ID": 1,
+      "Type": [ "Egg" ],
       "Customers": [ "Dragon", "Kobold", "Theif", "Ghost" ]
     },
 
@@ -33,6 +35,7 @@
       "Description": "My favorite thing ever.",
       "HandsRequired": 1,
       "ID": 2,
+      "Type": [ "Meat", "Egg" ],
       "Customers": [ "Dragon" ]
     },
 
@@ -45,6 +48,7 @@
       "Description": "A Tiny DAB of suntan lotion",
       "HandsRequired": 1,
       "ID": 3,
+      "Type": [ "Vegetable" ],
       "Customers": [ "Dragon" ]
     },
 
@@ -55,6 +59,7 @@
       "Description": "A frozen beef patty, cook this into a burger",
       "HandsRequired": 1,
       "ID": 4,
+      "Type": [ "Supply", "Meat" ],
       "Customers": []
     },
 
@@ -66,6 +71,7 @@
       "Description": "Cold fries, makes hot fries if deep fried",
       "HandsRequired": 1,
       "ID": 5,
+      "Type": [ "Supply", "Vegetable" ],
       "Customers": []
     },
 
@@ -77,6 +83,7 @@
       "Description": "Breakfast in my pjs, and dinner looking dapper",
       "HandsRequired": 1,
       "ID": 6,
+      "Type": [ "Supply", "Egg" ],
       "Customers": []
     }
 

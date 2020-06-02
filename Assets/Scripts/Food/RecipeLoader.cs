@@ -26,7 +26,7 @@ public class RecipeLoader : JsonLoader<Recipe>
             List<Recipe> recipes = new List<Recipe>();
             foreach (Recipe r in GetObjectListFromFilePathByString(CooktopTypes[i]))
             {
-                r.FoodCreated = fl.GetFoodById(r.Name);
+                r.FoodCreated = fl.GetFoodByName(r.Name);
                 recipes.Add(r);
             }
             cookStationFoodLookUp.Add(CooktopTypes[i], recipes);

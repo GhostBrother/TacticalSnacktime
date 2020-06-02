@@ -55,7 +55,7 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
         if (!foodLoader) { foodLoader = new FoodLoader(); }
         for (int i = 0; i < itemsInStore.Count; i++)
         {
-            itemsInStore[i].SetFood(foodLoader.GetRandomFood());
+            itemsInStore[i].SetFood(foodLoader.RandomOfType("Supply"));
         }
     }
 
