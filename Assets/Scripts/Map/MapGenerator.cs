@@ -143,11 +143,8 @@ public class MapGenerator : JsonLoader<Map>
     }
 
     private AbstractPawn BundleSuppply<T>(string SupplyTypeAndNumber) where T : Supply , new()
-    {
-        Supply supply = new T();
-
-       supply = cookingStationFactory.LoadSupply(supply, SupplyTypeAndNumber);
-        return supply;
+    {         
+        return cookingStationFactory.LoadSupply(SupplyTypeAndNumber);
     }
 
     private void AddDeployTile(string marker ,Tile tileToAdd)

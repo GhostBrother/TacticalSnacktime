@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterLoader<T> : JsonLoader<T> where T : Character, new() // something about this feels wrong
+public class CharacterLoader<T> : JsonLoader<T> where T : Character, new() 
 {
 
     List<T> characters;
@@ -26,6 +26,7 @@ public class CharacterLoader<T> : JsonLoader<T> where T : Character, new() // so
                 characterToReturn.ID = characters[i].ID;
                 characterToReturn.PawnSprite = SpriteHolder.instance.GetCharacterArtFromIDNumber(characterToReturn.ID);
                 characterToReturn.Race = characters[i].Race;
+                characterToReturn.payPerHour.valueToStore = characters[i].payPerHour.valueToStore;
 
             }
         }

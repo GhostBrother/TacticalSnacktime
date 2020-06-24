@@ -1107,7 +1107,7 @@ MonoBehaviour:
   DecrementTotal: {fileID: 5561234553091177699}
   QuantityOwned: {fileID: 4388470834865499465}
   PictureOfProduct: {fileID: 446517159178954987}
-  NameOfFood: {fileID: 452242983948981623}
+  NameOfFoodText: {fileID: 452242983948981623}
 --- !u!1 &7695228960878936678
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class ShowEmployeeStats : Command
 
     public void execute()
     {
-        _staffSetup.ShowCharacterArt(_pcc.PawnSprite);
+       // _staffSetup.ShowCharacterArt(_pcc.PawnSprite);
     }
 
 

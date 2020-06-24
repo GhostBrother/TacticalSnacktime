@@ -49,36 +49,35 @@ public class EndOfDayPannel : MonoBehaviour
 
     public Action startNextDay;
 
-    public void Init(CharacterRoster characterRoster)
+    public void Init(CharacterRoster characterRoster , Map map)
     {
-
         money = new Money();
+        money.Increment(10.00M);
         money.textRefrence = MoneyText;
 
         reputation = new Reputation();
         reputation.textRefrence = ReputationText;
 
 
-        startDayButton.StoredCommand = new StartNextDay(startNextDay.Invoke);
-
         StatsButton.StoredCommand = new ChangeEndOfDayState(this, _Stats);
         _Stats.ButtonForState = StatsButton;
-       
-
+  
+      
         MapButton.StoredCommand = new ChangeEndOfDayState(this, _EditMap);
         _EditMap.ButtonForState = MapButton;
-        
+ 
 
-        _Supply.EndOfDayPannel = this;
-        _Supply.Init(money);
+        _Supply.Init(money, map);
         OrderSupplyButton.StoredCommand = new ChangeEndOfDayState(this, _Supply);
         _Supply.ButtonForState = OrderSupplyButton;
+        startNextDay += _Supply.OnStartNextDay;
         
 
          scheduleButton.StoredCommand = new ChangeEndOfDayState(this, _Schedule);
         _Schedule.SetRoster(characterRoster);
         _Schedule.ButtonForState = scheduleButton;
-        
+
+        startDayButton.StoredCommand = new StartNextDay(startNextDay); //.invoke
 
         _curState = _Stats;
     }
@@ -109,6 +108,5 @@ public class EndOfDayPannel : MonoBehaviour
     {
         _curState.HideProps();
     }
-
 
 }

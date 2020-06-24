@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\EndOfDay\States\Staff\ShowEmployeeStats.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Staff\StaffEntry.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Staff\StaffSetup.cs" />
+    <Compile Include="Assets\Scripts\EndOfDay\States\Staff\TimeEntry.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Supply\ItemInStore.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\Supply\OrderingSupplys.cs" />
     <Compile Include="Assets\Scripts\EndOfDay\States\iEndOfDayState.cs" />

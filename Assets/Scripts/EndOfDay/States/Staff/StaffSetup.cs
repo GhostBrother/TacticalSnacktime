@@ -1,23 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class StaffSetup : MonoBehaviour, iEndOfDayState
 {
-    [SerializeField]
-    ActionButton LeftStaffArrow;
-
-    [SerializeField]
-    ActionButton RightStaffArrow;
-
-    [SerializeField]
-    Image _frame;
-    [SerializeField]
-    Image _characterDisplay;
-
-    [SerializeField]
-    GameObject _staffPage;
 
     CharacterRoster _characterRoster;
 
@@ -28,11 +15,7 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
 
     public void DisplayProps()
     {
-        _staffPage.gameObject.SetActive(true);
-        LeftStaffArrow.gameObject.SetActive(true);
-        RightStaffArrow.gameObject.SetActive(true);
-        _frame.gameObject.SetActive(true);
-        _characterDisplay.gameObject.SetActive(true);
+        gameObject.SetActive(true);
 
         for(int i = 0; i < staffEntries.Count; i++)
         {
@@ -43,11 +26,7 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
 
     public void HideProps()
     {
-        _staffPage.gameObject.SetActive(false);
-        LeftStaffArrow.gameObject.SetActive(false);
-        RightStaffArrow.gameObject.SetActive(false);
-        _frame.gameObject.SetActive(false);
-        _characterDisplay.gameObject.SetActive(false);
+        gameObject.SetActive(false);
 
         for (int i = 0; i < staffEntries.Count; i++)
         {
@@ -62,15 +41,16 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
         while (!_characterRoster.IsListEmpty())
         {
             staffEntries[i]._characterToShow = _characterRoster.GetCharacterOnTopOfList();
-            staffEntries[i].actionButton.StoredCommand = new ShowEmployeeStats(this, staffEntries[i]._characterToShow);
-            staffEntries[i].IsTimeSheetShown(true);
+            // staffEntries[i].actionButton.StoredCommand = new ShowEmployeeStats(this, staffEntries[i]._characterToShow);
+            staffEntries[i].gameObject.SetActive(true);
+            staffEntries[i].LabelEntry();
             i++;
         }
 
         for (int j = i; j < staffEntries.Count; j++)
         {
-            staffEntries[j].actionButton.StoredCommand = new HireNewEmployee();
-            staffEntries[j].IsTimeSheetShown(false);
+            //staffEntries[j].actionButton.StoredCommand = new HireNewEmployee();
+            staffEntries[i].gameObject.SetActive(false);
         }
                 
     }
@@ -80,10 +60,9 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
         _characterRoster = characterRoster;
     }
 
-    public void ShowCharacterArt(Sprite sprite)
+
+    public void OnStartNextDay()
     {
-        _characterDisplay.sprite = sprite;
+        // Give game manager who will be on staff to open for the next day. 
     }
-
-
 }

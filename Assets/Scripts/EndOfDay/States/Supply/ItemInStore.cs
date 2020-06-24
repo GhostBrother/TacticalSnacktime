@@ -37,7 +37,7 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text QuantityOwned;
 
-    int curentQuantity;
+    public int curentQuantity { get; private set; }
 
     // Picture.
     [SerializeField]
@@ -45,7 +45,9 @@ public class ItemInStore : MonoBehaviour
 
     // Name
     [SerializeField]
-    Text NameOfFood;
+    Text NameOfFoodText;
+
+    public string NameOfFood { get { return NameOfFoodText.text; } }
 
     public event Func<decimal> CheckTotal;
 
@@ -57,7 +59,7 @@ public class ItemInStore : MonoBehaviour
         CostText.text = foodToShow.Price.ToString("$ 0.00");
         _Cost = foodToShow.Price; 
         PictureOfProduct.sprite = foodToShow.CaryableObjectSprite;
-        NameOfFood.text = foodToShow.Name;
+        NameOfFoodText.text = foodToShow.Name;
 
         inputField.text = "0";
 

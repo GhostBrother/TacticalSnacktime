@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
 
+    
+
     public Action<PlayercontrolledCharacter> PutCharacterBack;
 
     public PlayercontrolledCharacter()

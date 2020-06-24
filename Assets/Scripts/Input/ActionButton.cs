@@ -26,6 +26,7 @@ public class ActionButton : MonoBehaviour
         if (storedCommand.isUsable && onActionTaken != null)
         onActionTaken.Invoke();
 
+        
         storedCommand.execute();
 
         storedCommand.typeOfCommand.ActivateType();

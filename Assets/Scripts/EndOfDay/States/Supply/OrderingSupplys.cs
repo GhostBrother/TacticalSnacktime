@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,19 +13,27 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
     // List of foods currently for sale
     List<Food> foodForSale;
 
-    public EndOfDayPannel EndOfDayPannel { private get; set; }
     public ActionButton ButtonForState { private get;  set; }
+
+    Map _map;
 
     // Vend slots for Shop
     [SerializeField]
     List<ItemInStore> itemsInStore;
 
+    [SerializeField]
+    MonoPool _monoPool;
+
     Money _money;
 
+    decimal _cashOnHand;
 
-    public void Init(Money money)
+
+    public void Init(Money money, Map map)
     {
         _money = money;
+        _cashOnHand = _money.valueToStore;
+        _map = map;
         foreach (ItemInStore item in itemsInStore)
         {
             item.CheckTotal += totalAllItems;
@@ -61,7 +70,9 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     decimal totalAllItems()
     {
-        decimal total = 10.00M;
+
+        decimal total = _cashOnHand;
+    
         foreach (ItemInStore item in itemsInStore)
         {
             total -= item.RunningTotal;
@@ -76,5 +87,17 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
         _money.updateTextRefrence();
     }
 
-
+    public void OnStartNextDay()
+    {
+        for (int i = 0; i < itemsInStore.Count; i++)
+        {
+            if (itemsInStore[i].curentQuantity != 0)
+            {
+                Supply sup = foodLoader.GetFoodAsSupply(itemsInStore[i].NameOfFood, itemsInStore[i].curentQuantity);
+                sup.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+                sup._monoPool = _monoPool;
+                sup.TilePawnIsOn = _map.GetTileAtRowAndColumn(4, i);
+            }
+        }
+    }
 }

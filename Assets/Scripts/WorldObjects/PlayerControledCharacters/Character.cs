@@ -12,8 +12,16 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 
+    // Refactor to TimeSpan.
     public string ArrivalTime { get; set; }
 
+    public string LeaveTime { get; set; }
+
+    // hack, Should only apply to Player controled character
+    public Money payPerHour { get; private set; }
+
+    public decimal DefaultPay { get { return payPerHour.valueToStore; } set { payPerHour.valueToStore = value;} }
+    // End hack
 
     protected int usedHands = 0; 
 
@@ -55,6 +63,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
         needsRemoval = false;
         _cariedObjectCommands = new List<Command>();
         cariedObjects = new List<iCaryable>();
+        payPerHour = new Money(); 
     }
 
     public abstract List<Command> LoadCommands();

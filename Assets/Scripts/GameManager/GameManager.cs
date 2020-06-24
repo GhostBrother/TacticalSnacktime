@@ -56,10 +56,7 @@ public class GameManager : MonoBehaviour {
     {
        
         //Hack
-        _characterRoster = new CharacterRoster();
-
-        _EndOfDayPannel.startNextDay = StartDay;
-        _EndOfDayPannel.Init(_characterRoster);
+        _characterRoster = new CharacterRoster(); 
 
         idleMode = new Idle(this);
         deployState = new DeployState(this, _characterRoster);
@@ -76,6 +73,9 @@ public class GameManager : MonoBehaviour {
 
         _mapGenerator.SetGm(this);
         _gameMap = _mapGenerator.generateMap();
+
+        _EndOfDayPannel.startNextDay = StartDay;
+        _EndOfDayPannel.Init(_characterRoster, _gameMap);
 
         AddInGameClockToList(_clock);
         SortList();

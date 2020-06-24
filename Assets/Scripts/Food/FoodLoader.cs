@@ -50,4 +50,15 @@ public class FoodLoader : JsonLoader<Food>
 
         return match[Random.Range(0, match.Count)];
     }
+
+    // Don't know if this is the right place;
+    public Supply GetFoodAsSupply(string NameOfFoodToFind, int numberOfFood)
+    {
+        Supply supplyToReturn = new Supply();
+        supplyToReturn.FoodThisSupplyMakes = GetFoodByName(NameOfFoodToFind);
+        supplyToReturn.NumberOfItemsInSupply = numberOfFood;
+
+        return supplyToReturn;
+    }
 }
+

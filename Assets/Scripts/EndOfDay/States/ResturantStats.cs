@@ -30,4 +30,9 @@ public class ResturantStats : MonoBehaviour, iEndOfDayState
     {
         _statsTextHolder.SetActive(false);
     }
+
+    public void OnStartNextDay()
+    {
+      
+    }
 }

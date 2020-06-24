@@ -3,34 +3,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodContainerFactory 
+public class FoodContainerFactory
 {
-   RecipeLoader recipeLoader = new RecipeLoader();
-   FoodLoader foodLoader = new FoodLoader();
+    RecipeLoader recipeLoader = new RecipeLoader();
+    FoodLoader foodLoader = new FoodLoader();
     CookstationLoader cookstationLoader = new CookstationLoader();
-    
-   public Action<iAffectedByTime> AddToTimeline {get; set; }
-   public Action<AbstractPawn> RemoveFromTimeline { get; set; }
 
-    public AbstractCookingStation LoadCookStation(AbstractCookingStation cookingStation, string cookStationType) 
+    public Action<iAffectedByTime> AddToTimeline { get; set; }
+    public Action<AbstractPawn> RemoveFromTimeline { get; set; }
+
+    public AbstractCookingStation LoadCookStation(AbstractCookingStation cookingStation, string cookStationType)
     {
         int numberOfSupply;
         if (int.TryParse(cookStationType[1].ToString(), out numberOfSupply))
             cookingStation = cookstationLoader.GetCookingStationById(numberOfSupply);
 
-         cookingStation.LoadRecipies(recipeLoader.GetRecipiesForCooktop(cookingStation.Name));
-         cookingStation.AddToTimeline = AddToTimeline;
-         cookingStation.RemoveFromTimeline = RemoveFromTimeline;
+        cookingStation.LoadRecipies(recipeLoader.GetRecipiesForCooktop(cookingStation.Name));
+        cookingStation.AddToTimeline = AddToTimeline;
+        cookingStation.RemoveFromTimeline = RemoveFromTimeline;
 
         return cookingStation;
     }
 
-    public Supply LoadSupply(Supply supply, string supplyParams)
+    public Supply LoadSupply(string supplyParams)
     {
+        string supplyToFind = string.Empty;
+        int numberOfSupply = 1;
+
         if (supplyParams.Length > 1)
         {
-            string supplyToFind = string.Empty;
-           
+            
+ 
             switch (char.ToLower(supplyParams[1]))
             {
 
@@ -58,15 +61,12 @@ public class FoodContainerFactory
                         break;
                     }
             }
-            supply.FoodThisSupplyMakes = foodLoader.GetFoodByName(supplyToFind);
-            int numberOfSupply;
-            if (int.TryParse(supplyParams[2].ToString(), out numberOfSupply))
-                supply.NumberOfItemsInSupply = numberOfSupply;
-            else
-                numberOfSupply = 1;
-            supply.HandsRequired = 1;
+
+
+            int.TryParse(supplyParams[2].ToString(), out numberOfSupply);      
         }
-        return supply;
+
+        return foodLoader.GetFoodAsSupply(supplyToFind, numberOfSupply);
+
     }
-   
 }

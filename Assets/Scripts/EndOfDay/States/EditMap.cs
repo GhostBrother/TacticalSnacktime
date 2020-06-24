@@ -18,5 +18,8 @@ public class EditMap : MonoBehaviour, iEndOfDayState
         
     }
 
+    public void OnStartNextDay()
+    {
 
+    }
 }
