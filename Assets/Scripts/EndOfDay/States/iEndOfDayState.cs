@@ -8,4 +8,5 @@ public interface iEndOfDayState
     void HideProps();
     ActionButton ButtonForState { set; }
     void OnStartNextDay();
+
 }

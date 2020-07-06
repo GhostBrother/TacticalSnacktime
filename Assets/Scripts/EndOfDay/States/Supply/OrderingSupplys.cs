@@ -26,28 +26,29 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     Money _money;
 
-    decimal _cashOnHand;
+    decimal _totalForThisPage;
 
 
     public void Init(Money money, Map map)
     {
         _money = money;
-        _cashOnHand = _money.valueToStore;
         _map = map;
         foreach (ItemInStore item in itemsInStore)
         {
-            item.CheckTotal += totalAllItems;
-            item.ReciptTotal += UpdateReciptTotal;
+            item.CheckTotal = totalAllItems;
+            item.ReciptTotal = UpdateReciptTotal;
         }
     }
 
     public void DisplayProps()
     {
         this.gameObject.SetActive(true);
+        
         for (int i = 0; i < itemsInStore.Count; i++)
         {
             itemsInStore[i].gameObject.SetActive(true);
         }
+  
     }
 
     public void HideProps()
@@ -61,6 +62,7 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     public void LoadStoreItems()
     {
+        
         if (!foodLoader) { foodLoader = new FoodLoader(); }
         for (int i = 0; i < itemsInStore.Count; i++)
         {
@@ -70,20 +72,18 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     decimal totalAllItems()
     {
-
-        decimal total = _cashOnHand;
-    
+        decimal total = 0;
         foreach (ItemInStore item in itemsInStore)
         {
-            total -= item.RunningTotal;
+            total += item.RunningTotal;
         }
+        _money.valueToStore -= (total - _totalForThisPage);
         return total;
     }
 
     void UpdateReciptTotal() 
     {
-        // Hack
-        _money.valueToStore = totalAllItems();
+        _totalForThisPage = totalAllItems();
         _money.updateTextRefrence();
     }
 

@@ -33,6 +33,11 @@ public class StaffEntry : MonoBehaviour
     [SerializeField]
     ActionButton _MoreInfoButton;
 
+    public decimal _totalCost { get; private set; }
+
+    public Func<decimal> CheckTotal { get; set; }
+    public Action ReciptTotal { get; set; }
+
 
 
     public void LabelEntry()
@@ -51,7 +56,8 @@ public class StaffEntry : MonoBehaviour
 
     void CalculatePayPerHour()
     {
-        TimeSpan totalTime = _TimeOut.storedTime.Subtract(_TimeIn.storedTime);
+        
+        TimeSpan totalTime = CheckIfCanAfford(_TimeOut.storedTime.Subtract(_TimeIn.storedTime));
         if (totalTime.TotalHours <= 0)
         {
             totalTime = TimeSpan.Zero;
@@ -63,7 +69,23 @@ public class StaffEntry : MonoBehaviour
             _characterToShow.ArrivalTime = _TimeIn.storedTime.ToString();
             _characterToShow.LeaveTime = _TimeOut.storedTime.ToString();
         }
-        _TotalForDay.text = (totalTime.TotalHours * Decimal.ToDouble(_characterToShow.payPerHour.valueToStore)).ToString();
+        _totalCost = (decimal)totalTime.TotalHours * _characterToShow.payPerHour.valueToStore;
+        _TotalForDay.text = _totalCost.ToString();
+
+        ReciptTotal.Invoke();
     }
 
+
+    TimeSpan CheckIfCanAfford(TimeSpan totalTime)
+    {
+        // TODO, figgure out math to make it set time out to the max number it could be. 
+        decimal placeHolder = CheckTotal.Invoke();
+        placeHolder += -((decimal)totalTime.TotalHours * _characterToShow.payPerHour.valueToStore);
+        if (placeHolder < 0)
+        {
+            return new TimeSpan(0, 0, 0);
+        }
+        
+        return totalTime;
+    }
 }

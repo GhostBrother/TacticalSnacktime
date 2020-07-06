@@ -49,9 +49,10 @@ public class ItemInStore : MonoBehaviour
 
     public string NameOfFood { get { return NameOfFoodText.text; } }
 
-    public event Func<decimal> CheckTotal;
+    public Func<decimal> CheckTotal;
 
-    public event Action ReciptTotal;
+    public Action ReciptTotal;
+
 
 
     public void SetFood(Food foodToShow)
@@ -67,9 +68,9 @@ public class ItemInStore : MonoBehaviour
         DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField); 
 
         inputField.characterValidation = InputField.CharacterValidation.Integer;
+  
         inputField.onValueChanged.AddListener(CheckIfCanAfford);
         RunningTotalText.text = "$ 0.00";
-
         curentQuantity = 0;
         
     }
@@ -92,17 +93,16 @@ public class ItemInStore : MonoBehaviour
             numberOfGood = 0;
         }
 
-        decimal placeHolder = CheckTotal.Invoke();
-        placeHolder += (curentQuantity - numberOfGood) * _Cost;
-       
-        if (placeHolder < 0)
-        {
-            numberOfGood = curentQuantity;
-        }
+
+        //if (CheckTotal.Invoke((curentQuantity - numberOfGood) * _Cost))
+        //{
+        //    numberOfGood = curentQuantity;
+        //}
 
         RunningTotal = (_Cost * numberOfGood);
         curentQuantity = numberOfGood;
         UpdateReceipt(numberOfGood.ToString());
  
     }
+
 }
