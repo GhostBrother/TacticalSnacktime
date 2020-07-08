@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\CloseMenu.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\HighlightTilesCommand.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\NoTransfer.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\TransferMenuCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\iCommandKind.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />

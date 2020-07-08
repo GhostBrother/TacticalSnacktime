@@ -11,10 +11,6 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text CostText;
 
-    decimal _Cost;
-
-    public decimal RunningTotal { get; private set; }
-
     //Running Total
     [SerializeField]
     Text RunningTotalText;
@@ -37,7 +33,6 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text QuantityOwned;
 
-    public int curentQuantity { get; private set; }
 
     // Picture.
     [SerializeField]
@@ -47,62 +42,45 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text NameOfFoodText;
 
-    public string NameOfFood { get { return NameOfFoodText.text; } }
+    int ammountOwned;
 
-    public Func<decimal> CheckTotal;
+    decimal _foodCost;
 
-    public Action ReciptTotal;
+    public Action<decimal> ChangeMoneyBalance;
 
 
-
-    public void SetFood(Food foodToShow)
+    public void LoadFood(Food food)
     {
-        CostText.text = foodToShow.Price.ToString("$ 0.00");
-        _Cost = foodToShow.Price; 
-        PictureOfProduct.sprite = foodToShow.CaryableObjectSprite;
-        NameOfFoodText.text = foodToShow.Name;
+        _foodCost = food.Price;
+        CostText.text = _foodCost.ToString();
+        PictureOfProduct.sprite = food.CaryableObjectSprite;
+        NameOfFoodText.text = food.Name;
+        ammountOwned = 0;
 
-        inputField.text = "0";
-
-        IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField); 
-        DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField); 
-
-        inputField.characterValidation = InputField.CharacterValidation.Integer;
-  
-        inputField.onValueChanged.AddListener(CheckIfCanAfford);
-        RunningTotalText.text = "$ 0.00";
-        curentQuantity = 0;
-        
+        IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField);
+        DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField);
+        inputField.contentType = InputField.ContentType.IntegerNumber;
+        inputField.onValueChanged.AddListener(CheckChange);
     }
 
-    void UpdateReceipt(string numberIn)
+    void CheckChange(string s)
     {
-      inputField.text = numberIn.ToString();
-   
-      RunningTotalText.text = RunningTotal.ToString("$ 0.00");
+        int quantityToBuy = 0;
 
-      ReciptTotal.Invoke();     
-    }
+        decimal change = 0;
 
-    void CheckIfCanAfford(string numberIn)
-    {
-        int numberOfGood;
+        int.TryParse(s, out quantityToBuy);
 
-        if (!int.TryParse(numberIn, out numberOfGood) || numberOfGood <= 0)
+        if (quantityToBuy < 0)
         {
-            numberOfGood = 0;
+            quantityToBuy = 0;
+            inputField.text = ammountOwned.ToString();
         }
 
-
-        //if (CheckTotal.Invoke((curentQuantity - numberOfGood) * _Cost))
-        //{
-        //    numberOfGood = curentQuantity;
-        //}
-
-        RunningTotal = (_Cost * numberOfGood);
-        curentQuantity = numberOfGood;
-        UpdateReceipt(numberOfGood.ToString());
- 
+        change = -(quantityToBuy - ammountOwned) * _foodCost;
+        ammountOwned = quantityToBuy;
+        ChangeMoneyBalance.Invoke(change);
+        RunningTotalText.text = (quantityToBuy * _foodCost).ToString();
     }
 
 }

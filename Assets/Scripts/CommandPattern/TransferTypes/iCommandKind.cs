@@ -10,4 +10,5 @@ public interface iCommandKind
     // Hack SOLID violation
     Action<List<Command>> LoadNewMenu { get; set; }
 
+    Action CloseMenu { get; set; }
 }

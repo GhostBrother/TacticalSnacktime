@@ -13,7 +13,7 @@ public class StatusCommand : Command
     public StatusCommand(Character character)
     {
 
-        typeOfCommand = new CloseMenu();
+        typeOfCommand = new NoTransfer();
     }
 
     public void execute()

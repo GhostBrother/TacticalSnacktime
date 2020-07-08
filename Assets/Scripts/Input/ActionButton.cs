@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class ActionButton : MonoBehaviour
 {
-    public delegate void OnExecuteCommand();
-    public OnExecuteCommand onActionTaken;
-
-
     private Command storedCommand;
 
     public Command StoredCommand
@@ -22,14 +18,8 @@ public class ActionButton : MonoBehaviour
     }
     
     public void ExecuteStoredCommand()
-    {
-        if (storedCommand.isUsable && onActionTaken != null)
-        onActionTaken.Invoke();
-
-        
+    {    
         storedCommand.execute();
-
-        storedCommand.typeOfCommand.ActivateType();
-        
+        storedCommand.typeOfCommand.ActivateType();        
     }
 }

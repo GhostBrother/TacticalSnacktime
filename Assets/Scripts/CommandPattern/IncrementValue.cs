@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class IncrementValue<T> : Command
 {
-    // iMuteableValue<T> number;
+   // iMuteableValue<T> number;
 
-    //Text _valueText;
+    InputField _valueText;
 
-   InputField _valueText;
-
-    //T ammountToAdd;
+    T _ammountToAdd;
 
 
     public iCommandKind typeOfCommand { get; set; }
@@ -23,20 +21,19 @@ public class IncrementValue<T> : Command
 
     public IncrementValue(InputField valueText) //iMuteableValue<T> value , // // T ammount To add
     {
-        // number = value;
+       // number = valueType;
         _valueText = valueText;
-        typeOfCommand = new CloseMenu();
-        //ammountToAdd = _amountToAdd;
+        typeOfCommand = new NoTransfer();
+       // _ammountToAdd = ammountToAdd;
     }
 
 
     public void execute()
     {
-        int i;
+        int i = 0;
         Int32.TryParse(_valueText.text, out i);
+
         i++;
         _valueText.text = i.ToString();
-        //number.Increment(ammountToAdd);
-        //number.updateTextRefrence();
     }
 }

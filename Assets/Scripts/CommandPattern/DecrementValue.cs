@@ -20,7 +20,7 @@ public class DecrementValue<T> : Command
     public DecrementValue(InputField valueText)
     {
         _valueText = valueText;
-        typeOfCommand = new CloseMenu();
+        typeOfCommand = new NoTransfer();
     }
 
     public void execute()

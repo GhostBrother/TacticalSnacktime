@@ -8,6 +8,7 @@ public class TransferMenuCommand : iCommandKind
     Func<List<Command>> _nextMenu;
 
     public Action<List<Command>> LoadNewMenu { get; set; }
+    public Action CloseMenu { get; set; }
 
     public TransferMenuCommand(Func<List<Command>> commands)
     {
@@ -16,11 +17,12 @@ public class TransferMenuCommand : iCommandKind
 
     public void ActivateType()
     {
+        CloseMenu.Invoke();
         LoadNewMenu.Invoke(_nextMenu.Invoke());
     }
 
     public void UndoType()
     {
-        throw new NotImplementedException();
+        CloseMenu.Invoke();
     }
 }

@@ -67,12 +67,12 @@ public class EndOfDayPannel : MonoBehaviour
         _EditMap.ButtonForState = MapButton;
  
 
-        _Supply.Init(money, map);
+        _Supply.InitState(money); // map
         OrderSupplyButton.StoredCommand = new ChangeEndOfDayState(this, _Supply);
         _Supply.ButtonForState = OrderSupplyButton;
         startNextDay += _Supply.OnStartNextDay;
 
-        _Schedule.Init(money, map);
+       // _Schedule.Init(money, map);
          scheduleButton.StoredCommand = new ChangeEndOfDayState(this, _Schedule);
         _Schedule.SetRoster(characterRoster);
         _Schedule.ButtonForState = scheduleButton;
@@ -85,7 +85,7 @@ public class EndOfDayPannel : MonoBehaviour
     public void ShowEndOfDayPage()
     {
         this.gameObject.SetActive(true);
-        _Supply.LoadStoreItems();
+      //  _Supply.LoadStoreItems();
     }
 
     public void HideEndOfDayPage()

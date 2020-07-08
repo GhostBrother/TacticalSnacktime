@@ -7,7 +7,7 @@ public class Act : Command
 {
     public string CommandName => "Action";
 
-    public bool isUsable => true; //typeOfCommand.NextMenu.Count > 0;
+    public bool isUsable => true; 
 
     private List<Command> _NextCommands;
 

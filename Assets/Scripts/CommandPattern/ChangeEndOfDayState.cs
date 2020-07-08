@@ -11,7 +11,7 @@ public class ChangeEndOfDayState : Command
     {
         _endOfDayPannel = endOfDayPannel;
         _stateToChangeTo = stateToChangeTo;
-        typeOfCommand = new CloseMenu();
+        typeOfCommand = new NoTransfer(); 
     }
 
     public string CommandName { get { return _stateToChangeTo.ToString();} }

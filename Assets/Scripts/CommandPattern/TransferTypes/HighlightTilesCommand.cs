@@ -22,10 +22,13 @@ public class HighlightTilesCommand : iCommandKind
     }
 
     public Action<List<Command>> LoadNewMenu { get; set; }
+    public Action CloseMenu { get; set; }
 
     public void ActivateType()
     {
-      startTile.ColorAllAdjacent(range, actionForTiles);
+        startTile.ChangeState(startTile.GetHilightedState());
+        startTile.ColorAllAdjacent(range, actionForTiles);
+        CloseMenu.Invoke();
     }
 
     public void UndoType()

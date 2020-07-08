@@ -8,7 +8,7 @@ public class Wait : Command
     public Wait(Character character)
     {
         _character = character;
-        typeOfCommand = new CloseMenu();
+        typeOfCommand = new CloseMenuAction();
     }
 
     public string CommandName { get { return "Wait"; } }

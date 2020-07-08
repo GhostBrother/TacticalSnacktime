@@ -40,13 +40,12 @@ public class ActionMenu : MonoBehaviour
 
         for (int i = 0; i < commands.Count; i++)
         {
-            actionButtons[i].gameObject.SetActive(true);
+            actionButtons[i].gameObject.SetActive(commands[i].isUsable);
             commands[i].typeOfCommand.LoadNewMenu = OpenMenu;
+            commands[i].typeOfCommand.CloseMenu = HideAllActions;
             actionButtons[i].StoredCommand = commands[i];
-            actionButtons[i].enabled = commands[i].isUsable;
-            actionButtons[i].onActionTaken = HideAllActions;
-            actionButtons[i].onActionTaken += onButtonClick.Invoke;
             actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
+
         }
     }
 

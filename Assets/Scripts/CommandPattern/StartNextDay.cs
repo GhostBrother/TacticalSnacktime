@@ -10,7 +10,7 @@ public class StartNextDay : Command
     public StartNextDay(Action startNextDay)
     {
         _startNextDay = startNextDay;
-        typeOfCommand = new CloseMenu();
+        typeOfCommand = new NoTransfer();
     }
 
     public string CommandName { get { return "Start the next day"; } }
