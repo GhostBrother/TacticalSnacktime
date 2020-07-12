@@ -13,26 +13,23 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
     [SerializeField]
     List<StaffEntry> staffEntries;
 
-    Money _money;
+    Money moneyOnHand;
 
-    decimal _cashOnHand;
 
-    public void Init( Money money, Map map)
+    public void InitState( Money money)
     {
-         _money = money;
+        moneyOnHand = money;
 
         
         foreach (StaffEntry s in staffEntries)
         {
-            s.CheckTotal = totalAllItems;
-            s.ReciptTotal = UpdateReciptTotal;
+            s.CheckTotal = ChangeMoneyBalance;
         }
     }
 
     public void DisplayProps()
     {
         gameObject.SetActive(true);
-        _cashOnHand = _money.valueToStore;
         for (int i = 0; i < staffEntries.Count; i++)
         {
             staffEntries[i].gameObject.SetActive(true);
@@ -64,22 +61,10 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
         }               
     }
 
-    decimal totalAllItems()
+    void ChangeMoneyBalance(decimal moneyBalance)
     {
-        decimal total = _cashOnHand;
-
-        foreach (StaffEntry s in staffEntries)
-        {
-            total -= s._totalCost;
-        }
-       
-        return total;
-    }
-
-    void UpdateReciptTotal()
-    {
-        _money.valueToStore = totalAllItems();
-        _money.updateTextRefrence();
+        moneyOnHand.valueToStore += moneyBalance;
+        moneyOnHand.updateTextRefrence();
     }
 
     public void SetRoster(CharacterRoster characterRoster)

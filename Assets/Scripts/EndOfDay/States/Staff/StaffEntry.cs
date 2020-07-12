@@ -33,10 +33,10 @@ public class StaffEntry : MonoBehaviour
     [SerializeField]
     ActionButton _MoreInfoButton;
 
-    public decimal _totalCost { get; private set; }
 
-    public Func<decimal> CheckTotal { get; set; }
-    public Action ReciptTotal { get; set; }
+    TimeSpan totalTimeWorked;
+
+    public Action<decimal> CheckTotal { get; set; }
 
 
 
@@ -57,35 +57,52 @@ public class StaffEntry : MonoBehaviour
     void CalculatePayPerHour()
     {
         
-        TimeSpan totalTime = CheckIfCanAfford(_TimeOut.storedTime.Subtract(_TimeIn.storedTime));
+        TimeSpan totalTime = _TimeOut.storedTime.Subtract(_TimeIn.storedTime);
+        decimal payForHours = 0; 
+
         if (totalTime.TotalHours <= 0)
         {
-            totalTime = TimeSpan.Zero;
-            _characterToShow.ArrivalTime = TimeSpan.Zero.ToString();
-            _characterToShow.LeaveTime = TimeSpan.Zero.ToString();
+            totalTime = new TimeSpan(0, 0, 0);
         }
-        else
-        {
-            _characterToShow.ArrivalTime = _TimeIn.storedTime.ToString();
-            _characterToShow.LeaveTime = _TimeOut.storedTime.ToString();
-        }
-        _totalCost = (decimal)totalTime.TotalHours * _characterToShow.payPerHour.valueToStore;
-        _TotalForDay.text = _totalCost.ToString();
 
-        ReciptTotal.Invoke();
+        payForHours = (decimal)(totalTimeWorked.TotalHours - totalTime.TotalHours) * _characterToShow.payPerHour.valueToStore;
+        totalTimeWorked = totalTime;
+        CheckTotal.Invoke(payForHours);
     }
 
+//{
+        //    decimal payForhours = 0;
 
-    TimeSpan CheckIfCanAfford(TimeSpan totalTime)
-    {
-        // TODO, figgure out math to make it set time out to the max number it could be. 
-        decimal placeHolder = CheckTotal.Invoke();
-        placeHolder += -((decimal)totalTime.TotalHours * _characterToShow.payPerHour.valueToStore);
-        if (placeHolder < 0)
-        {
-            return new TimeSpan(0, 0, 0);
-        }
+        //    if (totalTimeWorked <= totalTime && totalTime.TotalHours >= 0)
+        //    {
+        //        payForhours = ((-(decimal)totalTimeWorked.TotalHours - (decimal)totalTime.TotalHours) * _characterToShow.payPerHour.valueToStore);
+        //    }
+
+        //    if (totalTimeWorked > totalTime && totalTime.TotalHours >= 0)
+        //    {
+        //        payForhours = (((decimal)totalTimeWorked.TotalHours - (decimal)totalTime.TotalHours) * _characterToShow.payPerHour.valueToStore);
+        //    }
+
+        //    _characterToShow.ArrivalTime = _TimeIn.storedTime.ToString();
+        //    _characterToShow.LeaveTime = _TimeOut.storedTime.ToString();
+        //    _TotalForDay.text = payForhours.ToString();
+        //    totalTimeWorked = totalTime;
+        //    CheckTotal.Invoke(payForhours);
+
+
+
+
+
+    //TimeSpan CheckIfCanAfford(TimeSpan totalTime)
+    //{
+    //    // TODO, figgure out math to make it set time out to the max number it could be. 
+    //    //decimal placeHolder = CheckTotal.Invoke();
+    //    //placeHolder += -((decimal)totalTime.TotalHours * _characterToShow.payPerHour.valueToStore);
+    //    //if (placeHolder < 0)
+    //    //{
+    //    //    return new TimeSpan(0, 0, 0);
+    //    //}
         
-        return totalTime;
-    }
+    //    //return totalTime;
+    //}
 }
