@@ -46,6 +46,8 @@ public class ItemInStore : MonoBehaviour
 
     decimal _foodCost;
 
+    public Func<decimal> GetTotalMoney;
+
     public Action<decimal> ChangeMoneyBalance;
 
 
@@ -78,9 +80,24 @@ public class ItemInStore : MonoBehaviour
         }
 
         change = -(quantityToBuy - ammountOwned) * _foodCost;
+
+        if(-change > GetTotalMoney.Invoke())
+        {
+            quantityToBuy = FindMaximumBuyable(GetTotalMoney.Invoke() + (ammountOwned * _foodCost));
+            ChangeMoneyBalance.Invoke(ammountOwned * _foodCost);
+            ammountOwned = 0; 
+            inputField.text = quantityToBuy.ToString();
+            return;
+        }
         ammountOwned = quantityToBuy;
         ChangeMoneyBalance.Invoke(change);
         RunningTotalText.text = (quantityToBuy * _foodCost).ToString();
     }
 
+
+    int FindMaximumBuyable(decimal moneyIn)
+    {
+        int r = (int)(moneyIn / _foodCost);
+        return r;
+    }
 }

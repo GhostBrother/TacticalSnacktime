@@ -33,6 +33,7 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
         foreach (ItemInStore items in itemsInStore)
         {
             items.ChangeMoneyBalance = ChangeMoneyBalance;
+            items.GetTotalMoney = getMoneyAmount;
             items.gameObject.SetActive(true);
         }
     }
@@ -48,6 +49,11 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
     public void OnStartNextDay()
     {
         loadShopItemsForDay();
+    }
+
+    decimal getMoneyAmount()
+    {
+        return moneyOnHand.valueToStore;
     }
 
     void ChangeMoneyBalance(decimal moneyBalance)
