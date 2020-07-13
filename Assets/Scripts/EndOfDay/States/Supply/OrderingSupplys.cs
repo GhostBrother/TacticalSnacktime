@@ -20,9 +20,12 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     Money moneyOnHand;
 
-    public void InitState(Money money)
+    Map _map;
+
+    public void InitState(Money money, Map _Map)
     {
         fl = new FoodLoader();
+        _map = _Map;
         moneyOnHand = money;
         loadShopItemsForDay();
     }
@@ -48,6 +51,16 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     public void OnStartNextDay()
     {
+        foreach (ItemInStore items in itemsInStore)
+        {
+            if (items.ammountOwned > 0)
+            {
+                Supply s = fl.GetFoodAsSupply(items.FoodName, items.ammountOwned);
+                s.characterCoaster = _monoPool.GetCharacterCoasterInstance();
+                s._monoPool = _monoPool;
+                s.TilePawnIsOn = _map.GetTileAtRowAndColumn(4, 1);
+            }
+        }
         loadShopItemsForDay();
     }
 

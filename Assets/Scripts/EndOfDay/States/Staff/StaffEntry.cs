@@ -70,28 +70,6 @@ public class StaffEntry : MonoBehaviour
         CheckTotal.Invoke(payForHours);
     }
 
-//{
-        //    decimal payForhours = 0;
-
-        //    if (totalTimeWorked <= totalTime && totalTime.TotalHours >= 0)
-        //    {
-        //        payForhours = ((-(decimal)totalTimeWorked.TotalHours - (decimal)totalTime.TotalHours) * _characterToShow.payPerHour.valueToStore);
-        //    }
-
-        //    if (totalTimeWorked > totalTime && totalTime.TotalHours >= 0)
-        //    {
-        //        payForhours = (((decimal)totalTimeWorked.TotalHours - (decimal)totalTime.TotalHours) * _characterToShow.payPerHour.valueToStore);
-        //    }
-
-        //    _characterToShow.ArrivalTime = _TimeIn.storedTime.ToString();
-        //    _characterToShow.LeaveTime = _TimeOut.storedTime.ToString();
-        //    _TotalForDay.text = payForhours.ToString();
-        //    totalTimeWorked = totalTime;
-        //    CheckTotal.Invoke(payForhours);
-
-
-
-
 
     //TimeSpan CheckIfCanAfford(TimeSpan totalTime)
     //{

@@ -22,7 +22,7 @@ public class CraftFood : Command
         _cookingStation = cookStaion;
         _recipieToMake = recipeToMake;
         _character = character;
-        typeOfCommand = new CloseMenuAction();
+        typeOfCommand = new NoTransfer();
     }
 
     void createCommandName(Recipe recipeToMake)

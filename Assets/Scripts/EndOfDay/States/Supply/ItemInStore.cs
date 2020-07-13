@@ -42,7 +42,9 @@ public class ItemInStore : MonoBehaviour
     [SerializeField]
     Text NameOfFoodText;
 
-    int ammountOwned;
+    public string FoodName { get { return NameOfFoodText.text; }}
+
+    public int ammountOwned { get; private set; }
 
     decimal _foodCost;
 

@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionMenu : MonoBehaviour
 {
-    public delegate void OnButtonClick();
-    public OnButtonClick onButtonClick;
+    public Action onButtonClick;
 
     [SerializeField]
     Camera cam;
@@ -28,6 +28,9 @@ public class ActionMenu : MonoBehaviour
 
     public void OpenMenu(List<Command> commands)
     {
+
+        onButtonClick.Invoke();
+
         if (commands.Count > actionButtons.Count)
         {
             int temp = commands.Count - actionButtons.Count;
@@ -45,7 +48,6 @@ public class ActionMenu : MonoBehaviour
             commands[i].typeOfCommand.CloseMenu = HideAllActions;
             actionButtons[i].StoredCommand = commands[i];
             actionButtons[i].transform.position = cam.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y - (i * actionButtons[i].gameObject.transform.lossyScale.y), this.transform.position.z));
-
         }
     }
 

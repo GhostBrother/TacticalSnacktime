@@ -67,7 +67,7 @@ public class EndOfDayPannel : MonoBehaviour
         _EditMap.ButtonForState = MapButton;
  
 
-        _Supply.InitState(money); // map
+        _Supply.InitState(money, map); 
         OrderSupplyButton.StoredCommand = new ChangeEndOfDayState(this, _Supply);
         _Supply.ButtonForState = OrderSupplyButton;
         startNextDay += _Supply.OnStartNextDay;
