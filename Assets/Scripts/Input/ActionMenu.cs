@@ -44,6 +44,7 @@ public class ActionMenu : MonoBehaviour
         for (int i = 0; i < commands.Count; i++)
         {
             actionButtons[i].gameObject.SetActive(commands[i].isUsable);
+            // Load a default menu of commands to go to? 
             commands[i].typeOfCommand.LoadNewMenu = OpenMenu;
             commands[i].typeOfCommand.CloseMenu = HideAllActions;
             actionButtons[i].StoredCommand = commands[i];

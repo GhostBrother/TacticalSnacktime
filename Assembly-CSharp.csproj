@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\DecrementValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\FindCharacters.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\GetCookedFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\IncrementValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MenuBack.cs" />

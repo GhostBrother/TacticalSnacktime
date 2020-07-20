@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class PickUpItem : TrasferItemCommand
 {
-    public PickUpItem(iCanGiveItems ItemToPickUp, Character curentCharacter, int index) : base(ItemToPickUp, curentCharacter, index)
+    public PickUpItem(iCanGiveItems ItemToPickUp, Character curentCharacter, int index) : base( index)
     {
-        if (ItemToPickUp is AbstractInteractablePawn)
-        {
-            AbstractInteractablePawn temp = (AbstractInteractablePawn)ItemToPickUp;
-            itemName = temp.Name;
-            
-        }
-
-        if (ItemToPickUp is iCaryable)
-        {
-            iCaryable temp = (iCaryable)ItemToPickUp;
-            itemName = temp.NumberOfItemsInSupply + " " + temp.Name;
-        }
+        Reciver = curentCharacter;
+        Supply _supply = (Supply)ItemToPickUp;
+        isUsable = _supply.NumberOfItemsInSupply > 0;
+        //isUsable = ItemToPickUp.
+        typeOfCommand = new HighlightTilesCommand(1, curentCharacter.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.Supply);
     }
-    public override string CommandName { get { return $"Pickup {itemName} from floor"; } }
 
-    public override bool isUsable => true;
+
+    public override string CommandName { get { return $"Pickup item"; } }
+
+    public override bool isUsable { get; set; }
+
+    public override iCommandKind typeOfCommand { get; set; }
+
+    protected override void OrganizeTrade(Tile tile)
+    {
+        if (tile.TargetableOnTile is Supply)
+        {
+            _giver = (iCanGiveItems)tile.TargetableOnTile;
+        }
+
+        base.OrganizeTrade(tile);
+        typeOfCommand.LoadNewMenu(Reciver.LoadCommands());
+    }
 }

@@ -141,7 +141,7 @@ public class AICharacter : Character
             for (int i = 0; i < character.cariedObjects.Count; i++)
             {
                 iCanGiveItems giver = (iCanGiveItems)character;
-                SpaceContextualActions.Add(new GiveItem(giver, this, i));
+                SpaceContextualActions.Add(new GiveItem(giver, i));
             }
         }
 

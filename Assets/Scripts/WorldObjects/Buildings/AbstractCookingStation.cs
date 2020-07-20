@@ -73,7 +73,7 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
         }
 
         for (int i = 0; i < cariedObjects.Count; i++)
-            SpaceContextualActions.Add(new TakeItem(this, character, i));
+            SpaceContextualActions.Add(new GetCookedFood(this, character, i));
 
     }
 

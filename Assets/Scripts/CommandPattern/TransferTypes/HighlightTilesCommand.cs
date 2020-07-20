@@ -13,12 +13,14 @@ public class HighlightTilesCommand : iCommandKind
     int range;
     Tile startTile;
     Action<Tile> actionForTiles;
+    EnumHolder.EntityType _typeToFind;
 
-    public HighlightTilesCommand(int _range, Tile _startTile, Action<Tile> _ActionForTiles)
+    public HighlightTilesCommand(int _range, Tile _startTile, Action<Tile> _ActionForTiles, EnumHolder.EntityType typeToFind)
     {
         range = _range;
         startTile = _startTile;
         actionForTiles = _ActionForTiles;
+        _typeToFind = typeToFind;
     }
 
     public Action<List<Command>> LoadNewMenu { get; set; }
@@ -26,8 +28,8 @@ public class HighlightTilesCommand : iCommandKind
 
     public void ActivateType()
     {
-        startTile.ChangeState(startTile.GetHilightedState());
-        startTile.ColorAllAdjacent(range, actionForTiles);
+       // startTile.ChangeState(startTile.GetHilightedState());
+        startTile.ColorAllAdjacent(range, actionForTiles, _typeToFind);
         CloseMenu.Invoke();
     }
 

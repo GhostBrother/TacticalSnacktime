@@ -22,7 +22,7 @@ public class CraftFood : Command
         _cookingStation = cookStaion;
         _recipieToMake = recipeToMake;
         _character = character;
-        typeOfCommand = new NoTransfer();
+        typeOfCommand = new HighlightTilesCommand(1,character.TilePawnIsOn,CreateFood ,EnumHolder.EntityType.CookingStation);
     }
 
     void createCommandName(Recipe recipeToMake)
@@ -38,13 +38,18 @@ public class CraftFood : Command
 
     public void execute()
     {
+        typeOfCommand.ActivateType();
+    }
+
+    void CreateFood(Tile Tiles)
+    {
         List<string> names = new List<string>();
-        for(int k = 0; k < _recipieToMake.NameOfIngredentsForRecipe.Count; k++)
+        for (int k = 0; k < _recipieToMake.NameOfIngredentsForRecipe.Count; k++)
         {
             names.Add(_recipieToMake.NameOfIngredentsForRecipe[k]);
         }
 
-        for(int j = 0; j < _character.cariedObjects.Count; j++)
+        for (int j = 0; j < _character.cariedObjects.Count; j++)
         {
             string s = string.Empty;
             if (_character.cariedObjects[j] is Food)
@@ -59,7 +64,7 @@ public class CraftFood : Command
                 s = supply.FoodThisSupplyMakes.Name;
             }
 
-            if(names.Contains(s))
+            if (names.Contains(s))
             {
                 names.Remove(s);
                 _character.cariedObjects[j].NumberOfItemsInSupply--;
@@ -70,11 +75,14 @@ public class CraftFood : Command
             }
 
         }
-        for(int i = 0; i < names.Count; i++)
+        for (int i = 0; i < names.Count; i++)
         {
             _cookingStation.RemoveFoodFromStation(names[i]);
         }
 
-        _cookingStation.CreateFood(new Food(_recipieToMake.FoodCreated.Name, _recipieToMake.FoodCreated.price, _recipieToMake.FoodCreated.DonenessesLevels, _recipieToMake.FoodCreated.Description, _recipieToMake.FoodCreated.HandsRequired, _recipieToMake.FoodCreated.ID, _recipieToMake.FoodCreated.TypeOfFood, _recipieToMake.FoodCreated.CustomersWhoLikeThis)); //_recipieToMake.FoodCreated
+        _cookingStation.CreateFood(new Food(_recipieToMake.FoodCreated.Name, _recipieToMake.FoodCreated.price, _recipieToMake.FoodCreated.DonenessesLevels, _recipieToMake.FoodCreated.Description, _recipieToMake.FoodCreated.HandsRequired, _recipieToMake.FoodCreated.ID, _recipieToMake.FoodCreated.TypeOfFood, _recipieToMake.FoodCreated.CustomersWhoLikeThis));
+
+        typeOfCommand.UndoType();
+        typeOfCommand.LoadNewMenu(_character.LoadCommands());
     }
 }

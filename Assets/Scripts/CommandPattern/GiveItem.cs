@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GiveItem : TrasferItemCommand
 {
-    
-    
-    public GiveItem( iCanGiveItems curentCharacter, Character recivingCharacter, int index) : base (curentCharacter, recivingCharacter, index)
+    Character giver;
+    public GiveItem( iCanGiveItems curentCharacter, int index) : base (index)
     {
         if (curentCharacter is Character)
         {
-            Character temp = (Character)curentCharacter;
-            isUsable = temp.cariedObjects.Count > 0;
-           // typeOfCommand = new HighlightTilesCommand(1, temp.TilePawnIsOn);
+            _giver = curentCharacter;
+             giver = (Character)_giver;
+            giver.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Self;
+            isUsable = giver.cariedObjects.Count > 0;
+            typeOfCommand = new HighlightTilesCommand(1, giver.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.Character);
         }
     }
 
@@ -23,5 +24,18 @@ public class GiveItem : TrasferItemCommand
         }
     }
 
-    public override bool isUsable { get;  }
+    protected override void OrganizeTrade(Tile tile)
+    {
+        if(tile.TargetableOnTile is Character)
+        {
+            Reciver = (Character)tile.TargetableOnTile;
+        }
+        giver.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
+        base.OrganizeTrade(tile);
+        isUsable = giver.cariedObjects.Count > 0;
+        typeOfCommand.LoadNewMenu(giver.LoadCommands());
+    }
+
+    public override bool isUsable { get; set; }
+    public override iCommandKind typeOfCommand { get ; set ; }
 }

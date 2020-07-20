@@ -91,9 +91,12 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     public iTileState GetClearState()
     {
         // HACK invest in a moved off function for pawns.
+        //EntityTypeOnTile = EnumHolder.EntityType.None;
+        //onClick = null;
+        //TargetableOnTile = null;
+        movementPenalty = 0;
         EntityTypeOnTile = EnumHolder.EntityType.None;
-        onClick = null;
-        TargetableOnTile = null;
+        targetableOnTile = null;
         return clear;
     }
 
@@ -114,10 +117,10 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public void DeactivateTile()
     {
-        if (curentState != GetActiveState())
+        if (EntityTypeOnTile != EnumHolder.EntityType.Character)
         {
             movementPenalty = 0;
-            ChangeState(clear);  
+            ChangeState(clear);
         }
 
         onClick = null;
@@ -134,25 +137,24 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         curentState.TileClicked();
     }
 
-    public void ColorAllAdjacent(int numToHilight, Action<Tile> actionForTile)
+    public void ColorAllAdjacent(int numToHilight, Action<Tile> actionForTile, EnumHolder.EntityType entityToFind)
     {
         if (numToHilight >= 0)
         {
             numToHilight--;
 
-            if (curentState != GetActiveState())
+            if (entityToFind == EntityTypeOnTile)
             {
                 ChangeState(hilighted);
                 onClick = actionForTile;
-
             }
 
             for (int i = 0; i < neighbors.Count; i++)
             {
-                
-                if (neighbors[i].curentState != neighbors[i].GetActiveState())
+
+                if (neighbors[i].EntityTypeOnTile == entityToFind)
                 {
-                    neighbors[i].ColorAllAdjacent(numToHilight, actionForTile);
+                    neighbors[i].ColorAllAdjacent(numToHilight, actionForTile, entityToFind);
                 }
 
             }

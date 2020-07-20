@@ -13,14 +13,15 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
     public List<Command> HeldObjectCommands { get; private set; }
 
     public int NumberOfItemsInSupply { get; set; }
-
     
-
+    // Don't know if this is nessisary. It's a SOLID violation for sure
+    public List<iCaryable> cariedObjects { get; }
 
     public Supply()  
     {
         HeldObjectCommands = new List<Command>();
         CaryableObjectSprite = PawnSprite = SpriteHolder.instance.GetSupplyBox();
+        EntityType = EnumHolder.EntityType.Supply;
     }
 
     public iCaryable Give(int i)
@@ -46,9 +47,11 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public override void GetTargeter(Character character)
     {
+
         SetName();
         SpaceContextualActions.Clear();
         SpaceContextualActions.Add(new PickUpItem(this, character, 0));
+
     }
 
     public void SetName()

@@ -10,7 +10,7 @@ public class NoTransfer : iCommandKind
 
     public void ActivateType()
     {
-       
+
     }
 
     public void UndoType()
