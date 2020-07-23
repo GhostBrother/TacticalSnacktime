@@ -32,11 +32,8 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     public void DisplayProps()
     {
-        
         foreach (ItemInStore items in itemsInStore)
         {
-            items.ChangeMoneyBalance = ChangeMoneyBalance;
-            items.GetTotalMoney = getMoneyAmount;
             items.gameObject.SetActive(true);
         }
     }
@@ -79,7 +76,10 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
     {
         foreach (ItemInStore items in itemsInStore)
         { 
-           items.LoadFood(fl.RandomOfType("Supply"));
+            items.ChangeMoneyBalance = ChangeMoneyBalance;
+            items.GetTotalMoney = getMoneyAmount;
+            items.LoadFood(fl.RandomOfType("Supply"));
+            
         }
     }
 

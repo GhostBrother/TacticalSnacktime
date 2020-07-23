@@ -61,10 +61,12 @@ public class ItemInStore : MonoBehaviour
         NameOfFoodText.text = food.Name;
         ammountOwned = 0;
 
+        
         IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField);
         DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField);
         inputField.contentType = InputField.ContentType.IntegerNumber;
         inputField.onValueChanged.AddListener(CheckChange);
+        inputField.text = ammountOwned.ToString();
     }
 
     void CheckChange(string s)
