@@ -33,13 +33,12 @@ public class MoveCommand : Command
 
         _character.TilePawnIsOn.ChangeState(_character.TilePawnIsOn.GetClearState());
 
+        
+         PathRequestManager.RequestPath(_character.TilePawnIsOn, tile , _character.characterCoaster.MoveAlongPath);
         _character.TilePawnIsOn = tile;
-        PathRequestManager.RequestPath(tile, _character.TilePawnIsOn, _character.characterCoaster.MoveAlongPath);
 
         tile.ChangeState(tile.GetActiveState());
 
-        // Clear tiles goes here? 
-        _character.MoveCharacter();
     }
 
 }

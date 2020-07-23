@@ -37,7 +37,7 @@ public class AICharacterFactory
         aICharacter._monoPool = _monoPool;
 
 
-        if (targetTile.curentState != targetTile.GetActiveState())
+        if (targetTile.EntityTypeOnTile == EnumHolder.EntityType.None)
         {
             aICharacter.TilePawnIsOn = targetTile;
         }
@@ -45,7 +45,7 @@ public class AICharacterFactory
         else
             for (int i = 0; i < targetTile.neighbors.Count; i++)
             {
-                if (targetTile.neighbors[i].curentState != targetTile.neighbors[i].GetActiveState())
+                if (targetTile.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.None)
                 {
                     aICharacter.TilePawnIsOn = targetTile.neighbors[i];
                     break;
