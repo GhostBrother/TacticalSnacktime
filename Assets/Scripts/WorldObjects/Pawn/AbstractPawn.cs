@@ -50,6 +50,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
             if (previousTile == null)
             {
                 characterCoaster.transform.position = new Vector3(TilePawnIsOn.transform.position.x, TilePawnIsOn.transform.position.y, -0.5f);
+                
             }
 
             tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());

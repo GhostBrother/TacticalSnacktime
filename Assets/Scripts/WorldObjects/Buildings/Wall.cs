@@ -8,5 +8,6 @@ public class Wall : AbstractPawn
     {
         PawnSprite = SpriteHolder.instance.GetBuildingArtFromIDNumber(4);
         EntityType = EnumHolder.EntityType.Wall;
+        
     }
 }

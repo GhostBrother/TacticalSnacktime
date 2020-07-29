@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
 
     private int _movementPenalty;
-    public int movementPenalty { get { return _movementPenalty; } set { _movementPenalty = value; } }
+    public int movementPenalty { get { return _movementPenalty; } set { _movementPenalty  = value; } }
 
     int heapIndex;
     public int HeapIndex { get { return heapIndex; } set { heapIndex = value; } }
@@ -94,6 +94,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         //EntityTypeOnTile = EnumHolder.EntityType.None;
         //onClick = null;
         //TargetableOnTile = null;
+
         movementPenalty = 0;
         EntityTypeOnTile = EnumHolder.EntityType.None;
         targetableOnTile = null;
@@ -117,7 +118,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public void DeactivateTile()
     {
-        if (EntityTypeOnTile != EnumHolder.EntityType.Character)
+        if (EntityTypeOnTile == EnumHolder.EntityType.None) //EntityTypeOnTile != EnumHolder.EntityType.Character
         {
             movementPenalty = 0;
             ChangeState(clear);
