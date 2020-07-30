@@ -48,14 +48,14 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     public void OnStartNextDay()
     {
-        foreach (ItemInStore items in itemsInStore)
+        for(int i = 0; i < itemsInStore.Count; i++)//each (ItemInStore items in itemsInStore)
         {
-            if (items.ammountOwned > 0)
+            if (itemsInStore[i].ammountOwned > 0)
             {
-                Supply s = fl.GetFoodAsSupply(items.FoodName, items.ammountOwned);
+                Supply s = fl.GetFoodAsSupply(itemsInStore[i].FoodName, itemsInStore[i].ammountOwned);
                 s.characterCoaster = _monoPool.GetCharacterCoasterInstance();
                 s._monoPool = _monoPool;
-                s.TilePawnIsOn = _map.GetTileAtRowAndColumn(4, 1);
+                s.TilePawnIsOn = _map.GetTileAtRowAndColumn(4, i);
             }
         }
         loadShopItemsForDay();

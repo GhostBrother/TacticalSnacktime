@@ -20,7 +20,7 @@ public class CustomerScheduler
         List<AICharacter> listToReturn = new List<AICharacter>();
         for(int i = 0; i < numberOfCustomersForDay; i++)
         {
-            listToReturn.Add(_customerLoader.GetRandomCharacter()); 
+            listToReturn.Add(_customerLoader.GetRandomCharacter()); //_customerLoader.GetRandomCharacter()
             listToReturn[i].ArrivalTime = BuildArrivalTime();
             Debug.Log(listToReturn[i].Race + " At " + listToReturn[i].ArrivalTime);
         }

@@ -23,7 +23,7 @@ public class GetCookedFood : TrasferItemCommand
 
     protected override void OrganizeTrade(Tile tile)
     {
-        if (tile.TargetableOnTile is Supply)
+        if (tile.TargetableOnTile is iCanGiveItems)
         {
             _giver = (iCanGiveItems)tile.TargetableOnTile;
         }

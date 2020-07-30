@@ -79,7 +79,8 @@ public class GameManager : MonoBehaviour {
 
         AddInGameClockToList(_clock);
         SortList();
-        StartDay();
+        EndDay();
+       // StartDay();
     }
 
     public iGameManagerState GetIdleState()
