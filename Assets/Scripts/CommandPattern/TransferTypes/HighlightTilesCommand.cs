@@ -22,13 +22,13 @@ public class HighlightTilesCommand : iCommandKind
         actionForTiles = _ActionForTiles;
         _typeToFind = typeToFind;
     }
-
+    
+    
     public Action<List<Command>> LoadNewMenu { get; set; }
     public Action CloseMenu { get; set; }
 
     public void ActivateType()
     {
-       // startTile.ChangeState(startTile.GetHilightedState());
         startTile.ColorAllAdjacent(range, actionForTiles, _typeToFind);
         CloseMenu.Invoke();
     }

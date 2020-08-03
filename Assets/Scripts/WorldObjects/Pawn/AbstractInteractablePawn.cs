@@ -23,6 +23,7 @@ public abstract class AbstractInteractablePawn : AbstractPawn, iTargetable
 
     public abstract List<Command> GetCommands();
 
+
     public abstract void GetTargeter(Character character);
  
 }

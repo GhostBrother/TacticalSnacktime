@@ -28,5 +28,6 @@ public class Act : Command
     public void execute()
     {
         typeOfCommand.ActivateType();
+
     } 
 }

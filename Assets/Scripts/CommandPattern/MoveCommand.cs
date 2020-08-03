@@ -31,11 +31,12 @@ public class MoveCommand : Command
         _character._MoveRemaining -= Mathf.Abs(tile.GridX - _character.TilePawnIsOn.GridX);
         _character._MoveRemaining -= Mathf.Abs(tile.GridY - _character.TilePawnIsOn.GridY);
 
-        _character.TilePawnIsOn.ChangeState(_character.TilePawnIsOn.GetClearState());
+         _character.TilePawnIsOn.ChangeState(_character.TilePawnIsOn.GetClearState());
 
         
          PathRequestManager.RequestPath(_character.TilePawnIsOn, tile , _character.characterCoaster.MoveAlongPath);
-        _character.TilePawnIsOn = tile;
+         _character.TilePawnIsOn = tile;
+        
 
         tile.ChangeState(tile.GetActiveState());
 

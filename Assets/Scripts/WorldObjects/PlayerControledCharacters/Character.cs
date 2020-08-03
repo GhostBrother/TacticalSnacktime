@@ -59,7 +59,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public Character()
     {
-        EntityType = EnumHolder.EntityType.None;
+       // EntityType = EnumHolder.EntityType.None;
         needsRemoval = false;
         _cariedObjectCommands = new List<Command>();
         cariedObjects = new List<iCaryable>();

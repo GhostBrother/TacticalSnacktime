@@ -85,14 +85,13 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     {
         curentState = newState;
         curentState.ChangeColor();
-        DEBUGSTATE = curentState.ToString();
     }
 
     public iTileState GetClearState()
     {
         // HACK invest in a moved off function for pawns.
         //EntityTypeOnTile = EnumHolder.EntityType.None;
-        //onClick = null;
+        //  onClick = null;
         //TargetableOnTile = null;
 
         movementPenalty = 0;
@@ -108,6 +107,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public iTileState GetHilightedState()
     {
+        
         return hilighted;
     }
 
@@ -118,10 +118,11 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public void DeactivateTile()
     {
-        if (EntityTypeOnTile == EnumHolder.EntityType.None) //EntityTypeOnTile != EnumHolder.EntityType.Character
+        if (EntityTypeOnTile == EnumHolder.EntityType.None)
         {
             movementPenalty = 0;
             ChangeState(clear);
+           
         }
 
         onClick = null;
@@ -144,20 +145,19 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         {
             numToHilight--;
 
+            Debug.Log(EntityTypeOnTile);
             if (entityToFind == EntityTypeOnTile)
             {
-                ChangeState(hilighted);
+                ChangeState(hilighted); 
                 onClick = actionForTile;
             }
 
             for (int i = 0; i < neighbors.Count; i++)
             {
-
                 if (neighbors[i].EntityTypeOnTile == entityToFind)
                 {
                     neighbors[i].ColorAllAdjacent(numToHilight, actionForTile, entityToFind);
                 }
-
             }
         }
     }
@@ -172,7 +172,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
             for (int i = 0; i < neighbors.Count; i++)
             {
 
-                if (neighbors[i].curentState != neighbors[i].GetActiveState())
+                if (neighbors[i].curentState != neighbors[i].GetActiveState()) 
                 {
                     neighbors[i].ClearAllAdjacent(numToClear);
                 }

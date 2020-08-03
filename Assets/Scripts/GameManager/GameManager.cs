@@ -247,8 +247,6 @@ public class GameManager : MonoBehaviour {
         MoveCameraToPawn(playerCharacter);
         playerCharacter.TilePawnIsOn.onClick = ShowCharacterActions;
         playerCharacter.characterCoaster.OnStopMoving = ShowCharacterActions;
-       // SetState(GetIdleState());// Unlocks control.
-
     }
 
    // On Ai Start
@@ -274,6 +272,7 @@ public class GameManager : MonoBehaviour {
 
     private void EndTurn()
     {
+        CurentCharacter.TurnEnd();
         CheckIfCharacterNeedsRemoval();
         SetState(GetIdleState());
         StartNextCharactersTurn();

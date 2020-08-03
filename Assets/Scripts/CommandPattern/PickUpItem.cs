@@ -29,6 +29,6 @@ public class PickUpItem : TrasferItemCommand
         }
 
         base.OrganizeTrade(tile);
-        typeOfCommand.LoadNewMenu(Reciver.LoadCommands());
+        typeOfCommand.LoadNewMenu.Invoke(Reciver.LoadCommands());
     }
 }

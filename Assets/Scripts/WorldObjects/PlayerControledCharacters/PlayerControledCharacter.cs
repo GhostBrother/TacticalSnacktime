@@ -6,14 +6,13 @@ using UnityEngine;
 public class PlayercontrolledCharacter : Character , iCanGiveItems
 {
 
-    
-
     public Action<PlayercontrolledCharacter> PutCharacterBack;
 
     public PlayercontrolledCharacter()
     {
         EntityType = EnumHolder.EntityType.Character;
     }
+
 
     public void GetRidOfItem(int i )
     {
@@ -37,19 +36,6 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override void GetTargeter(Character character)
     {
-        
-        if (character is PlayercontrolledCharacter)
-        {
-            PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
-
-          for(int i = 0; i < character.cariedObjects.Count; i++)
-                SpaceContextualActions.Add(new GiveItem(giver, i)); 
-
-
-            for (int j = 0; j < cariedObjects.Count; j++)
-                SpaceContextualActions.Add(new TakeItem(this, character, j));
-            
-        }
     }
 
     public override void MoveCharacter()
@@ -60,7 +46,15 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     public override void TurnStart()
     {
         ResetMoveValue();
+        EntityType = EnumHolder.EntityType.Self;
+        TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Self;
         onStartTurn.Invoke(this);
+    }
+
+    public override void TurnEnd()
+    {
+        EntityType = EnumHolder.EntityType.Character;
+        TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
     }
 
     public override void OnEndDay()
@@ -90,30 +84,52 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override List<Command> GetAllActionsFromTile()
     {
-    
+
         List<Command> ListToReturn = new List<Command>();
-        
+        bool isTargetableOnTile = false; 
         foreach (Tile neighbor in TilePawnIsOn.neighbors)
         {
             if (neighbor.IsTargetableOnTile)
             {
+
                 neighbor.TargetableOnTile.GetTargeter(this);
 
-               for(int i = 0; i < neighbor.TargetableOnTile.GetCommands().Count; i++)
+                for (int i = 0; i < neighbor.TargetableOnTile.GetCommands().Count; i++)
                 {
-                    if(!ListToReturn.Exists(x => x.GetType() == neighbor.TargetableOnTile.GetCommands()[i].GetType()))
+                   
+                    if (!ListToReturn.Exists(x => x.GetType() == neighbor.TargetableOnTile.GetCommands()[i].GetType()))
                     {
-                        if(neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand == null)
+                        if (neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand == null)
                         {
                             TransferMenuCommand temp = new TransferMenuCommand(LoadCommands);
                             neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand = temp;
                         }
                         ListToReturn.Add(neighbor.TargetableOnTile.GetCommands()[i]);
                     }
+                       
                 }
+
+                if(neighbor.TargetableOnTile is PlayercontrolledCharacter)
+                {
+                    PlayercontrolledCharacter temp = (PlayercontrolledCharacter)neighbor.TargetableOnTile;
+                    isTargetableOnTile = true;
+
+                    if(temp.cariedObjects.Count > 0)
+                    {
+                        ListToReturn.Add(new TakeItem(this, 0));
+                    }
+                }
+
+               
             }
             
         }
+
+        if (isTargetableOnTile)
+        {
+            ListToReturn.Add(new GiveItem(this, 0));  
+        }
+
         ListToReturn.AddRange(CariedObjectCommands);
         return ListToReturn;
     }
