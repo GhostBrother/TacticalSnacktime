@@ -15,6 +15,7 @@ public class MoveCommand : Command
     public MoveCommand(Character c)
     {
         _character = c;
+        _character.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         typeOfCommand = new HighlightTilesCommand(_character._MoveRemaining, _character.TilePawnIsOn, onClick, EnumHolder.EntityType.None);
     }
 
