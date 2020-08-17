@@ -12,10 +12,9 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
     private bool needsRemoval;
     public virtual bool NeedsRemoval { get { return needsRemoval; } set { needsRemoval = value; } }
 
-    // Refactor to TimeSpan.
-    public string ArrivalTime { get; set; }
+    public TimeSpan ArrivalTime { get; set; }
 
-    public string LeaveTime { get; set; }
+    public TimeSpan LeaveTime { get; set; }
 
     // hack, Should only apply to Player controled character
     public Money payPerHour { get; private set; }

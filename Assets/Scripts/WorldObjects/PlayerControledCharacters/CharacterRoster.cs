@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,10 +20,9 @@ public class CharacterRoster {
         employedCharacters.Add(_characterLoader.GetCharacterByType("Ghost"));
     }
 
-    public List<PlayercontrolledCharacter> GetCharactersForTime(string time)
+    public List<PlayercontrolledCharacter> GetCharactersForTime(TimeSpan time)
     {
         List<PlayercontrolledCharacter> _charactersForTime = new List<PlayercontrolledCharacter>(employedCharacters.FindAll(x => x.ArrivalTime == time && x.IsGoingToWork));
-        Debug.Log("UH" + employedCharacters[0].ArrivalTime);
         return _charactersForTime;
     }
 

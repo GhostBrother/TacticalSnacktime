@@ -85,6 +85,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     {
         curentState = newState;
         curentState.ChangeColor();
+        DEBUGSTATE = entityTypeOnTile.ToString();
     }
 
     public iTileState GetClearState()
@@ -107,7 +108,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public iTileState GetHilightedState()
     {
-        
         return hilighted;
     }
 
@@ -121,8 +121,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         if (EntityTypeOnTile == EnumHolder.EntityType.None)
         {
             movementPenalty = 0;
-            ChangeState(clear);
-           
+            ChangeState(clear);           
         }
 
         onClick = null;
@@ -145,7 +144,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         {
             numToHilight--;
 
-            Debug.Log(EntityTypeOnTile);
             if (entityToFind == EntityTypeOnTile)
             {
                 ChangeState(hilighted); 

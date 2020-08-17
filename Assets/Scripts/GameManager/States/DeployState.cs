@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +45,7 @@ public class DeployState : iGameManagerState
         LoadDisplayWithCharacterArt(_CharactersAtStart[0]);
     }
 
-    public void SetOpeningStaff(string Time)
+    public void SetOpeningStaff(TimeSpan Time)
     {
         _CharactersAtStart = _characterRoster.GetCharactersForTime(Time);
     }

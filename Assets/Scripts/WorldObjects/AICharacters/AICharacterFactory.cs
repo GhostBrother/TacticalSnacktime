@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class AICharacterFactory
         _charactersForDay = new List<AICharacter>();
     }
 
-    public List<AICharacter> GetCharacterSpawnsForTime(string time, Tile targetTile)
+    public List<AICharacter> GetCharacterSpawnsForTime(TimeSpan time, Tile targetTile)
     {
         List<AICharacter> _charactersForTime = new List<AICharacter>(_charactersForDay.FindAll(x => x.ArrivalTime == time));
 

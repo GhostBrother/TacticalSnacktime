@@ -56,8 +56,7 @@ public class StaffEntry : MonoBehaviour
 
     void CalculatePayPerHour()
     {
-        _characterToShow.ArrivalTime = _TimeIn.storedTime.ToString();
-        Debug.Log(_characterToShow.ArrivalTime.ToString());
+        _characterToShow.ArrivalTime = _TimeIn.storedTime;
         TimeSpan totalTime = _TimeOut.storedTime.Subtract(_TimeIn.storedTime);
         decimal payForHours = 0; 
 

@@ -162,7 +162,6 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateTile(Tile tile)
     {
-        //Debug scafolding
         if (curentState == deployState)
         {
             curentState.TileClicked(tile);
@@ -220,7 +219,7 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForEmployeeSpawn()
     {
-        List<PlayercontrolledCharacter> playercontrolledCharacters = _characterRoster.GetCharactersForTime(_clock.Time);
+        List<PlayercontrolledCharacter> playercontrolledCharacters = _characterRoster.GetCharactersForTime(_clock.CurTime);
         for(int i = 0; i < playercontrolledCharacters.Count; i++)
         {
             AddPlayerControlledCharacterToList(playercontrolledCharacters[i]);
@@ -229,7 +228,7 @@ public class GameManager : MonoBehaviour {
 
     private void CheckForCustomerSpawn()
     {
-        List<AICharacter> aICharacters = _characterFactory.GetCharacterSpawnsForTime(_clock.Time, _gameMap.GetTileWithType(EnumHolder.EntityType.Door));
+        List<AICharacter> aICharacters = _characterFactory.GetCharacterSpawnsForTime(_clock.CurTime, _gameMap.GetTileWithType(EnumHolder.EntityType.Door));
         for (int i = 0; i < aICharacters.Count; i++)
         {
             AddCustomerCharacterToList(aICharacters[i]);

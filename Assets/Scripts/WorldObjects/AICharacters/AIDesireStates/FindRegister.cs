@@ -21,7 +21,6 @@ public class FindRegister : IDesireState
         {
             if (aICharacter.TilePawnIsOn.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.Register)
             {
-                Debug.Log("boink");
                 return true;
             }
         }
