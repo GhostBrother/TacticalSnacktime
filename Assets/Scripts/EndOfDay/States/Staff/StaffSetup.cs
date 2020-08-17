@@ -51,9 +51,9 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
     void labelList()
     {
         int i = 0;
-        while (!_characterRoster.IsListEmpty())
+        foreach(PlayercontrolledCharacter c in _characterRoster.employedCharacters)
         {
-            staffEntries[i]._characterToShow = _characterRoster.GetCharacterOnTopOfList();
+            staffEntries[i]._characterToShow = c;
             // staffEntries[i].actionButton.StoredCommand = new ShowEmployeeStats(this, staffEntries[i]._characterToShow);
             staffEntries[i].gameObject.SetActive(true);
             staffEntries[i].LabelEntry();
@@ -76,5 +76,10 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
     public void OnStartNextDay()
     {
         // Give game manager who will be on staff to open for the next day. 
+
+        for (int i = 0; i < staffEntries.Count; i++)
+        {
+          staffEntries[i]._characterToShow.IsGoingToWork = staffEntries[i].totalTimeWorked > new System.TimeSpan(0, 0, 0);
+        }
     }
 }

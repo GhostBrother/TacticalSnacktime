@@ -76,8 +76,9 @@ public class EndOfDayPannel : MonoBehaviour
          scheduleButton.StoredCommand = new ChangeEndOfDayState(this, _Schedule);
         _Schedule.SetRoster(characterRoster);
         _Schedule.ButtonForState = scheduleButton;
+        startNextDay += _Schedule.OnStartNextDay;
 
-        startDayButton.StoredCommand = new StartNextDay(startNextDay); //.invoke
+        
 
         _curState = _Stats;
     }
@@ -85,7 +86,6 @@ public class EndOfDayPannel : MonoBehaviour
     public void ShowEndOfDayPage()
     {
         this.gameObject.SetActive(true);
-      //  _Supply.LoadStoreItems();
     }
 
     public void HideEndOfDayPage()
@@ -107,6 +107,11 @@ public class EndOfDayPannel : MonoBehaviour
     public void HidePropsForState()
     {
         _curState.HideProps();
+    }
+
+    public void SetUpNexDay()
+    {
+        startDayButton.StoredCommand = new StartNextDay(startNextDay);
     }
 
 }

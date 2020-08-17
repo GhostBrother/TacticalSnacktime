@@ -23,7 +23,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
     int _minute;
 
     public string Time { get { return _time.text; } } 
-
+    public string OpeningTime { get { return "08:00:00"; } }
 
     int _closingHour = 12;
     int _closingMinute = 15;

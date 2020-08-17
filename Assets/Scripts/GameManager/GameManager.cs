@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
     public Character CurentCharacter { get; private set; }
 
     iGameManagerState idleMode;
-    iGameManagerState deployState;
+    DeployState deployState;
     iGameManagerState curentState;
     iGameManagerState controlsDisabled;
 
@@ -59,28 +59,27 @@ public class GameManager : MonoBehaviour {
         _characterRoster = new CharacterRoster(); 
 
         idleMode = new Idle(this);
-        deployState = new DeployState(this, _characterRoster);
+        
         controlsDisabled = new ControlsDisabled();
 
         timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory(_monoPool);
 
         _characterDisplay.InitCharacterDisplay();
-
-       
-       // actionMenu.addTimed = AddTimeInfluencedToList;
+      
         actionMenu.onButtonClick = UpdateCharacterDisplay;
 
         _mapGenerator.SetGm(this);
         _gameMap = _mapGenerator.generateMap();
-
-        _EndOfDayPannel.startNextDay = StartDay;
+       
         _EndOfDayPannel.Init(_characterRoster, _gameMap);
-
+        _EndOfDayPannel.startNextDay += StartDay;
+        _EndOfDayPannel.SetUpNexDay();
+        
         AddInGameClockToList(_clock);
+        deployState = new DeployState(this, _characterRoster);
         SortList();
         EndDay();
-       // StartDay();
     }
 
     public iGameManagerState GetIdleState()
@@ -90,7 +89,6 @@ public class GameManager : MonoBehaviour {
 
     public iGameManagerState GetDisableControls()
     {
-
         return controlsDisabled;
     }
 
@@ -125,7 +123,6 @@ public class GameManager : MonoBehaviour {
         {
             if (TA == ap)
             {
-
                 return;
             }
         }
@@ -148,6 +145,7 @@ public class GameManager : MonoBehaviour {
     private void AddInGameClockToList(Clock clock)
     {
         clock.onTurnEnd += CheckForCustomerSpawn;
+        clock.onTurnEnd += CheckForEmployeeSpawn;
         clock.onTurnEnd += EndTurn;
         // clock.onTurnEnd += SortList;
         clock.onDayOver = EndDay;
@@ -220,6 +218,15 @@ public class GameManager : MonoBehaviour {
         timeAffectedObjects[0].TurnStart();
     }
 
+    private void CheckForEmployeeSpawn()
+    {
+        List<PlayercontrolledCharacter> playercontrolledCharacters = _characterRoster.GetCharactersForTime(_clock.Time);
+        for(int i = 0; i < playercontrolledCharacters.Count; i++)
+        {
+            AddPlayerControlledCharacterToList(playercontrolledCharacters[i]);
+        }
+    }
+
     private void CheckForCustomerSpawn()
     {
         List<AICharacter> aICharacters = _characterFactory.GetCharacterSpawnsForTime(_clock.Time, _gameMap.GetTileWithType(EnumHolder.EntityType.Door));
@@ -290,13 +297,12 @@ public class GameManager : MonoBehaviour {
 
     private void StartDay()
     {
-   
         _EndOfDayPannel.HideEndOfDayPage();
         _gameMap.AcivateAllDeployTiles();
         _characterFactory.RollCharactersForDay();
-       // AddInGameClockToList(_clock);
         SortList();
         _clock.SetClockToStartOfDay();
+        deployState.SetOpeningStaff(_clock.OpeningTime);
         curentState = deployState;
 
     }

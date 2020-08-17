@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterRoster {
 
-    List<PlayercontrolledCharacter> employedCharacters;
+     public List<PlayercontrolledCharacter> employedCharacters { get; }
 
     CharacterLoader<PlayercontrolledCharacter> _characterLoader; 
 
@@ -19,33 +19,31 @@ public class CharacterRoster {
         employedCharacters.Add(_characterLoader.GetCharacterByType("Ghost"));
     }
 
-    public PlayercontrolledCharacter PeekAtNextCharacter()
+    public List<PlayercontrolledCharacter> GetCharactersForTime(string time)
     {
-        return employedCharacters[0];
+        List<PlayercontrolledCharacter> _charactersForTime = new List<PlayercontrolledCharacter>(employedCharacters.FindAll(x => x.ArrivalTime == time && x.IsGoingToWork));
+        Debug.Log("UH" + employedCharacters[0].ArrivalTime);
+        return _charactersForTime;
     }
 
-    public Character getNextEmployedCharacter()
-    {
-        PlayercontrolledCharacter temp = PeekAtNextCharacter();
-        employedCharacters.Remove(temp);
-        employedCharacters.Add(temp);
-        return PeekAtNextCharacter();
-    }
 
-    public Character getPreviousEmployedCharacter()
-    {
-        PlayercontrolledCharacter temp = employedCharacters[employedCharacters.Count -1];
-        employedCharacters.RemoveAt(employedCharacters.Count -1);
-        employedCharacters.Insert(0, temp);
-        return PeekAtNextCharacter();
-    }
 
-    public PlayercontrolledCharacter GetCharacterOnTopOfList()
-    {
-        PlayercontrolledCharacter temp = PeekAtNextCharacter();
-        employedCharacters.Remove(temp);
-        return temp;
-    }
+    //public Character getNextEmployedCharacter()
+    //{
+    //    PlayercontrolledCharacter temp = PeekAtNextCharacter();
+    //    employedCharacters.Remove(temp);
+    //    employedCharacters.Add(temp);
+    //    return PeekAtNextCharacter();
+    //}
+
+    //public Character getPreviousEmployedCharacter()
+    //{
+    //    PlayercontrolledCharacter temp = employedCharacters[employedCharacters.Count -1];
+    //    employedCharacters.RemoveAt(employedCharacters.Count -1);
+    //    employedCharacters.Insert(0, temp);
+    //    return PeekAtNextCharacter();
+    //}
+
 
     public bool IsListEmpty()
     {

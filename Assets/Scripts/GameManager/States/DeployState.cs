@@ -6,13 +6,13 @@ public class DeployState : iGameManagerState
 {
      GameManager _gameManager;
     CharacterRoster _characterRoster;
+    List<PlayercontrolledCharacter> _CharactersAtStart;
 
     public DeployState(GameManager gameManager, CharacterRoster characterRoster)
     {
         _gameManager = gameManager;
         _characterRoster = characterRoster;
-
-        LoadDisplayWithCharacterArt(characterRoster.PeekAtNextCharacter());
+       // LoadDisplayWithCharacterArt(_CharactersAtStart[0]);
     }
 
     public void RightClick(Tile tile)
@@ -24,14 +24,15 @@ public class DeployState : iGameManagerState
     {
         if(tile.curentState == tile.GetDeployState())
         {
-            PlayercontrolledCharacter CharacterToUse = _characterRoster.GetCharacterOnTopOfList();
+            PlayercontrolledCharacter CharacterToUse = _CharactersAtStart[0];
             CharacterToUse.characterCoaster = _gameManager.monoPool.GetCharacterCoasterInstance();
             CharacterToUse._monoPool = _gameManager.monoPool;
             CharacterToUse.TilePawnIsOn = tile;
             _gameManager.AddPlayerControlledCharacterToList(CharacterToUse);
+            _CharactersAtStart.Remove(CharacterToUse);
         }
 
-        if (_characterRoster.IsListEmpty())
+        if (_CharactersAtStart.Count == 0)
         {
             _gameManager.SortList();
             _gameManager.SetState(_gameManager.GetIdleState());
@@ -40,12 +41,18 @@ public class DeployState : iGameManagerState
         }
 
         else
-        LoadDisplayWithCharacterArt(_characterRoster.PeekAtNextCharacter());
+        LoadDisplayWithCharacterArt(_CharactersAtStart[0]);
+    }
+
+    public void SetOpeningStaff(string Time)
+    {
+        _CharactersAtStart = _characterRoster.GetCharactersForTime(Time);
     }
 
     private void LoadDisplayWithCharacterArt(Character characterToDisplay)
     {
       _gameManager.characterDisplay.ChangeCharacterArt(characterToDisplay.PawnSprite);
     }
+
  
 }

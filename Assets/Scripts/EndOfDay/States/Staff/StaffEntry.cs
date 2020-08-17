@@ -34,7 +34,7 @@ public class StaffEntry : MonoBehaviour
     ActionButton _MoreInfoButton;
 
 
-    TimeSpan totalTimeWorked;
+    public TimeSpan totalTimeWorked { get; private set; }
 
     public Action<decimal> CheckTotal { get; set; }
 
@@ -56,7 +56,8 @@ public class StaffEntry : MonoBehaviour
 
     void CalculatePayPerHour()
     {
-        
+        _characterToShow.ArrivalTime = _TimeIn.storedTime.ToString();
+        Debug.Log(_characterToShow.ArrivalTime.ToString());
         TimeSpan totalTime = _TimeOut.storedTime.Subtract(_TimeIn.storedTime);
         decimal payForHours = 0; 
 

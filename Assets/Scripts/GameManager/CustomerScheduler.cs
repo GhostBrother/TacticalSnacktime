@@ -6,7 +6,7 @@ using UnityEngine;
 public class CustomerScheduler 
 {
 
-    readonly int[] _HOURSToInclude = { 9, 10, 11, 12, 1, 2, 3, 4, 5, 6 }; 
+    readonly int[] _HOURSToInclude = { 8 ,9, 10, 11, 12, 1, 2, 3, 4, 5, 6 }; 
     CharacterLoader<AICharacter> _customerLoader;
     int _debugMultiplier = 1; 
 
@@ -45,7 +45,7 @@ public class CustomerScheduler
             time = hour.ToString().PadLeft(2, '0');
 
         if (minute % 15 == 0)
-            time += minute.ToString().PadLeft(2, '0');
+            time += ":" + minute.ToString().PadLeft(2, '0');
          
         return time;
     }
