@@ -26,25 +26,6 @@ public class CharacterRoster {
         return _charactersForTime;
     }
 
-
-
-    //public Character getNextEmployedCharacter()
-    //{
-    //    PlayercontrolledCharacter temp = PeekAtNextCharacter();
-    //    employedCharacters.Remove(temp);
-    //    employedCharacters.Add(temp);
-    //    return PeekAtNextCharacter();
-    //}
-
-    //public Character getPreviousEmployedCharacter()
-    //{
-    //    PlayercontrolledCharacter temp = employedCharacters[employedCharacters.Count -1];
-    //    employedCharacters.RemoveAt(employedCharacters.Count -1);
-    //    employedCharacters.Insert(0, temp);
-    //    return PeekAtNextCharacter();
-    //}
-
-
     public bool IsListEmpty()
     {
         return employedCharacters.Count == 0;

@@ -58,6 +58,7 @@ public class MapGenerator : JsonLoader<Map>
         editorLookUp.Add('S', BundleSuppply<Supply>);
         editorLookUp.Add('R', Clone<Register>);
         editorLookUp.Add('D', Clone<Door>);
+        editorLookUp.Add('E', Clone<EmployeeDoor>);
         editorLookUp.Add('W', Clone<Wall>);
     }
 

@@ -72,13 +72,10 @@ public class EndOfDayPannel : MonoBehaviour
         _Supply.ButtonForState = OrderSupplyButton;
         startNextDay += _Supply.OnStartNextDay;
 
-        _Schedule.InitState(money);
+        _Schedule.InitState(money, characterRoster);
          scheduleButton.StoredCommand = new ChangeEndOfDayState(this, _Schedule);
-        _Schedule.SetRoster(characterRoster);
         _Schedule.ButtonForState = scheduleButton;
         startNextDay += _Schedule.OnStartNextDay;
-
-        
 
         _curState = _Stats;
     }

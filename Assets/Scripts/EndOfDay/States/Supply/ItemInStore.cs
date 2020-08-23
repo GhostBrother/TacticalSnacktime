@@ -18,7 +18,7 @@ public class ItemInStore : MonoBehaviour
 
     // Textbox for quantity purchase
     [SerializeField]
-    InputField inputField;
+    InputField QuantityOfPurchase;
 
 
     //Increment
@@ -62,11 +62,11 @@ public class ItemInStore : MonoBehaviour
         ammountOwned = 0;
 
         
-        IncrementTotal.StoredCommand = new IncrementValue<decimal>(inputField);
-        DecrementTotal.StoredCommand = new DecrementValue<decimal>(inputField);
-        inputField.contentType = InputField.ContentType.IntegerNumber;
-        inputField.onValueChanged.AddListener(CheckChange);
-        inputField.text = ammountOwned.ToString();
+        IncrementTotal.StoredCommand = new IncrementValue<decimal>(QuantityOfPurchase);
+        DecrementTotal.StoredCommand = new DecrementValue<decimal>(QuantityOfPurchase);
+        QuantityOfPurchase.contentType = InputField.ContentType.IntegerNumber;
+        QuantityOfPurchase.onValueChanged.AddListener(CheckChange);
+        QuantityOfPurchase.text = ammountOwned.ToString();
     }
 
     void CheckChange(string s)
@@ -80,28 +80,28 @@ public class ItemInStore : MonoBehaviour
         if (quantityToBuy < 0)
         {
             quantityToBuy = 0;
-            inputField.text = ammountOwned.ToString();
+            QuantityOfPurchase.text = ammountOwned.ToString();
         }
 
         change = -(quantityToBuy - ammountOwned) * _foodCost;
 
-        if(-change > GetTotalMoney.Invoke())
-        {
-            quantityToBuy = FindMaximumBuyable(GetTotalMoney.Invoke() + (ammountOwned * _foodCost));
-            ChangeMoneyBalance.Invoke(ammountOwned * _foodCost);
-            ammountOwned = 0; 
-            inputField.text = quantityToBuy.ToString();
-            return;
-        }
+        //if(-change > GetTotalMoney.Invoke())
+        //{
+        //    quantityToBuy = FindMaximumBuyable(GetTotalMoney.Invoke() + (ammountOwned * _foodCost));
+        //    ChangeMoneyBalance.Invoke(ammountOwned * _foodCost);
+        //    ammountOwned = 0;
+        //    QuantityOfPurchase.text = quantityToBuy.ToString();
+        //    return;
+        //}
         ammountOwned = quantityToBuy;
         ChangeMoneyBalance.Invoke(change);
         RunningTotalText.text = (quantityToBuy * _foodCost).ToString();
     }
 
 
-    int FindMaximumBuyable(decimal moneyIn)
-    {
-        int r = (int)(moneyIn / _foodCost);
-        return r;
-    }
+    //int FindMaximumBuyable(decimal moneyIn)
+    //{
+    //    int r = (int)(moneyIn / _foodCost);
+    //    return r;
+    //}
 }

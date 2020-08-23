@@ -319,18 +319,6 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    private void DebugListAllTimeAffected()
-    {
-        for (int i = 0; i < timeAffectedObjects.Count; i++)
-        {
-            if (timeAffectedObjects[i] is AbstractCookingStation) { Debug.Log(i + ": " + " is cooking station"); }
-            if (timeAffectedObjects[i] is PlayercontrolledCharacter) { Debug.Log(i + ": " + " is character"); }
-            if (timeAffectedObjects[i] is AICharacter) { Debug.Log(i + ": " + " is customer"); }
-            if (timeAffectedObjects[i] is Clock) { Debug.Log(i + ": " + " is clock"); }
-        }
-    }
-
-
     public void UpdateCharacterDisplay()
     {
         // Hack

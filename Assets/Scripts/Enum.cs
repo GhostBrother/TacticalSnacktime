@@ -10,6 +10,7 @@ public class EnumHolder
         Self,
         Character,
         Door, 
+        EmployeeDoor,
         Register, 
         CookingStation,
         Wall,

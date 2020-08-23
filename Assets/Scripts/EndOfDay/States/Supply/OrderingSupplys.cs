@@ -48,7 +48,7 @@ public class OrderingSupplys : MonoBehaviour, iEndOfDayState
 
     public void OnStartNextDay()
     {
-        for(int i = 0; i < itemsInStore.Count; i++)//each (ItemInStore items in itemsInStore)
+        for(int i = 0; i < itemsInStore.Count; i++)
         {
             if (itemsInStore[i].ammountOwned > 0)
             {

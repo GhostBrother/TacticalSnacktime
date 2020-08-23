@@ -52,4 +52,14 @@ public class TimeEntry : MonoBehaviour
         storedTime = new TimeSpan(int.Parse(_Hour.text),int.Parse( _Minute.text),0);
         FindDiffrence.Invoke();
     }
+
+    public void UpdateHour(int hour)
+    {
+        _Hour.text = hour.ToString();
+    }
+
+    public void UpdateMinute(int minute)
+    {
+        _Minute.text = minute.ToString();
+    }
 }

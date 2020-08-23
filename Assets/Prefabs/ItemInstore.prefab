@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CostText: {fileID: 719808821824779341}
   RunningTotalText: {fileID: 1746125422239284147}
-  inputField: {fileID: 503079266497080101}
+  QuantityOfPurchase: {fileID: 503079266497080101}
   IncrementTotal: {fileID: 6507859043660953203}
   DecrementTotal: {fileID: 5561234553091177699}
   QuantityOwned: {fileID: 4388470834865499465}

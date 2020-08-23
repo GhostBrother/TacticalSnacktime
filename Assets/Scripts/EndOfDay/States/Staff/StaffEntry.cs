@@ -38,7 +38,7 @@ public class StaffEntry : MonoBehaviour
 
     public Action<decimal> CheckTotal { get; set; }
 
-
+    public Func<decimal> GetCurrentValue;
 
     public void LabelEntry()
     {
@@ -71,16 +71,18 @@ public class StaffEntry : MonoBehaviour
     }
 
 
-    //TimeSpan CheckIfCanAfford(TimeSpan totalTime)
+    //void CheckIfCanAfford(decimal payForHours)
     //{
-    //    // TODO, figgure out math to make it set time out to the max number it could be. 
-    //    //decimal placeHolder = CheckTotal.Invoke();
-    //    //placeHolder += -((decimal)totalTime.TotalHours * _characterToShow.payPerHour.valueToStore);
-    //    //if (placeHolder < 0)
+    //    //// TODO, figgure out math to make it set time out to the max number it could be.
+    //    //double placeHolder =  ((double)GetCurrentValue.Invoke() + (double)payForHours);
+    //    //if (placeHolder < 0 )
     //    //{
-    //    //    return new TimeSpan(0, 0, 0);
-    //    //}
+    //    //        TimeSpan temp =  TimeSpan.FromHours(Math.Ceiling((double)(placeHolder / (double)_characterToShow.payPerHour.valueToStore)));
+    //    //        Debug.Log(temp);
+    //    //        _TimeOut.UpdateHour(_TimeIn.storedTime.Hours - temp.Hours);
+    //    //        _TimeOut.UpdateMinute(_TimeIn.storedTime.Minutes - temp.Minutes);
         
-    //    //return totalTime;
+    //    //}
+
     //}
 }

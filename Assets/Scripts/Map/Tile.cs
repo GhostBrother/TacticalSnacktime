@@ -120,8 +120,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     {
         if (EntityTypeOnTile == EnumHolder.EntityType.None)
         {
-            movementPenalty = 0;
-            ChangeState(clear);           
+            ChangeState(GetClearState());           
         }
 
         onClick = null;

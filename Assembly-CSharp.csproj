@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\DecrementValue.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\Exit.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\FindCharacters.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GetCookedFood.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\iPathfinding.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\AbstractCookingStation.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Buildings\EmployeeDoor.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Wall.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\iCookingStation.cs" />

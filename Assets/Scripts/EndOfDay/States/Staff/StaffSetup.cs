@@ -16,15 +16,17 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
     Money moneyOnHand;
 
 
-    public void InitState( Money money)
+    public void InitState( Money money , CharacterRoster roster)
     {
         moneyOnHand = money;
+        _characterRoster = roster;
 
-        
         foreach (StaffEntry s in staffEntries)
         {
             s.CheckTotal = ChangeMoneyBalance;
+            s.GetCurrentValue = GetCurrentBalance;
         }
+        labelList();
     }
 
     public void DisplayProps()
@@ -34,7 +36,7 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
         {
             staffEntries[i].gameObject.SetActive(true);
         }
-        labelList();
+      
     }
 
     public void HideProps()
@@ -67,19 +69,18 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
         moneyOnHand.updateTextRefrence();
     }
 
-    public void SetRoster(CharacterRoster characterRoster)
-    {
-        _characterRoster = characterRoster;
-    }
-
-
     public void OnStartNextDay()
     {
         // Give game manager who will be on staff to open for the next day. 
 
         for (int i = 0; i < staffEntries.Count; i++)
         {
-          staffEntries[i]._characterToShow.IsGoingToWork = staffEntries[i].totalTimeWorked > new System.TimeSpan(0, 0, 0);
+          staffEntries[i]._characterToShow.IsGoingToWork = (staffEntries[i].totalTimeWorked > new System.TimeSpan(0, 0, 0));
         }
+    }
+
+    decimal GetCurrentBalance()
+    {
+        return moneyOnHand.valueToStore;
     }
 }
