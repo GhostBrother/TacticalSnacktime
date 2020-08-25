@@ -58,7 +58,6 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public Character()
     {
-       // EntityType = EnumHolder.EntityType.None;
         needsRemoval = false;
         _cariedObjectCommands = new List<Command>();
         cariedObjects = new List<iCaryable>();
@@ -85,9 +84,6 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
         usedHands += caryable.HandsRequired;
         cariedObjects.Add(caryable);
     }
-
-    public abstract void MoveCharacter();
-
 
     public override abstract List<Command> GetCommands();
 

@@ -40,11 +40,6 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     {
     }
 
-    public override void MoveCharacter()
-    {
-
-    }
-
     public override void TurnStart()
     {
         ResetMoveValue();

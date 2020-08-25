@@ -5,14 +5,19 @@ using UnityEngine;
 public class GiveItem : TrasferItemCommand
 {
     Character giver;
-    public GiveItem( iCanGiveItems curentCharacter, int index) : base (index)
+    public GiveItem( Character curentCharacter , int index) : this (curentCharacter.TilePawnIsOn,(iCanGiveItems)curentCharacter, index) //iCanGiveItems curentCharacter
+    {
+
+    }
+
+    public GiveItem(Tile starTile, iCanGiveItems curentCharacter, int index) : base(index)
     {
         if (curentCharacter is Character)
         {
-            _giver = curentCharacter;
-             giver = (Character)_giver;
+            _giver = (iCanGiveItems)curentCharacter;
+            giver = (Character)_giver;
             isUsable = giver.cariedObjects.Count > 0;
-            typeOfCommand = new HighlightTilesCommand(1, giver.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.Character);
+            typeOfCommand = new HighlightTilesCommand(1, starTile, OrganizeTrade, EnumHolder.EntityType.Character);
         }
     }
 

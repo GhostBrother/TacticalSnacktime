@@ -83,7 +83,7 @@ public class AICharacter : Character
         {
             if (targetIndex + MoveSpeed >= (path.Length - 1))
             {
-                targetIndex = path.Length- 1;//(path.Length - (targetIndex + MoveSpeed + 1));
+                targetIndex = path.Length- 1;
                 if (targetIndex < 0) { targetIndex = 0; }
             }
             else
@@ -103,6 +103,8 @@ public class AICharacter : Character
             TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
             characterCoaster.OnStopMoving = AILookForAction;
             TilePawnIsOn = path[targetIndex];
+            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
+           // TilePawnIsOn.TargetableOnTile = this; // NEw
             PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
         }
         else
@@ -141,7 +143,7 @@ public class AICharacter : Character
             for (int i = 0; i < character.cariedObjects.Count; i++)
             {
                 iCanGiveItems giver = (iCanGiveItems)character;
-                SpaceContextualActions.Add(new GiveItem(giver, i));
+                SpaceContextualActions.Add(new GiveItem(character, i)); //giver
             }
         }
 
@@ -189,7 +191,7 @@ public class AICharacter : Character
         onStartTurn.Invoke(this);
     }
 
-    public override void MoveCharacter()
+    public void MoveCharacter()
     {
         CheckPath();
         Move();

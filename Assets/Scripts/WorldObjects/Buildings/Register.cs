@@ -31,8 +31,7 @@ public class Register : AbstractInteractablePawn
                     if(_character.cariedObjects[j] is Food)
                     {
                         PlayercontrolledCharacter givingCharacter = (PlayercontrolledCharacter)_character;
-                        SpaceContextualActions.Add(new GiveItem(givingCharacter, j)); // customer, middle
-
+                        SpaceContextualActions.Add(new GiveItem(TilePawnIsOn,givingCharacter, j)); 
                     }
                 }
 
