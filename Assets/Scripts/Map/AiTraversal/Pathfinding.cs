@@ -59,6 +59,7 @@ public class Pathfinding : MonoBehaviour
                     }
                 }
             }
+
         }
 
         if (pathSuccess)

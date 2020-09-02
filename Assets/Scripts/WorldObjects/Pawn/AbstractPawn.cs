@@ -57,6 +57,8 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
             ChangeTileWeight();
 
             tilePawnIsOn.EntityTypeOnTile = EntityType;
+
+
            
         }
     }
@@ -131,6 +133,5 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public virtual void TurnEnd()
     {
-
     }
 }

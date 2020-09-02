@@ -41,6 +41,7 @@ public class AICharacterFactory
         if (targetTile.EntityTypeOnTile == EnumHolder.EntityType.None)
         {
             aICharacter.TilePawnIsOn = targetTile;
+            aICharacter.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
         }
 
         else
@@ -49,6 +50,7 @@ public class AICharacterFactory
                 if (targetTile.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.None)
                 {
                     aICharacter.TilePawnIsOn = targetTile.neighbors[i];
+                    aICharacter.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
                     break;
                 }
             }

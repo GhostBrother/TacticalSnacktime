@@ -51,9 +51,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     public override void TurnEnd()
     {
         EntityType = EnumHolder.EntityType.Character;
-        TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
-        TilePawnIsOn.ChangeState(TilePawnIsOn.GetActiveState());
-        TilePawnIsOn.TargetableOnTile = this;
+        TilePawnIsOn = this.TilePawnIsOn;
     }
 
     public override void OnEndDay()

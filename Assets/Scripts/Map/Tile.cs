@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
 
     private int _movementPenalty;
-    public int movementPenalty { get { return _movementPenalty; } set { _movementPenalty  = value; } }
+    public int movementPenalty { get { return _movementPenalty; } set { _movementPenalty  = value;} }
 
     int heapIndex;
     public int HeapIndex { get { return heapIndex; } set { heapIndex = value; } }
@@ -90,11 +90,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public iTileState GetClearState()
     {
-        // HACK invest in a moved off function for pawns.
-        //EntityTypeOnTile = EnumHolder.EntityType.None;
-        //  onClick = null;
-        //TargetableOnTile = null;
-
         movementPenalty = 0;
         EntityTypeOnTile = EnumHolder.EntityType.None;
         targetableOnTile = null;

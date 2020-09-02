@@ -104,7 +104,6 @@ public class AICharacter : Character
             characterCoaster.OnStopMoving = AILookForAction;
             TilePawnIsOn = path[targetIndex];
             TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
-           // TilePawnIsOn.TargetableOnTile = this; // NEw
             PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
         }
         else
@@ -143,7 +142,7 @@ public class AICharacter : Character
             for (int i = 0; i < character.cariedObjects.Count; i++)
             {
                 iCanGiveItems giver = (iCanGiveItems)character;
-                SpaceContextualActions.Add(new GiveItem(character, i)); //giver
+                SpaceContextualActions.Add(new GiveItem(character, i)); 
             }
         }
 
