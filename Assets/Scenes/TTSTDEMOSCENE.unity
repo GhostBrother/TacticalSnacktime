@@ -2605,7 +2605,7 @@ PrefabInstance:
     - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
         type: 3}
       propertyPath: _horizontalDistanceBetweenTiles
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114070562261459866, guid: 1e6cf0cdbf48f094ba48973194eb31db,
         type: 3}

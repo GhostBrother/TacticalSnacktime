@@ -15,25 +15,22 @@ public class MoveCommand : Command
     public MoveCommand(Character c)
     {
         _character = c;
-        _character.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         typeOfCommand = new HighlightTilesCommand(_character._MoveRemaining, _character.TilePawnIsOn, onClick, EnumHolder.EntityType.None);
     }
 
     public void execute()
     {
+        _character.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         typeOfCommand.ActivateType();
     }
 
     void onClick(Tile tile)
     {
         typeOfCommand.UndoType();
-
         _character._MoveRemaining -= Mathf.Abs(tile.GridX - _character.TilePawnIsOn.GridX);
         _character._MoveRemaining -= Mathf.Abs(tile.GridY - _character.TilePawnIsOn.GridY);
-
         PathRequestManager.RequestPath(_character.TilePawnIsOn, tile , _character.characterCoaster.MoveAlongPath);       
-        _character.TilePawnIsOn = tile;  
-       
+        _character.TilePawnIsOn = tile;      
     }
 
 }

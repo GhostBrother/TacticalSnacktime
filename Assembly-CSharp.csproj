@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{42F024C6-55C8-9136-E21A-17112780601C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -175,6 +176,8 @@
     <Compile Include="Assets\Scripts\WorldObjects\iCanGiveItems.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
     <Compile Include="Assets\Scripts\iContainItems.cs" />
+    <None Include="Assets\JsonMaps\MapTwo.json" />
+    <None Include="Assets\MapTwo.json" />
     <None Include="Assets\Shader\CookedFoodShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

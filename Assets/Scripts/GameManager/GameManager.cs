@@ -233,7 +233,6 @@ public class GameManager : MonoBehaviour {
         {
             AddCustomerCharacterToList(aICharacters[i]);
         }
-
     }
 
     private void MoveCameraToPawn(AbstractPawn character)
@@ -352,8 +351,6 @@ public class GameManager : MonoBehaviour {
     {
         ActionMenu.ShowActionsAtTile(tile);
         ActionMenu.OpenMenu(CurentCharacter.LoadCommands());
-        // Hack;
-       // DeactivateAllTiles();
     }
 
 }

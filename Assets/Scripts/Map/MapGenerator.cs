@@ -14,12 +14,6 @@ public class MapGenerator : JsonLoader<Map>
     [SerializeField]
     MonoPool _monoPool;
 
-    [SerializeField]
-    private float _horizontalDistanceBetweenTiles;
-
-    [SerializeField]
-    private float _verticalDistanceBetweenTiles;
-
     FoodContainerFactory cookingStationFactory;
 
 
@@ -41,7 +35,7 @@ public class MapGenerator : JsonLoader<Map>
 
     public void Start()
     {
-        Init("Assets/JsonMaps/TestMap.json");
+        Init("Assets/JsonMaps/MapTwo.json"); //"Assets/JsonMaps/TestMap.json"
     }
 
     public override void Init(string filePath)
@@ -81,13 +75,15 @@ public class MapGenerator : JsonLoader<Map>
 
         for (int y = 0; y < _rows; y++)
         {
-            string[] tiles = jObject["Map"][y].ToString().Split(' ');
+             string[] tiles = jObject["Map"][y].ToString().Split(' ');
+          
 
             for(int x = 0; x < tiles.Length; x++)
             {
+
                 temp = Instantiate(_tileToGenerate.gameObject);
-                tilePos.x = (x * _horizontalDistanceBetweenTiles);
-                tilePos.y = (y * -_verticalDistanceBetweenTiles);
+                tilePos.x = ((x - y) *(temp.GetComponent<BoxCollider2D>().bounds.size.x * 2));
+                tilePos.y = ((y + x) * (-temp.GetComponent<BoxCollider2D>().bounds.size.y));
                 temp.transform.position = tilePos;
                 AddDeployTile(tiles[x],temp.GetComponent<Tile>());
 
