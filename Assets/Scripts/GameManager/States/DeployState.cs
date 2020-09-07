@@ -52,7 +52,7 @@ public class DeployState : iGameManagerState
 
     private void LoadDisplayWithCharacterArt(Character characterToDisplay)
     {
-      _gameManager.characterDisplay.ChangeCharacterArt(characterToDisplay.PawnSprite);
+      _gameManager.characterDisplay.ChangeCharacterArt(characterToDisplay.PawnSprites[0]);
     }
 
  

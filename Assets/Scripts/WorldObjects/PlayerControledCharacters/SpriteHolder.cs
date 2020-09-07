@@ -6,8 +6,17 @@ public class SpriteHolder : MonoBehaviour {
 
     public static SpriteHolder instance { get; private set; }
 
-    [SerializeField]
-    Sprite[] CharacterArt;
+   
+
+    [System.Serializable]
+    public struct NamedImages
+    {
+        public string name;
+        public List<Sprite> sprites;
+    }
+    public NamedImages[] CharacterArtToLoad;
+
+    Dictionary<int, List<Sprite>> characterArt = new Dictionary<int,List<Sprite>>();
 
     [SerializeField]
     Sprite[] BuildingArt;
@@ -27,11 +36,27 @@ public class SpriteHolder : MonoBehaviour {
     private void Awake()
     {
         instance = this;
+        initCharacterArtDictionary();
     }
 
-    public Sprite GetCharacterArtFromIDNumber(int index)
+    private void initCharacterArtDictionary()
     {
-        return CharacterArt[index];
+        for (int i = 0; i < CharacterArtToLoad.Length; i++)
+        {
+            characterArt.Add(i, CharacterArtToLoad[i].sprites);
+        }
+    }
+
+    public List<Sprite> GetCharacterArtFromIDNumber(int index)
+    {
+       List<Sprite> test = new List<Sprite>();
+        if (characterArt.TryGetValue(index, out test))
+        {
+            return test;
+        }
+        //string[] parts = spriteToLookFor.Split('_');
+
+        return test; //patronArt[parts[0]];
     }
 
     public Sprite GetBuildingArtFromIDNumber(int index)

@@ -17,4 +17,13 @@ public class EnumHolder
         Supply,
         Length
     }
+
+
+    public enum Facing
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 }

@@ -43,7 +43,7 @@ public class StaffEntry : MonoBehaviour
     public void LabelEntry()
     {
         _CharacterName.text = _characterToShow.Name;
-        _CharacterArt.sprite = _characterToShow.PawnSprite;
+        _CharacterArt.sprite = _characterToShow.PawnSprites[0];
 
         _RatePerHour.text = _characterToShow.payPerHour.Format();
 

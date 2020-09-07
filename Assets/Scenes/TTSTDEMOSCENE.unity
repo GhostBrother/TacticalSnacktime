@@ -1047,11 +1047,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65341d2f11d4b84db1019d4a916e515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterArt:
-  - {fileID: 21300000, guid: 045d4183aab54224297c3761bca65f49, type: 3}
-  - {fileID: 21300000, guid: 8280ac2b893d9b742af271c6288f36c8, type: 3}
-  - {fileID: 21300000, guid: 9fda35f4eeb20144ea24a092ca476ad5, type: 3}
-  - {fileID: 21300000, guid: ebecddc7eab0acb42b7bae6b7220f41e, type: 3}
+  CharacterArtToLoad:
+  - name: Kobold
+    sprites:
+    - {fileID: 8957324059118975939, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: 4325765649525019737, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: -4476314770508482545, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: -5098308469473452042, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+  - name: Theif
+    sprites:
+    - {fileID: -5193175709298789791, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: 8643660026514889946, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: -4476314770508482545, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: 3953750941977712820, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+  - name: Ghost
+    sprites:
+    - {fileID: 3602333711553803240, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: 1739927764088483172, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: -4476314770508482545, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: 137087489611610391, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
   BuildingArt:
   - {fileID: 21300000, guid: 434059162593a8240a80d0c411e8821b, type: 3}
   - {fileID: 21300000, guid: de643a10a2b193b448381251d51104a2, type: 3}
@@ -4082,6 +4096,12 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 212492586987993738, guid: 691bc493ef3180746a49870fab12a61c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fb5fe68135187da41af40c254f35bb80,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691bc493ef3180746a49870fab12a61c, type: 3}
 --- !u!1001 &2130193968

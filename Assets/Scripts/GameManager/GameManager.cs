@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour {
     private void MoveCameraToPawn(AbstractPawn character)
     {
         SetDonenessTracks();
-        characterDisplay.ChangeCharacterArt(character.PawnSprite);  
+        characterDisplay.ChangeCharacterArt(character.PawnSprites[0]);  
         UpdateCharacterDisplay();
         // HACK
         camera.onStopMoving = null;

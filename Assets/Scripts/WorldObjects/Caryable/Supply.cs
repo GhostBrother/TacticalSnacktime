@@ -20,7 +20,7 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
     public Supply()  
     {
         HeldObjectCommands = new List<Command>();
-        CaryableObjectSprite = PawnSprite = SpriteHolder.instance.GetSupplyBox();
+        CaryableObjectSprite = PawnSprites[0] = SpriteHolder.instance.GetSupplyBox();
         EntityType = EnumHolder.EntityType.Supply;
     }
 

@@ -9,22 +9,27 @@ public class CharacterCoaster : MonoBehaviour
     float speed = 0.005f;
     Tile[] _path;
 
+    //A list of all the facings and statusus of a character sprite.
+    public List<Sprite> facingSprites { get; set; }
+
 
     Vector3 desiredLocation;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
     public Sprite CharacterSprite
     {
         get { return this.GetComponent<SpriteRenderer>().sprite; }
-        set
+        private set
         {
             this.GetComponent<SpriteRenderer>().sprite = value;
             this.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
         }
+    }
+
+
+    public void SetArtForFacing(EnumHolder.Facing facing)
+    {
+        CharacterSprite = facingSprites[(int)facing];
     }
 
 
@@ -54,11 +59,37 @@ public class CharacterCoaster : MonoBehaviour
                     yield break;
                 }
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -0.5f);
+
+               SetArtForFacing(determineFacing(_path[TargetIndex-1], _path[TargetIndex]));
             }
 
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);
             yield return null;
         }
+    }
+
+
+    EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
+    {
+
+       if(previousWaypoint.GridX > nextWaypoint.GridX)
+        {
+            return EnumHolder.Facing.Left;
+        }
+
+       if(previousWaypoint.GridX < nextWaypoint.GridX)
+        {
+            return EnumHolder.Facing.Right;
+        }
+
+        if (previousWaypoint.GridY > nextWaypoint.GridY)
+        {
+            return EnumHolder.Facing.Up;
+        }
+
+        else
+            return EnumHolder.Facing.Down;
+
     }
 
 

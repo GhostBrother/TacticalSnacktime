@@ -11,8 +11,8 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
     {
         get { return _characterCoaster; }
         set { _characterCoaster = value;
-           _characterCoaster.CharacterSprite = PawnSprite;
-
+            _characterCoaster.facingSprites = PawnSprites;
+            _characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
         }
     }
 
@@ -57,15 +57,14 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
             ChangeTileWeight();
 
             tilePawnIsOn.EntityTypeOnTile = EntityType;
-
-
-           
+ 
         }
     }
 
     public string Name { get; set; }
 
-    public Sprite PawnSprite { get; set; }
+    // for our unit's facing
+    public List<Sprite> PawnSprites { get; set; }
 
     public int ID { get; set; }
 
