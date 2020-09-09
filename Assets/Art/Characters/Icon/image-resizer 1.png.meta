@@ -1,0 +1,1855 @@
+fileFormatVersion: 2
+guid: 05503bff210c37d459620fbf88036c88
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9135676556213903706
+    second: image-resizer 1_0
+  - first:
+      213: -3256750486564919171
+    second: image-resizer 1_1
+  - first:
+      213: 861249202548637744
+    second: image-resizer 1_2
+  - first:
+      213: -5152262777057608424
+    second: image-resizer 1_3
+  - first:
+      213: 1093511881813357101
+    second: image-resizer 1_4
+  - first:
+      213: -5667394075743636751
+    second: image-resizer 1_5
+  - first:
+      213: -5983354501160736614
+    second: image-resizer 1_6
+  - first:
+      213: 7572486337820396109
+    second: image-resizer 1_7
+  - first:
+      213: 4770497455249319862
+    second: image-resizer 1_8
+  - first:
+      213: 140102325246466240
+    second: image-resizer 1_9
+  - first:
+      213: -76504304284581439
+    second: image-resizer 1_10
+  - first:
+      213: -8151721942777124999
+    second: image-resizer 1_11
+  - first:
+      213: -1934322192101602630
+    second: image-resizer 1_12
+  - first:
+      213: 8752511950290475072
+    second: image-resizer 1_13
+  - first:
+      213: -2566751608015645017
+    second: image-resizer 1_14
+  - first:
+      213: -2833883593071945992
+    second: image-resizer 1_15
+  - first:
+      213: 6384974089334921740
+    second: image-resizer 1_16
+  - first:
+      213: -1097373031582973839
+    second: image-resizer 1_17
+  - first:
+      213: -654229200354910384
+    second: image-resizer 1_18
+  - first:
+      213: -9062484881053261673
+    second: image-resizer 1_19
+  - first:
+      213: -2563901485444077152
+    second: image-resizer 1_20
+  - first:
+      213: -2108014270611267620
+    second: image-resizer 1_21
+  - first:
+      213: 5546320323348947172
+    second: image-resizer 1_22
+  - first:
+      213: 1085627992437916066
+    second: image-resizer 1_23
+  - first:
+      213: -7043380564191839716
+    second: image-resizer 1_24
+  - first:
+      213: -2874611519390147301
+    second: image-resizer 1_25
+  - first:
+      213: -5804043224568341162
+    second: image-resizer 1_26
+  - first:
+      213: 2120612589328264906
+    second: image-resizer 1_27
+  - first:
+      213: 4312070360036474254
+    second: image-resizer 1_28
+  - first:
+      213: -7644395280005829653
+    second: image-resizer 1_29
+  - first:
+      213: 7548285497548335081
+    second: image-resizer 1_30
+  - first:
+      213: -6583634206456740255
+    second: image-resizer 1_31
+  - first:
+      213: -5211829969413008363
+    second: image-resizer 1_32
+  - first:
+      213: -4313150625051577137
+    second: image-resizer 1_33
+  - first:
+      213: -3187300605253094323
+    second: image-resizer 1_34
+  - first:
+      213: -5582315113153537052
+    second: image-resizer 1_35
+  - first:
+      213: -5885378074844850064
+    second: image-resizer 1_36
+  - first:
+      213: -7599772682546859858
+    second: image-resizer 1_37
+  - first:
+      213: 143203238438054965
+    second: image-resizer 1_38
+  - first:
+      213: 2459574069132352632
+    second: image-resizer 1_39
+  - first:
+      213: 8560470377933598724
+    second: image-resizer 1_40
+  - first:
+      213: 8782526551360174008
+    second: image-resizer 1_41
+  - first:
+      213: -876938205123126004
+    second: image-resizer 1_42
+  - first:
+      213: 2076763351572256412
+    second: image-resizer 1_43
+  - first:
+      213: -3719343752653667022
+    second: image-resizer 1_44
+  - first:
+      213: 2238582641905927472
+    second: image-resizer 1_45
+  - first:
+      213: 717275530914864957
+    second: image-resizer 1_46
+  - first:
+      213: -8175316471124338047
+    second: image-resizer 1_47
+  - first:
+      213: -8010586995219989362
+    second: image-resizer 1_48
+  - first:
+      213: 2056450039187935049
+    second: image-resizer 1_49
+  - first:
+      213: -7424210820993627468
+    second: image-resizer 1_50
+  - first:
+      213: -2570198286275529229
+    second: image-resizer 1_51
+  - first:
+      213: 6452180405656619282
+    second: image-resizer 1_52
+  - first:
+      213: -3056333867766901418
+    second: image-resizer 1_53
+  - first:
+      213: -2267490128225380536
+    second: image-resizer 1_54
+  - first:
+      213: 8779164958818946370
+    second: image-resizer 1_55
+  - first:
+      213: -2533328770578853706
+    second: image-resizer 1_56
+  - first:
+      213: 3467873487523912562
+    second: image-resizer 1_57
+  - first:
+      213: -5089999628905281658
+    second: image-resizer 1_58
+  - first:
+      213: -2436236791782748755
+    second: image-resizer 1_59
+  - first:
+      213: -916117148815437730
+    second: image-resizer 1_60
+  - first:
+      213: -8411547316734250880
+    second: image-resizer 1_61
+  - first:
+      213: -7893558435347854024
+    second: image-resizer 1_62
+  - first:
+      213: -5445670115090272275
+    second: image-resizer 1_63
+  - first:
+      213: -1478546896017425335
+    second: image-resizer 1_64
+  - first:
+      213: -6527939026843618547
+    second: image-resizer 1_65
+  - first:
+      213: -7304182592009885660
+    second: image-resizer 1_66
+  - first:
+      213: -8975301088643641655
+    second: image-resizer 1_67
+  - first:
+      213: 4469361139396096890
+    second: image-resizer 1_68
+  - first:
+      213: -839689656554318258
+    second: image-resizer 1_69
+  - first:
+      213: 1695098898224206984
+    second: image-resizer 1_70
+  - first:
+      213: 477413905333915864
+    second: image-resizer 1_71
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: image-resizer 1_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e4aae9db7fbf8c48af30ec7b9ee69cd
+      internalID: 9135676556213903706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 127
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 076c5a91eeb8e4a40bbdedea94ea8304
+      internalID: -3256750486564919171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_2
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 127
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 432842a3a2235804e961f2fbebf15db6
+      internalID: 861249202548637744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_3
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cac59f5cf7ff149a54a7f1ee70e566
+      internalID: -5152262777057608424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_4
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19bf4ee53522f244bbf8bb346360f95c
+      internalID: 1093511881813357101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_5
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04b2e47d873e14749a6c4b7cf544dff8
+      internalID: -5667394075743636751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_6
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8b58a8a02e43454a883eecbd2a012f3
+      internalID: -5983354501160736614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_7
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b3fb61f6f5636042bdae71159521bdc
+      internalID: 7572486337820396109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_8
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41010293ca0d3042a0bbaa2229552a1
+      internalID: 4770497455249319862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_9
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5844739d8a7f895448a6e4d52441b5fa
+      internalID: 140102325246466240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_10
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4e9ece24145c34db6518b8d37c424b
+      internalID: -76504304284581439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_11
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 125
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed80bb502ff636e498249eb71ec0f9e5
+      internalID: -8151721942777124999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_12
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02141d28e3440614596ab7c58d5b3176
+      internalID: -1934322192101602630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_13
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 102
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 525d4fadb6ca38d4ca6f2035d9a82715
+      internalID: 8752511950290475072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_14
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 103
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 833e07d0fe1de7f41b8df879bfe99211
+      internalID: -2566751608015645017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_15
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 102
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dee0d281d6ac984996c2ac4cb456f7b
+      internalID: -2833883593071945992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_16
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 102
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b65a3572e830446987da6570c7f581
+      internalID: 6384974089334921740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_17
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 102
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a07fc04dbc4fd4c896d6436c86fb96
+      internalID: -1097373031582973839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_18
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20131d07b82b7ff4094888509d773ce9
+      internalID: -654229200354910384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_19
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dfd28434b3b6134cbae8db3eb8db1e0
+      internalID: -9062484881053261673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_20
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7efbd70cb0e3084097ec45a44d9ea0e
+      internalID: -2563901485444077152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_21
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118dfed8529a4f849b3bfff959640c6e
+      internalID: -2108014270611267620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_22
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c12c5713898f4b41a17b99ea09e1b33
+      internalID: 5546320323348947172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_23
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 101
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c55a4f962a86eef41b276a992bf7797c
+      internalID: 1085627992437916066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66313b8d3fe287d4ab812ecf4a9ae03f
+      internalID: -7043380564191839716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_25
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8070d5235657ce4469120810e699ef5b
+      internalID: -2874611519390147301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_26
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b1d042a54c7fd7458d4982dde1bfa18
+      internalID: -5804043224568341162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_27
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a164fe05e48d6f4b8a95afd5ec3b01f
+      internalID: 2120612589328264906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_28
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f76c6f82318244d80185c30f675a9c
+      internalID: 4312070360036474254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_29
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63eca61cd60c944438916b043a4e0314
+      internalID: -7644395280005829653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_30
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12900eca85b795a41888d11d7a50cf4b
+      internalID: 7548285497548335081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_31
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1fa2dbb923964848a44b5526cfb3342
+      internalID: -6583634206456740255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_32
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fd23fd338b72e74eb171f8bf0ae2f0f
+      internalID: -5211829969413008363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_33
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d36b3717a6fe434882fc0e652f3d865
+      internalID: -4313150625051577137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_34
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b816d70c7686c348b98686c4901b1f4
+      internalID: -3187300605253094323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_35
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 77
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b29bf3456478446a1debe06c108bde
+      internalID: -5582315113153537052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_36
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77bc4edf2ff1f6846a5c0bc781b27348
+      internalID: -5885378074844850064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_37
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ac4f3798c9526843acaf9c3bab8cfd9
+      internalID: -7599772682546859858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_38
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d3e08d9fd0fdc842abd4c99811eee49
+      internalID: 143203238438054965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_39
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25eb22a4c77b786459bfb8ba81190365
+      internalID: 2459574069132352632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_40
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa6981f542726742af00f0296c50baa
+      internalID: 8560470377933598724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_41
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65061e8eb5e860648b731c8bdbb02be6
+      internalID: 8782526551360174008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_42
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042fd256614153940aca1b30e651f50c
+      internalID: -876938205123126004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_43
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b4ad3dddd146d41a4a07cc0ba0591e
+      internalID: 2076763351572256412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_44
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e0e4c94c846c8f4899de8287468da44
+      internalID: -3719343752653667022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_45
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3705b9f670bc33b4eb49ab7663173619
+      internalID: 2238582641905927472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_46
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5247f5b29ebbdc545b8633f5bf0641a9
+      internalID: 717275530914864957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_47
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 53
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24d6b4ad93f15be49875c4b3b4b904ed
+      internalID: -8175316471124338047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_48
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 29
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 820053e11d660cf4d9b1dc7e80bc861e
+      internalID: -8010586995219989362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_49
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fbb863e448213747a905b664caefb11
+      internalID: 2056450039187935049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_50
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2bad2b75170c84f8a628d08e9f617b
+      internalID: -7424210820993627468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_51
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7e2accb852c4fe4cab8ad0fe59fc695
+      internalID: -2570198286275529229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_52
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f992b8f502b49049ac5d971bc009f6c
+      internalID: 6452180405656619282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_53
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6db2586bb535a524da6e2a590880c17d
+      internalID: -3056333867766901418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_54
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c0fcc3b2c1379340bb7f923799bb4a9
+      internalID: -2267490128225380536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_55
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c344569d58075bf4abe827364c55faba
+      internalID: 8779164958818946370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_56
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 27
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5347805, y: 0.5000002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa88e7b37c29ea4fab75b0d11fb8be9
+      internalID: -2533328770578853706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_57
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1f06675bdc6354f9d05b124a0c1f58
+      internalID: 3467873487523912562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_58
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 27
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196744be2a2af5b4d8e81539864e9da8
+      internalID: -5089999628905281658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_59
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 29
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffabd25d4a769ac4eb9a1b21e9929284
+      internalID: -2436236791782748755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_60
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 5
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8535a0b5eee9a24cad799819e589bbf
+      internalID: -916117148815437730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_61
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c7bf6f3618cd241b160290f1792973
+      internalID: -8411547316734250880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_62
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e76736ab291b09468a49460843020cf
+      internalID: -7893558435347854024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_63
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 1
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.4420341, y: 0.24495089}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb97341c9827a6d43867b1d63fcfeabf
+      internalID: -5445670115090272275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_64
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 1
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de1209260ff8a644be7ba062a611635
+      internalID: -1478546896017425335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_65
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 2
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3478bc516281a434ea445cfc996a676c
+      internalID: -6527939026843618547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_66
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 1
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8054be4adcc9eb84a870be549d8a4d20
+      internalID: -7304182592009885660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_67
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 2
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 425b685e39559a949b3a933404e4a26e
+      internalID: -8975301088643641655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_68
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 5
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b79cc9ba1a15a4a9e72f494a51c616
+      internalID: 4469361139396096890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_69
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 5
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7934cda772f5c4bb5e2212bca44fd8
+      internalID: -839689656554318258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_70
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 5
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc07d0e4b348e24184e4ac0ab54155f
+      internalID: 1695098898224206984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image-resizer 1_71
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 5
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2437072e458d8544aa38509fd53fd2b6
+      internalID: 477413905333915864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

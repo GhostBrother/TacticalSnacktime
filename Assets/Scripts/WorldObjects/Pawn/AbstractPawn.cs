@@ -63,6 +63,8 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public string Name { get; set; }
 
+    public Sprite characterArt { get; set; }
+
     // for our unit's facing
     public List<Sprite> PawnSprites { get; set; }
 

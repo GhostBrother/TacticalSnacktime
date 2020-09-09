@@ -10,6 +10,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public bool IsGoingToWork { get;  set; }
 
+
     public PlayercontrolledCharacter()
     {
         EntityType = EnumHolder.EntityType.Character;

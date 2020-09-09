@@ -12,6 +12,7 @@ public class SpriteHolder : MonoBehaviour {
     public struct NamedImages
     {
         public string name;
+        public Sprite characterIcon;
         public List<Sprite> sprites;
     }
     public NamedImages[] CharacterArtToLoad;
@@ -47,16 +48,20 @@ public class SpriteHolder : MonoBehaviour {
         }
     }
 
-    public List<Sprite> GetCharacterArtFromIDNumber(int index)
+    public Sprite GetCharacterIcon(int index)
+    {
+        return CharacterArtToLoad[index].characterIcon;
+    }
+
+    public List<Sprite> GetCharacterPawnArtFromIDNumber(int index)
     {
        List<Sprite> test = new List<Sprite>();
         if (characterArt.TryGetValue(index, out test))
         {
             return test;
         }
-        //string[] parts = spriteToLookFor.Split('_');
 
-        return test; //patronArt[parts[0]];
+        return test; 
     }
 
     public Sprite GetBuildingArtFromIDNumber(int index)
