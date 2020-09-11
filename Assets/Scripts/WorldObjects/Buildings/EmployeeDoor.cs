@@ -7,7 +7,7 @@ public class EmployeeDoor : AbstractInteractablePawn
    public EmployeeDoor()
     {
         EntityType = EnumHolder.EntityType.EmployeeDoor;
-        PawnSprites[0] = SpriteHolder.instance.GetBuildingArtFromIDNumber(5);
+        characterArt = SpriteHolder.instance.GetBuildingArtFromIDNumber(5);
     }
 
     public override List<Command> GetCommands()

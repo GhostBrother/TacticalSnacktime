@@ -35,7 +35,7 @@ public class MapGenerator : JsonLoader<Map>
 
     public void Start()
     {
-        Init("Assets/JsonMaps/MapTwo.json"); //"Assets/JsonMaps/TestMap.json"
+        Init("Assets/JsonMaps/TestMap.json"); //"Assets/JsonMaps/TestMap.json" "Assets/JsonMaps/MapTwo.json"
     }
 
     public override void Init(string filePath)

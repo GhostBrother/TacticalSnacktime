@@ -30,7 +30,7 @@ public class CookstationLoader : JsonLoader<AbstractCookingStation>
                 StationToReturn = new AbstractCookingStation();
                 StationToReturn.TurnOrder = 1;
                 StationToReturn.cariedObjects = new List<iCaryable>();
-                StationToReturn.PawnSprites[0] = SpriteHolder.instance.GetBuildingArtFromIDNumber(CookingStations[i].ID);
+                StationToReturn.characterArt = SpriteHolder.instance.GetBuildingArtFromIDNumber(CookingStations[i].ID);
                 StationToReturn.Name = CookingStations[i].Name;
                 StationToReturn.EntityType = EnumHolder.EntityType.CookingStation;
                 StationToReturn.numberOfCarriedObjects = CookingStations[i].numberOfCarriedObjects;

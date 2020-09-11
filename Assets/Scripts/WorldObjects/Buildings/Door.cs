@@ -8,7 +8,7 @@ public class Door : AbstractInteractablePawn
     public Door()
     {
         EntityType = EnumHolder.EntityType.Door;
-        PawnSprites[0] = SpriteHolder.instance.GetBuildingArtFromIDNumber(2);
+        characterArt = SpriteHolder.instance.GetBuildingArtFromIDNumber(2);
     }
 
     public override List<Command> GetCommands()

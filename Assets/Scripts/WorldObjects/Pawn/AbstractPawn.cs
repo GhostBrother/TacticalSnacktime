@@ -12,7 +12,8 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         get { return _characterCoaster; }
         set { _characterCoaster = value;
             _characterCoaster.facingSprites = PawnSprites;
-            _characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
+            _characterCoaster.CharacterSprite = characterArt;
+           // _characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
         }
     }
 

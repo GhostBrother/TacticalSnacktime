@@ -19,7 +19,7 @@ public class CharacterCoaster : MonoBehaviour
     public Sprite CharacterSprite
     {
         get { return this.GetComponent<SpriteRenderer>().sprite; }
-        private set
+        set
         {
             this.GetComponent<SpriteRenderer>().sprite = value;
             this.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);

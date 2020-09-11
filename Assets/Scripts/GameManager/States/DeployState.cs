@@ -30,6 +30,7 @@ public class DeployState : iGameManagerState
             CharacterToUse._monoPool = _gameManager.monoPool;
             CharacterToUse.TilePawnIsOn = tile;
             _gameManager.AddPlayerControlledCharacterToList(CharacterToUse);
+            CharacterToUse.characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
             _CharactersAtStart.Remove(CharacterToUse);
         }
 
