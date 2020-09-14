@@ -13,7 +13,6 @@ public class DeployState : iGameManagerState
     {
         _gameManager = gameManager;
         _characterRoster = characterRoster;
-       // LoadDisplayWithCharacterArt(_CharactersAtStart[0]);
     }
 
     public void RightClick(Tile tile)
