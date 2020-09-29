@@ -82,8 +82,6 @@ public class MapGenerator : JsonLoader<Map>
             {
 
                 temp = Instantiate(_tileToGenerate.gameObject);
-                Debug.Log(temp.GetComponentInChildren<SpriteRenderer>().sprite.rect.width);
-                Debug.Log(temp.GetComponentInChildren<SpriteRenderer>().sprite.bounds.extents.y);
                 tilePos.x = ((x - y) * ((temp.GetComponentInChildren<SpriteRenderer>().sprite.bounds.max.x * 10)));
                 tilePos.y = ((y + x) * (-(temp.GetComponentInChildren<SpriteRenderer>().sprite.bounds.max.y * 5)));
                 temp.transform.position = tilePos;

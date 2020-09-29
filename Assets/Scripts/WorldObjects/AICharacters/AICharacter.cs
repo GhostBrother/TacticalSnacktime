@@ -89,11 +89,9 @@ public class AICharacter : Character
             else
                 targetIndex += MoveSpeed;
 
-            walkBack(targetIndex);
-          
+            walkBack(targetIndex);   
         }
         
-
     }
 
     void walkBack(int targetIndex)

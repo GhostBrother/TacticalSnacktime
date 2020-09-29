@@ -83,7 +83,6 @@ public class InputHandler : MonoBehaviour {
                     if (isMousePressed)
                     {
                         Gm.ActivateTile(c.gameObject.GetComponent<Tile>());
-                        isMousePressed = false;
                     }
 
                     else if (isRightMousePressed)
@@ -94,6 +93,7 @@ public class InputHandler : MonoBehaviour {
                 }
             }
         }
+        isMousePressed = false;
 
     }
 }

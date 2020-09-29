@@ -13,6 +13,7 @@ public class DeployState : iGameManagerState
     {
         _gameManager = gameManager;
         _characterRoster = characterRoster;
+        
     }
 
     public void RightClick(Tile tile)
@@ -31,6 +32,7 @@ public class DeployState : iGameManagerState
             _gameManager.AddPlayerControlledCharacterToList(CharacterToUse);
             CharacterToUse.characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
             _CharactersAtStart.Remove(CharacterToUse);
+           // LoadDisplayWithCharacterArt(_CharactersAtStart[0]);
         }
 
         if (_CharactersAtStart.Count == 0)
@@ -48,6 +50,7 @@ public class DeployState : iGameManagerState
     public void SetOpeningStaff(TimeSpan Time)
     {
         _CharactersAtStart = _characterRoster.GetCharactersForTime(Time);
+        LoadDisplayWithCharacterArt(_CharactersAtStart[0]);
     }
 
     private void LoadDisplayWithCharacterArt(Character characterToDisplay)

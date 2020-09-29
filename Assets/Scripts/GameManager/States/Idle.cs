@@ -19,15 +19,6 @@ public class Idle : iGameManagerState
 
     public void TileClicked(Tile tile)
     {
-        //if ( tile == _gameManager.CurentCharacter.TilePawnIsOn)
-        //{
-        //    _gameManager.ActionMenu.ShowActionsAtTile(_gameManager.CurentCharacter);
-        //    _gameManager.SetState(_gameManager.GetSelectedState());
-        //}
-        //else
-        //{
-        //    _gameManager.DeactivateAllTiles();
-        //    _gameManager.SetState(_gameManager.GetIdleState());
-        //}
+
     }
 }

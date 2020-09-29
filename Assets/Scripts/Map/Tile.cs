@@ -63,7 +63,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     [SerializeField]
     string DEBUGSTATE;
 
-
+    
     public Tile()
     {
         neighbors = new List<Tile>();
