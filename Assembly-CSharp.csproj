@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{42F024C6-55C8-9136-E21A-17112780601C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -111,12 +110,6 @@
     <Compile Include="Assets\Scripts\Food\RecipeLoader.cs" />
     <Compile Include="Assets\Scripts\GameManager\CustomerScheduler.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\ActionState.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\ControlsDisabled.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\DeployState.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\Idle.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\MovingState.cs" />
-    <Compile Include="Assets\Scripts\GameManager\States\iGameManagerState.cs" />
     <Compile Include="Assets\Scripts\Input\ActionButton.cs" />
     <Compile Include="Assets\Scripts\Input\ActionMenu.cs" />
     <Compile Include="Assets\Scripts\Input\ActionPanel.cs" />
@@ -176,8 +169,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\iCanGiveItems.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\iTargetable.cs" />
     <Compile Include="Assets\Scripts\iContainItems.cs" />
-    <None Include="Assets\JsonMaps\MapTwo.json" />
-    <None Include="Assets\MapTwo.json" />
     <None Include="Assets\Shader\CookedFoodShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/natha/Documents/TacticalSnackTime/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

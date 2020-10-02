@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,13 +62,15 @@ public class Map {
         deployTiles.Add(tileToAdd);
     }
 
-    public void AcivateAllDeployTiles()
+    public void AcivateAllDeployTiles(Action<Tile> deployState)
     {
         for (int i = 0; i < deployTiles.Count; i++)
         {
-            if(deployTiles[i].curentState != deployTiles[i].GetActiveState())
-            deployTiles[i].ChangeState(deployTiles[i].GetComponent<Tile>().GetDeployState());
-            // START HERE!
+            if (deployTiles[i].curentState != deployTiles[i].GetActiveState())
+            {
+                deployTiles[i].ChangeState(deployTiles[i].GetComponent<Tile>().GetDeployState());
+                deployTiles[i].onClick = deployState;
+            }
         }
     }
 }

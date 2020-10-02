@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
 
      CharacterRoster _characterRoster;
 
+    // Temp list
+    List<PlayercontrolledCharacter> charactersForStartOfDay;
+
     List<iAffectedByTime> timeAffectedObjects;
 
     [SerializeField]
@@ -46,21 +49,12 @@ public class GameManager : MonoBehaviour {
 
     public Character CurentCharacter { get; private set; }
 
-    iGameManagerState idleMode;
-    DeployState deployState;
-    iGameManagerState curentState;
-    iGameManagerState controlsDisabled;
-
 	// Use this for initialization
 	void Start ()
     {
        
         //Hack
         _characterRoster = new CharacterRoster(); 
-
-        idleMode = new Idle(this);
-        
-        controlsDisabled = new ControlsDisabled();
 
         timeAffectedObjects = new List<iAffectedByTime>();
         _characterFactory = new AICharacterFactory(_monoPool);
@@ -77,25 +71,9 @@ public class GameManager : MonoBehaviour {
         _EndOfDayPannel.SetUpNexDay();
         
         AddInGameClockToList(_clock);
-        deployState = new DeployState(this, _characterRoster);
+
         SortList();
         EndDay();
-    }
-
-    public iGameManagerState GetIdleState()
-    {
-        return idleMode;
-    }
-
-    public iGameManagerState GetDisableControls()
-    {
-        return controlsDisabled;
-    }
-
-    public void SetState(iGameManagerState newState)
-    {
-        curentState = newState;
-       
     }
 
     public void AddPlayerControlledCharacterToList(PlayercontrolledCharacter character)
@@ -162,17 +140,12 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateTile(Tile tile)
     {
-        if (curentState == deployState)
-        {
-            curentState.TileClicked(tile);
-        }
-        else
         tile.curentState.TileClicked();
     }
 
     public void RightClick(Tile tile)
     {
-        curentState.RightClick(tile);
+
     }
 
     public void DeactivateAllTiles()
@@ -261,7 +234,7 @@ public class GameManager : MonoBehaviour {
         if (customerCharacter is AICharacter)
         {
             AICharacter c = (AICharacter)customerCharacter;
-            SetState(GetDisableControls());
+
             MoveCameraToPawn(customerCharacter);
             camera.onStopMoving = c.MoveCharacter;  
         }
@@ -270,7 +243,7 @@ public class GameManager : MonoBehaviour {
 
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
-        SetState(GetDisableControls());
+
         MoveCameraToPawn(abstractPawn);
         camera.onStopMoving = MoveDonenessMeter;
     }
@@ -279,7 +252,7 @@ public class GameManager : MonoBehaviour {
     {
         CurentCharacter.TurnEnd();
         CheckIfCharacterNeedsRemoval();
-        SetState(GetIdleState());
+
         StartNextCharactersTurn();
     }
 
@@ -296,20 +269,19 @@ public class GameManager : MonoBehaviour {
     private void StartDay()
     {
         _EndOfDayPannel.HideEndOfDayPage();
-        _gameMap.AcivateAllDeployTiles();
+        
+        _gameMap.AcivateAllDeployTiles(DeployStateReady);
         _characterFactory.RollCharactersForDay();
         SortList();
         _clock.SetClockToStartOfDay();
-        deployState.SetOpeningStaff(_clock.OpeningTime);
-        curentState = deployState;
+        LoadDeployState();
+        // deployState.SetOpeningStaff(_clock.OpeningTime);
 
     }
 
     private void EndDay()
     {
         _EndOfDayPannel.ShowEndOfDayPage();
-        SetState(GetDisableControls());
-
         timeAffectedObjects.Remove(_clock);
         for (int i = 0; i < timeAffectedObjects.Count;)
         {
@@ -351,6 +323,36 @@ public class GameManager : MonoBehaviour {
     {
         ActionMenu.ShowActionsAtTile(tile);
         ActionMenu.OpenMenu(CurentCharacter.LoadCommands());
+    }
+
+
+    public void DeployStateReady(Tile tile)
+    {
+
+            PlayercontrolledCharacter CharacterToUse = charactersForStartOfDay[0];
+            CharacterToUse.characterCoaster = monoPool.GetCharacterCoasterInstance();
+            CharacterToUse._monoPool = monoPool;
+            CharacterToUse.TilePawnIsOn = tile;
+            AddPlayerControlledCharacterToList(CharacterToUse);
+            CharacterToUse.characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
+
+        charactersForStartOfDay.Remove(CharacterToUse);
+
+        if (charactersForStartOfDay.Count == 0)
+        {
+            SortList();
+
+            DeactivateAllTiles();
+            StartNextCharactersTurn();
+        }
+
+        else
+            characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
+    }
+
+    private void LoadDeployState()
+    {
+        charactersForStartOfDay = _characterRoster.GetCharactersForTime(_clock.CurTime);
     }
 
 }
