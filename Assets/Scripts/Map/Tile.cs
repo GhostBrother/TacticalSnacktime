@@ -53,12 +53,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     //Added 
     public bool IsDeployTile { get; set; }
-   
-
-    [SerializeField]
-    string DEBUGSTATE;
-
-    
+     
     public Tile()
     {
         neighbors = new List<Tile>();
@@ -77,7 +72,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     {
         if (EntityTypeOnTile == EnumHolder.EntityType.None)
         {
-            backgroundTile.color = DeactiveColor;
             movementPenalty = 0;
             targetableOnTile = null;
         }
@@ -128,12 +122,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
             for (int i = 0; i < neighbors.Count; i++)
             {
-
-                 if(neighbors[i].entityTypeOnTile == EnumHolder.EntityType.None)// if (neighbors[i].curentState != neighbors[i].GetActiveState()) 
-                {
-                    neighbors[i].ClearAllAdjacent(numToClear);
-                }
-
+              neighbors[i].ClearAllAdjacent(numToClear);
             }
         }
     }
