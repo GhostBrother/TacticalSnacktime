@@ -94,7 +94,6 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public virtual void OnEndDay()
     {
-        //TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
         TilePawnIsOn.DeactivateTile();
         RemovePawn(characterCoaster);
         RemoveFromTimeline.Invoke(this);

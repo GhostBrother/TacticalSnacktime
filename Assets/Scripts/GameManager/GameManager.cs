@@ -164,7 +164,6 @@ public class GameManager : MonoBehaviour {
     {
         if (CurentCharacter.NeedsRemoval)
         {
-            //CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
             CurentCharacter.TilePawnIsOn.DeactivateTile();
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
             timeAffectedObjects.Remove(CurentCharacter);
@@ -276,7 +275,7 @@ public class GameManager : MonoBehaviour {
         SortList();
         _clock.SetClockToStartOfDay();
         LoadDeployState();
-
+        _characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
     }
 
     private void EndDay()

@@ -1076,8 +1076,8 @@ MonoBehaviour:
     characterIcon: {fileID: 3467873487523912562, guid: 05503bff210c37d459620fbf88036c88,
       type: 3}
     sprites:
-    - {fileID: -5513028177798551493, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -6304190450865040427, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    - {fileID: -5513028177798551493, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -3643900593108016274, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: 2090637121255263700, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
   BuildingArt:

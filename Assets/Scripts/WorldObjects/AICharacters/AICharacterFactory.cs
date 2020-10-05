@@ -36,7 +36,7 @@ public class AICharacterFactory
         aICharacter.ChooseWhatToEat(_desireContainer.chooseWhatToEatBasedOnTaste(aICharacter.Race));
         aICharacter.characterCoaster = _monoPool.GetCharacterCoasterInstance();
         aICharacter._monoPool = _monoPool;
-
+        aICharacter.characterCoaster.SetArtForFacing(EnumHolder.Facing.Up);
 
         if (targetTile.EntityTypeOnTile == EnumHolder.EntityType.None)
         {

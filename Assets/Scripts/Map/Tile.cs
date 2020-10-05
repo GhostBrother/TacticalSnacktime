@@ -105,7 +105,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
             if (entityToFind == EntityTypeOnTile)
             {
-                //ChangeState(hilighted); 
                 backgroundTile.color = ActiveColor;
                 onClick = actionForTile;
             }
