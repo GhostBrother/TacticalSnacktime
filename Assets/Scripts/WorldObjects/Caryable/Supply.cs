@@ -35,7 +35,9 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
         if (NumberOfItemsInSupply == 0)
         {
             HideCoaster(characterCoaster);
-            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+            TilePawnIsOn.DeactivateTile();
+           
         }
 
     }

@@ -128,11 +128,6 @@
     <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\Tile.cs" />
-    <Compile Include="Assets\Scripts\Map\TileStates\ClearTile.cs" />
-    <Compile Include="Assets\Scripts\Map\TileStates\DeoployZoneTile.cs" />
-    <Compile Include="Assets\Scripts\Map\TileStates\HilightedTile.cs" />
-    <Compile Include="Assets\Scripts\Map\TileStates\OccupiedTile.cs" />
-    <Compile Include="Assets\Scripts\Map\TileStates\iTileState.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\ListPool.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\MonoPool.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\iPool.cs" />

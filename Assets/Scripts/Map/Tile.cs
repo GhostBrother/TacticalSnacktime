@@ -53,12 +53,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     //Added 
     public bool IsDeployTile { get; set; }
-
-    private iTileState clear;
-    private iTileState hilighted;
-    private iTileState occupiedSquare;
-    private iTileState deployZoneTile;
-    public iTileState curentState { get; private set; }
+   
 
     [SerializeField]
     string DEBUGSTATE;
@@ -67,12 +62,9 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     public Tile()
     {
         neighbors = new List<Tile>();
-        clear = new ClearTile(this);
-        hilighted = new HilightedTile(this);
-        occupiedSquare = new OccupiedTile(this);
-        deployZoneTile = new DeployZoneTile(this);
+       
         movementPenalty = 0;
-        curentState = clear;
+
     }
 
     public void SetXandYPos(int gridX, int gridY)
@@ -81,41 +73,13 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         GridY = gridY;
     }
 
-    public void ChangeState(iTileState newState)
-    {
-        curentState = newState;
-        curentState.ChangeColor();
-        DEBUGSTATE = entityTypeOnTile.ToString();
-    }
-
-    public iTileState GetClearState()
-    {
-        movementPenalty = 0;
-        EntityTypeOnTile = EnumHolder.EntityType.None;
-        targetableOnTile = null;
-        return clear;
-    }
-
-    public iTileState GetActiveState()
-    {
-        return occupiedSquare;
-    }
-
-    public iTileState GetHilightedState()
-    {
-        return hilighted;
-    }
-
-    public iTileState GetDeployState()
-    {
-        return deployZoneTile;
-    }
-
     public void DeactivateTile()
     {
         if (EntityTypeOnTile == EnumHolder.EntityType.None)
         {
-            ChangeState(GetClearState());           
+            backgroundTile.color = DeactiveColor;
+            movementPenalty = 0;
+            targetableOnTile = null;
         }
 
         onClick = null;
@@ -129,7 +93,8 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public void SelectTile()
     {
-        curentState.TileClicked();
+        if (onClick != null)
+            onClick.Invoke(this);
     }
 
     public void ColorAllAdjacent(int numToHilight, Action<Tile> actionForTile, EnumHolder.EntityType entityToFind)
@@ -140,7 +105,8 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
             if (entityToFind == EntityTypeOnTile)
             {
-                ChangeState(hilighted); 
+                //ChangeState(hilighted); 
+                backgroundTile.color = ActiveColor;
                 onClick = actionForTile;
             }
 
@@ -164,7 +130,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
             for (int i = 0; i < neighbors.Count; i++)
             {
 
-                if (neighbors[i].curentState != neighbors[i].GetActiveState()) 
+                 if(neighbors[i].entityTypeOnTile == EnumHolder.EntityType.None)// if (neighbors[i].curentState != neighbors[i].GetActiveState()) 
                 {
                     neighbors[i].ClearAllAdjacent(numToClear);
                 }

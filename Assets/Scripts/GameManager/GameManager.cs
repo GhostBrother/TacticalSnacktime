@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
     AICharacterFactory _characterFactory;
 
-     CharacterRoster _characterRoster;
+    CharacterRoster _characterRoster;
 
     // Temp list
     List<PlayercontrolledCharacter> charactersForStartOfDay;
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour {
 
     public void ActivateTile(Tile tile)
     {
-        tile.curentState.TileClicked();
+        tile.SelectTile();
     }
 
     public void RightClick(Tile tile)
@@ -164,7 +164,8 @@ public class GameManager : MonoBehaviour {
     {
         if (CurentCharacter.NeedsRemoval)
         {
-            CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
+            //CurentCharacter.TilePawnIsOn.ChangeState(CurentCharacter.TilePawnIsOn.GetClearState());
+            CurentCharacter.TilePawnIsOn.DeactivateTile();
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
             timeAffectedObjects.Remove(CurentCharacter);
             
@@ -275,7 +276,6 @@ public class GameManager : MonoBehaviour {
         SortList();
         _clock.SetClockToStartOfDay();
         LoadDeployState();
-        // deployState.SetOpeningStaff(_clock.OpeningTime);
 
     }
 
@@ -287,7 +287,7 @@ public class GameManager : MonoBehaviour {
         {
             timeAffectedObjects[i].OnEndDay();
         }
-        
+
     }
 
     public void UpdateCharacterDisplay()

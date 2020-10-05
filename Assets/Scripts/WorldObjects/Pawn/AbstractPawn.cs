@@ -54,7 +54,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
                 
             }
 
-            tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
+            //tilePawnIsOn.ChangeState(tilePawnIsOn.GetActiveState());
             ChangeTileWeight();
 
             tilePawnIsOn.EntityTypeOnTile = EntityType;
@@ -77,13 +77,15 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public void MoveToPreviousTile()
     {
-        tilePawnIsOn.ChangeState(tilePawnIsOn.GetClearState());
+        // tilePawnIsOn.ChangeState(tilePawnIsOn.GetClearState());
+        tilePawnIsOn.DeactivateTile();
         tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         tilePawnIsOn = previousTile;
 
         characterCoaster.transform.position = new Vector3(previousTile.transform.position.x, previousTile.transform.position.y, -0.5f);
 
-        previousTile.ChangeState(tilePawnIsOn.GetActiveState());
+        //previousTile.ChangeState(tilePawnIsOn.GetActiveState());
+        previousTile.DeactivateTile();
         ChangeTileWeight();
 
         previousTile.EntityTypeOnTile = EntityType;

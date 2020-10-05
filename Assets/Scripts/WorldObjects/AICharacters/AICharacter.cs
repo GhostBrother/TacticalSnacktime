@@ -96,9 +96,10 @@ public class AICharacter : Character
 
     void walkBack(int targetIndex)
     {
-        if (path[targetIndex].curentState != path[targetIndex].GetActiveState() || path[targetIndex] == TilePawnIsOn)
-        {
-            TilePawnIsOn.ChangeState(TilePawnIsOn.GetClearState());
+        if (path[targetIndex].EntityTypeOnTile == EnumHolder.EntityType.None || path[targetIndex] == TilePawnIsOn)
+        { 
+            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+            TilePawnIsOn.DeactivateTile();
             characterCoaster.OnStopMoving = AILookForAction;
             TilePawnIsOn = path[targetIndex];
             TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
