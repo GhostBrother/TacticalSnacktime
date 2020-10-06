@@ -50,7 +50,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
             tilePawnIsOn = value;
             if (previousTile == null)
             {
-                characterCoaster.transform.position = new Vector3(TilePawnIsOn.transform.position.x, TilePawnIsOn.transform.position.y, -0.5f);
+                characterCoaster.transform.position = new Vector3(TilePawnIsOn.transform.position.x, TilePawnIsOn.transform.position.y, -1f);
                 
             }
             ChangeTileWeight();
@@ -79,7 +79,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         tilePawnIsOn = previousTile;
 
-        characterCoaster.transform.position = new Vector3(previousTile.transform.position.x, previousTile.transform.position.y, -0.5f);
+        characterCoaster.transform.position = new Vector3(previousTile.transform.position.x, previousTile.transform.position.y, -1f);
 
         previousTile.DeactivateTile();
         ChangeTileWeight();

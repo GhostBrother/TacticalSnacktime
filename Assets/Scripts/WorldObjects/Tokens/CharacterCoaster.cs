@@ -46,7 +46,7 @@ public class CharacterCoaster : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, -0.5f);
+        Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, -1);
         int TargetIndex = 0;
         while (true)
         {
@@ -58,7 +58,7 @@ public class CharacterCoaster : MonoBehaviour
                     OnStopMoving.Invoke(_path[TargetIndex-1]);
                     yield break;
                 }
-                currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -0.5f);
+                currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, -1);
 
                SetArtForFacing(determineFacing(_path[TargetIndex-1], _path[TargetIndex]));
             }
