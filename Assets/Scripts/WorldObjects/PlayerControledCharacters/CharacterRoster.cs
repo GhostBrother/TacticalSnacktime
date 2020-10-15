@@ -23,6 +23,7 @@ public class CharacterRoster {
     public List<PlayercontrolledCharacter> GetCharactersForTime(TimeSpan time)
     {
         List<PlayercontrolledCharacter> _charactersForTime = new List<PlayercontrolledCharacter>(employedCharacters.FindAll(x => x.ArrivalTime == time && x.IsGoingToWork));
+        employedCharacters.RemoveAll(x => x.ArrivalTime == time && x.IsGoingToWork);
         return _charactersForTime;
     }
 

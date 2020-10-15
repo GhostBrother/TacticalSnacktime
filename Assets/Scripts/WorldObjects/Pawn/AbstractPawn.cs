@@ -46,16 +46,16 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         get { return tilePawnIsOn; }
         set
         {
-            previousTile = tilePawnIsOn;
-            tilePawnIsOn = value;
-            if (previousTile == null)
-            {
-                characterCoaster.PlaceCoasterOnTile(TilePawnIsOn);                 
-            }
-            ChangeTileWeight();
+                previousTile = tilePawnIsOn;
+                tilePawnIsOn = value;
+                if (previousTile == null)
+                {
+                    characterCoaster.PlaceCoasterOnTile(TilePawnIsOn);
+                }
+                ChangeTileWeight();
 
-            tilePawnIsOn.EntityTypeOnTile = EntityType;
- 
+                tilePawnIsOn.EntityTypeOnTile = EntityType;
+
         }
     }
 
@@ -78,7 +78,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
         tilePawnIsOn = previousTile;
 
-        characterCoaster.PlaceCoasterOnTile(previousTile);
+         characterCoaster.PlaceCoasterOnTile(previousTile);
         //characterCoaster.transform.position = new Vector3(previousTile.transform.position.x, previousTile.transform.position.y, -1f);
 
         previousTile.DeactivateTile();

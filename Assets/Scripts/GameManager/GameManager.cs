@@ -124,7 +124,8 @@ public class GameManager : MonoBehaviour {
     {
         clock.onTurnEnd += CheckForCustomerSpawn;
         clock.onTurnEnd += CheckForEmployeeSpawn;
-        clock.onTurnEnd += EndTurn;
+        clock.onTurnEnd += SwapToNextCharacter;
+        clock.onTurnEnd += StartNextCharactersTurn;
         // clock.onTurnEnd += SortList;
         clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
@@ -162,17 +163,24 @@ public class GameManager : MonoBehaviour {
 
     public void CheckIfCharacterNeedsRemoval() 
     {
+        
         if (CurentCharacter.NeedsRemoval)
         {
             CurentCharacter.TilePawnIsOn.DeactivateTile();
             CurentCharacter.HideCoaster(CurentCharacter.characterCoaster);
-            timeAffectedObjects.Remove(CurentCharacter);
+            CurentCharacter.OnEndDay();
+            CurentCharacter = null;
             
+            if (!timeAffectedObjects.OfType<Character>().Any())
+            {
+                EndDay();
+            }
         }
         else
         {
             SwapToNextCharacter();
-        }     
+        }
+
     }
     
     private void SwapToNextCharacter()
@@ -183,11 +191,15 @@ public class GameManager : MonoBehaviour {
 
     public void StartNextCharactersTurn()
     {
-        if (timeAffectedObjects[0] is Character)
+        if (timeAffectedObjects.Count > 0)
         {
-            CurentCharacter = (Character)timeAffectedObjects[0];
+
+            if (timeAffectedObjects[0] is Character)
+            {
+                CurentCharacter = (Character)timeAffectedObjects[0];
+            }
+            timeAffectedObjects[0].TurnStart();
         }
-        timeAffectedObjects[0].TurnStart();
     }
 
     private void CheckForEmployeeSpawn()
@@ -252,7 +264,6 @@ public class GameManager : MonoBehaviour {
     {
         CurentCharacter.TurnEnd();
         CheckIfCharacterNeedsRemoval();
-
         StartNextCharactersTurn();
     }
 
@@ -332,6 +343,7 @@ public class GameManager : MonoBehaviour {
             CharacterToUse.characterCoaster = monoPool.GetCharacterCoasterInstance();
             CharacterToUse._monoPool = monoPool;
             CharacterToUse.TilePawnIsOn = tile;
+            CharacterToUse.NeedsRemoval = false;
             AddPlayerControlledCharacterToList(CharacterToUse);
             CharacterToUse.characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
 
@@ -352,6 +364,7 @@ public class GameManager : MonoBehaviour {
     private void LoadDeployState()
     {
         charactersForStartOfDay = _characterRoster.GetCharactersForTime(_clock.CurTime);
+
     }
 
 }

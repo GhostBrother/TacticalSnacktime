@@ -14,7 +14,7 @@ public class MonoPool : MonoBehaviour
 
     void Awake()
     {
-        CharacterCoasterpool = new ListPool<CharacterCoaster>(() => Instantiate(CharacterCoasterprototype), Capacity, g => g.gameObject.activeInHierarchy == true, Expandable);
+        CharacterCoasterpool = new ListPool<CharacterCoaster>(() => Instantiate(CharacterCoasterprototype), Capacity, g => g.gameObject.activeInHierarchy == true, Expandable); 
 
         DonenessTrackerPool = new ListPool<DonenessTracker>(() => Instantiate(DonenessTrackerPrototype), Capacity, g => g.gameObject.activeInHierarchy == true, Expandable);
     }
