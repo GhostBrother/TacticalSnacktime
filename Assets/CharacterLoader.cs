@@ -26,6 +26,7 @@ public class CharacterLoader<T> : JsonLoader<T> where T : Character, new()
                 characterToReturn.ID = characters[i].ID;
                 characterToReturn.characterArt = SpriteHolder.instance.GetCharacterIcon(characterToReturn.ID);
                 characterToReturn.PawnSprites = SpriteHolder.instance.GetCharacterPawnArtFromIDNumber(characterToReturn.ID);
+                characterToReturn.animationClips = SpriteHolder.instance.GetWalkAnimationFromIDNumber(characterToReturn.ID);
                 characterToReturn.Race = characters[i].Race;
                 characterToReturn.payPerHour.valueToStore = characters[i].payPerHour.valueToStore;
 

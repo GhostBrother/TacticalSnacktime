@@ -13,6 +13,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         set { _characterCoaster = value;
             _characterCoaster.facingSprites = PawnSprites;
             _characterCoaster.CharacterSprite = characterArt;
+            _characterCoaster.curAnimation = animationClips;
            // _characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
         }
     }
@@ -65,6 +66,8 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     // for our unit's facing
     public List<Sprite> PawnSprites { get; set; }
+
+    public RuntimeAnimatorController animationClips { get; set; }
 
     public int ID { get; set; }
 

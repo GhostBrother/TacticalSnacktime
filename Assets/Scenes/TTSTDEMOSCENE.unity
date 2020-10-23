@@ -1056,6 +1056,7 @@ MonoBehaviour:
     - {fileID: 4325765649525019737, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -4476314770508482545, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -5098308469473452042, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    animations: {fileID: 9100000, guid: 4f86fed7c80ba114a8167508134942a4, type: 2}
   - name: Theif
     characterIcon: {fileID: -2267490128225380536, guid: 05503bff210c37d459620fbf88036c88,
       type: 3}
@@ -1064,6 +1065,7 @@ MonoBehaviour:
     - {fileID: 8643660026514889946, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -4476314770508482545, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: 3953750941977712820, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    animations: {fileID: 0}
   - name: Ghost
     characterIcon: {fileID: -876938205123126004, guid: 05503bff210c37d459620fbf88036c88,
       type: 3}
@@ -1072,6 +1074,7 @@ MonoBehaviour:
     - {fileID: 1739927764088483172, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -4476314770508482545, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: 137087489611610391, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    animations: {fileID: 0}
   - name: Dragon
     characterIcon: {fileID: 3467873487523912562, guid: 05503bff210c37d459620fbf88036c88,
       type: 3}
@@ -1080,6 +1083,7 @@ MonoBehaviour:
     - {fileID: -5513028177798551493, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: -3643900593108016274, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
     - {fileID: 2090637121255263700, guid: 2a5d222f68b01d0488be36ab7e589aad, type: 3}
+    animations: {fileID: 0}
   BuildingArt:
   - {fileID: 21300000, guid: 434059162593a8240a80d0c411e8821b, type: 3}
   - {fileID: 21300000, guid: de643a10a2b193b448381251d51104a2, type: 3}

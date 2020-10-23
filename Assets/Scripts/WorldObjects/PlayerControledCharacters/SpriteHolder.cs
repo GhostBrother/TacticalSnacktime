@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class SpriteHolder : MonoBehaviour {
 
     public static SpriteHolder instance { get; private set; }
-
-   
 
     [System.Serializable]
     public struct NamedImages
@@ -14,10 +13,11 @@ public class SpriteHolder : MonoBehaviour {
         public string name;
         public Sprite characterIcon;
         public List<Sprite> sprites;
+        public RuntimeAnimatorController animations;
     }
+
     public NamedImages[] CharacterArtToLoad;
 
-    Dictionary<int, List<Sprite>> characterArt = new Dictionary<int,List<Sprite>>();
 
     [SerializeField]
     Sprite[] BuildingArt;
@@ -37,15 +37,6 @@ public class SpriteHolder : MonoBehaviour {
     private void Awake()
     {
         instance = this;
-        initCharacterArtDictionary();
-    }
-
-    private void initCharacterArtDictionary()
-    {
-        for (int i = 0; i < CharacterArtToLoad.Length; i++)
-        {
-            characterArt.Add(i, CharacterArtToLoad[i].sprites);
-        }
     }
 
     public Sprite GetCharacterIcon(int index)
@@ -56,12 +47,22 @@ public class SpriteHolder : MonoBehaviour {
     public List<Sprite> GetCharacterPawnArtFromIDNumber(int index)
     {
        List<Sprite> test = new List<Sprite>();
-        if (characterArt.TryGetValue(index, out test))
+        if (CharacterArtToLoad.Length > index)
         {
-            return test;
+            return CharacterArtToLoad[index].sprites;
         }
 
         return test; 
+    }
+
+    public RuntimeAnimatorController GetWalkAnimationFromIDNumber(int index)
+    {
+
+        if (CharacterArtToLoad.Length > index)
+        {
+            return CharacterArtToLoad[index].animations;
+        }
+        return null;
     }
 
     public Sprite GetBuildingArtFromIDNumber(int index)

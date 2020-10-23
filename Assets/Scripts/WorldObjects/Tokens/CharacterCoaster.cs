@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class CharacterCoaster : MonoBehaviour
 {
@@ -9,12 +10,24 @@ public class CharacterCoaster : MonoBehaviour
     float speed = 0.005f;
     Tile[] _path;
     const float ZCordinate = -1.5f;
+    [SerializeField]
+    Animator animator;
 
+    public RuntimeAnimatorController curAnimation { get; set; }
     //A list of all the facings and statusus of a character sprite.
     public List<Sprite> facingSprites { get; set; }
 
+    public List<AnimationClip> walkingAnimations
+    { get; set; } 
+
     
     Vector3 desiredLocation;
+
+
+    private void Start()
+    {
+        animator = this.GetComponent<Animator>(); 
+    }
 
 
     public Sprite CharacterSprite
@@ -27,6 +40,12 @@ public class CharacterCoaster : MonoBehaviour
         }
     }
 
+
+    public void SetAnimationForWalking(EnumHolder.Facing facing)
+    {
+        animator.runtimeAnimatorController = curAnimation;// RuntimeAnimatorController curAnimation.runtimeAnimatorController
+        animator.SetInteger("Facing",(int)facing);
+    }
 
     public void SetArtForFacing(EnumHolder.Facing facing)
     {
@@ -66,7 +85,8 @@ public class CharacterCoaster : MonoBehaviour
                 }
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, ZCordinate);
 
-               SetArtForFacing(determineFacing(_path[TargetIndex-1], _path[TargetIndex]));
+                SetAnimationForWalking(determineFacing(_path[TargetIndex - 1], _path[TargetIndex]));
+              //SetArtForFacing(determineFacing(_path[TargetIndex-1], _path[TargetIndex]));
             }
 
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);

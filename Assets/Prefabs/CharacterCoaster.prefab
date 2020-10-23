@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7755594938437889597}
   - component: {fileID: 5842205016947908539}
   - component: {fileID: -1180689058376733656}
+  - component: {fileID: -2752856172880796278}
   m_Layer: 0
   m_Name: CharacterCoaster
   m_TagString: Untagged
@@ -93,3 +94,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fc29bc9c21e62468265f31c82fecb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+--- !u!95 &-2752856172880796278
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208209994136169}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
