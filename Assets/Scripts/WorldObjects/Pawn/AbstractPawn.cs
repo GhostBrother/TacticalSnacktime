@@ -14,7 +14,6 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
             _characterCoaster.facingSprites = PawnSprites;
             _characterCoaster.CharacterSprite = characterArt;
             _characterCoaster.curAnimation = animationClips;
-           // _characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
         }
     }
 

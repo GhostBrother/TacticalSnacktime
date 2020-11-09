@@ -14,11 +14,14 @@ public class CharacterCoaster : MonoBehaviour
     Animator animator;
 
     public RuntimeAnimatorController curAnimation { get; set; }
+
+
+    [SerializeField]
+    public SpriteRenderer curFacingArt;
     //A list of all the facings and statusus of a character sprite.
     public List<Sprite> facingSprites { get; set; }
 
-    public List<AnimationClip> walkingAnimations
-    { get; set; } 
+    EnumHolder.Facing _facing;
 
     
     Vector3 desiredLocation;
@@ -26,7 +29,7 @@ public class CharacterCoaster : MonoBehaviour
 
     private void Start()
     {
-        animator = this.GetComponent<Animator>(); 
+        animator = this.GetComponent<Animator>();  
     }
 
 
@@ -35,21 +38,30 @@ public class CharacterCoaster : MonoBehaviour
         get { return this.GetComponent<SpriteRenderer>().sprite; }
         set
         {
-            this.GetComponent<SpriteRenderer>().sprite = value;
-            this.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, 1);
+            curFacingArt.sprite = value;
+            curFacingArt.color = new Vector4(1, 1, 1, 1);
         }
     }
 
-
-    public void SetAnimationForWalking(EnumHolder.Facing facing)
+     void stopWalkAnimation()
     {
-        animator.runtimeAnimatorController = curAnimation;// RuntimeAnimatorController curAnimation.runtimeAnimatorController
+        animator.enabled = false;
+        animator.SetInteger("Facing", -1);
+        animator.runtimeAnimatorController = null;
+        SetArtForFacing(_facing);
+    }
+
+
+     void SetAnimationForWalking(EnumHolder.Facing facing)
+    {
+        animator.enabled = true;
+        animator.runtimeAnimatorController = curAnimation;
         animator.SetInteger("Facing",(int)facing);
     }
 
     public void SetArtForFacing(EnumHolder.Facing facing)
     {
-        CharacterSprite = facingSprites[(int)facing];
+        CharacterSprite = facingSprites[(int)facing];      
     }
 
 
@@ -59,7 +71,7 @@ public class CharacterCoaster : MonoBehaviour
         if (isPathFound)
         {
             _path = path;
-           StartCoroutine("FollowPath");
+            StartCoroutine("FollowPath");  
         }
     }
 
@@ -70,25 +82,26 @@ public class CharacterCoaster : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-
         Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, ZCordinate);
         int TargetIndex = 0;
         while (true)
         {
+            
             if (transform.position == currentWaypoint)
             {
                 TargetIndex++;
+
                 if (TargetIndex == _path.Length)
                 {
+                    stopWalkAnimation();
                     OnStopMoving.Invoke(_path[TargetIndex-1]);
                     yield break;
                 }
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, ZCordinate);
 
                 SetAnimationForWalking(determineFacing(_path[TargetIndex - 1], _path[TargetIndex]));
-              //SetArtForFacing(determineFacing(_path[TargetIndex-1], _path[TargetIndex]));
+                _facing = determineFacing(_path[TargetIndex - 1], _path[TargetIndex]);
             }
-
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);
             yield return null;
         }
@@ -97,8 +110,7 @@ public class CharacterCoaster : MonoBehaviour
 
     EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
     {
-
-       if(previousWaypoint.GridX > nextWaypoint.GridX)
+        if (previousWaypoint.GridX > nextWaypoint.GridX)
         {
             return EnumHolder.Facing.Left;
         }
