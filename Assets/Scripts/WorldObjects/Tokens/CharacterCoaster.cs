@@ -21,7 +21,7 @@ public class CharacterCoaster : MonoBehaviour
     //A list of all the facings and statusus of a character sprite.
     public List<Sprite> facingSprites { get; set; }
 
-    EnumHolder.Facing _facing;
+   // EnumHolder.Facing _facing;
 
     
     Vector3 desiredLocation;
@@ -48,7 +48,7 @@ public class CharacterCoaster : MonoBehaviour
         animator.enabled = false;
         animator.SetInteger("Facing", -1);
         animator.runtimeAnimatorController = null;
-        SetArtForFacing(_facing);
+        //SetArtForFacing(_facing);
     }
 
 
@@ -100,7 +100,7 @@ public class CharacterCoaster : MonoBehaviour
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, ZCordinate);
 
                 SetAnimationForWalking(determineFacing(_path[TargetIndex - 1], _path[TargetIndex]));
-                _facing = determineFacing(_path[TargetIndex - 1], _path[TargetIndex]);
+                //_facing = determineFacing(_path[TargetIndex - 1], _path[TargetIndex]);
             }
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);
             yield return null;
@@ -108,7 +108,7 @@ public class CharacterCoaster : MonoBehaviour
     }
 
 
-    EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
+    public EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
     {
         if (previousWaypoint.GridX > nextWaypoint.GridX)
         {
