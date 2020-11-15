@@ -66,6 +66,7 @@
     <Compile Include="Assets\Prototypes\Money.cs" />
     <Compile Include="Assets\Prototypes\Reputation.cs" />
     <Compile Include="Assets\Prototypes\iMuteableValue.cs" />
+    <Compile Include="Assets\Scripts\CharacterFacing.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Act.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\ChangeEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />

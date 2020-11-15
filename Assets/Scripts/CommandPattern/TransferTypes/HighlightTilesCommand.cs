@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-///  Commands that when selected hilight a number of tiles away from a start tile
-///  Some examples are Move, trade, and punch
-/// </summary>
 
 public class HighlightTilesCommand : iCommandKind
 {

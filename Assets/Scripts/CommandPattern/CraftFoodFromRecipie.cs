@@ -41,7 +41,7 @@ public class CraftFood : Command
         typeOfCommand.ActivateType();
     }
 
-    void CreateFood(Tile Tiles)
+    void CreateFood(Tile TileCookStationIsOn)
     {
         List<string> names = new List<string>();
         for (int k = 0; k < _recipieToMake.NameOfIngredentsForRecipe.Count; k++)
@@ -72,7 +72,7 @@ public class CraftFood : Command
                 {
                     _character.cariedObjects.RemoveAt(j);
                 }
-            }
+            } 
 
         }
         for (int i = 0; i < names.Count; i++)
@@ -84,5 +84,6 @@ public class CraftFood : Command
 
         typeOfCommand.UndoType();
         typeOfCommand.LoadNewMenu(_character.LoadCommands());
+        _character.characterCoaster.SetArtForFacing(_character.characterCoaster.determineFacing(_character.TilePawnIsOn, TileCookStationIsOn));
     }
 }

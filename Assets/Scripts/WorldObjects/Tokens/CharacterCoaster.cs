@@ -21,11 +21,6 @@ public class CharacterCoaster : MonoBehaviour
     //A list of all the facings and statusus of a character sprite.
     public List<Sprite> facingSprites { get; set; }
 
-   // EnumHolder.Facing _facing;
-
-    
-    Vector3 desiredLocation;
-
 
     private void Start()
     {
@@ -48,7 +43,6 @@ public class CharacterCoaster : MonoBehaviour
         animator.enabled = false;
         animator.SetInteger("Facing", -1);
         animator.runtimeAnimatorController = null;
-        //SetArtForFacing(_facing);
     }
 
 
@@ -67,7 +61,6 @@ public class CharacterCoaster : MonoBehaviour
 
     public void MoveAlongPath(Tile[] path, bool isPathFound)
     {
-
         if (isPathFound)
         {
             _path = path;
@@ -83,7 +76,9 @@ public class CharacterCoaster : MonoBehaviour
     IEnumerator FollowPath()
     {
         Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, ZCordinate);
+        EnumHolder.Facing _facing = EnumHolder.Facing.Down;
         int TargetIndex = 0;
+
         while (true)
         {
             
@@ -94,13 +89,15 @@ public class CharacterCoaster : MonoBehaviour
                 if (TargetIndex == _path.Length)
                 {
                     stopWalkAnimation();
+                    SetArtForFacing(_facing);
                     OnStopMoving.Invoke(_path[TargetIndex-1]);
                     yield break;
                 }
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, ZCordinate);
 
-                SetAnimationForWalking(determineFacing(_path[TargetIndex - 1], _path[TargetIndex]));
-                //_facing = determineFacing(_path[TargetIndex - 1], _path[TargetIndex]);
+                _facing = determineFacing(_path[TargetIndex - 1], _path[TargetIndex]);
+                SetAnimationForWalking(_facing);
+                
             }
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);
             yield return null;
@@ -108,7 +105,7 @@ public class CharacterCoaster : MonoBehaviour
     }
 
 
-    public EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
+   public EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
     {
         if (previousWaypoint.GridX > nextWaypoint.GridX)
         {

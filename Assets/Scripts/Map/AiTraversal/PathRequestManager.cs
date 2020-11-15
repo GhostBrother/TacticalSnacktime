@@ -9,7 +9,7 @@ public class PathRequestManager : MonoBehaviour
     Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
     PathRequest currentPathRequest;
 
-     static PathRequestManager instance;
+    static PathRequestManager instance;
     Pathfinding pathfinding;
 
     bool isProcessingPath;

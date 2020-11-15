@@ -14,8 +14,6 @@ public abstract class TrasferItemCommand : Command
     public TrasferItemCommand( int index)
     {
         _index = index;
-       // itemName = _giver.Give(index).Name; //Change name of Method to "GetItemFromIndex" for clarity
-        //typeOfCommand = new HighlightTilesCommand()
     }
 
     public abstract string CommandName { get; }
@@ -27,12 +25,13 @@ public abstract class TrasferItemCommand : Command
         typeOfCommand.ActivateType(); 
     }
 
-    protected virtual void OrganizeTrade(Tile tile)
+    protected virtual void OrganizeTrade(Tile tileToTradeWith)
     {
         iCaryable swapedItem = _giver.Give(_index);
         _giver.GetRidOfItem(_index);
         Reciver.PickUp(swapedItem);
         //Will this work?
         typeOfCommand.UndoType();
+        Reciver.characterCoaster.SetArtForFacing(Reciver.characterCoaster.determineFacing(Reciver.TilePawnIsOn, tileToTradeWith));
     }
 }

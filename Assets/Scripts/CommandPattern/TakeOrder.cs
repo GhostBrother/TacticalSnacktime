@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TakeOrder : Command
 {
+    Character playerControlledCharacter;
     AICharacter customer;
-    public TakeOrder( AICharacter _customer)
+    public TakeOrder( Character _playercontrolledCharacter ,AICharacter _customer)
     {
+        playerControlledCharacter = _playercontrolledCharacter;
        customer = _customer;
     }
 
@@ -18,6 +20,7 @@ public class TakeOrder : Command
 
     public void execute()
     {
+       playerControlledCharacter.characterCoaster.SetArtForFacing(playerControlledCharacter.characterCoaster.determineFacing(playerControlledCharacter.TilePawnIsOn, customer.TilePawnIsOn));
        customer.OrderHasBeenTaken = true;
        customer.DisplayOrder();
     }

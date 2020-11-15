@@ -36,7 +36,7 @@ public class Register : AbstractInteractablePawn
                 }
 
                  if(!customer.OrderHasBeenTaken)
-                 SpaceContextualActions.Add(new TakeOrder(customer));
+                 SpaceContextualActions.Add(new TakeOrder(_character ,customer));
             }
         }
       

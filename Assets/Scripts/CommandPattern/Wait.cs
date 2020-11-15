@@ -9,7 +9,7 @@ public class Wait : Command
     public Wait(Character character)
     {
         _character = character;
-        typeOfCommand = new HighlightTilesCommand(adjacent, _character.TilePawnIsOn, chooseFacing, EnumHolder.EntityType.None);
+        typeOfCommand = new CloseMenuAction();
     }
 
     public string CommandName { get { return "Wait"; } }
@@ -18,16 +18,9 @@ public class Wait : Command
 
    public iCommandKind typeOfCommand { get; set; }
 
-    void chooseFacing(Tile tileInDirectionToFace)
-    {
-        _character.characterCoaster.SetArtForFacing(_character.characterCoaster.determineFacing(_character.TilePawnIsOn, tileInDirectionToFace));
-        typeOfCommand.UndoType();
-        _character.onTurnEnd.Invoke();
-    }
-
     public void execute()
     {
-        
+        _character.onTurnEnd.Invoke();
     }
 
 }

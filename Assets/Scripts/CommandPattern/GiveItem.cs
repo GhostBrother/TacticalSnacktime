@@ -5,7 +5,7 @@ using UnityEngine;
 public class GiveItem : TrasferItemCommand
 {
     Character giver;
-    public GiveItem( Character curentCharacter , int index) : this (curentCharacter.TilePawnIsOn,(iCanGiveItems)curentCharacter, index) //iCanGiveItems curentCharacter
+    public GiveItem( Character curentCharacter , int index) : this (curentCharacter.TilePawnIsOn,(iCanGiveItems)curentCharacter, index) 
     {
 
     }
@@ -28,16 +28,17 @@ public class GiveItem : TrasferItemCommand
         }
     }
 
-    protected override void OrganizeTrade(Tile tile)
+    protected override void OrganizeTrade(Tile tileToTradeWith)
     {
        
-        if (tile.TargetableOnTile is Character)
+        if (tileToTradeWith.TargetableOnTile is Character)
         {
-            Reciver = (Character)tile.TargetableOnTile;
+            Reciver = (Character)tileToTradeWith.TargetableOnTile;
         }
-        base.OrganizeTrade(tile);
+        base.OrganizeTrade(tileToTradeWith);
         isUsable = giver.cariedObjects.Count > 0;
         typeOfCommand.LoadNewMenu.Invoke(giver.LoadCommands());
+        giver.characterCoaster.SetArtForFacing(giver.characterCoaster.determineFacing(giver.TilePawnIsOn, tileToTradeWith));
     }
 
     public override bool isUsable { get; set; }

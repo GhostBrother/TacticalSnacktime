@@ -81,7 +81,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
         tilePawnIsOn = previousTile;
 
          characterCoaster.PlaceCoasterOnTile(previousTile);
-        //characterCoaster.transform.position = new Vector3(previousTile.transform.position.x, previousTile.transform.position.y, -1f);
+
 
         previousTile.DeactivateTile();
         ChangeTileWeight();
