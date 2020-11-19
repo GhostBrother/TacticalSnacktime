@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour {
         character.onStartTurn = OnPlayerControlledStart;
         character.PutCharacterBack = _characterRoster.AddCharacterBackToList;
         character.onTurnEnd = EndTurn;
+        character.characterCoaster.OnStartMoving = SetCameraToFollowCurentCharacter;
         AddTimeInfluencedToList(character);
     }
 
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour {
         customer.OnExit = GiveRating;
         customer.OnPay = PayForFood;
         customer.onTurnEnd = EndTurn;
+        customer.characterCoaster.OnStartMoving = SetCameraToFollowCurentCharacter;
         AddTimeInfluencedToList(customer);
     }
 
@@ -230,6 +232,12 @@ public class GameManager : MonoBehaviour {
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
     }
 
+    private void SetCameraToFollowCurentCharacter()
+    {
+        camera.cameraFollowChracter(CurentCharacter.characterCoaster);
+    }
+
+
     // On Player Start
 
     private void OnPlayerControlledStart(AbstractPawn playerCharacter)
@@ -255,7 +263,6 @@ public class GameManager : MonoBehaviour {
 
     private void OnPawnStart(AbstractPawn abstractPawn)
     {
-
         MoveCameraToPawn(abstractPawn);
         camera.onStopMoving = MoveDonenessMeter;
     }
@@ -333,6 +340,7 @@ public class GameManager : MonoBehaviour {
     {
         ActionMenu.ShowActionsAtTile(tile);
         ActionMenu.OpenMenu(CurentCharacter.LoadCommands());
+        camera.cameraFreeMode();
     }
 
 

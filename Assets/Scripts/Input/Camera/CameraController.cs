@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-     public Action onStopMoving { private get; set; }
+    public Action onStopMoving { private get; set; }
 
     [SerializeField]
-    float speed;
+    float CameraSpeed;
 
     [SerializeField]
     Camera mainCamera;
@@ -16,7 +16,6 @@ public class CameraController : MonoBehaviour {
     [SerializeField]
     float howLongIsPan;
 
-    // Control, user can control camera;
     iCameraState _playerControlled;
     // panning, camera is moving on it's own and cannot be moved by the player. 
 
@@ -29,11 +28,14 @@ public class CameraController : MonoBehaviour {
     private Vector3 currentLocation;
     private Vector3 defaultCameraLocation;
     private Vector3 desiredLocation;
-    private Vector3 velocity;
 
-    private bool iSFreePanModeOn;
+    private CharacterCoaster targetCharacter;
 
-    
+    private bool isFreePanModeOn;
+
+    private bool isFollowMode;
+
+
     void Start()
     {
         defaultCameraLocation = this.gameObject.transform.position;
@@ -43,21 +45,41 @@ public class CameraController : MonoBehaviour {
 
     private void Update()
     {
-        mainCamera.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, desiredLocation, (speed * Time.deltaTime));
-        if (mainCamera.gameObject.transform.position == desiredLocation  && !iSFreePanModeOn)
+      
+        if (isFollowMode)
         {
-            iSFreePanModeOn = true;
+            mainCamera.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, new Vector3 (targetCharacter.transform.position.x, targetCharacter.transform.position.y, mainCamera.transform.position.z), (CameraSpeed * Time.deltaTime));
+        }
+
+        else if (mainCamera.gameObject.transform.position == desiredLocation  && !isFreePanModeOn)
+        {
+            isFreePanModeOn = true;
             if (onStopMoving != null)
             {
                 onStopMoving.Invoke();
             }
         }
+
+        else
+            mainCamera.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, desiredLocation, (CameraSpeed * Time.deltaTime));
+
     }
 
+    public void cameraFreeMode()
+    {
+        isFollowMode = false;
+    }
+
+    public void cameraFollowChracter(CharacterCoaster characterToFollow)
+    {
+        isFreePanModeOn = false;
+        isFollowMode = true;
+        targetCharacter = characterToFollow;
+    }
     
     public void PanToLocation(Vector3 targetLocation)
     {
-        iSFreePanModeOn = false;
+        isFreePanModeOn = false;
         desiredLocation = new Vector3(targetLocation.x, targetLocation.y, mainCamera.transform.position.z);
 
     }
@@ -65,8 +87,7 @@ public class CameraController : MonoBehaviour {
     public void PanCamera(Vector3 targetLocation , Vector3 tileSize)
     {
 
-        // The 4 should be some kind of variable that scales as the map changes size.
-        if (iSFreePanModeOn)
+        if (isFreePanModeOn)
         {
             if (targetLocation.x > (tileSize.x * 4 + desiredLocation.x))
             {
@@ -91,10 +112,4 @@ public class CameraController : MonoBehaviour {
 
     }
 
-    // Need a way to lock the camera in position. 
-
-    private void panToDefaultLocation()
-    {
-        PanToLocation(defaultCameraLocation);
-    }
 }

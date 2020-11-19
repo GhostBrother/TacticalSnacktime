@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 
 public class CharacterCoaster : MonoBehaviour
 {
+    public Action OnStartMoving;
     public Action<Tile> OnStopMoving;
     float speed = 0.005f;
     Tile[] _path;
@@ -64,7 +65,8 @@ public class CharacterCoaster : MonoBehaviour
         if (isPathFound)
         {
             _path = path;
-            StartCoroutine("FollowPath");  
+            StartCoroutine("FollowPath");
+            OnStartMoving.Invoke();
         }
     }
 
@@ -74,7 +76,8 @@ public class CharacterCoaster : MonoBehaviour
     }
 
     IEnumerator FollowPath()
-    {
+    {  
+        
         Vector3 currentWaypoint = new Vector3(_path[0].transform.position.x, _path[0].transform.position.y, ZCordinate);
         EnumHolder.Facing _facing = EnumHolder.Facing.Down;
         int TargetIndex = 0;

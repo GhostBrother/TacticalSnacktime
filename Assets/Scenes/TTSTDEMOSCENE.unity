@@ -2021,9 +2021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b2d02a22a171a48b4974528cf84150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  CameraSpeed: 5
   mainCamera: {fileID: 1203252057}
-  howLongIsPan: 1
 --- !u!1 &1208809780
 GameObject:
   m_ObjectHideFlags: 0
