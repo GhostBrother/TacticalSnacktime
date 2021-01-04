@@ -87,7 +87,7 @@ public class InputHandler : MonoBehaviour {
 
                     else if (isRightMousePressed)
                     {
-                        Gm.RightClick(c.gameObject.GetComponent<Tile>());
+  
                         isRightMousePressed = false;
                     }
                 }

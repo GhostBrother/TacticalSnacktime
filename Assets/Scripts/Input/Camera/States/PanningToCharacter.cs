@@ -4,8 +4,36 @@ using UnityEngine;
 
 public class PanningToCharacter : iCameraState
 {
-    public Vector3 MoveCamera(Vector3 targetLocation, Vector3 desiredLocation, Vector3 tileSize)
+    public CameraController cameraController { get; private set; }
+    private Camera camera;
+
+    public PanningToCharacter(CameraController cameraController, Camera camera)
     {
-       return new Vector3(targetLocation.x, targetLocation.y, 0); // mainCamera.transform.position.z
+        this.cameraController = cameraController;
+        this.camera = camera;
+    }
+
+    public void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed)
+    {
+        camera.gameObject.transform.position = Vector3.MoveTowards(curPosition, desiredPosition, (cameraSpeed * Time.deltaTime));
+        if(desiredPosition == camera.gameObject.transform.position)
+        {
+            checkIfCameraHasStopped();
+        }
+    }
+
+    void checkIfCameraHasStopped()
+    {
+
+        if (cameraController.onStopMoving != null)
+        {
+            cameraController.onStopMoving.Invoke();
+            cameraController.onStopMoving = null;
+        }
+    }
+
+    public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition, Vector3 tileSize)
+    {
+        return cameraController.positionOfCharacterToFollow;
     }
 }

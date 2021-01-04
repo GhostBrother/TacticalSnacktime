@@ -135,5 +135,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public virtual void TurnEnd()
     {
+        EntityType = EnumHolder.EntityType.Character;
+        TilePawnIsOn = this.TilePawnIsOn;
     }
 }

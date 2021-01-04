@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Frozen : MonoBehaviour
+public class Frozen : iCameraState
 {
-    // Start is called before the first frame update
-    void Start()
+    public CameraController cameraController { get; private set; }
+    Camera camera; 
+
+    public Frozen(CameraController cameraController, Camera camera)
     {
-        
+        this.cameraController = cameraController;
+        this.camera = camera;
+    }
+    public void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed)
+    {
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition, Vector3 tileSize)
     {
-        
+        return camera.transform.position;
     }
 }

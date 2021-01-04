@@ -9,21 +9,15 @@ public class GameManager : MonoBehaviour {
 
     CharacterRoster _characterRoster;
 
-    // Temp list
     List<PlayercontrolledCharacter> charactersForStartOfDay;
 
     List<iAffectedByTime> timeAffectedObjects;
 
     [SerializeField]
-    MonoPool _monoPool;
+    MonoPool monoPool;
 
-    public MonoPool monoPool { get { return _monoPool; } }
-
-    #region GameUI
     [SerializeField]
-    CharacterDisplay _characterDisplay;
-
-    public CharacterDisplay characterDisplay { get { return _characterDisplay; }  }
+    CharacterDisplay characterDisplay;
 
     [SerializeField]
     EndOfDayPannel _EndOfDayPannel;
@@ -35,7 +29,6 @@ public class GameManager : MonoBehaviour {
     ActionMenu actionMenu;
 
     public ActionMenu ActionMenu { get { return actionMenu; } }
-    #endregion
 
     [SerializeField]
     MapGenerator _mapGenerator;
@@ -52,14 +45,13 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-       
-        //Hack
+      
         _characterRoster = new CharacterRoster(); 
 
         timeAffectedObjects = new List<iAffectedByTime>();
-        _characterFactory = new AICharacterFactory(_monoPool);
+        _characterFactory = new AICharacterFactory(monoPool);
 
-        _characterDisplay.InitCharacterDisplay();
+        characterDisplay.InitCharacterDisplay();
       
         actionMenu.onButtonClick = UpdateCharacterDisplay;
 
@@ -128,27 +120,19 @@ public class GameManager : MonoBehaviour {
         clock.onTurnEnd += CheckForEmployeeSpawn;
         clock.onTurnEnd += SwapToNextCharacter;
         clock.onTurnEnd += StartNextCharactersTurn;
-        // clock.onTurnEnd += SortList;
         clock.onDayOver = EndDay;
         AddTimeInfluencedToList(clock);
     }
 
     private void AddTimeInfluencedToList(iAffectedByTime timeAffected)
     {
-        // this plus is causing trouble with grill; 
-        //timeAffected.onTurnEnd += EndTurn;
-        timeAffected.RemoveFromTimeline = RemovePawnFromTimeline; // Was +=
+        timeAffected.RemoveFromTimeline = RemovePawnFromTimeline;
         timeAffectedObjects.Add(timeAffected);
     }
 
     public void ActivateTile(Tile tile)
     {
         tile.SelectTile();
-    }
-
-    public void RightClick(Tile tile)
-    {
-
     }
 
     public void DeactivateAllTiles()
@@ -195,7 +179,6 @@ public class GameManager : MonoBehaviour {
     {
         if (timeAffectedObjects.Count > 0)
         {
-
             if (timeAffectedObjects[0] is Character)
             {
                 CurentCharacter = (Character)timeAffectedObjects[0];
@@ -227,18 +210,16 @@ public class GameManager : MonoBehaviour {
         SetDonenessTracks();
         characterDisplay.ChangeCharacterArt(character.characterArt);  
         UpdateCharacterDisplay();
-        // HACK
-        camera.onStopMoving = null;
+        camera.cameraFollowChracter(CurentCharacter.characterCoaster);
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
+        camera.SwitchToPanCamera();
     }
 
     private void SetCameraToFollowCurentCharacter()
     {
         camera.cameraFollowChracter(CurentCharacter.characterCoaster);
+        camera.SwitchToFollowMode();
     }
-
-
-    // On Player Start
 
     private void OnPlayerControlledStart(AbstractPawn playerCharacter)
     {
@@ -247,18 +228,16 @@ public class GameManager : MonoBehaviour {
         playerCharacter.characterCoaster.OnStopMoving = ShowCharacterActions;
     }
 
-   // On Ai Start
 
     private void OnCustomerStart(AbstractPawn customerCharacter)
     {
         if (customerCharacter is AICharacter)
-        {
+        {  
             AICharacter c = (AICharacter)customerCharacter;
 
             MoveCameraToPawn(customerCharacter);
-            camera.onStopMoving = c.MoveCharacter;  
+            camera.onStopMoving = c.MoveCharacter;
         }
-
     }
 
     private void OnPawnStart(AbstractPawn abstractPawn)
@@ -293,7 +272,7 @@ public class GameManager : MonoBehaviour {
         SortList();
         _clock.SetClockToStartOfDay();
         LoadDeployState();
-        _characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
+        characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
     }
 
     private void EndDay()
@@ -309,7 +288,6 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateCharacterDisplay()
     {
-        // Hack
         if (timeAffectedObjects[0] is iContainCaryables)
         {
             iContainCaryables character = (iContainCaryables)timeAffectedObjects[0];
@@ -340,13 +318,12 @@ public class GameManager : MonoBehaviour {
     {
         ActionMenu.ShowActionsAtTile(tile);
         ActionMenu.OpenMenu(CurentCharacter.LoadCommands());
-        camera.cameraFreeMode();
+        camera.SwitchToPlayerControlled();
     }
 
 
     public void DeployStateReady(Tile tile)
     {
-
             PlayercontrolledCharacter CharacterToUse = charactersForStartOfDay[0];
             CharacterToUse.characterCoaster = monoPool.GetCharacterCoasterInstance();
             CharacterToUse._monoPool = monoPool;

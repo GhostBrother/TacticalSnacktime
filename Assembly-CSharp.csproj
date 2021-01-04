@@ -118,7 +118,7 @@
     <Compile Include="Assets\Scripts\Input\Camera\States\Following.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\States\Frozen.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\States\PanningToCharacter.cs" />
-    <Compile Include="Assets\Scripts\Input\Camera\States\PlayerControlled.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\States\PlayerControlledCamera.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\States\iCameraState.cs" />
     <Compile Include="Assets\Scripts\Input\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />

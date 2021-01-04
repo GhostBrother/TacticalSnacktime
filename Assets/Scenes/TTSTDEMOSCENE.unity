@@ -2023,6 +2023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraSpeed: 5
   mainCamera: {fileID: 1203252057}
+  howLongIsPan: 0
 --- !u!1 &1208809780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,8 +2619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854402819f4ab674481b487f97142a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monoPool: {fileID: 640138878}
-  _characterDisplay: {fileID: 624344100}
+  monoPool: {fileID: 640138878}
+  characterDisplay: {fileID: 624344100}
   _EndOfDayPannel: {fileID: 1579511841}
   _clock: {fileID: 530968435}
   actionMenu: {fileID: 1067517425}
