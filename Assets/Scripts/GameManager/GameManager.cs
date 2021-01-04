@@ -209,15 +209,14 @@ public class GameManager : MonoBehaviour {
     {
         SetDonenessTracks();
         characterDisplay.ChangeCharacterArt(character.characterArt);  
-        UpdateCharacterDisplay();
-        camera.cameraFollowChracter(CurentCharacter.characterCoaster);
+        UpdateCharacterDisplay(); 
+        camera.cameraFollowChracter(character.characterCoaster);  //CurentCharacter.characterCoaster
         camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
         camera.SwitchToPanCamera();
     }
 
     private void SetCameraToFollowCurentCharacter()
     {
-        camera.cameraFollowChracter(CurentCharacter.characterCoaster);
         camera.SwitchToFollowMode();
     }
 
