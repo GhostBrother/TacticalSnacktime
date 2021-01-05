@@ -8,5 +8,5 @@ public interface iCameraState
 
     void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed);
 
-    Vector3 PanCamera( Vector3 curPosition, Vector3 desiredPosition, Vector3 tileSize);
+    Vector3 PanCamera( Vector3 curPosition, Vector3 desiredPosition);
 }

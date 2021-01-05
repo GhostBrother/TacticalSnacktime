@@ -17,7 +17,7 @@ public class Frozen : iCameraState
        
     }
 
-    public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition, Vector3 tileSize)
+    public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition)
     {
         return camera.transform.position;
     }

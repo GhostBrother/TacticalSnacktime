@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour {
         _EndOfDayPannel.Init(_characterRoster, _gameMap);
         _EndOfDayPannel.startNextDay += StartDay;
         _EndOfDayPannel.SetUpNexDay();
+
+        this.CameraController.Init(_gameMap.GetTileAtRowAndColumn(0,0).gameObject.GetComponent<Collider2D>().bounds.size);
         
         AddInGameClockToList(_clock);
 
@@ -210,8 +212,8 @@ public class GameManager : MonoBehaviour {
         SetDonenessTracks();
         characterDisplay.ChangeCharacterArt(character.characterArt);  
         UpdateCharacterDisplay(); 
-        camera.cameraFollowChracter(character.characterCoaster);  //CurentCharacter.characterCoaster
-        camera.PanToLocation(character.TilePawnIsOn.gameObject.transform.position);
+        camera.cameraFollowChracter(character.characterCoaster);  
+        camera.PanCamera(character.TilePawnIsOn.gameObject.transform.position);
         camera.SwitchToPanCamera();
     }
 
@@ -272,6 +274,7 @@ public class GameManager : MonoBehaviour {
         _clock.SetClockToStartOfDay();
         LoadDeployState();
         characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
+        camera.SwitchToPlayerControlled();
     }
 
     private void EndDay()
@@ -282,7 +285,7 @@ public class GameManager : MonoBehaviour {
         {
             timeAffectedObjects[i].OnEndDay();
         }
-
+        camera.SwitchToFrozenMode();
     }
 
     public void UpdateCharacterDisplay()

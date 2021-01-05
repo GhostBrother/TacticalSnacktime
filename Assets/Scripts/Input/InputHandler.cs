@@ -78,7 +78,7 @@ public class InputHandler : MonoBehaviour {
                 if (c.GetComponent<Tile>() != null)
                 {
                     tileSelector.MoveToPosition(c.transform.position);
-                    Gm.CameraController.PanCamera(c.transform.position, c.bounds.size);
+                    Gm.CameraController.PanCamera(c.transform.position);
 
                     if (isMousePressed)
                     {

@@ -8,11 +8,13 @@ public class PlayerControlledCamera : iCameraState
     public CameraController cameraController { get; private set; }
 
     Camera camera;
+    Vector3 tileSize;
 
-    public PlayerControlledCamera(CameraController cameraController, Camera camera)
+    public PlayerControlledCamera(CameraController cameraController, Camera camera , Vector3 tileSize)
     {
         this.cameraController = cameraController;
         this.camera = camera;
+        this.tileSize = tileSize;
     }
 
     public void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed)
@@ -21,7 +23,7 @@ public class PlayerControlledCamera : iCameraState
     }
 
 
-    public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition,  Vector3 tileSize)
+    public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition)
     {
         if (curPosition.x > (tileSize.x * 4 + desiredPosition.x))
         {

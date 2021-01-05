@@ -37,61 +37,61 @@ public class CameraController : MonoBehaviour {
 
     void Start()
     {
+        //defaultCameraLocation = this.gameObject.transform.position;
+        //desiredLocation = defaultCameraLocation;
+        //playerControlled = new PlayerControlledCamera(this, mainCamera);
+        //panningToCharacter = new PanningToCharacter(this, mainCamera);
+        //cameraFollowPlayer = new Following(this, mainCamera);
+        //frozenCamera = new Frozen(this, mainCamera);
+
+        // Tile size is a bit of a bother, perhapse nay perchance can we 
+        // put that in here as some sort of init?
+    }
+
+    public void Init(Vector3 tileSize)
+    {
         defaultCameraLocation = this.gameObject.transform.position;
         desiredLocation = defaultCameraLocation;
-        playerControlled = new PlayerControlledCamera(this, mainCamera);
+        playerControlled = new PlayerControlledCamera(this, mainCamera, tileSize);
         panningToCharacter = new PanningToCharacter(this, mainCamera);
         cameraFollowPlayer = new Following(this, mainCamera);
         frozenCamera = new Frozen(this, mainCamera);
-
-        curCameraState = playerControlled;
     }
 
     public void SwitchToPlayerControlled()
     {
         curCameraState = playerControlled;
-        Debug.Log("Switched To Player Controlled");
     }
 
     public void SwitchToPanCamera()
     {
         curCameraState = panningToCharacter;
-        Debug.Log("Switched to pan camera");
     }
 
     public void SwitchToFollowMode()
     {
         curCameraState = cameraFollowPlayer;
-        Debug.Log("Switched to follow");
     }
 
     public void SwitchToFrozenMode()
     {
         curCameraState = frozenCamera;
-        Debug.Log("Switched to frozen");
     }
-
 
     private void Update()
     {
         curCameraState.MoveCamera(this.gameObject.transform.position, new Vector3 (desiredLocation.x,desiredLocation.y, CameraZcoordinate), CameraSpeed);
     }
 
-
     public void cameraFollowChracter(CharacterCoaster characterToFollow)
     {
         this.characterToFollow = characterToFollow;
-        PanToLocation(positionOfCharacterToFollow);
+        PanCamera(positionOfCharacterToFollow);
     }
-    
-    public void PanToLocation(Vector3 targetLocation)
+   
+    public void PanCamera(Vector3 desiredPosition)
     {
-        this.desiredLocation = new Vector3(targetLocation.x, targetLocation.y, mainCamera.transform.position.z);
-    }
-
-    public void PanCamera(Vector3 desiredPosition, Vector3 tileSize)
-    {
-       this.desiredLocation = curCameraState.PanCamera(mainCamera.transform.position ,desiredPosition, tileSize);
+       this.desiredLocation = curCameraState.PanCamera(mainCamera.transform.position ,desiredPosition);
     }
 
 }
