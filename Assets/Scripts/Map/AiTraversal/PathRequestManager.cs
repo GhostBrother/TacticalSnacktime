@@ -20,10 +20,8 @@ public class PathRequestManager : MonoBehaviour
         pathfinding = GetComponent<Pathfinding>();
     }
 
-    // here
     public static void RequestPath(Tile StartTile, Tile TargetTile, Action<Tile[], bool> callback)
     {
-
         PathRequest newRequest = new PathRequest(StartTile, TargetTile, callback);
 
         instance.pathRequestQueue.Enqueue(newRequest);

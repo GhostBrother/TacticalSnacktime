@@ -59,7 +59,6 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
     {
         GetRidOfAllItems();
         PutCharacterBack.Invoke(this);
-        //START Here
         base.OnEndDay();
     }
 

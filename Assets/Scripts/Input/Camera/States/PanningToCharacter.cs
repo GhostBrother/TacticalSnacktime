@@ -11,22 +11,21 @@ public class PanningToCharacter : iCameraState
     public PanningToCharacter(CameraController cameraController, Camera camera)
     {
         this.cameraController = cameraController;
-        this.camera = camera;
-        
+        this.camera = camera; 
     }
 
     public void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed)
     {
         camera.gameObject.transform.position = Vector3.MoveTowards(curPosition, desiredPosition, (cameraSpeed * Time.deltaTime));
-        if(desiredPosition == camera.gameObject.transform.position)
+        if (desiredPosition == camera.gameObject.transform.position)
         {
             checkIfCameraHasStopped();
         }
+
     }
 
     void checkIfCameraHasStopped()
     {
-
         if (cameraController.onStopMoving != null)
         {
             cameraController.onStopMoving.Invoke();

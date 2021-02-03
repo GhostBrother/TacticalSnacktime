@@ -15,7 +15,7 @@ public class Following : iCameraState
 
     public void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed)
     {
-        camera.gameObject.transform.position = Vector3.MoveTowards(curPosition, cameraController.positionOfCharacterToFollow, (cameraSpeed * Time.deltaTime));
+       camera.gameObject.transform.position = Vector3.MoveTowards(curPosition, cameraController.positionOfCharacterToFollow, (cameraSpeed * Time.deltaTime));
     }
 
     public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition)

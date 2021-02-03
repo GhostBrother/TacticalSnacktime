@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-      
         _characterRoster = new CharacterRoster(); 
 
         timeAffectedObjects = new List<iAffectedByTime>();
@@ -85,7 +84,7 @@ public class GameManager : MonoBehaviour {
         customer.OnExit = GiveRating;
         customer.OnPay = PayForFood;
         customer.onTurnEnd = EndTurn;
-        customer.characterCoaster.OnStartMoving = SetCameraToFollowCurentCharacter;
+       customer.characterCoaster.OnStartMoving = SetCameraToFollowCurentCharacter;
         AddTimeInfluencedToList(customer);
     }
 
@@ -186,6 +185,7 @@ public class GameManager : MonoBehaviour {
                 CurentCharacter = (Character)timeAffectedObjects[0];
             }
             timeAffectedObjects[0].TurnStart();
+            camera.SwitchToPanCamera();
         }
     }
 
@@ -210,11 +210,9 @@ public class GameManager : MonoBehaviour {
     private void MoveCameraToPawn(AbstractPawn character)
     {
         SetDonenessTracks();
-        characterDisplay.ChangeCharacterArt(character.characterArt);  
-        UpdateCharacterDisplay(); 
-        camera.cameraFollowChracter(character.characterCoaster);  
-        camera.PanCamera(character.TilePawnIsOn.gameObject.transform.position);
-        camera.SwitchToPanCamera();
+        characterDisplay.ChangeCharacterArt(character.characterArt);   
+        UpdateCharacterDisplay();
+        camera.cameraFollowChracter(character.characterCoaster);
     }
 
     private void SetCameraToFollowCurentCharacter()
@@ -233,10 +231,9 @@ public class GameManager : MonoBehaviour {
     private void OnCustomerStart(AbstractPawn customerCharacter)
     {
         if (customerCharacter is AICharacter)
-        {  
+        {
             AICharacter c = (AICharacter)customerCharacter;
-
-            MoveCameraToPawn(customerCharacter);
+            MoveCameraToPawn(c);
             camera.onStopMoving = c.MoveCharacter;
         }
     }

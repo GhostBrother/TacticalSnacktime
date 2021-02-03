@@ -14,7 +14,7 @@ public class Frozen : iCameraState
     }
     public void MoveCamera(Vector3 curPosition, Vector3 desiredPosition, float cameraSpeed)
     {
-       
+
     }
 
     public Vector3 PanCamera(Vector3 curPosition, Vector3 desiredPosition)

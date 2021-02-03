@@ -43,11 +43,9 @@ public class DonenessTracker : MonoBehaviour
 
      IEnumerator MoveArrowOnTracker()
     {
-
         _arrowDesiredPosition = new Vector3(_Arrow.transform.localPosition.x, _arrowStartPosition.y + (_tracker.rect.height * (_doneness / _maxValue)), 0);
         while (true)
         {
-            Debug.Log("Debug transform local pos " + _Arrow.transform.localPosition.y + "Desired pos " + _arrowDesiredPosition.y);
             if (_Arrow.transform.localPosition.y == _arrowDesiredPosition.y)
             {
                 onStopMoving.Invoke();

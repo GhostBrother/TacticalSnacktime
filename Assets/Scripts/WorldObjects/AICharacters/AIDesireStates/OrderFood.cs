@@ -15,7 +15,7 @@ public class OrderFood : IDesireState
       
     }
 
-    // Hack, should check quality of food and kind
+    // TODO, should check quality of food and kind
     public bool isRequestSatisfied()
     {
         if(aiCharacter.cariedObjects.Count > 0)

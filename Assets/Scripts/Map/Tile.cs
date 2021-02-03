@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public Action<Tile> onClick { get; set; }
 
-    // Feasibly abstract this out to like an iNavigatable or something
+    // Feasibly abstract this out to like an iNavigatable or something Factor this out
     public int gCost { get; set; }
     public int hCost { get; set; }
     public int fCost { get { return hCost + gCost; } }
@@ -38,7 +38,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
     Color deactiveColor;
     public Color DeactiveColor { get { return deactiveColor; } private set {; } }
 
-    // Hack
     EnumHolder.EntityType entityTypeOnTile;
     public EnumHolder.EntityType EntityTypeOnTile { get { return entityTypeOnTile; } set { entityTypeOnTile = value; } }
 
@@ -51,7 +50,6 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public bool IsTargetableOnTile { get { return targetableOnTile != null; }  }
 
-    //Added 
     public bool IsDeployTile { get; set; }
      
     public Tile()

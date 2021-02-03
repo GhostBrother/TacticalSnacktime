@@ -14,7 +14,6 @@ public class AICharacter : Character
     public int Satisfaction { get; private set; }
     List<IDesireState> Desires;
 
-    //Hack
     public Action<AICharacter> OnExit;
     public Action<decimal> OnPay;
 
@@ -25,7 +24,7 @@ public class AICharacter : Character
     {
         targetIndex = 0;
         OrderHasBeenTaken = false;
-        // Temporary 
+       
         Desires = new List<IDesireState> { new FindRegister(this), new OrderFood(this), new FindExit(this) };
     }
 
@@ -41,7 +40,6 @@ public class AICharacter : Character
 
     public void CheckPath()
     {
-
         for (int i = 0; i < Desires.Count; ++i)
         {
             if (Desires[i].isRequestSatisfied())
@@ -50,7 +48,7 @@ public class AICharacter : Character
                 i--;
             }
         }
-
+       
         if (Desires.Count <= 0) { return; }
         Desires[0].MoveTarget();
        
@@ -71,7 +69,6 @@ public class AICharacter : Character
         if (pathSuccessful)
         {
             path = newPath;
-
             targetIndex = 0;
         }
     
@@ -83,35 +80,36 @@ public class AICharacter : Character
         {
             if (targetIndex + MoveSpeed >= (path.Length - 1))
             {
-                targetIndex = path.Length- 1;
+                targetIndex = (targetIndex + MoveSpeed) - (path.Length - 1); 
                 if (targetIndex < 0) { targetIndex = 0; }
             }
             else
-                targetIndex += MoveSpeed;
-
-            walkBack(targetIndex);   
+                targetIndex = MoveSpeed;
         }
-        
+        walkBack(targetIndex);
+
     }
 
     void walkBack(int targetIndex)
     {
-        if (path[targetIndex].EntityTypeOnTile == EnumHolder.EntityType.None || path[targetIndex] == TilePawnIsOn)
-        { 
+        if (path[targetIndex].EntityTypeOnTile == EnumHolder.EntityType.None || path[targetIndex] == TilePawnIsOn) 
+        {
             TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
             TilePawnIsOn.DeactivateTile();
             characterCoaster.OnStopMoving = AILookForAction;
             TilePawnIsOn = path[targetIndex];
             TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
             PathRequestManager.RequestPath(PreviousTile, TilePawnIsOn, characterCoaster.MoveAlongPath);
+            targetIndex = 0;
         }
         else
-        {
+        {  
             walkBack(targetIndex - 1);
         }
+
     }
 
-    public void DisplayOrder()
+        public void DisplayOrder()
     {
         // linq stuff
         if (Desires.OfType<OrderFood>().Any())
@@ -192,16 +190,12 @@ public class AICharacter : Character
     public void MoveCharacter()
     {
         CheckPath();
-        Move();
-        
+        Move();  
     }
-
 
      private void AILookForAction(Tile tile)
     {
-        
-        onTurnEnd.Invoke();
-        
+       onTurnEnd.Invoke();   
     }
 
     public override List<Command> LoadCommands()

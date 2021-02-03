@@ -17,7 +17,7 @@ public class MapGenerator : JsonLoader<Map>
     FoodContainerFactory cookingStationFactory;
 
 
-    // Hack for now
+    // Hack for now Refactor
     GameManager _Gm; 
 
     private int _rows;
@@ -35,7 +35,7 @@ public class MapGenerator : JsonLoader<Map>
 
     public void Start()
     {
-        Init("Assets/JsonMaps/TestMap.json"); //"Assets/JsonMaps/TestMap.json" "Assets/JsonMaps/MapTwo.json"
+        Init("Assets/JsonMaps/TestMap.json"); 
     }
 
     public override void Init(string filePath)
@@ -56,7 +56,6 @@ public class MapGenerator : JsonLoader<Map>
         editorLookUp.Add('W', Clone<Wall>);
     }
 
-    // HACK
     public void SetGm(GameManager gm)
     {
         _Gm = gm;

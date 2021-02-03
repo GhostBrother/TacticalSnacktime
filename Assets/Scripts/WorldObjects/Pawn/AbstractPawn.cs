@@ -63,7 +63,6 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
     public Sprite characterArt { get; set; }
 
-    // for our unit's facing
     public List<Sprite> PawnSprites { get; set; }
 
     public RuntimeAnimatorController animationClips { get; set; }

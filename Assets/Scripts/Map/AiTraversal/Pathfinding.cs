@@ -43,6 +43,7 @@ public class Pathfinding : MonoBehaviour
                 if(!closeSet.Contains(neighbor))
                 {
                     int newMovementCostToNeighbor = currentTile.gCost + GetDistance(currentTile, neighbor) + neighbor.movementPenalty;
+                    
                     if (newMovementCostToNeighbor < neighbor.gCost || !openSet.Contains(neighbor))
                     {
                         neighbor.gCost = newMovementCostToNeighbor;

@@ -13,7 +13,6 @@ public class Food : iCaryable
     public string Name { get; private set; }
     public string Description { get; private set; }
 
-    //price
     public decimal price = 0.00M;
     public decimal Price { get { return price; } set {price = value; } }
 

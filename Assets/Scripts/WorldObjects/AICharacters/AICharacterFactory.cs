@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Move this into map maker when waves are a thing?
+// Move this into map maker when waves are a thing? Refactor this
 public class AICharacterFactory 
 {
     MonoPool _monoPool;

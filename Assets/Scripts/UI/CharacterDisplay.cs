@@ -19,7 +19,6 @@ public class CharacterDisplay : MonoBehaviour {
 
     heldItems[] items;
 
-    //HACK
     List<iCaryable> _caryables;
     int _index;
 
@@ -90,7 +89,6 @@ public class CharacterDisplay : MonoBehaviour {
         }
     }
 
-    // Sets doneness to where it was before the last round.
     public void SetDonenessTracks(List<iCaryable> caryables)
     {
         for (int i = 0; i < caryables.Count; i++)
@@ -104,7 +102,6 @@ public class CharacterDisplay : MonoBehaviour {
         }
     }
 
-    // Slides arrow along track, showing the plwyer that their food is cooking. 
     public void UpdateDonenessTrackers(List<iCaryable> caryables, int i)
     {
             if (caryables[i] is Food)
@@ -123,7 +120,6 @@ public class CharacterDisplay : MonoBehaviour {
             }
     }
 
-    // HACK
     void MoveNextTracker()
     {
         UpdateDonenessTrackers(_caryables, ++_index);

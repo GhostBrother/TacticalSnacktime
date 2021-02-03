@@ -31,7 +31,6 @@ public class HighlightTilesCommand : iCommandKind
 
     public void UndoType()
     {
-        // Can we reuse color all adjacent for clearing tiles?
         startTile.ClearAllAdjacent(range);
     }
 }

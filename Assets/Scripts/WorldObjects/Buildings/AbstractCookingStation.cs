@@ -12,7 +12,6 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
 
     public int numberOfCarriedObjects { get; set; }
 
-    //Added
     public Action<AbstractPawn> onStartTurn { get; set; }
     public Action onTurnEnd { get; set; }
 

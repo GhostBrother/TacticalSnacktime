@@ -114,6 +114,7 @@
     <Compile Include="Assets\Scripts\Input\ActionButton.cs" />
     <Compile Include="Assets\Scripts\Input\ActionMenu.cs" />
     <Compile Include="Assets\Scripts\Input\ActionPanel.cs" />
+    <Compile Include="Assets\Scripts\Input\Camera\AbstractCameraState.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\States\Following.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\States\Frozen.cs" />

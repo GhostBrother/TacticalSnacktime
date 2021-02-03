@@ -12,10 +12,8 @@ public class FindExit : IDesireState
     public void MoveTarget()
     {
         PathRequestManager.RequestPath(aICharacter.TilePawnIsOn, PathRequestManager.FindClosestEntityOfType(aICharacter.TilePawnIsOn, EnumHolder.EntityType.Door), aICharacter.OnPathFound);
-
     }
 
-    // Seems like it could be a generic 
     public bool isRequestSatisfied()
     {
         if (aICharacter.cariedObjects.Count > 0)

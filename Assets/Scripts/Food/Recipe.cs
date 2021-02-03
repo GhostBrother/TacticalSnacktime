@@ -41,7 +41,6 @@ public class Recipe
             {
                 foodForCrafting.RemoveAt(i);
             }
-            //foodForCrafting.Remove(IngredentsForRecipe[i]);
         }
 
     }

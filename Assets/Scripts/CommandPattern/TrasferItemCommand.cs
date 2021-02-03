@@ -30,7 +30,6 @@ public abstract class TrasferItemCommand : Command
         iCaryable swapedItem = _giver.Give(_index);
         _giver.GetRidOfItem(_index);
         Reciver.PickUp(swapedItem);
-        //Will this work?
         typeOfCommand.UndoType();
         Reciver.characterCoaster.SetArtForFacing(Reciver.characterCoaster.determineFacing(Reciver.TilePawnIsOn, tileToTradeWith));
     }

@@ -19,7 +19,7 @@ public class CustomerScheduler
         for(int i = 0; i < numberOfCustomersForDay; i++)
         {
             listToReturn.Add(_customerLoader.GetRandomCharacter());
-            listToReturn[i].ArrivalTime = MakeTimeSpan(8,30);//BuildArrivalTime();
+            listToReturn[i].ArrivalTime = MakeTimeSpan(8,30);
             Debug.Log(listToReturn[i].Race + " At " + listToReturn[i].ArrivalTime);
         }
         return listToReturn;

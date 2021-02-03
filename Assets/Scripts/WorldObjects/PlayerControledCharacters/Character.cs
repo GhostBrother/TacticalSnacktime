@@ -16,7 +16,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public TimeSpan LeaveTime { get; set; }
 
-    // hack, Should only apply to Player controled character
+    // hack, Should only apply to Player controled character // Factor this out
     public Money payPerHour { get; private set; }
 
     public decimal DefaultPay { get { return payPerHour.valueToStore; } set { payPerHour.valueToStore = value;} }
@@ -52,7 +52,6 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public Action<iAffectedByTime> AddToTimeline { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public Action<AbstractPawn> RemoveFromTimeline { get; set; }
-    //Added
     public Action<AbstractPawn> onStartTurn { get ; set; }
     public Action onTurnEnd { get; set; }
 

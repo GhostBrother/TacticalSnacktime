@@ -19,7 +19,6 @@ public class CharacterCoaster : MonoBehaviour
 
     [SerializeField]
     public SpriteRenderer curFacingArt;
-    //A list of all the facings and statusus of a character sprite.
     public List<Sprite> facingSprites { get; set; }
 
 
@@ -62,7 +61,8 @@ public class CharacterCoaster : MonoBehaviour
 
     public void MoveAlongPath(Tile[] path, bool isPathFound)
     {
-        if (isPathFound)
+
+         if (isPathFound )
         {
             _path = path;
             StartCoroutine("FollowPath");
@@ -87,13 +87,15 @@ public class CharacterCoaster : MonoBehaviour
             
             if (transform.position == currentWaypoint)
             {
-                TargetIndex++;
 
+                _path[TargetIndex].BackgroundTile.color = _path[TargetIndex].DeactiveColor; // Burn after reading
+                 TargetIndex++;
+                
                 if (TargetIndex == _path.Length)
                 {
                     stopWalkAnimation();
                     SetArtForFacing(_facing);
-                    OnStopMoving.Invoke(_path[TargetIndex-1]);
+                    OnStopMoving.Invoke(_path[TargetIndex - 1]); 
                     yield break;
                 }
                 currentWaypoint = new Vector3(_path[TargetIndex].transform.position.x, _path[TargetIndex].transform.position.y, ZCordinate);
@@ -105,6 +107,7 @@ public class CharacterCoaster : MonoBehaviour
             transform.position = Vector3.MoveTowards(this.transform.position, currentWaypoint, speed);
             yield return null;
         }
+
     }
 
 

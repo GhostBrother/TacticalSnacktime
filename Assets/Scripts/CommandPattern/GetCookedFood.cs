@@ -10,7 +10,6 @@ public class GetCookedFood : TrasferItemCommand
     {
         Reciver = curentCharacter;
         isUsable = ItemToPickUp.cariedObjects.Count > 0;
-        //isUsable = ItemToPickUp.
         typeOfCommand = new HighlightTilesCommand(1, curentCharacter.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.CookingStation);
     }
 

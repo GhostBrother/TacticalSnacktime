@@ -21,7 +21,6 @@ public class EndOfDayPannel : MonoBehaviour
     [SerializeField]
     StaffSetup _Schedule;
 
-    // Wish I could do this a bit better
     [SerializeField]
     ActionButton startDayButton;
 

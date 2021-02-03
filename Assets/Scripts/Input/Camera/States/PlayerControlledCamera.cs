@@ -27,7 +27,6 @@ public class PlayerControlledCamera : iCameraState
     {
         if (curPosition.x > (tileSize.x * 4 + desiredPosition.x))
         {
-
             desiredPosition.x += tileSize.x;
         }
 

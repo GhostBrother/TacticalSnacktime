@@ -15,6 +15,5 @@ public class CloseMenuAction : iCommandKind
 
     public void UndoType()
     {
-        //LoadNewMenu.Invoke();
     }
 }

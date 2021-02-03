@@ -10,7 +10,6 @@ public class PickUpItem : TrasferItemCommand
         Reciver = curentCharacter;
          _supply = (Supply)ItemToPickUp;
         isUsable = _supply.NumberOfItemsInSupply > 0;
-        //isUsable = ItemToPickUp.
         typeOfCommand = new HighlightTilesCommand(1, curentCharacter.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.Supply);
     }
 

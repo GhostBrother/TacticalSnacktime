@@ -6,8 +6,6 @@ public class TakeItem : TrasferItemCommand
 {
     public TakeItem(Character curentCharacter , int index) : base ( index)
     {
-        // _giver = givingCharacter;
-        // isUsable = _giver.cariedObjects.Count > 0;
         isUsable = true; 
         Reciver = curentCharacter;
         typeOfCommand = new HighlightTilesCommand(1, curentCharacter.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.Character);
