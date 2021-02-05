@@ -21,6 +21,9 @@ public class CharacterCoaster : MonoBehaviour
     public SpriteRenderer curFacingArt;
     public List<Sprite> facingSprites { get; set; }
 
+    public float SpriteBoundX {get { return curFacingArt.sprite.bounds.extents.x; }}
+    public float SpriteBoundY { get { return curFacingArt.sprite.bounds.extents.y;}}
+
 
     private void Start()
     {

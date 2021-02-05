@@ -50,6 +50,7 @@ public class AICharacter : Character
         }
        
         if (Desires.Count <= 0) { return; }
+        Debug.Log(Desires[0].ToString());
         Desires[0].MoveTarget();
        
     }
@@ -114,8 +115,11 @@ public class AICharacter : Character
         // linq stuff
         if (Desires.OfType<OrderFood>().Any())
         {
-            const int xCordinateOffset = -1;
-            const int yCordinateOffset = 1;
+             float xCordinateOffset = -this.characterCoaster.SpriteBoundX * 1.5f; 
+             float yCordinateOffset = this.characterCoaster.SpriteBoundY * 1.75f;
+
+            Debug.Log(xCordinateOffset);
+            Debug.Log(yCordinateOffset);
 
             HideCoaster(NeedCoaster);
             HideCoaster(FoodWantCoaster);

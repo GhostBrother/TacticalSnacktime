@@ -27,7 +27,7 @@ public class Clock : MonoBehaviour, iAffectedByTime
     {
         _time = this.GetComponentInChildren<Text>();
         OpeningTime = new TimeSpan(8, 0,0);
-        _ClosingTime = new TimeSpan(12, 15, 0);
+        _ClosingTime = new TimeSpan(10, 0, 0);
     }
 
    public void SetClockToStartOfDay()

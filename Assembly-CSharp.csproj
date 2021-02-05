@@ -141,7 +141,6 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindRegister.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\IDesireState.cs" />
-    <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\LeaveResturant.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\iPathfinding.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\AbstractCookingStation.cs" />

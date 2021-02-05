@@ -81,25 +81,22 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
 
          characterCoaster.PlaceCoasterOnTile(previousTile);
 
-
         previousTile.DeactivateTile();
         ChangeTileWeight();
 
         previousTile.EntityTypeOnTile = EntityType;
-
     }
-
 
     public void ShowCoaster(Sprite sprite, Action<CharacterCoaster> setOutput)
     {
-       ShowCoasterWithOffset(sprite, 0,0, setOutput);
+       ShowCoasterWithOffset(sprite, sprite.rect.x/2, sprite.rect.y * (3/4), setOutput);
     }
 
     public void ShowCoasterWithOffset( Sprite sprite , float offsetX, float offsetY, Action<CharacterCoaster> setOutput)
     {
-            CharacterCoaster coaster = _monoPool.GetCharacterCoasterInstance();
+            CharacterCoaster coaster = _monoPool.GetCharacterCoasterInstance();  // -1.18 X  2.69 Y  TODO: Get the box to appear at the correct X and Y cordinate
             coaster.transform.parent = _characterCoaster.transform;
-            coaster.transform.position = new Vector3(_characterCoaster.transform.position.x + offsetX, _characterCoaster.transform.position.y + offsetY, -1);
+            coaster.transform.localPosition = new Vector3(offsetX, offsetY, 0); //offsetX,  offsetY,
             coaster.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
             setOutput(coaster);
     }
