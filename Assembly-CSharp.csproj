@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\CharacterLoader.cs" />
     <Compile Include="Assets\CookstationLoader.cs" />
+    <Compile Include="Assets\HeldItems.cs" />
     <Compile Include="Assets\JsonSetUp\JsonLoader.cs" />
     <Compile Include="Assets\Prototypes\Money.cs" />
     <Compile Include="Assets\Prototypes\Reputation.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\StartNextDay.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\StatusCommand.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\StoreItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\CloseMenu.cs" />
@@ -136,6 +138,9 @@
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
     <Compile Include="Assets\Scripts\UI\DonenessTracker.cs" />
+    <Compile Include="Assets\Scripts\UI\Trade\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\UI\Trade\TradeMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\Trade\TradeMenuPanelGUI.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacterFactory.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\FindExit.cs" />
@@ -144,6 +149,7 @@
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AIDesireStates\OrderFood.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\iPathfinding.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\AbstractCookingStation.cs" />
+    <Compile Include="Assets\Scripts\WorldObjects\Buildings\AbstractItemContainer.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Door.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\EmployeeDoor.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\Buildings\Register.cs" />

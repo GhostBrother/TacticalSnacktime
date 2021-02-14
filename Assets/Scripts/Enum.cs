@@ -15,6 +15,7 @@ public class EnumHolder
         CookingStation,
         Wall,
         Supply,
+        Container,
         Length
     }
 
