@@ -35,7 +35,7 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
         if (NumberOfItemsInSupply == 0)
         {
             HideCoaster(characterCoaster);
-            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
             TilePawnIsOn.DeactivateTile();
            
         }
@@ -49,10 +49,14 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public override void GetTargeter(Character character)
     {
+        if (character is PlayercontrolledCharacter)
+        {
+            PlayercontrolledCharacter temp = (PlayercontrolledCharacter)character;
 
-        SetName();
-        SpaceContextualActions.Clear();
-        SpaceContextualActions.Add(new PickUpItem(this, character, 0));
+            SetName();
+            SpaceContextualActions.Clear();
+            SpaceContextualActions.Add(new TradeItemCommand(temp, this)); //PickUpItem(this, character, 0));
+        }
 
     }
 

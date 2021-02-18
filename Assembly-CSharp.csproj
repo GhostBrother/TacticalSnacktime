@@ -87,12 +87,12 @@
     <Compile Include="Assets\Scripts\CommandPattern\StoreItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TakeOrder.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\TradeItemCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\CloseMenu.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\HighlightTilesCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\NoTransfer.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\TransferMenuCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\TransferTypes\iCommandKind.cs" />
-    <Compile Include="Assets\Scripts\CommandPattern\TrasferItemCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Wait.cs" />
     <Compile Include="Assets\Scripts\Containers\DesireContainer.cs" />
     <Compile Include="Assets\Scripts\Containers\FoodContainerFactory.cs" />

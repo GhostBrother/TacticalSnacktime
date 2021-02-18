@@ -30,20 +30,14 @@ public class AbstractItemContainer : AbstractInteractablePawn, iCanGiveItems, iC
     {
         SpaceContextualActions.Clear();
 
-        if (character is iCanGiveItems)
+        if (character is PlayercontrolledCharacter)
         {
-            for (int i = 0; i < character.cariedObjects.Count; i++)
+            PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
+            if (character.cariedObjects.Count > 0 || cariedObjects.Count > 0)
             {
-                iCanGiveItems giver = (iCanGiveItems)character;
-                SpaceContextualActions.Add(new StoreItem(this.TilePawnIsOn,(iCanGiveItems)character, i));
+                SpaceContextualActions.Add(new TradeItemCommand(giver, this));
             }
         }
-
-        for (int i = 0; i < cariedObjects.Count; i++)
-        {
-            SpaceContextualActions.Add(new GetCookedFood(this, character, i));
-        }
-
     }
 
     public iCaryable Give(int i)

@@ -15,12 +15,12 @@ public class MoveCommand : Command
     public MoveCommand(Character c)
     {
         _character = c;
-        typeOfCommand = new HighlightTilesCommand(_character._MoveRemaining, _character.TilePawnIsOn, onClick, EnumHolder.EntityType.None);
+        typeOfCommand = new HighlightTilesCommand(_character._MoveRemaining, _character.TilePawnIsOn, onClick, EnumHolder.EntityType.Clear);
     }
 
     public void execute()
     {
-        _character.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+        _character.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
         typeOfCommand.ActivateType();
     }
 

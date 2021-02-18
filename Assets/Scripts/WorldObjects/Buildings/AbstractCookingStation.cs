@@ -41,8 +41,9 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
 
         SpaceContextualActions.Clear();
 
-        if (character is iCanGiveItems)
+        if (character is PlayercontrolledCharacter)
         {
+            PlayercontrolledCharacter temp = (PlayercontrolledCharacter)character;
             List<iCaryable> heldFood = new List<iCaryable>();
             for (int i = 0; i < character.cariedObjects.Count; i++)
             {
@@ -69,11 +70,10 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
                     SpaceContextualActions.Add(new CraftFood(this, character, recipiesThatCanBeCreated[j]));
                 }
             }
+
+            if (cariedObjects.Count > 0)
+                SpaceContextualActions.Add(new TradeItemCommand(temp, this));
         }
-
-        for (int i = 0; i < cariedObjects.Count; i++)
-            SpaceContextualActions.Add(new GetCookedFood(this, character, i));
-
     }
 
     public override void TurnStart()

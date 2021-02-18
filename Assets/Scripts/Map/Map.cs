@@ -45,7 +45,10 @@ public class Map {
     {
         tilesOnMap[row][column] = tileToAdd;
         if (tileToAdd.IsDeployTile)
+        {
+            tileToAdd.EntityTypeOnTile = EnumHolder.EntityType.Clear;
             deployTiles.Add(tileToAdd);
+        }
     }
 
     public void DeactivateAllTiles()
@@ -57,16 +60,11 @@ public class Map {
         }
     }
 
-    public void AddTileToDeployTiles(Tile tileToAdd)
-    {
-        deployTiles.Add(tileToAdd);
-    }
-
     public void AcivateAllDeployTiles(Action<Tile> deployState)
     {
         for (int i = 0; i < deployTiles.Count; i++)
         {
-              if(deployTiles[i].EntityTypeOnTile == EnumHolder.EntityType.None)
+              if(deployTiles[i].EntityTypeOnTile == EnumHolder.EntityType.Clear)
             {
                 deployTiles[i].onClick = deployState;
             }

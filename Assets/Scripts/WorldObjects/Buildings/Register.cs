@@ -26,14 +26,14 @@ public class Register : AbstractInteractablePawn
             {
                 
                 customer = (AICharacter)TilePawnIsOn.neighbors[i].TargetableOnTile;
-                 for(int j = 0; j < _character.cariedObjects.Count; j++)
-                {
-                    if(_character.cariedObjects[j] is Food)
-                    {
-                        PlayercontrolledCharacter givingCharacter = (PlayercontrolledCharacter)_character;
-                        SpaceContextualActions.Add(new GiveItem(TilePawnIsOn,givingCharacter, j)); 
-                    }
-                }
+                // for(int j = 0; j < _character.cariedObjects.Count; j++)
+                //{
+                //    if(_character.cariedObjects[j] is Food)
+                //    {
+                //        PlayercontrolledCharacter givingCharacter = (PlayercontrolledCharacter)_character;
+                //        SpaceContextualActions.Add(new GiveItem(TilePawnIsOn,givingCharacter, j)); 
+                //    }
+                //}
 
                  if(!customer.OrderHasBeenTaken)
                  SpaceContextualActions.Add(new TakeOrder(_character ,customer));

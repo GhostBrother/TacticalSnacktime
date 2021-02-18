@@ -82,9 +82,7 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
 
     public override List<Command> GetAllActionsFromTile()
     {
-
         List<Command> ListToReturn = new List<Command>();
-        bool isTargetableOnTile = false; 
         foreach (Tile neighbor in TilePawnIsOn.neighbors)
         {
             if (neighbor.IsTargetableOnTile)
@@ -110,23 +108,21 @@ public class PlayercontrolledCharacter : Character , iCanGiveItems
                 if(neighbor.TargetableOnTile is PlayercontrolledCharacter)
                 {
                     PlayercontrolledCharacter temp = (PlayercontrolledCharacter)neighbor.TargetableOnTile;
-                    isTargetableOnTile = true;
 
-                    if(temp.cariedObjects.Count > 0)
+                    if(temp.cariedObjects.Count > 0 || cariedObjects.Count > 0)
                     {
-                        ListToReturn.Add(new TakeItem(this, 0));
+                        ListToReturn.Add(new TradeItemCommand(this, temp));
                     }
                 }
-
                
             }
             
         }
 
-        if (isTargetableOnTile)
-        {
-            ListToReturn.Add(new GiveItem(this, 0));  
-        }
+        //if (isTargetableOnTile)
+        //{
+        //    ListToReturn.Add(new GiveItem(this, 0));  
+        //}
 
         ListToReturn.AddRange(CariedObjectCommands);
         return ListToReturn;

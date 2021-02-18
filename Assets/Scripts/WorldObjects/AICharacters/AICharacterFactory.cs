@@ -38,7 +38,7 @@ public class AICharacterFactory
         aICharacter._monoPool = _monoPool;
         aICharacter.characterCoaster.SetArtForFacing(EnumHolder.Facing.Up);
 
-        if (targetTile.EntityTypeOnTile == EnumHolder.EntityType.None)
+        if (targetTile.EntityTypeOnTile == EnumHolder.EntityType.Clear)
         {
             aICharacter.TilePawnIsOn = targetTile;
             aICharacter.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;
@@ -47,7 +47,7 @@ public class AICharacterFactory
         else
             for (int i = 0; i < targetTile.neighbors.Count; i++)
             {
-                if (targetTile.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.None)
+                if (targetTile.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.Clear)
                 {
                     aICharacter.TilePawnIsOn = targetTile.neighbors[i];
                     aICharacter.TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Character;

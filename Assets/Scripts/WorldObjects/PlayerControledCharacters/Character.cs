@@ -93,7 +93,7 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
 
     public virtual void OnEndDay()
     {
-        TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+        TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
         TilePawnIsOn.DeactivateTile();
         RemovePawn(characterCoaster);
         RemoveFromTimeline.Invoke(this);

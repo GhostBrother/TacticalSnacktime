@@ -93,9 +93,9 @@ public class AICharacter : Character
 
     void walkBack(int targetIndex)
     {
-        if (path[targetIndex].EntityTypeOnTile == EnumHolder.EntityType.None || path[targetIndex] == TilePawnIsOn) 
+        if (path[targetIndex].EntityTypeOnTile == EnumHolder.EntityType.Clear || path[targetIndex] == TilePawnIsOn) 
         {
-            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+            TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
             TilePawnIsOn.DeactivateTile();
             characterCoaster.OnStopMoving = AILookForAction;
             TilePawnIsOn = path[targetIndex];
@@ -138,12 +138,13 @@ public class AICharacter : Character
     {
         SpaceContextualActions.Clear();
 
-        if (character is iCanGiveItems)
+        if (character is PlayercontrolledCharacter)
         {
-            for (int i = 0; i < character.cariedObjects.Count; i++)
+            PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
+            if (character.cariedObjects.Count > 0)
             {
-                iCanGiveItems giver = (iCanGiveItems)character;
-                SpaceContextualActions.Add(new GiveItem(character, i)); 
+                
+                //SpaceContextualActions.Add(new TradeItemCommand(giver, this)); // Make a serve food
             }
         }
 

@@ -76,7 +76,7 @@ public abstract class AbstractPawn : MonoBehaviour , iPawn
     public void MoveToPreviousTile()
     {
         tilePawnIsOn.DeactivateTile();
-        tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.None;
+        tilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
         tilePawnIsOn = previousTile;
 
          characterCoaster.PlaceCoasterOnTile(previousTile);

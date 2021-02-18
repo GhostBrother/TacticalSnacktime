@@ -68,7 +68,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
     public void DeactivateTile()
     {
-        if (EntityTypeOnTile == EnumHolder.EntityType.None)
+        if (EntityTypeOnTile == EnumHolder.EntityType.Clear)
         {
             movementPenalty = 0;
             targetableOnTile = null;
@@ -95,7 +95,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
         {
             numToHilight--;
 
-            if (entityToFind == EntityTypeOnTile)
+            if (entityToFind.HasFlag(EntityTypeOnTile))
             {
                 backgroundTile.color = ActiveColor;
                 onClick = actionForTile;
@@ -103,7 +103,7 @@ public class Tile : MonoBehaviour, iHeapItem<Tile> {
 
             for (int i = 0; i < neighbors.Count; i++)
             {
-                if (neighbors[i].EntityTypeOnTile == entityToFind)
+                if (entityToFind.HasFlag(neighbors[i].EntityTypeOnTile))
                 {
                     neighbors[i].ColorAllAdjacent(numToHilight, actionForTile, entityToFind);
                 }
