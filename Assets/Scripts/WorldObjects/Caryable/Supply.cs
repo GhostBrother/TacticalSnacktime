@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable 
+public class Supply : AbstractInteractablePawn, iContainCaryables //, iCaryable  // iCanGiveItems
 {
     public int HandsRequired { get; set; }
 
     public Sprite CaryableObjectSprite { get; private set; }
 
-    public Food FoodThisSupplyMakes { get; set; }
+   // public Food FoodThisSupplyMakes { get; set; }
 
     public List<Command> HeldObjectCommands { get; private set; }
 
-    public int NumberOfItemsInSupply { get; set; }
+    //public int NumberOfItemsInSupply { get; set; }
     
-    // Don't know if this is nessisary. It's a SOLID violation for sure
-    public List<iCaryable> cariedObjects { get; }
+    public List<iCaryable> cariedObjects { get; set; }
+
+    public int numberOfCarriedObjects => 4;
 
     public Supply()  
     {
+        cariedObjects = new List<iCaryable>();
         HeldObjectCommands = new List<Command>();
         CaryableObjectSprite = characterArt = SpriteHolder.instance.GetSupplyBox();
         EntityType = EnumHolder.EntityType.Supply;
@@ -26,20 +28,26 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public iCaryable Give(int i)
     {
-        return Copy();
+        return null;
+        //return Copy();
     }
 
     public void GetRidOfItem(int i)
     {
-        NumberOfItemsInSupply--;
-        if (NumberOfItemsInSupply == 0)
+        //NumberOfItemsInSupply--;
+        //if (NumberOfItemsInSupply == 0)
+        //{
+        //    HideCoaster(characterCoaster);
+        //    TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
+        //    TilePawnIsOn.DeactivateTile();
+           
+        //}
+        if(cariedObjects.Count == 0)
         {
             HideCoaster(characterCoaster);
             TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
             TilePawnIsOn.DeactivateTile();
-           
         }
-
     }
 
     public override List<Command> GetCommands()
@@ -62,11 +70,11 @@ public class Supply : AbstractInteractablePawn, iCanGiveItems, iCaryable
 
     public void SetName()
     {
-        Name = $"Box of {FoodThisSupplyMakes.Name}"; 
+        Name = $"Box of items"; 
     }
 
-    public iCaryable Copy()
-    {
-       return FoodThisSupplyMakes.Copy();
-    }
+    //public iCaryable Copy()
+    //{
+    //   return FoodThisSupplyMakes.Copy();
+    //}
 }

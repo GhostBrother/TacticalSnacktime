@@ -11,7 +11,7 @@ public class TradeMenu : MonoBehaviour
 
 
     // OpenPanels
-    public void OpenTradePanels(iCanGiveItems LeftCharacter, iCanGiveItems RightCharacter)
+    public void OpenTradePanels(iContainCaryables LeftCharacter, iContainCaryables RightCharacter)
     {
         LeftTradePanel.OpenTradeMenu(LeftCharacter);
         RightTradePanel.OpenTradeMenu(RightCharacter);

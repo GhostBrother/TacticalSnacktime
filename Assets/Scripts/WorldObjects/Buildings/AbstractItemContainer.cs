@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractItemContainer : AbstractInteractablePawn, iCanGiveItems, iContainCaryables
+public class AbstractItemContainer : AbstractInteractablePawn, iContainCaryables //iCanGiveItems,
 {
     public List<iCaryable> cariedObjects { get;  set; }
 

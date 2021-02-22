@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class TradeMenuPanelGUI : MonoBehaviour
 {
-    iCanGiveItems InventoryOwner;
+    iContainCaryables InventoryOwner;
     [SerializeField]
     Image TraderImage;
     [SerializeField]
     List<InventorySlot> itemsToDisplay;
 
-    public void OpenTradeMenu(iCanGiveItems inventoryOwner)
+    public void OpenTradeMenu(iContainCaryables inventoryOwner)
     {
         this.gameObject.SetActive(true);
         InventoryOwner = inventoryOwner;

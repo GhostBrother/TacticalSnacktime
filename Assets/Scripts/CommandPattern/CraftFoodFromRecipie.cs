@@ -58,11 +58,11 @@ public class CraftFood : Command
                 s = f.Name;
             }
 
-            if (_character.cariedObjects[j] is Supply)
-            {
-                Supply supply = (Supply)_character.cariedObjects[j];
-                s = supply.FoodThisSupplyMakes.Name;
-            }
+            //if (_character.cariedObjects[j] is Supply)
+            //{
+            //    Supply supply = (Supply)_character.cariedObjects[j];
+            //    s = supply.FoodThisSupplyMakes.Name;
+            //}
 
             if (names.Contains(s))
             {

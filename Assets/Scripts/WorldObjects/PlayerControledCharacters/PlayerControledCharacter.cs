@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayercontrolledCharacter : Character , iCanGiveItems
+public class PlayercontrolledCharacter : Character , iContainCaryables //iCanGiveItems
 {
 
     public Action<PlayercontrolledCharacter> PutCharacterBack;

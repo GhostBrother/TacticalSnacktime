@@ -55,8 +55,12 @@ public class FoodLoader : JsonLoader<Food>
     public Supply GetFoodAsSupply(string NameOfFoodToFind, int numberOfFood)
     {
         Supply supplyToReturn = new Supply();
-        supplyToReturn.FoodThisSupplyMakes = GetFoodByName(NameOfFoodToFind);
-        supplyToReturn.NumberOfItemsInSupply = numberOfFood;
+       // supplyToReturn.FoodThisSupplyMakes = GetFoodByName(NameOfFoodToFind);
+       // supplyToReturn.NumberOfItemsInSupply = numberOfFood;
+
+        Food foodToAddToSupply = GetFoodByName(NameOfFoodToFind);
+        foodToAddToSupply.NumberOfItemsInSupply = numberOfFood;
+        supplyToReturn.cariedObjects.Add(foodToAddToSupply);
 
         return supplyToReturn;
     }

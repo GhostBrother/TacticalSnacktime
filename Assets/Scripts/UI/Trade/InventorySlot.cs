@@ -6,12 +6,9 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     iCaryable itemInSlot;
+    [SerializeField]
     Image itemImage;
 
-    private void Start()
-    {
-       itemImage = this.GetComponent<Image>();
-    }
 
     // Set Caryable
     public void SetCaryable(iCaryable heldItems)
@@ -34,5 +31,11 @@ public class InventorySlot : MonoBehaviour
     {
         itemInSlot = null;
         itemImage.sprite = null;
+    }
+
+    public void OnSlotClick()
+    {
+        if(itemInSlot != null)
+        Debug.Log(itemInSlot.Name);
     }
 }

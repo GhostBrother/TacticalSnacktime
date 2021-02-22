@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     CameraController camera;
 
+    [SerializeField]
+    TradeMenu tradeMenu;
+
     public CameraController CameraController { get { return camera; } }
 
     public Character CurentCharacter { get; private set; }
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour {
         character.PutCharacterBack = _characterRoster.AddCharacterBackToList;
         character.onTurnEnd = EndTurn;
         character.characterCoaster.OnStartMoving = SetCameraToFollowCurentCharacter;
+        character.onTrade = OpenTradeMenu;
         AddTimeInfluencedToList(character);
     }
 
@@ -85,6 +89,7 @@ public class GameManager : MonoBehaviour {
         customer.OnPay = PayForFood;
         customer.onTurnEnd = EndTurn;
        customer.characterCoaster.OnStartMoving = SetCameraToFollowCurentCharacter;
+        customer.onTrade = OpenTradeMenu;
         AddTimeInfluencedToList(customer);
     }
 
@@ -349,6 +354,11 @@ public class GameManager : MonoBehaviour {
     {
         charactersForStartOfDay = _characterRoster.GetCharactersForTime(_clock.CurTime);
 
+    }
+
+    private void OpenTradeMenu(Character giver, iContainCaryables reciver)
+    {
+        tradeMenu.OpenTradePanels(giver, reciver);
     }
 
 }

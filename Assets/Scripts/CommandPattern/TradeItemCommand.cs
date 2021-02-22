@@ -5,11 +5,11 @@ using UnityEngine;
 public class TradeItemCommand : Command
 {
     public bool isUsable { get; set; }
-    PlayercontrolledCharacter traderOne;
-    iCanGiveItems traderTwo;
+    Character traderOne;
+    iContainCaryables traderTwo;
     TradeMenu tradeMenu;
 
-    public TradeItemCommand( PlayercontrolledCharacter _TraderOne, iCanGiveItems _TraderTwo)
+    public TradeItemCommand(Character _TraderOne, iContainCaryables _TraderTwo)
     {
         traderOne = _TraderOne;
         traderTwo = _TraderTwo;
@@ -28,7 +28,6 @@ public class TradeItemCommand : Command
 
     protected void OrganizeTrade(Tile t)
     {
-        Debug.Log("Trade Has been organized");
-        //tradeMenu.OpenTradePanels(traderOne, traderTwo); 
+        traderOne.onTrade(traderOne, traderTwo);
     }
 }

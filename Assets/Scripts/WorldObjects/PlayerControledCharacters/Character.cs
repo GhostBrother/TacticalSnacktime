@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Character : AbstractInteractablePawn , iContainCaryables , iAffectedByTime
+public abstract class Character : AbstractInteractablePawn ,iContainCaryables , iAffectedByTime
 {
 
     public int MoveSpeed { get; set; }
@@ -54,6 +54,8 @@ public abstract class Character : AbstractInteractablePawn , iContainCaryables ,
     public Action<AbstractPawn> RemoveFromTimeline { get; set; }
     public Action<AbstractPawn> onStartTurn { get ; set; }
     public Action onTurnEnd { get; set; }
+    //ToDo, Factor this out to iCanTrade interface;
+    public Action<Character, iContainCaryables> onTrade {get; set; }
 
     public Character()
     {

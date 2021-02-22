@@ -55,7 +55,22 @@ public class InputHandler : MonoBehaviour {
 
            if( pointerEvent.selectedObject != null)
             {
-                if(pointerEvent.selectedObject.GetComponent<ActionButton>() != null)
+
+                if(isMousePressed)
+                {
+                    Debug.Log(pointerEvent.selectedObject.name);
+                }
+                if (pointerEvent.selectedObject.GetComponent<InventorySlot>() != null)
+                {
+                    if (isMousePressed)
+                    {
+                        pointerEvent.selectedObject.GetComponent<InventorySlot>().OnSlotClick();
+                        isMousePressed = false;
+                        return;
+                    }
+                }
+
+                if (pointerEvent.selectedObject.GetComponent<ActionButton>() != null)
                 {
                     if (isMousePressed)
                     {
@@ -65,7 +80,6 @@ public class InputHandler : MonoBehaviour {
                     }
                 }
             }
-   
          }
       
         Collider2D[] col = Physics2D.OverlapPointAll(v);
@@ -87,11 +101,11 @@ public class InputHandler : MonoBehaviour {
 
                     else if (isRightMousePressed)
                     {
-  
                         isRightMousePressed = false;
                     }
                 }
             }
+
         }
         isMousePressed = false;
 
