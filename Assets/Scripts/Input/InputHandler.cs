@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class InputHandler : MonoBehaviour {
+public class InputHandler : MonoBehaviour
+{
 
-    bool isMousePressed;
+    bool isLeftMousePressed;
 
     bool isRightMousePressed;
 
@@ -24,15 +25,20 @@ public class InputHandler : MonoBehaviour {
 
     public void ScanForInput()
     {
-        scanForInteractable();
         scanForMouseDown();
+        scanForInteractable();
     }
 
     private void scanForMouseDown()
     {
-        if (Input.GetMouseButtonDown(0) && !isMousePressed)
+        if (Input.GetMouseButtonDown(0) && !isLeftMousePressed)
         {
-            isMousePressed = true;
+            isLeftMousePressed = true;
+        }
+
+        else if (Input.GetMouseButtonUp(0) && isLeftMousePressed)
+        {
+            isLeftMousePressed = false;
         }
 
         else if (Input.GetMouseButtonDown(1))
@@ -55,27 +61,21 @@ public class InputHandler : MonoBehaviour {
 
            if( pointerEvent.selectedObject != null)
             {
-
-                if(isMousePressed)
-                {
-                    Debug.Log(pointerEvent.selectedObject.name);
-                }
                 if (pointerEvent.selectedObject.GetComponent<InventorySlot>() != null)
                 {
-                    if (isMousePressed)
+                    if (isLeftMousePressed)
                     {
-                        pointerEvent.selectedObject.GetComponent<InventorySlot>().OnSlotClick();
-                        isMousePressed = false;
+                        pointerEvent.selectedObject.GetComponent<InventorySlot>().OnSlotClick(Input.mousePosition);
                         return;
                     }
                 }
 
                 if (pointerEvent.selectedObject.GetComponent<ActionButton>() != null)
                 {
-                    if (isMousePressed)
+                    if (isLeftMousePressed)
                     {
                         pointerEvent.selectedObject.GetComponent<ActionButton>().ExecuteStoredCommand();
-                        isMousePressed = false;
+                        isLeftMousePressed = false;
                         return;
                     }
                 }
@@ -94,9 +94,10 @@ public class InputHandler : MonoBehaviour {
                     tileSelector.MoveToPosition(c.transform.position);
                     Gm.CameraController.PanCamera(c.transform.position);
 
-                    if (isMousePressed)
+                    if (isLeftMousePressed)
                     {
                         Gm.ActivateTile(c.gameObject.GetComponent<Tile>());
+                        isLeftMousePressed = false;
                     }
 
                     else if (isRightMousePressed)
@@ -107,7 +108,6 @@ public class InputHandler : MonoBehaviour {
             }
 
         }
-        isMousePressed = false;
 
     }
 }

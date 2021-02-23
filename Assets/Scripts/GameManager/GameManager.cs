@@ -353,11 +353,11 @@ public class GameManager : MonoBehaviour {
     private void LoadDeployState()
     {
         charactersForStartOfDay = _characterRoster.GetCharactersForTime(_clock.CurTime);
-
     }
 
     private void OpenTradeMenu(Character giver, iContainCaryables reciver)
     {
+        camera.SwitchToFrozenMode();
         tradeMenu.OpenTradePanels(giver, reciver);
     }
 

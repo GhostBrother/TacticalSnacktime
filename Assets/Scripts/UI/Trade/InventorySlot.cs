@@ -13,6 +13,7 @@ public class InventorySlot : MonoBehaviour
     // Set Caryable
     public void SetCaryable(iCaryable heldItems)
     {
+        gameObject.SetActive(true);
         itemInSlot = heldItems;
         SetCaryableImage(itemInSlot);
     }
@@ -29,13 +30,13 @@ public class InventorySlot : MonoBehaviour
 
     public void ClearItemFromSlot()
     {
+        gameObject.SetActive(false);
         itemInSlot = null;
         itemImage.sprite = null;
     }
 
-    public void OnSlotClick()
+    public void OnSlotClick(Vector3 pointerLocation)
     {
-        if(itemInSlot != null)
-        Debug.Log(itemInSlot.Name);
+        transform.position = pointerLocation;
     }
 }

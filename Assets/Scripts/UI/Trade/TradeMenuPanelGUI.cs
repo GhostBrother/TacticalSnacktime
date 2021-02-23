@@ -15,8 +15,10 @@ public class TradeMenuPanelGUI : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         InventoryOwner = inventoryOwner;
-        for (int i = 0; i < inventoryOwner.cariedObjects.Count; i++)
+        for (int i = 0; i < itemsToDisplay.Count; i++)
         {
+            itemsToDisplay[i].ClearItemFromSlot();
+            if(inventoryOwner.cariedObjects.Count > i)
             itemsToDisplay[i].SetCaryable(inventoryOwner.cariedObjects[i]);
         }
     }
