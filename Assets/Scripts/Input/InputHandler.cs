@@ -61,11 +61,16 @@ public class InputHandler : MonoBehaviour
 
            if( pointerEvent.selectedObject != null)
             {
-                if (pointerEvent.selectedObject.GetComponent<InventorySlot>() != null)
+                if (pointerEvent.selectedObject.GetComponent<InventoryDragable>() != null)
                 {
                     if (isLeftMousePressed)
                     {
-                        pointerEvent.selectedObject.GetComponent<InventorySlot>().OnSlotClick(Input.mousePosition);
+                        pointerEvent.selectedObject.GetComponent<InventoryDragable>().OnSlotClick(Input.mousePosition);
+                        return;
+                    }
+                    if(!isLeftMousePressed)
+                    {
+                        pointerEvent.selectedObject.GetComponent<InventoryDragable>().OnItemRelease();
                         return;
                     }
                 }
@@ -79,8 +84,9 @@ public class InputHandler : MonoBehaviour
                         return;
                     }
                 }
+
             }
-         }
+        }
       
         Collider2D[] col = Physics2D.OverlapPointAll(v);
 

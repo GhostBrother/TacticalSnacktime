@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\Input\Camera\States\PlayerControlledCamera.cs" />
     <Compile Include="Assets\Scripts\Input\Camera\States\iCameraState.cs" />
     <Compile Include="Assets\Scripts\Input\InputHandler.cs" />
+    <Compile Include="Assets\Scripts\Input\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Input\TileSelector.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\Heap.cs" />
     <Compile Include="Assets\Scripts\Map\AiTraversal\PathRequestManager.cs" />
@@ -138,7 +139,7 @@
     <Compile Include="Assets\Scripts\UI\CharacterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Clock.cs" />
     <Compile Include="Assets\Scripts\UI\DonenessTracker.cs" />
-    <Compile Include="Assets\Scripts\UI\Trade\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\UI\Trade\InventoryDragable.cs" />
     <Compile Include="Assets\Scripts\UI\Trade\TradeMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Trade\TradeMenuPanelGUI.cs" />
     <Compile Include="Assets\Scripts\WorldObjects\AICharacters\AICharacter.cs" />

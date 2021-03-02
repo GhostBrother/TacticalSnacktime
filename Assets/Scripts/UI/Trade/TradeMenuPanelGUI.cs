@@ -9,7 +9,7 @@ public class TradeMenuPanelGUI : MonoBehaviour
     [SerializeField]
     Image TraderImage;
     [SerializeField]
-    List<InventorySlot> itemsToDisplay;
+    List<InventoryDragable> itemsToDisplay;
 
     public void OpenTradeMenu(iContainCaryables inventoryOwner)
     {
