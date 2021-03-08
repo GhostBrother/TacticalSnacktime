@@ -358,7 +358,7 @@ public class GameManager : MonoBehaviour {
     private void OpenTradeMenu(Character giver, iContainCaryables reciver)
     {
         camera.SwitchToFrozenMode();
-        tradeMenu.OpenTradePanels(giver, reciver);
+        tradeMenu.OpenTradePanels(giver, reciver, actionMenu.OpenMenu); // Hack, find a way to do this without arguing in the menu
     }
 
 }

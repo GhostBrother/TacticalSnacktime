@@ -47,6 +47,7 @@ public class AICharacterFactory
         else
             for (int i = 0; i < targetTile.neighbors.Count; i++)
             {
+                Debug.Log(targetTile.neighbors[i].EntityTypeOnTile.ToString());
                 if (targetTile.neighbors[i].EntityTypeOnTile == EnumHolder.EntityType.Clear)
                 {
                     aICharacter.TilePawnIsOn = targetTile.neighbors[i];

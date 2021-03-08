@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\CommandPattern\Act.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\ChangeEndOfDayState.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Command.cs" />
+    <Compile Include="Assets\Scripts\CommandPattern\ConfirmTradeItems.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\CraftFoodFromRecipie.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\DecrementValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\Exit.cs" />
@@ -79,7 +80,6 @@
     <Compile Include="Assets\Scripts\CommandPattern\GiveItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\IncrementValue.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MenuBack.cs" />
-    <Compile Include="Assets\Scripts\CommandPattern\MenuTransitionCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\MoveCommand.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\PickUpItem.cs" />
     <Compile Include="Assets\Scripts\CommandPattern\StartNextDay.cs" />

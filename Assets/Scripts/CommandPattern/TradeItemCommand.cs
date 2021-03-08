@@ -29,5 +29,6 @@ public class TradeItemCommand : Command
     protected void OrganizeTrade(Tile t)
     {
         traderOne.onTrade(traderOne, traderTwo);
+        typeOfCommand.UndoType();
     }
 }

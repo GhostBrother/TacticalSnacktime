@@ -97,9 +97,8 @@ public class MapGenerator : JsonLoader<Map>
                     temp.GetComponent<Tile>().SetNeighbor(prevTile);
                     prevTile.SetNeighbor(temp.GetComponent<Tile>());
                 }
-
+                temp.GetComponent<Tile>().EntityTypeOnTile = EnumHolder.EntityType.Clear;
                 temp = PlacePawnOnTile(tiles[x], temp);
-                
                 temp.GetComponent<Tile>().SetXandYPos(x, y);
                 mapToReturn.AddTileToMap(temp.GetComponent<Tile>(), x, y);
                 prevTile = temp.GetComponent<Tile>();

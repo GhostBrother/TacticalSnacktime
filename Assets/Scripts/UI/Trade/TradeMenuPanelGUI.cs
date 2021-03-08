@@ -14,21 +14,31 @@ public class TradeMenuPanelGUI : MonoBehaviour
     public void OpenTradeMenu(iContainCaryables inventoryOwner)
     {
         this.gameObject.SetActive(true);
-        InventoryOwner = inventoryOwner;
+        // TODO, Investigate refactoring to an IcanTrade, which is a abstract Interactable Pawn (Refactor this on refactor saturday)
+        if (inventoryOwner is AbstractInteractablePawn)
+        {
+            AbstractInteractablePawn temp = (AbstractInteractablePawn)inventoryOwner;
+            TraderImage.sprite = temp.characterArt;
+        }
+
         for (int i = 0; i < itemsToDisplay.Count; i++)
         {
             itemsToDisplay[i].ClearItemFromSlot();
-            if(inventoryOwner.cariedObjects.Count > i)
-            itemsToDisplay[i].SetCaryable(inventoryOwner.cariedObjects[i]);
+            if (inventoryOwner.cariedObjects.Count > i)
+                itemsToDisplay[i].SetCaryable(inventoryOwner.cariedObjects[i]);
         }
+        InventoryOwner = inventoryOwner;
     }
 
     public void ConfirmTrade()
     {
-        for(int i = 0; i < InventoryOwner.cariedObjects.Count; i++)
+        if (InventoryOwner.cariedObjects.Count > 0)
         {
-            InventoryOwner.cariedObjects[i] = itemsToDisplay[i].GetCaryableFromInventory();
-            itemsToDisplay[i].ClearItemFromSlot();
+            for (int i = 0; i < InventoryOwner.cariedObjects.Count; i++)
+            {
+                InventoryOwner.cariedObjects[i] = itemsToDisplay[i].GetCaryableFromInventory();
+                itemsToDisplay[i].ClearItemFromSlot();
+            }
         }
     }
 

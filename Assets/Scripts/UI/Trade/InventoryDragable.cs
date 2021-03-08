@@ -9,6 +9,7 @@ public class InventoryDragable : MonoBehaviour
     [SerializeField]
     Image itemImage;
 
+    Vector3 LastInventorySlotPosition;
 
 
     // Set Caryable
@@ -17,10 +18,12 @@ public class InventoryDragable : MonoBehaviour
         gameObject.SetActive(true);
         itemInSlot = heldItems;
         SetCaryableImage(itemInSlot);
+        LastInventorySlotPosition = transform.position;
     }
 
     void SetCaryableImage(iCaryable heldItem)
     {
+        if(heldItem != null)
         itemImage.sprite = heldItem.CaryableObjectSprite;
     }
 
@@ -50,8 +53,11 @@ public class InventoryDragable : MonoBehaviour
             if(collider != null && collider.gameObject.GetComponent<InventorySlot>() != null)
             {
                 collider.gameObject.GetComponent<InventorySlot>().CheckForItemPlacement(this);
+                LastInventorySlotPosition = collider.gameObject.GetComponent<InventorySlot>().GetPositionOfSlot();
                 return;
             }
         }
+
+        transform.position = LastInventorySlotPosition;
     }
 }
