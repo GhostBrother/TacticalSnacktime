@@ -6,13 +6,10 @@ public class TradeItemCommand : Command
 {
     public bool isUsable { get; set; }
     Character traderOne;
-    iContainCaryables traderTwo;
-    TradeMenu tradeMenu;
 
-    public TradeItemCommand(Character _TraderOne, iContainCaryables _TraderTwo)
+    public TradeItemCommand(Character _TraderOne)
     {
         traderOne = _TraderOne;
-        traderTwo = _TraderTwo;
         typeOfCommand = new HighlightTilesCommand(1, traderOne.TilePawnIsOn, OrganizeTrade, EnumHolder.EntityType.Supply | EnumHolder.EntityType.Character);
         isUsable = true;
     }
@@ -28,7 +25,11 @@ public class TradeItemCommand : Command
 
     protected void OrganizeTrade(Tile t)
     {
-        traderOne.onTrade(traderOne, traderTwo);
-        typeOfCommand.UndoType();
+        if (t.TargetableOnTile is iContainCaryables)
+        {
+            iContainCaryables reciver = (iContainCaryables)t.TargetableOnTile;
+            traderOne.onTrade(traderOne, reciver);
+            typeOfCommand.UndoType();
+        }
     }
 }

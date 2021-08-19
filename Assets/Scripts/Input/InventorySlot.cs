@@ -7,15 +7,34 @@ public class InventorySlot : MonoBehaviour
 {
     InventoryDragable dragableInSlot;
 
+    public bool IsSlotOccupied { get; set; }
+
     
     public void CheckForItemPlacement(InventoryDragable item)
     {
         dragableInSlot = item;
         dragableInSlot.transform.position = GetPositionOfSlot();
+        IsSlotOccupied = true;
     }
 
     public Vector3 GetPositionOfSlot()
     {
         return GetComponent<Collider2D>().bounds.center;
+    }
+
+    public iCaryable GetItemInSlot()
+    {
+      return dragableInSlot.GetCaryableFromInventory();
+    }
+
+    public void ClearDragableFromSlot()
+    {
+        if (IsSlotOccupied)
+        {
+            Debug.Log("Cleared");
+            dragableInSlot.ClearItemFromSlot();
+            dragableInSlot = null;
+            IsSlotOccupied = false;
+        }
     }
 }

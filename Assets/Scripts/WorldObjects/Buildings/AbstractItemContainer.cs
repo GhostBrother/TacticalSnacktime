@@ -35,7 +35,7 @@ public class AbstractItemContainer : AbstractInteractablePawn, iContainCaryables
             PlayercontrolledCharacter giver = (PlayercontrolledCharacter)character;
             if (character.cariedObjects.Count > 0 || cariedObjects.Count > 0)
             {
-                SpaceContextualActions.Add(new TradeItemCommand(giver, this));
+                SpaceContextualActions.Add(new TradeItemCommand(giver));
             }
         }
     }

@@ -11,6 +11,7 @@ public class TradeMenu : MonoBehaviour
     [SerializeField]
     TradeMenuPanelGUI RightTradePanel;
 
+
     [SerializeField]
     ActionButton TradeConfirmButton;
 
@@ -25,24 +26,22 @@ public class TradeMenu : MonoBehaviour
             tradeCommand.typeOfCommand.LoadNewMenu = GoBackMenu;
             tradeCommand.typeOfCommand.CloseMenu = ConfirmTrade;
             TradeConfirmButton.StoredCommand = tradeCommand;
+            LeftTradePanel.OpenTradeMenu(temp);
         }
         TradeConfirmButton.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
     }
 
-    public void CloseTradeGUI()
+    void CloseTradeGUI()
     { 
         LeftTradePanel.CloseTradeMenu();
         RightTradePanel.CloseTradeMenu();
         TradeConfirmButton.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void ConfirmTrade()
     {
-        LeftTradePanel.ConfirmTrade();
-        RightTradePanel.ConfirmTrade();
         CloseTradeGUI();
     }
-
-
-
 }

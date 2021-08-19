@@ -10,40 +10,66 @@ public class TradeMenuPanelGUI : MonoBehaviour
     Image TraderImage;
     [SerializeField]
     List<InventoryDragable> itemsToDisplay;
+    [SerializeField]
+    List<InventorySlot> Inventories;
+
 
     public void OpenTradeMenu(iContainCaryables inventoryOwner)
     {
+        InventoryOwner = inventoryOwner;
         this.gameObject.SetActive(true);
-        // TODO, Investigate refactoring to an IcanTrade, which is a abstract Interactable Pawn (Refactor this on refactor saturday)
         if (inventoryOwner is AbstractInteractablePawn)
         {
             AbstractInteractablePawn temp = (AbstractInteractablePawn)inventoryOwner;
             TraderImage.sprite = temp.characterArt;
         }
 
-        for (int i = 0; i < itemsToDisplay.Count; i++)
+        foreach (InventoryDragable item in itemsToDisplay)
         {
-            itemsToDisplay[i].ClearItemFromSlot();
-            if (inventoryOwner.cariedObjects.Count > i)
-                itemsToDisplay[i].SetCaryable(inventoryOwner.cariedObjects[i]);
+            item.ClearItemFromSlot();
         }
-        InventoryOwner = inventoryOwner;
-    }
 
-    public void ConfirmTrade()
-    {
-        if (InventoryOwner.cariedObjects.Count > 0)
+        foreach (InventorySlot inventorySlot in Inventories)
         {
-            for (int i = 0; i < InventoryOwner.cariedObjects.Count; i++)
-            {
-                InventoryOwner.cariedObjects[i] = itemsToDisplay[i].GetCaryableFromInventory();
-                itemsToDisplay[i].ClearItemFromSlot();
-            }
+            inventorySlot.ClearDragableFromSlot();
         }
+
+
+        for (int i = 0; i < inventoryOwner.cariedObjects.Count; i++)
+        {
+            itemsToDisplay[i].SetCaryable(inventoryOwner.cariedObjects[i]);
+            itemsToDisplay[i].transform.position = Inventories[i].transform.position;
+            Inventories[i].CheckForItemPlacement(itemsToDisplay[i]);
+        }
+
     }
 
     public void CloseTradeMenu()
     {
+        ConfirmTrade();
         this.gameObject.SetActive(false);
+    }
+
+    void ConfirmTrade()
+    {
+        for (int i = 0; i < Inventories.Count; i++)
+        {
+                     
+                    if(Inventories[i].IsSlotOccupied && InventoryOwner.cariedObjects.Count > i)
+                    {
+                        InventoryOwner.cariedObjects[i] = Inventories[i].GetItemInSlot();
+                    }
+
+                     if (Inventories[i].IsSlotOccupied &&  i >= InventoryOwner.cariedObjects.Count)
+                    {
+                         InventoryOwner.cariedObjects.Add(Inventories[i].GetItemInSlot());
+                    }
+                   
+                    if (!Inventories[i].IsSlotOccupied && InventoryOwner.cariedObjects.Count > i)
+                    {
+                         InventoryOwner.cariedObjects.RemoveAt(i);
+                    }
+        }
+
     }
 }

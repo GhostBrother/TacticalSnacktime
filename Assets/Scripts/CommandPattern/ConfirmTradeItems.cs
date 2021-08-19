@@ -21,7 +21,6 @@ public class ConfirmTradeItems : Command
 
     public void execute()
     {
-        tradeMenu.CloseTradeGUI();
         typeOfCommand.ActivateType();
     }
 }

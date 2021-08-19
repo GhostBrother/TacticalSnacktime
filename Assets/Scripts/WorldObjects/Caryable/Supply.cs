@@ -63,7 +63,7 @@ public class Supply : AbstractInteractablePawn, iContainCaryables //, iCaryable 
 
             SetName();
             SpaceContextualActions.Clear();
-            SpaceContextualActions.Add(new TradeItemCommand(temp, this)); //PickUpItem(this, character, 0));
+            SpaceContextualActions.Add(new TradeItemCommand(temp)); 
         }
 
     }

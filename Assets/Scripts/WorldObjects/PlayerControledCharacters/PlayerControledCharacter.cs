@@ -92,7 +92,6 @@ public class PlayercontrolledCharacter : Character , iContainCaryables //iCanGiv
 
                 for (int i = 0; i < neighbor.TargetableOnTile.GetCommands().Count; i++)
                 {
-                   
                     if (!ListToReturn.Exists(x => x.GetType() == neighbor.TargetableOnTile.GetCommands()[i].GetType()))
                     {
                         if (neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand == null)
@@ -101,28 +100,17 @@ public class PlayercontrolledCharacter : Character , iContainCaryables //iCanGiv
                             neighbor.TargetableOnTile.GetCommands()[i].typeOfCommand = temp;
                         }
                         ListToReturn.Add(neighbor.TargetableOnTile.GetCommands()[i]);
-                    }
-                       
+                    }    
                 }
 
                 if(neighbor.TargetableOnTile is PlayercontrolledCharacter)
                 {
                     PlayercontrolledCharacter temp = (PlayercontrolledCharacter)neighbor.TargetableOnTile;
-
-                    if(temp.cariedObjects.Count > 0 || cariedObjects.Count > 0)
-                    {
-                        ListToReturn.Add(new TradeItemCommand(this, temp));
-                    }
-                }
-               
+                    //ListToReturn.Add(new TradeItemCommand(this));
+                }   
             }
-            
+         
         }
-
-        //if (isTargetableOnTile)
-        //{
-        //    ListToReturn.Add(new GiveItem(this, 0));  
-        //}
 
         ListToReturn.AddRange(CariedObjectCommands);
         return ListToReturn;

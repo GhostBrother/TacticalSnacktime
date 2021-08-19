@@ -72,7 +72,7 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
             }
 
             if (cariedObjects.Count > 0)
-                SpaceContextualActions.Add(new TradeItemCommand(temp, this));
+                SpaceContextualActions.Add(new TradeItemCommand(temp));
         }
     }
 
