@@ -10,10 +10,14 @@ public class InventoryDragable : MonoBehaviour
     Image itemImage;
 
     // Hack, circular dependancy. 
-    InventorySlot previousSlot;
+    List<InventorySlot> previousSlots;
 
     Vector3 LastInventorySlotPosition;
 
+    private void Start()
+    {
+        previousSlots = new List<InventorySlot>();
+    }
     // Set Caryable
     public void SetCaryable(iCaryable heldItems)
     {
@@ -45,7 +49,6 @@ public class InventoryDragable : MonoBehaviour
     public void ClearItemFromSlot()
     {
         this.GetComponent<Image>().enabled = false;
-       // itemInSlot = null;
         itemImage.sprite = null;
     }
 
@@ -58,8 +61,8 @@ public class InventoryDragable : MonoBehaviour
         {
             if (collider != null && collider.gameObject.GetComponent<InventorySlot>() != null)
             {
-                previousSlot = collider.gameObject.GetComponent<InventorySlot>();
-                previousSlot.IsSlotOccupied = false;
+                previousSlots.Add(collider.gameObject.GetComponent<InventorySlot>());
+                previousSlots[0].IsSlotOccupied = false;
                 return;
             }
         }
@@ -74,8 +77,15 @@ public class InventoryDragable : MonoBehaviour
             if(collider != null && collider.gameObject.GetComponent<InventorySlot>() != null)
             {
                 InventorySlot Slot = collider.gameObject.GetComponent<InventorySlot>();
-                Slot.CheckForItemPlacement(this);
+                if (Slot.IsSlotOccupied && previousSlots.Count > 0 )
+                {
+                    Slot.GetDragable().transform.position = previousSlots[0].transform.position;
+                    previousSlots[0].CheckForItemPlacement(Slot.GetDragable());
+                    previousSlots.Clear();
+                }
                 LastInventorySlotPosition = Slot.GetPositionOfSlot();
+                Slot.CheckForItemPlacement(this);
+               
                 return;
             }
         }

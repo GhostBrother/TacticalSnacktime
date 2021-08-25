@@ -7,6 +7,7 @@ public class InventorySlot : MonoBehaviour
 {
     InventoryDragable dragableInSlot;
 
+
     public bool IsSlotOccupied { get; set; }
 
     
@@ -27,11 +28,15 @@ public class InventorySlot : MonoBehaviour
       return dragableInSlot.GetCaryableFromInventory();
     }
 
+    public InventoryDragable GetDragable()
+    {
+        return dragableInSlot;
+    }
+
     public void ClearDragableFromSlot()
     {
         if (IsSlotOccupied)
         {
-            Debug.Log("Cleared");
             dragableInSlot.ClearItemFromSlot();
             dragableInSlot = null;
             IsSlotOccupied = false;
