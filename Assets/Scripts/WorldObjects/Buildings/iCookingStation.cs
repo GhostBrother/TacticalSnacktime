@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface iCookingStation : iContainCaryables // iCanGiveItems ,
+public interface iCookingStation : iContainCaryables 
 {
     void CreateFood(Food itemToCook);
     void RemoveFoodFromStation(string foodName);

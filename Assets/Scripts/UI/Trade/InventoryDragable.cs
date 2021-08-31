@@ -8,8 +8,7 @@ public class InventoryDragable : MonoBehaviour
     iCaryable itemInSlot;
     [SerializeField]
     Image itemImage;
-
-    // Hack, circular dependancy. 
+ 
     List<InventorySlot> previousSlots;
 
     Vector3 LastInventorySlotPosition;
@@ -21,7 +20,7 @@ public class InventoryDragable : MonoBehaviour
     // Set Caryable
     public void SetCaryable(iCaryable heldItems)
     {
-        // gameObject.SetActive(true);
+
         this.GetComponent<Image>().enabled = true;
         itemInSlot = heldItems;
         SetCaryableImage(itemInSlot);
@@ -62,7 +61,7 @@ public class InventoryDragable : MonoBehaviour
             if (collider != null && collider.gameObject.GetComponent<InventorySlot>() != null)
             {
                 previousSlots.Add(collider.gameObject.GetComponent<InventorySlot>());
-                previousSlots[0].IsSlotOccupied = false;
+                previousSlots[previousSlots.Count].IsSlotOccupied = false;
                 return;
             }
         }

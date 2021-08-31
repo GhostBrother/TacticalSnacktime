@@ -48,12 +48,6 @@ public class AbstractCookingStation : AbstractInteractablePawn, iCookingStation,
             for (int i = 0; i < character.cariedObjects.Count; i++)
             {
 
-               // if (character.cariedObjects[i] is Supply)
-               // {
-                   // Supply supply = (Supply)character.cariedObjects[i];
-                    //heldFood.Add(supply.FoodThisSupplyMakes);
-               // }
-
                 if (character.cariedObjects[i] is Food)
                 {
                     Food food = (Food)character.cariedObjects[i];

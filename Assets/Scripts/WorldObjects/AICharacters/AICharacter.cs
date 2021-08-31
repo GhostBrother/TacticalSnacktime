@@ -112,14 +112,12 @@ public class AICharacter : Character
 
         public void DisplayOrder()
     {
-        // linq stuff
+
         if (Desires.OfType<OrderFood>().Any())
         {
              float xCordinateOffset = -this.characterCoaster.SpriteBoundX * 1.5f; 
              float yCordinateOffset = this.characterCoaster.SpriteBoundY * 1.75f;
 
-            Debug.Log(xCordinateOffset);
-            Debug.Log(yCordinateOffset);
 
             HideCoaster(NeedCoaster);
             HideCoaster(FoodWantCoaster);

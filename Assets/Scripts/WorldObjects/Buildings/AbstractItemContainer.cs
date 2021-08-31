@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstractItemContainer : AbstractInteractablePawn, iContainCaryables //iCanGiveItems,
+public class AbstractItemContainer : AbstractInteractablePawn, iContainCaryables 
 {
     public List<iCaryable> cariedObjects { get;  set; }
 
     public int numberOfCarriedObjects { get; set; }
 
-    public AbstractItemContainer()  //TODO put this information into a json file and make this a class that cookingstation can inherit from. 
+    public AbstractItemContainer()  
     {
         EntityType = EnumHolder.EntityType.Container;
         characterArt = SpriteHolder.instance.GetBuildingArtFromIDNumber(6);

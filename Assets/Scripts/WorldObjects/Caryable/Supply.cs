@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Supply : AbstractInteractablePawn, iContainCaryables //, iCaryable  // iCanGiveItems
+public class Supply : AbstractInteractablePawn, iContainCaryables
 {
     public int HandsRequired { get; set; }
 
@@ -29,19 +29,12 @@ public class Supply : AbstractInteractablePawn, iContainCaryables //, iCaryable 
     public iCaryable Give(int i)
     {
         return null;
-        //return Copy();
+
     }
 
     public void GetRidOfItem(int i)
     {
-        //NumberOfItemsInSupply--;
-        //if (NumberOfItemsInSupply == 0)
-        //{
-        //    HideCoaster(characterCoaster);
-        //    TilePawnIsOn.EntityTypeOnTile = EnumHolder.EntityType.Clear;
-        //    TilePawnIsOn.DeactivateTile();
-           
-        //}
+
         if(cariedObjects.Count == 0)
         {
             HideCoaster(characterCoaster);
@@ -73,8 +66,4 @@ public class Supply : AbstractInteractablePawn, iContainCaryables //, iCaryable 
         Name = $"Box of items"; 
     }
 
-    //public iCaryable Copy()
-    //{
-    //   return FoodThisSupplyMakes.Copy();
-    //}
 }

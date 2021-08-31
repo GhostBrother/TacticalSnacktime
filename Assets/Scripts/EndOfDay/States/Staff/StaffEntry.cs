@@ -70,19 +70,4 @@ public class StaffEntry : MonoBehaviour
         CheckTotal.Invoke(payForHours);
     }
 
-
-    //void CheckIfCanAfford(decimal payForHours)
-    //{
-    //    //// TODO, figgure out math to make it set time out to the max number it could be.
-    //    //double placeHolder =  ((double)GetCurrentValue.Invoke() + (double)payForHours);
-    //    //if (placeHolder < 0 )
-    //    //{
-    //    //        TimeSpan temp =  TimeSpan.FromHours(Math.Ceiling((double)(placeHolder / (double)_characterToShow.payPerHour.valueToStore)));
-    //    //        Debug.Log(temp);
-    //    //        _TimeOut.UpdateHour(_TimeIn.storedTime.Hours - temp.Hours);
-    //    //        _TimeOut.UpdateMinute(_TimeIn.storedTime.Minutes - temp.Minutes);
-        
-    //    //}
-
-    //}
 }

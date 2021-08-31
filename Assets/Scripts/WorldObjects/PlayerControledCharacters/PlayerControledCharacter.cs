@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayercontrolledCharacter : Character , iContainCaryables //iCanGiveItems
+public class PlayercontrolledCharacter : Character , iContainCaryables 
 {
 
     public Action<PlayercontrolledCharacter> PutCharacterBack;
@@ -106,7 +106,6 @@ public class PlayercontrolledCharacter : Character , iContainCaryables //iCanGiv
                 if(neighbor.TargetableOnTile is PlayercontrolledCharacter)
                 {
                     PlayercontrolledCharacter temp = (PlayercontrolledCharacter)neighbor.TargetableOnTile;
-                    //ListToReturn.Add(new TradeItemCommand(this));
                 }   
             }
          

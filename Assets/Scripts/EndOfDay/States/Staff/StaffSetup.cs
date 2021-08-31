@@ -56,7 +56,7 @@ public class StaffSetup : MonoBehaviour, iEndOfDayState
         foreach(PlayercontrolledCharacter c in _characterRoster.employedCharacters)
         {
             staffEntries[i]._characterToShow = c;
-            // staffEntries[i].actionButton.StoredCommand = new ShowEmployeeStats(this, staffEntries[i]._characterToShow);
+
             staffEntries[i].gameObject.SetActive(true);
             staffEntries[i].LabelEntry();
             i++;

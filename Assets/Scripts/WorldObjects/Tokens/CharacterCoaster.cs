@@ -91,7 +91,7 @@ public class CharacterCoaster : MonoBehaviour
             if (transform.position == currentWaypoint)
             {
 
-                _path[TargetIndex].BackgroundTile.color = _path[TargetIndex].DeactiveColor; // Burn after reading
+                _path[TargetIndex].BackgroundTile.color = _path[TargetIndex].DeactiveColor; 
                  TargetIndex++;
                 
                 if (TargetIndex == _path.Length)

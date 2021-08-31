@@ -54,13 +54,13 @@ public class TradeMenuPanelGUI : MonoBehaviour
     {
         for (int i = 0; i < Inventories.Count; i++)
         {
-                     
-                    //if(Inventories[i].IsSlotOccupied && InventoryOwner.cariedObjects.Count > i)
-                    //{
-                    //    InventoryOwner.cariedObjects[i] = Inventories[i].GetItemInSlot();
-                    //}
 
-                     if (Inventories[i].IsSlotOccupied &&  i >= InventoryOwner.cariedObjects.Count)
+            if (Inventories[i].IsSlotOccupied && InventoryOwner.cariedObjects.Count > i)
+            {
+                InventoryOwner.cariedObjects[i] = Inventories[i].GetItemInSlot();
+            }
+
+            if (Inventories[i].IsSlotOccupied &&  i >= InventoryOwner.cariedObjects.Count)
                     {
                          InventoryOwner.cariedObjects.Add(Inventories[i].GetItemInSlot());
                     }
