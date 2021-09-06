@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class IncrementValue<T> : Command
 {
-   // iMuteableValue<T> number;
 
     InputField _valueText;
 
@@ -19,12 +18,10 @@ public class IncrementValue<T> : Command
 
     public string CommandName { get { return string.Empty; }  }
 
-    public IncrementValue(InputField valueText) //iMuteableValue<T> value , // // T ammount To add
+    public IncrementValue(InputField valueText) 
     {
-       // number = valueType;
         _valueText = valueText;
         typeOfCommand = new NoTransfer();
-       // _ammountToAdd = ammountToAdd;
     }
 
 

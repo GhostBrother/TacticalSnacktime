@@ -328,6 +328,9 @@ public class GameManager : MonoBehaviour {
 
     public void DeployStateReady(Tile tile)
     {
+
+        if (tile.EntityTypeOnTile == EnumHolder.EntityType.Clear)
+        {
             PlayercontrolledCharacter CharacterToUse = charactersForStartOfDay[0];
             CharacterToUse.characterCoaster = monoPool.GetCharacterCoasterInstance();
             CharacterToUse._monoPool = monoPool;
@@ -335,19 +338,21 @@ public class GameManager : MonoBehaviour {
             CharacterToUse.NeedsRemoval = false;
             AddPlayerControlledCharacterToList(CharacterToUse);
             CharacterToUse.characterCoaster.SetArtForFacing(EnumHolder.Facing.Down);
+            tile.EntityTypeOnTile = EnumHolder.EntityType.Character; 
+            charactersForStartOfDay.Remove(CharacterToUse);
 
-        charactersForStartOfDay.Remove(CharacterToUse);
+            if (charactersForStartOfDay.Count == 0)
+            {
+                SortList();
 
-        if (charactersForStartOfDay.Count == 0)
-        {
-            SortList();
+                DeactivateAllTiles();
+                StartNextCharactersTurn();
+            }
 
-            DeactivateAllTiles();
-            StartNextCharactersTurn();
+            else
+                characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
         }
 
-        else
-            characterDisplay.ChangeCharacterArt(charactersForStartOfDay[0].characterArt);
     }
 
     private void LoadDeployState()

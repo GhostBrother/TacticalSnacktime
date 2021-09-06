@@ -3,8 +3,6 @@
 public class CharacterFacing
 {
 
-
-
    public EnumHolder.Facing determineFacing(Tile previousWaypoint, Tile nextWaypoint)
     {
         if (previousWaypoint.GridX > nextWaypoint.GridX)

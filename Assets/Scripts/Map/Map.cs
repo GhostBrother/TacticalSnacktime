@@ -68,6 +68,7 @@ public class Map {
             {
                 deployTiles[i].onClick = deployState;
             }
+
         }
     }
 }
