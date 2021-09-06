@@ -32,7 +32,6 @@ public class InventoryDragable : MonoBehaviour
         if (heldItem != null)
         {
             itemImage.sprite = heldItem.CaryableObjectSprite;
-
         }
     }
 
@@ -59,9 +58,9 @@ public class InventoryDragable : MonoBehaviour
         foreach (Collider2D collider in collider2Ds)
         {
             if (collider != null && collider.gameObject.GetComponent<InventorySlot>() != null)
-            {
+            {              
                 previousSlots.Add(collider.gameObject.GetComponent<InventorySlot>());
-                previousSlots[previousSlots.Count].IsSlotOccupied = false;
+                previousSlots[0].IsSlotOccupied = false;
                 return;
             }
         }
@@ -79,12 +78,13 @@ public class InventoryDragable : MonoBehaviour
                 if (Slot.IsSlotOccupied && previousSlots.Count > 0 )
                 {
                     Slot.GetDragable().transform.position = previousSlots[0].transform.position;
-                    previousSlots[0].CheckForItemPlacement(Slot.GetDragable());
-                    previousSlots.Clear();
+                    previousSlots[0].CheckForItemPlacement(Slot.GetDragable()); 
                 }
+                
                 LastInventorySlotPosition = Slot.GetPositionOfSlot();
                 Slot.CheckForItemPlacement(this);
-               
+                previousSlots.Clear();
+
                 return;
             }
         }

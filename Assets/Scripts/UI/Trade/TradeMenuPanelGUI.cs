@@ -34,7 +34,7 @@ public class TradeMenuPanelGUI : MonoBehaviour
             inventorySlot.ClearDragableFromSlot();
         }
 
-
+       
         for (int i = 0; i < inventoryOwner.cariedObjects.Count; i++)
         {
             itemsToDisplay[i].SetCaryable(inventoryOwner.cariedObjects[i]);
@@ -45,7 +45,7 @@ public class TradeMenuPanelGUI : MonoBehaviour
     }
 
     public void CloseTradeMenu()
-    {
+    {   
         ConfirmTrade();
         this.gameObject.SetActive(false);
     }
@@ -61,14 +61,14 @@ public class TradeMenuPanelGUI : MonoBehaviour
             }
 
             if (Inventories[i].IsSlotOccupied &&  i >= InventoryOwner.cariedObjects.Count)
-                    {
-                         InventoryOwner.cariedObjects.Add(Inventories[i].GetItemInSlot());
-                    }
-                   
-                    if (!Inventories[i].IsSlotOccupied && InventoryOwner.cariedObjects.Count > i)
-                    {
-                         InventoryOwner.cariedObjects.RemoveAt(i);
-                    }
+            {
+                InventoryOwner.cariedObjects.Add(Inventories[i].GetItemInSlot());
+            }
+
+            if (!Inventories[i].IsSlotOccupied && InventoryOwner.cariedObjects.Count > i)
+            {
+               InventoryOwner.cariedObjects.RemoveAt(i);
+            }
         }
 
     }

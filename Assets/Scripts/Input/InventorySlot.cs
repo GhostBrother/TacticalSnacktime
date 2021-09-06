@@ -10,6 +10,7 @@ public class InventorySlot : MonoBehaviour
 
     public bool IsSlotOccupied { get; set; }
 
+
     
     public void CheckForItemPlacement(InventoryDragable item)
     {
@@ -32,6 +33,7 @@ public class InventorySlot : MonoBehaviour
     {
         return dragableInSlot;
     }
+
 
     public void ClearDragableFromSlot()
     {
